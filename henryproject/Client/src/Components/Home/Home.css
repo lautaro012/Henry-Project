@@ -1,0 +1,32 @@
+.home-navbar{
+    background-color: #3f51b5cf;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.home-primary-videogames {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.home-show-img-secundary{
+    display: flex;
+    flex-direction: column;
+}
+
+.home-img-primary {
+    display: flex;
+    background-size: cover;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    background-image: url('https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2020/12/minecraft.jpg?fit=2048%2C1350&quality=50&strip=all&ssl=1');
+    width: 500px;
+    height: 312px;
+}
+
+.home-img-secundary {
+    width: 250px;
+    height: 125px;
+}
