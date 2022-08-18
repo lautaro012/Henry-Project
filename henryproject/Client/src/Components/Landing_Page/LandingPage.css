@@ -1,21 +1,31 @@
-.carrousel {
+/* .carrousel {
     display: flex;
     flex-direction: row;
     max-width: 60%;
-    animation: slide 15s linear infinite;
-}
+    animation: slide 40s linear infinite;
+} */
+
+
+/* .banner {
+    display: flex;
+    overflow: hidden;
+    width: 65%;
+} */
 
 @keyframes slide {
   0% {
     transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translate3d(-1500px, 0, 0); /* The image width */
+    transform: translate3d(-1500px, 0, 0);
   }
 }
 
-.banner {
+.carrousel {
     display: flex;
-    overflow: hidden;
-    width: 65%;
+    justify-content: center;
+}
+
+.carrousel_card {
+    display: flex;
 }
