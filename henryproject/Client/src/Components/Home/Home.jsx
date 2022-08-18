@@ -1,32 +1,46 @@
-
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import React from "react";
-
-import { getAllGames } from '../../Actions/Index.js'
-
 import '../Home/Home.css'
 
-
-export default function Home() {
-
-    const dispatch = useDispatch()
-    const games = useSelector(state => state.videogames)
-
-    useEffect(() => {
-        getAllGames()
-    }, [dispatch])
+export default function Home () {
 
     return (
-        <div className="Home">
-            <div>
-                <h1>Henry's Proyect</h1>
-            </div>
-            
-            <Link to='/'><button>Back to start</button></Link>
-            <Link to={'/about'}><button>ABOUT THIS PAGE</button></Link>
-
+      <div className="Home">
+        <div className="home-navbar">
+          BARRA DE NAVEGACION
+          <button> DESCUBRI EL JUEGO PARA VOS </button>
+          <button> EXPLORA NUESTRO CATALOGO </button>
         </div>
+        
+        <div className="home-primary-videogames">
+          <button>left</button>
+          <div>
+
+            <div className='home-img-primary'>
+             <span> Ya Disponible !</span>
+             <button> COMPRAR </button>
+            </div>
+
+            <div className="home-show-img-secundary">
+              <span> MINECRAFT </span>
+              <img src='https://i0.wp.com/codigoespagueti.com/wp-content/uploads/2022/07/videojuegos-ma%CC%81s-exitosos.jpg?fit=1280%2C720&quality=80&ssl=1' 
+              alt='imagen secundaria'
+              className="home-img-secundary"
+              ></img>
+              <img src='https://www.eluniverso.com/resizer/JmanqxXU51w1Bsa0X0Nd9iz1cSM=/660x371/smart/filters:quality(70)/cloudfront-us-east-1.images.arcpublishing.com/eluniverso/ZYX6AFU7OBH7PBXUTCXQEICJ7E.jpg' 
+              alt='imagen secundaria'
+              className="home-img-secundary"
+              ></img>
+              Ya disponible !!
+              <button> Learn more... </button>
+            </div>
+          </div> 
+          <button> right</button>
+        </div>
+
+        <div>
+          
+        </div>
+
+
+    </div>
     )
 }
