@@ -2,11 +2,15 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
+const Games = require('./models/Games');
+const Genres = require('./models/Genres');
+const Platforms = require('./models/Platforms');
+const Comments = require('./models/Comments');
 const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/videogames`, {
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/games`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
@@ -34,6 +38,25 @@ const { Videogame } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
+
+
+    //FALTA IMPORTAR USERS
+        Users.belongsToMany(Games, {through: 'userGames'})
+        Games.belongsToMany(Users, {through: 'userGames'})
+    
+      //FALTA IMPORTAR ORDERS
+        Orders.belongsToMany(Games, {through: 'orderGames'})
+        Games.belongsToMany(Orders, {through: 'orderGames'})
+
+        Genres.belongsToMany(Games, {through: 'genreGames'})
+        Games.belongsToMany(Genres, {through: 'genreGames'})
+
+        Games.belongsToMany(Platforms, {through: 'platformGames'})
+        Platforms.belongsToMany(Games, {through: 'platformGames'})
+
+        // ver relación con juegos y games
+        Games.hasMany(Comments)
+        Comments.belongsTo(Games)
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
