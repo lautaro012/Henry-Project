@@ -6,6 +6,7 @@ const Games = require('./models/Games');
 const Genres = require('./models/Genres');
 const Platforms = require('./models/Platforms');
 const Comments = require('./models/Comments');
+const Users = require('../src/models/Users');
 const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
