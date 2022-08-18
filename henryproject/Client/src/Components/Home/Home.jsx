@@ -1,5 +1,6 @@
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -30,6 +31,8 @@ export default function Home() {
 
         </div>
 =======
+=======
+>>>>>>> Lautaro
 
 export default function Home () {
 
@@ -50,6 +53,9 @@ export default function Home () {
         </a>
       </header>
     </div>
+<<<<<<< HEAD
 >>>>>>> e79110e4 (asd)
+=======
+>>>>>>> Lautaro
     )
 }
