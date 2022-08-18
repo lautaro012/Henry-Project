@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import React from "react";
 
 import '../Landing_Page/LandingPage.css'
 
 //import mclaren from '../../Style/_temp/mclaren.jpg'
 import Example from "./Carrousel";
+import Footer from "../Footer/Footer";
+import NavBar from "../Nav_bar/Nav_bar";
 
 export default function LandingPage() {
 
@@ -14,16 +16,11 @@ export default function LandingPage() {
     return (
         <div className="body_landing">
 
-            <div className="landing">
+            <NavBar />
 
-                <Link to='/home'>
-                    <h1>Henry's Proyect</h1>
-                </Link>
-            </div>
+            <Example/>
 
-            <h3>Welcome to Games's Store</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-
+            <Footer/>
             {/* <div className="banner">
                 {
                     bestGames && bestGames.map(game => {
@@ -35,7 +32,6 @@ export default function LandingPage() {
                     })
                 }
             </div> */}
-            <Example/>
         </div>
     )
 }
