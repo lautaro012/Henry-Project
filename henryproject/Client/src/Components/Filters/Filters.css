@@ -1,0 +1,28 @@
+.filters {
+    position: absolute;
+    background: burlywood;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+}
+
+.show-filters{
+    width: 20%;
+    background: ghostwhite;
+}
+
+.Sorts-Games{
+    width: 80%;
+}
+
+.Sorts {
+    height: 20%;
+    background: green;
+}
+
+.Games-Cards-Div {
+    height: 80%;
+    background: aquamarine;
+}

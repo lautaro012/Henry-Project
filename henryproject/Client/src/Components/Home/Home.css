@@ -1,5 +1,5 @@
 .home-navbar{
-    background-color: #3f51b5cf;
+    background-color: rgb(49, 49, 49);
     display: flex;
     justify-content: space-evenly;
 }
@@ -9,7 +9,7 @@
     flex-direction: row;
     justify-content: center;
     margin:30px;
-    background-color: #0000007f;
+    background-color: rgb(49, 49, 49);
 }   
 
 .home-show-img-secundary{

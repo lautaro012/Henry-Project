@@ -1,9 +1,11 @@
+import './Filters.css'
+
 export default function Filters () {
 
 
     return (
-        <div>
-            <div>
+        <div className='filters'>
+            <div className="show-filters">
                 <span> Filter by </span>
                 <br></br>
                 <br></br>
@@ -14,14 +16,16 @@ export default function Filters () {
                 <br></br>
                 <br></br>
             </div>
-            <div>
-                <div>
+            <div className='Sorts-Games'>
+                <div className='Sorts'>
                     <span> Sort </span>
                     <br></br>
                     
                 </div>
-                <div>
-
+                <div className='Games-Cards-Div'>
+                    <div>
+                        CARDS
+                    </div>
                 </div>
             </div>
         </div>
