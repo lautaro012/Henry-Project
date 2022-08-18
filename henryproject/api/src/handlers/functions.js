@@ -1,7 +1,5 @@
 const axios = require("axios")
 
-
-
 async function getVideogamesApi() {
     let page = 1
     let arrayGames = []
