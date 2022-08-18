@@ -3,13 +3,13 @@ import React from "react";
 
 import '../Landing_Page/LandingPage.css'
 
-import mclaren from '../../Style/_temp/mclaren.jpg'
+//import mclaren from '../../Style/_temp/mclaren.jpg'
 import Example from "./Carrousel";
 
 export default function LandingPage() {
 
 
-    const bestGames = [{ name: "Auto", img: mclaren }, { name: "Auto", img: mclaren }, { name: "Auto", img: mclaren }, { name: "Auto", img: mclaren }]
+    //const bestGames = [{ name: "Auto", img: mclaren }, { name: "Auto", img: mclaren }, { name: "Auto", img: mclaren }, { name: "Auto", img: mclaren }]
 
     return (
         <div className="body_landing">
