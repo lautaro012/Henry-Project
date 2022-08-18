@@ -29,6 +29,10 @@ module.exports = (sequelize) => {
         type: DataTypes.FLOAT,
         allowNull: true
     },
+    videoTrailer: {
+      type: DataTypes.TEXT,
+      allowNull:true
+    },
     createdInDb:{
         type: DataTypes.BOOLEAN,
         allowNull:false,
