@@ -19,8 +19,6 @@ export default function LandingPage() {
             <NavBar />
 
             <Example/>
-
-            <Footer/>
             {/* <div className="banner">
                 {
                     bestGames && bestGames.map(game => {
@@ -32,6 +30,8 @@ export default function LandingPage() {
                     })
                 }
             </div> */}
+
+            <Footer/>
         </div>
     )
 }
