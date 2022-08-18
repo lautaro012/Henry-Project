@@ -1,4 +1,4 @@
-const { DataTypes, UUID, UUIDV4 } = require('sequelize');
+const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
   sequelize.define('platforms', { 
