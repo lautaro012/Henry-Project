@@ -2,11 +2,11 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const Games = require('./models/Games');
-const Genres = require('./models/Genres');
-const Platforms = require('./models/Platforms');
-const Comments = require('./models/Comments');
-const Users = require('../src/models/Users');
+// const Games = require('./models/Games');
+// const Genres = require('./models/Genres');
+// const Platforms = require('./models/Platforms');
+// const Comments = require('./models/Comments');
+// const Users = require('../src/models/Users');
 const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
@@ -35,15 +35,15 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Videogame } = sequelize.models;
-
+const { games } = sequelize.models;
+const { users } =sequelize.models;
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
 
     //FALTA IMPORTAR USERS
-        Users.belongsToMany(Games, {through: 'userGames'})
-        Games.belongsToMany(Users, {through: 'userGames'})
+        users.belongsToMany(games, {through: 'userGames'})
+        games.belongsToMany(users, {through: 'userGames'})
     
       //FALTA IMPORTAR ORDERS
         Orders.belongsToMany(Games, {through: 'orderGames'})
