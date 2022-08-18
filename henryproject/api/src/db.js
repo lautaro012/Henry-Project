@@ -2,11 +2,8 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const Games = require('./models/Games');
-const Genres = require('./models/Genres');
-const Platforms = require('./models/Platforms');
-const Comments = require('./models/Comments');
-const Users = require('../src/models/Users');
+
+
 const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
@@ -35,29 +32,31 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Videogame } = sequelize.models;
+// const { Videogame } = sequelize.models;
+const {Users, Orders, Games, Genres, Platforms, Comments} = sequelize.models;
+
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
 
     //FALTA IMPORTAR USERS
-        Users.belongsToMany(Games, {through: 'userGames'})
-        Games.belongsToMany(Users, {through: 'userGames'})
+        Users.belongsToMany(Games, {through: 'userGames'});
+        Games.belongsToMany(Users, {through: 'userGames'});
     
       //FALTA IMPORTAR ORDERS
-        Orders.belongsToMany(Games, {through: 'orderGames'})
-        Games.belongsToMany(Orders, {through: 'orderGames'})
+        Orders.belongsToMany(Games, {through: 'orderGames'});
+        Games.belongsToMany(Orders, {through: 'orderGames'});
 
-        Genres.belongsToMany(Games, {through: 'genreGames'})
-        Games.belongsToMany(Genres, {through: 'genreGames'})
+        Genres.belongsToMany(Games, {through: 'genreGames'});
+        Games.belongsToMany(Genres, {through: 'genreGames'});
 
-        Games.belongsToMany(Platforms, {through: 'platformGames'})
-        Platforms.belongsToMany(Games, {through: 'platformGames'})
+        Games.belongsToMany(Platforms, {through: 'platformGames'});
+        Platforms.belongsToMany(Games, {through: 'platformGames'});
 
         // ver relación con juegos y games
-        Games.hasMany(Comments)
-        Comments.belongsTo(Games)
+        Games.hasMany(Comments);
+        Comments.belongsTo(Games);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
