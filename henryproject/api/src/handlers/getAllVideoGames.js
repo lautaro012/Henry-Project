@@ -2,7 +2,7 @@ const { getVideoGamesDB } = require("./getGamesDB")
 const { getVideogamesApi } = require("./getVideoGamesApi")
 
 //Función para filtrar
-const getAllVideoGames = async (req, res) => {
+const getAllVideoGames = async () => {
     let dbGames = await getVideoGamesDB()
     let apiGames = await getVideogamesApi()
     let allGames = [...dbGames, ...apiGames]
