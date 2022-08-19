@@ -1,5 +1,4 @@
 import '../Home/Home.css'
-import NAV_BAR from '../Nav_bar/Nav_bar'
 import SearchBar from '../SearchBar/SearchBar'
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -8,8 +7,6 @@ export default function Home () {
 
     return (
       <div className="Home">
-
-        <NAV_BAR/>
 
         <SearchBar></SearchBar>
         

@@ -6,37 +6,15 @@ const getGenres = async ()  =>{
   try {
     const allGenres = await Genres.findAll();
     if(allGenres.length===0){
-      const page = 10;
-      const link =[];
-      for(let i=1;i<=page;i++){
-        link.push(`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`)
-      }
-      const promiseLink=link.map((link) => axios.get(link));
-      
-      const genresPromise = (await Promise.all(promiseLink));
-      
-      const info = genresPromise.map((el) => el.data.results).flat();
-      
-      const genres = (info.map((el) => el.genres )).flat()
-      
-      const infoFinal = genres.map(((el) => el.name))
-      
-      const arraySinRep= [];
-      
-      infoFinal.forEach((el) =>{
-        if(!arraySinRep.includes(el)){
-          arraySinRep.push(el)
-        }
-      })
-      
-      arraySinRep.map(async (el) => {
+      const genresInfo= ((await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)).data.results).map((el => el.name)); 
+      console.log(genresInfo);
+      genresInfo.map(async (el) => {
         await Genres.findOrCreate({
           where: {name: el}
         })
       })
-      const genre = await Genres.findAll();
-      // console.log(genre)
-      return genre;
+      const genresTotal = await Genres.findAll();
+      return genresTotal;
     }else{
       return allGenres;
     }
