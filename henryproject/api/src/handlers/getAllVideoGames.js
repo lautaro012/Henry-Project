@@ -23,7 +23,7 @@ const getGamesByName = async (req, res) => {
             return res.json(searchByName)
         }
     } 
-    return allGames
+    return res.send(allGames)
 }
 
   module.exports = {
