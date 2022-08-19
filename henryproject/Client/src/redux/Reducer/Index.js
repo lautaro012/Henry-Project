@@ -1,8 +1,9 @@
-import { GET_ALL_GAMES, GET_ALL_GAMES_BY_NAME } from "../Actions/Index"
+import { GET_ALL_GAMES, GET_ALL_GAMES_BY_NAME, GET_GAME_BY_ID } from "../Actions/Index"
 
 const initialState = {
     Allvideogames: [],
     videogames: [],
+    game: [],
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -19,6 +20,11 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 videogames: action.payload,
+            }
+        case GET_GAME_BY_ID:
+            return {
+                ...state,
+                game: action.payload,
             }
 
         default: return state
