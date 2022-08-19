@@ -21,10 +21,6 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false
     },
-    gameplay: {
-        type: DataTypes.STRING,
-        allowNull: true
-    }, 
     rating: {
         type: DataTypes.FLOAT,
         allowNull: true
