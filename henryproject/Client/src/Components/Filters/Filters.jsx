@@ -74,6 +74,7 @@ export default function Filters () {
                         currentVideogame.map(card => {
                             return (<Cards
                             card={card}
+                            key={card.id}
                             />)
                         })
                     }
