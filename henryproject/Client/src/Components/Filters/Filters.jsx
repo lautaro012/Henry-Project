@@ -19,6 +19,10 @@ export default function Filters () {
         }
     }, [])
 
+    function onSearch(name) {
+        dispatch(getAllGames(name))
+    }
+     console.log(videogames)
     return (
         <div className='filters'>
 
@@ -38,7 +42,9 @@ export default function Filters () {
                 <div className='Sorts'>
                     <span> Sort </span>
                     <br></br>
-                    <SearchBar></SearchBar>
+                    <SearchBar
+                    onSearch={onSearch}
+                    ></SearchBar>
                 </div>
 
                 <div className='Games-Cards-Div'>
