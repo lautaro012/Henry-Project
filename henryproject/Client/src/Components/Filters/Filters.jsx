@@ -4,6 +4,8 @@ import Cards from '../Cards/Cards.jsx'
 import { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { getAllGames } from '../../redux/Actions/Index'
+import { useState } from 'react';
+import Paginado from '../Paginado/Paginado';
 
 export default function Filters () {
 
@@ -22,7 +24,20 @@ export default function Filters () {
     function onSearch(name) {
         dispatch(getAllGames(name))
     }
-     console.log(videogames)
+
+
+    //paginado
+    const [currentPage, setCurrentPage] = useState(1)
+    const [videogamesPerPage, setVideogamesPerPage] = useState(10)
+    
+    //videojuegos filtradas por pagina
+    const indexOfLastVideogame = currentPage * videogamesPerPage
+    const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage
+    const currentVideogame = videogames.slice(indexOfFirstVideogame, indexOfLastVideogame)
+    const paginado = (pageNumber) => {
+        setCurrentPage(pageNumber)
+    }
+
     return (
         <div className='filters'>
 
@@ -47,9 +62,16 @@ export default function Filters () {
                     ></SearchBar>
                 </div>
 
+                     <div className='PAGINADO'>
+                        <Paginado
+                        VideogamesPerPage = {videogamesPerPage}
+                        allVideogames = {videogames.length}
+                        paginado = {paginado}
+                        /> 
+                    </div>
                 <div className='Games-Cards-Div'>
                     {
-                        videogames.map(card => {
+                        currentVideogame.map(card => {
                             return (<Cards
                             card={card}
                             />)
