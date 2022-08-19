@@ -1,9 +1,25 @@
-.Nav_bar img{
-    width: 200px;
+#icon img{
+    width: 150px;
+    border-radius: 100%;
+}
+
+#icon {
+    padding-left: 40px;
+}
+
+#cart img {
+    width: 100px;
+    border-radius: 100%;
+}
+
+#cart {
+    align-self: center;
+    padding-right: 40px;
 }
 
 .Nav_bar {
     display: flex;
+    background-color: rgb(49, 49, 49);
 }
 
 .Nav_bar div {
@@ -14,3 +30,18 @@
     align-items: center;
     justify-content: space-around;
 }
+
+.Nav_bar button {
+    cursor: pointer;
+    padding: 10px 40px;
+    background: rgb(49, 49, 49);
+    border: none;
+    color: white;
+
+    box-shadow: 1px 1px 10px -5px #000000;
+  }
+  
+.Nav_bar button:hover {
+    box-shadow: 5px 5px 20px #000000;
+    transform: translateY(-5px);
+  }
