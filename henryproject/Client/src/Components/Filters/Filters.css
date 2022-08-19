@@ -1,18 +1,16 @@
 .filters {
     display: flex;
+   
 }
 
 .show-filters{
-    width: 20%;
+    background-color: wheat;
 }
 
 .Sorts-Games{
-    width: 80%;
 }
 
 .Sorts {
-    height: 20%;
-
 }
 
 .Games-Cards-Div {
@@ -20,4 +18,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.Search-Filters{
+    margin-top: 10%;
 }

@@ -39,8 +39,12 @@ export default function Filters () {
     }
 
     return (
-        <div className='filters'>
+        <div className='Search-Filters'>
 
+            <SearchBar
+            onSearch={onSearch}
+            ></SearchBar>
+        <div className='filters'>
             <div className="show-filters">
                 <span> Filter by </span>
              
@@ -48,18 +52,10 @@ export default function Filters () {
            
                 <span> tags </span>
             
-             
             </div>
-
-
             <div className='Sorts-Games'>
-
                 <div className='Sorts'>
                     <span> Sort </span>
-                    <br></br>
-                    <SearchBar
-                    onSearch={onSearch}
-                    ></SearchBar>
                 </div>
 
                      <div className='PAGINADO'>
@@ -83,6 +79,7 @@ export default function Filters () {
             </div>
 
 
+        </div>
         </div>
     )
 }

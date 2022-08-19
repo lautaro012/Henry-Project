@@ -37,8 +37,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 10%;
 }
 
+.Home-Games {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .double {
     display: flex;
 }
