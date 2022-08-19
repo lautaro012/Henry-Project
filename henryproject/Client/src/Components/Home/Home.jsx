@@ -24,7 +24,6 @@ export default function Home () {
     
     function onSearch(name) {
         dispatch(getAllGames(name))
-
     }
     console.log(videogames)
 
