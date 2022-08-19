@@ -48,3 +48,7 @@
 .double {
     display: flex;
 }
+
+.img-populars{
+    height: 600px;
+}
