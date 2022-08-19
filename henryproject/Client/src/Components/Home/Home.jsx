@@ -25,10 +25,8 @@ export default function Home () {
     function onSearch(name) {
         dispatch(getAllGames(name))
     }
-    
+
     let populars = Allvideogames?.filter(games => games.rating > 4.5)
-    console.log(populars)
-  
 
     return (
       <div className="Home">
