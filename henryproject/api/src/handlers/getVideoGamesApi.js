@@ -5,7 +5,8 @@ function videogameInfo(data) {
         id: data.id,
         name: data.name,
         price: "$19.99",
-        rating: data.rating
+        rating: data.rating,
+        image: data.background_image
     }
 }
 
