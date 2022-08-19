@@ -8,7 +8,9 @@ function videogameInfo(data) {
         rating: data.rating,
         image: data.background_image,
         platforms: data.platforms.map(e => e.platform.name),
-        genres: data.genres.map(e=>e.name)
+        genres: data.genres.map(e=>e.name),
+        screenshots: data.short_screenshots.map(e=>e.image),
+        tags: data.tags.map(e=>e.name)
     }
 }
 
@@ -22,7 +24,7 @@ async function getVideogamesApi() {
         });
         page++
     }
-    console.log(arrayGames)
+    // console.log(arrayGames)
     return arrayGames
 }
 
