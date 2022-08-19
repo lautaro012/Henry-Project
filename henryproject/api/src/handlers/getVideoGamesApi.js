@@ -20,7 +20,7 @@ async function getVideogamesApi() {
         });
         page++
     }
-    console.log(arrayGames)
+    // console.log(arrayGames)
     return arrayGames
 }
 

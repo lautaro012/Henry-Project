@@ -2,7 +2,7 @@ const { getVideoGamesDB } = require("./getGamesDB")
 const { getVideogamesApi } = require("./getVideoGamesApi")
 
 const getAllVideoGames = async (req, res) => {
-    let {name} = req.query
+    // let {name} = req.query
     let dbGames = await getVideoGamesDB()
     let apiGames = await getVideogamesApi()
     let allGames = [...dbGames, ...apiGames]
@@ -14,7 +14,10 @@ const getAllVideoGames = async (req, res) => {
             return res.json(searchByName)
         }
     } 
-    return res.send(allGames)
+    else{
+        return res.send(allGames)
+    }
+    
   }
 
   
