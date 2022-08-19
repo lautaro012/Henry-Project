@@ -1,6 +1,20 @@
-.Nav_bar img{
-    width: 200px;
+#icon img{
+    width: 150px;
     border-radius: 100%;
+}
+
+#icon {
+    padding-left: 40px;
+}
+
+#cart img {
+    width: 100px;
+    border-radius: 100%;
+}
+
+#cart {
+    align-self: center;
+    padding-right: 40px;
 }
 
 .Nav_bar {
