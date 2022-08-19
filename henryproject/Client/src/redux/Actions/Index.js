@@ -1,6 +1,8 @@
 const axios = require('axios');
 export const GET_ALL_GAMES = 'GET_ALL_GAMES'
 export const GET_ALL_GAMES_BY_NAME = 'GET_ALL_GAMES_BY_NAME'
+export const GET_GAME_BY_ID = 'GET_GAME_BY_ID'
+
 export function getAllGames(name) {
 
     if(name) {
@@ -21,7 +23,6 @@ export function getAllGames(name) {
                 payload: response.data
             })
         }
-
     }
 }
 
@@ -29,7 +30,7 @@ export function getGameById(id) {
     return async function (dispatch) {
         let response = await axios(`http://localhost:3001/videogames/${id}`)
         dispatch({
-            type: 'GET_GAME_BY_ID',
+            type: GET_GAME_BY_ID,
             payload: response.data
         })
     }
