@@ -29,7 +29,7 @@ export default function Home () {
     console.log(videogames)
 
     let populars = videogames?.filter(games => games.rating > 4.5)
-  
+    console.log(videogames)
 
     return (
       <div className="Home">
