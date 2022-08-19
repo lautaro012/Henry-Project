@@ -15,7 +15,7 @@ export default function Filters () {
     useEffect(() => {    
         if(videogames.length === 0) {
             dispatch(getAllGames())   
-            console.log('Pido los juegos a la API') 
+            console.log('Axios API') 
         }
     }, [])
 

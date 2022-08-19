@@ -18,7 +18,7 @@ export default function Home () {
     useEffect(() => {    
         if(videogames.length === 0) {
             dispatch(getAllGames())   
-            console.log('Pido los juegos a la API') 
+            console.log('Axios API') 
         }
     }, [])
     
@@ -26,7 +26,7 @@ export default function Home () {
         dispatch(getAllGames(name))
 
     }
-
+    console.log(videogames)
 
     let populars = videogames?.filter(games => games.rating > 4.5)
   
