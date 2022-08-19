@@ -7,7 +7,7 @@ const getGenres = async ()  =>{
     const allGenres = await Genres.findAll();
     if(allGenres.length===0){
       const genresInfo= ((await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)).data.results).map((el => el.name)); 
-      console.log(genresInfo);
+      // console.log(genresInfo);
       genresInfo.map(async (el) => {
         await Genres.findOrCreate({
           where: {name: el}
