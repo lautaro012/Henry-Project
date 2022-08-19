@@ -13,11 +13,12 @@ export default function Nav_bar() {
             </Link>
 
             <div>
-                <Link to='/home'>Tienda</Link>
 
-                <Link to='/explorar'>Explorar</Link>
+                <Link to='/home'><button>Tienda</button></Link>
 
-                <Link to='/loggin'>Iniciar sesion</Link>
+                <Link to='/explorar'><button>Explorar</button></Link>
+
+                <Link to='/loggin'><button>Loggin</button></Link>
             </div>
         </nav>
     )
