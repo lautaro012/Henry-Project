@@ -1,7 +1,9 @@
 .home-navbar{
-    background-color: rgb(49, 49, 49);
+    background-color: #313131bd;
     display: flex;
     justify-content: space-evenly;
+    width: 100%;
+    margin: 1%;
 }
 
 .home-primary-videogames {
@@ -34,5 +36,15 @@
 }
 
 .home-card{
+    display: flex;
+}
+
+.Home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.double {
     display: flex;
 }
