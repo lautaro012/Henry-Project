@@ -6,7 +6,7 @@
     margin: 2rem;   
     background-color: #020760;
      background-image: linear-gradient(45deg, #13153c 0%, #252a6c 46%, #7380e5 100%);
-     
+     height: 200px;
 }
 
 .card-videogame:hover{
@@ -26,7 +26,6 @@
 .Link {
     text-decoration: none;
     color: black;
-    display: flex;
 }
 
 .card-data{
