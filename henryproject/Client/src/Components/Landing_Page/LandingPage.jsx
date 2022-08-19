@@ -7,6 +7,7 @@ import '../Landing_Page/LandingPage.css'
 import Example from "./Carrousel";
 import Footer from "../Footer/Footer";
 import NavBar from "../Nav_bar/Nav_bar";
+import Carrousel2 from "./Carrousel2";
 
 export default function LandingPage() {
 
@@ -19,17 +20,8 @@ export default function LandingPage() {
             <NavBar />
 
             <Example/>
-            {/* <div className="banner">
-                {
-                    bestGames && bestGames.map(game => {
-                        return (
-                            <div className="carrousel">
-                                <img src={game.img} alt={game.name} />
-                            </div>
-                        )
-                    })
-                }
-            </div> */}
+
+            {/* <Carrousel2/> */}
 
             <Footer/>
         </div>
