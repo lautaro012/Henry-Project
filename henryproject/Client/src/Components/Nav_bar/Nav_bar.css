@@ -22,9 +22,9 @@
     background-color: #3131317F ;
     position: absolute;
     z-index: 10;
-    top: 50px;
-    right: 50px;
-    left: 50px;
+    top: 2%;
+    right: 2%;
+    left: 2%;
     border-radius: 40px;
     backdrop-filter: blur(10px);
 }
