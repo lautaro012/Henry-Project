@@ -24,3 +24,13 @@ export function getAllGames(name) {
 
     }
 }
+
+export function getGameById(id) {
+    return async function (dispatch) {
+        let response = await axios(`http://localhost:3001/videogames/${id}`)
+        dispatch({
+            type: 'GET_GAME_BY_ID',
+            payload: response.data
+        })
+    }
+}
