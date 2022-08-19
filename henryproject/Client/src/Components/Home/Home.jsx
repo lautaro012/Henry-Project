@@ -1,13 +1,10 @@
 import '../Home/Home.css'
-import NAV_BAR from '../Nav_bar/Nav_bar'
 import SearchBar from '../SearchBar/SearchBar'
 
 export default function Home () {
 
     return (
       <div className="Home">
-
-        <NAV_BAR/>
 
         <SearchBar></SearchBar>
         

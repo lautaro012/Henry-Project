@@ -6,11 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux'
 import { store } from './Store/Index'
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <Provider store={store}>
-    <React.StrictMode>
+    <React.StrictMode>     
       <App />
     </React.StrictMode>
   </Provider>
