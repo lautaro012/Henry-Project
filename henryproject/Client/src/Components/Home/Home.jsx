@@ -1,14 +1,15 @@
 import '../Home/Home.css'
+import NAV_BAR from '../Nav_bar/Nav_bar'
+import SearchBar from '../SearchBar/SearchBar'
 
 export default function Home () {
 
     return (
       <div className="Home">
-        <div className="home-navbar">
-          BARRA DE NAVEGACION
-          <button> DESCUBRI EL JUEGO PARA VOS </button>
-          <button> EXPLORA NUESTRO CATALOGO </button>
-        </div>
+
+        <NAV_BAR/>
+
+        <SearchBar></SearchBar>
         
         <div className="home-primary-videogames">
           <button>left</button>

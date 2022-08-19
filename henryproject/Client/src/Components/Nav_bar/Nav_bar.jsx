@@ -13,7 +13,7 @@ export default function Nav_bar() {
             </Link>
 
             <div>
-                <Link to='/tienda'>Tienda</Link>
+                <Link to='/home'>Tienda</Link>
 
                 <Link to='/explorar'>Explorar</Link>
 
