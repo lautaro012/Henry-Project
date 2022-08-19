@@ -15,10 +15,14 @@ export default function Filters () {
     useEffect(() => {    
         if(videogames.length === 0) {
             dispatch(getAllGames())   
-            console.log('Pido los juegos a la API') 
+            console.log('Axios API') 
         }
     }, [])
 
+    function onSearch(name) {
+        dispatch(getAllGames(name))
+    }
+     console.log(videogames)
     return (
         <div className='filters'>
 
@@ -38,7 +42,9 @@ export default function Filters () {
                 <div className='Sorts'>
                     <span> Sort </span>
                     <br></br>
-                    <SearchBar></SearchBar>
+                    <SearchBar
+                    onSearch={onSearch}
+                    ></SearchBar>
                 </div>
 
                 <div className='Games-Cards-Div'>

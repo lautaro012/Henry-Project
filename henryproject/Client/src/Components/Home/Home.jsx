@@ -2,7 +2,7 @@ import '../Home/Home.css'
 import SearchBar from '../SearchBar/SearchBar'
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { getAllGames } from '../../redux/Actions/Index'
@@ -10,7 +10,7 @@ import { getAllGames } from '../../redux/Actions/Index'
 
 export default function Home () {
 
-    let dispatch = useDispatch()
+    const dispatch = useDispatch()
 
     let videogames = useSelector(state => state.videogames)
     
@@ -18,10 +18,15 @@ export default function Home () {
     useEffect(() => {    
         if(videogames.length === 0) {
             dispatch(getAllGames())   
-            console.log('Pido los juegos a la API') 
+            console.log('Axios API') 
         }
     }, [])
     
+    function onSearch(name) {
+        dispatch(getAllGames(name))
+
+    }
+    console.log(videogames)
 
     let populars = videogames?.filter(games => games.rating > 4.5)
   
@@ -29,7 +34,9 @@ export default function Home () {
     return (
       <div className="Home">
 
-        <SearchBar></SearchBar>
+        <SearchBar
+        onSearch={onSearch}
+        ></SearchBar>
         <span><h1> VIDEOJUEGOS MAS POPULARES </h1></span>
 
         <div className='carruseles'>
