@@ -20,7 +20,7 @@
 .Nav_bar {
     display: flex;
     background-color: #3131317F ;
-    position: absolute;
+   position: absolute;
     z-index: 1;
     top: 50px;
     right: 50px;

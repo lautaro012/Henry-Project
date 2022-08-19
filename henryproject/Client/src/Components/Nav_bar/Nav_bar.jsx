@@ -6,7 +6,7 @@ import Cart from '../../Style/Imagenes/cart.png'
 import UserPop from './UserPop.jsx'
 
 import './Nav_bar.css'
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Nav_bar() {
 
@@ -29,7 +29,7 @@ export default function Nav_bar() {
 
                 <Link to='/home/games'><button>Explorar</button></Link>
 
-                <button onClick={ () => onHanddlePop()}>Loggin</button>
+                <button onClick={() => onHanddlePop()}>Loggin</button>
             </div>
 
             <Link id="cart" to='/cart'>
@@ -38,9 +38,9 @@ export default function Nav_bar() {
 
             {
                 user ?
-                <UserPop/>
-                :
-                null
+                    <UserPop />
+                    :
+                    null
             }
         </nav>
     )
