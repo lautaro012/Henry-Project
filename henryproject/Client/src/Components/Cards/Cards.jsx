@@ -7,13 +7,15 @@ export default function Card(card){
      let {name, image, id, price, rating} = card.card
        return(
         <div className="card-videogame">
-            <div className="image-card" style={{backgroundImage: `url(${image})`}}>
-            </div>
+            <Link to={`/home/games/${id}`} className='Link'>
+                <div className="image-card" style={{backgroundImage: `url(${image})`}}>
+                </div>
                 <div className="card-data">
                     <span className="h">{name}</span>
                     <span className="h">{price}</span>
                     <span> {rating} </span>
                 </div>
+            </Link>
         </div> 
        )
 }

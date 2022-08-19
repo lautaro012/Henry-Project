@@ -1,11 +1,4 @@
 .filters {
-    position: absolute;
-    background-color: #13153c;
-    background-image: linear-gradient(45deg, #13153c 0%, #434892 46%, #7380e5 100%);
-    bottom: 0;
-    top: 0;
-    left: 0;
-    right: 0;
     display: flex;
 }
 
