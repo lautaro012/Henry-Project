@@ -12,11 +12,11 @@ export default function Home () {
 
     const dispatch = useDispatch()
 
-    let videogames = useSelector(state => state.videogames)
+    let Allvideogames = useSelector(state => state.Allvideogames)
     
 
     useEffect(() => {    
-        if(videogames.length === 0) {
+        if(Allvideogames.length === 0) {
             dispatch(getAllGames())   
             console.log('Axios API') 
         }
@@ -25,9 +25,9 @@ export default function Home () {
     function onSearch(name) {
         dispatch(getAllGames(name))
     }
-    console.log(videogames)
-
-    let populars = videogames?.filter(games => games.rating > 4.5)
+    
+    let populars = Allvideogames?.filter(games => games.rating > 4.5)
+    console.log(populars)
   
 
     return (

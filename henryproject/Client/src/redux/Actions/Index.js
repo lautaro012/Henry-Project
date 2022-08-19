@@ -1,6 +1,6 @@
 const axios = require('axios');
 export const GET_ALL_GAMES = 'GET_ALL_GAMES'
-
+export const GET_ALL_GAMES_BY_NAME = 'GET_ALL_GAMES_BY_NAME'
 export function getAllGames(name) {
 
     if(name) {
@@ -8,7 +8,7 @@ export function getAllGames(name) {
             let response = await axios(`http://localhost:3001/videogames?name=${name}`) 
             dispatch({
                 
-                type: GET_ALL_GAMES,
+                type: GET_ALL_GAMES_BY_NAME,
                 payload: response.data
             })
         }
