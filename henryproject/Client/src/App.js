@@ -5,10 +5,12 @@ import LandingPage from './Components/Landing_Page/LandingPage.jsx'
 import About from './Components/About_Us/About.jsx'
 import Home from './Components/Home/Home.jsx'
 import Filters from './Components/Filters/Filters';
+import NavBar from './Components/Nav_bar/Nav_bar';
 
 function App() {
   return (
     <Router>
+      <NavBar/>
       <Routes>
         <Route exact path='/' element={<LandingPage />} />
         <Route path='/about' element={<About/>} />
