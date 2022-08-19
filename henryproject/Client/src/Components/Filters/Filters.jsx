@@ -9,27 +9,32 @@ export default function Filters () {
 
             <div className="show-filters">
                 <span> Filter by </span>
-                <br></br>
-                <br></br>
+             
                 <span> Genres </span>
-                <br></br>
-                <br></br>
+           
                 <span> tags </span>
-                <br></br>
-                <br></br>
+            
+             
             </div>
+
+
             <div className='Sorts-Games'>
+
                 <div className='Sorts'>
                     <span> Sort </span>
                     <br></br>
                     <SearchBar></SearchBar>
                 </div>
+
                 <div className='Games-Cards-Div'>
                     <div>
-                        CARDS
+                        cards.map
                     </div>
                 </div>
+
             </div>
+
+
         </div>
     )
 }
