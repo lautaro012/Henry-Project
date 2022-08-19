@@ -1,6 +1,7 @@
 .filters {
     position: absolute;
-    background: burlywood;
+    background-color: #13153c;
+    background-image: linear-gradient(45deg, #13153c 0%, #434892 46%, #7380e5 100%);
     bottom: 0;
     top: 0;
     left: 0;
@@ -10,7 +11,6 @@
 
 .show-filters{
     width: 20%;
-    background: ghostwhite;
 }
 
 .Sorts-Games{
@@ -19,12 +19,12 @@
 
 .Sorts {
     height: 20%;
-    background: green;
+
 }
 
 .Games-Cards-Div {
     height: 80%;
-    background: aquamarine;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
