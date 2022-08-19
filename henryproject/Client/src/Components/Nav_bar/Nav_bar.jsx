@@ -13,7 +13,7 @@ export default function Nav_bar() {
     const [user, setUser] = useState(false)
 
     function onHanddlePop() {
-        user ? setUser(false) : setUser(true)
+        user === false ? setUser(true) : setUser(false)
     }
 
     return (
@@ -37,9 +37,9 @@ export default function Nav_bar() {
             </Link>
 
             {
-                user ?
-                    <UserPop />
-                    :
+                user === true ?
+                <UserPop show={onHanddlePop} user={user}/>
+                :
                     null
             }
         </nav>

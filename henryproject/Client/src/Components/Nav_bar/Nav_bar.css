@@ -20,8 +20,8 @@
 .Nav_bar {
     display: flex;
     background-color: #3131317F ;
-   position: absolute;
-    z-index: 1;
+    position: absolute;
+    z-index: 10;
     top: 50px;
     right: 50px;
     left: 50px;
