@@ -21,17 +21,22 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false
     },
-    gameplay: {
-        type: DataTypes.STRING,
-        allowNull: true
-    }, 
     rating: {
         type: DataTypes.FLOAT,
         allowNull: true
     },
+    image: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      defaultValue: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+    },
     videoTrailer: {
       type: DataTypes.TEXT,
       allowNull:true
+    },
+    image:{
+      type:DataTypes.STRING,
+      allowNull:false
     },
     createdInDb:{
         type: DataTypes.BOOLEAN,

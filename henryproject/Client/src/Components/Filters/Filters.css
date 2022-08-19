@@ -25,4 +25,6 @@
 .Games-Cards-Div {
     height: 80%;
     background: aquamarine;
+    display: flex;
+    flex-wrap: wrap;
 }
