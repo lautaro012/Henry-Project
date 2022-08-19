@@ -1,0 +1,18 @@
+.card-videogame{
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 1%;
+    background-color: #ffffffbd;
+    max-width: 250px;
+    max-height: 500px;
+    overflow-y: hidden;
+}
+
+.Link {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    margin: 2rem 1rem 2rem;
+    margin: 1rem;
+    border-radius: 1rem;
+}

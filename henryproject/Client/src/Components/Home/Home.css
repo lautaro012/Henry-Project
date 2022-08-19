@@ -1,10 +1,4 @@
-.home-navbar{
-    background-color: #313131bd;
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-    margin: 1%;
-}
+
 
 .home-primary-videogames {
     display: flex;
@@ -50,5 +44,9 @@
 }
 
 .img-populars{
-    height: 600px;
+    height: 700px;
+}
+
+.carruseles{
+    margin:5%
 }
