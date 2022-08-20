@@ -1,4 +1,5 @@
 const { Router } = require("express")
+const filterRating = require("../handlers/filterRating")
 const { getAllVideoGames, getGamesByName } = require("../handlers/getAllVideoGames")
 const { findGameById } = require("../handlers/getGamesDetail")
 const { createNewGame } = require("../handlers/postNewGame")
