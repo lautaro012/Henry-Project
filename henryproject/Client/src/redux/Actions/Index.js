@@ -2,6 +2,7 @@ const axios = require('axios');
 export const GET_ALL_GAMES = 'GET_ALL_GAMES'
 export const GET_ALL_GAMES_BY_NAME = 'GET_ALL_GAMES_BY_NAME'
 export const GET_GAME_BY_ID = 'GET_GAME_BY_ID'
+export const CLEAR = 'CLEAR'
 
 export function getAllGames(name) {
 
@@ -33,5 +34,11 @@ export function getGameById(id) {
             type: GET_GAME_BY_ID,
             payload: response.data
         })
+    }
+}
+
+export const clear = function() {
+    return {
+        type: CLEAR
     }
 }

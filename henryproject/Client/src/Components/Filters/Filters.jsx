@@ -3,9 +3,10 @@ import './Filters.css'
 import Cards from '../Cards/Cards.jsx'
 import { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { getAllGames } from '../../redux/Actions/Index'
+import { getAllGames, clear } from '../../redux/Actions/Index'
 import { useState } from 'react';
 import Paginado from '../Paginado/Paginado';
+
 
 export default function Filters () {
 
@@ -18,6 +19,9 @@ export default function Filters () {
         if(videogames.length === 0) {
             dispatch(getAllGames())   
             console.log('Axios API') 
+        }
+        return function cleaning() {
+            dispatch(clear())
         }
     }, [])
 
@@ -37,7 +41,7 @@ export default function Filters () {
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
-
+    console.log(videogames)
     return (
         <div className='Search-Filters'>
 
