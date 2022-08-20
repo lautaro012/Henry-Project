@@ -1,8 +1,28 @@
 import SearchBar from '../SearchBar/SearchBar'
 import './Filters.css'
+import Cards from '../Cards/Cards.jsx'
+import { useEffect } from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import { getAllGames } from '../../redux/Actions/Index'
 
 export default function Filters () {
 
+    let dispatch = useDispatch()
+
+    let videogames = useSelector(state => state.videogames)
+    
+
+    useEffect(() => {    
+        if(videogames.length === 0) {
+            dispatch(getAllGames())   
+            console.log('Axios API') 
+        }
+    }, [])
+
+    function onSearch(name) {
+        dispatch(getAllGames(name))
+    }
+     console.log(videogames)
     return (
         <div className='filters'>
 
@@ -22,13 +42,19 @@ export default function Filters () {
                 <div className='Sorts'>
                     <span> Sort </span>
                     <br></br>
-                    <SearchBar></SearchBar>
+                    <SearchBar
+                    onSearch={onSearch}
+                    ></SearchBar>
                 </div>
 
                 <div className='Games-Cards-Div'>
-                    <div>
-                        cards.map
-                    </div>
+                    {
+                        videogames.map(card => {
+                            return (<Cards
+                            card={card}
+                            />)
+                        })
+                    }
                 </div>
 
             </div>

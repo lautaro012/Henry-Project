@@ -6,7 +6,11 @@ function videogameInfo(data) {
         name: data.name,
         price: "$19.99",
         rating: data.rating,
-        image: data.background_image
+        image: data.background_image,
+        platforms: data.platforms.map(e => e.platform.name),
+        genres: data.genres.map(e=>e.name),
+        screenshots: data.short_screenshots.map(e=>e.image),
+        tags: data.tags.map(e=>e.name)
     }
 }
 

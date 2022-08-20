@@ -1,11 +1,26 @@
 const axios = require('axios');
+export const GET_ALL_GAMES = 'GET_ALL_GAMES'
 
-export function getAllGames() {
-    return async function (dispatch) {
-        let response = await axios('http://localhost:3001/videogames') // ver ruta de back
-        dispatch({
-            type: "GET_ALL_GAMES",
-            payload: response.data
-        })
+export function getAllGames(name) {
+
+    if(name) {
+        return async function (dispatch) {
+            let response = await axios(`http://localhost:3001/videogames?name=${name}`) 
+            dispatch({
+                
+                type: GET_ALL_GAMES,
+                payload: response.data
+            })
+        }
+    } else {
+        return async function (dispatch) {
+            let response = await axios('http://localhost:3001/videogames') 
+            dispatch({
+                
+                type: GET_ALL_GAMES,
+                payload: response.data
+            })
+        }
+
     }
 }

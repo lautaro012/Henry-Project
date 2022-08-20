@@ -3,7 +3,7 @@ const { Router } = require('express');
 const videogameRouter = require("./videogames");
 const genresRouter=require("./routerGenre.js");
 const plataformsRouter=require("./routerPlataform.js");
-
+const filterRoute =require('./routerFilters.js');
 const router = Router();
 
 // Configurar los routers
@@ -11,5 +11,5 @@ const router = Router();
 router.use("/videogames", videogameRouter)
 router.use("/genres",genresRouter)
 router.use("/plataforms",plataformsRouter);
-
+router.use("/filter",filterRoute);
 module.exports = router;
