@@ -6,7 +6,7 @@ const getPlatforms = async () => {
   try {
     const platformsDb= await Platforms.findAll();
     if(platformsDb.length===0){
-      const link =[axios.get(`https://api.rawg.io/api/platforms?key=${API_KEY}`),axios.get(`https://api.rawg.io/api/platforms?key=${API_KEY}&page=2`)];
+      const link =[axios.get(`https://api.rawg.io/api/platforms?key=1466bc64dbe34a6892635f9f9de8ff0b`),axios.get(`https://api.rawg.io/api/platforms?key=1466bc64dbe34a6892635f9f9de8ff0b&page=2`)];
       const promiseLink = (await Promise.all(link))
       const platformsAll = (promiseLink.map((el)=> el.data.results)).flat();
       const info = platformsAll.map((el) => el.name)
