@@ -8,7 +8,7 @@ const { createNewGame } = require("../handlers/postNewGame")
 const router = Router()
 
 router.get("/", getGamesByName)
-router.get("/:gameId", findGameById)
+ router.get("/:gameId", findGameById)
 router.post("/", createNewGame)
 
 module.exports = router

@@ -1,18 +1,37 @@
 .card-videogame{
-    border: 2px solid black;
-    border-radius: 5px;
-    margin: 1%;
-    background-color: #ffffffbd;
-    max-width: 250px;
-    max-height: 500px;
-    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    margin: 2rem;   
+    background-color: #020760;
+     background-image: linear-gradient(45deg, #13153c 0%, #252a6c 46%, #7380e5 100%);
+     height: 200px;
+}
+
+.card-videogame:hover{
+
+}
+
+
+
+.image-card {
+    width: 150px;
+    height: 100px;
+    border-radius: 15px;
+    background: round;
+    
 }
 
 .Link {
     text-decoration: none;
     color: black;
+}
+
+.card-data{
+    color: ghostwhite;
     display: flex;
-    margin: 2rem 1rem 2rem;
-    margin: 1rem;
-    border-radius: 1rem;
+    flex-direction: column;
+    max-width: 150px;
+    align-items: center;
 }

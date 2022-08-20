@@ -4,7 +4,8 @@
     background: rgb(49, 49, 49);
     border: none;
     color: white;
-
+    border-radius: 5px;
+    
     box-shadow: 1px 1px 10px -5px #000000;
   }
   
@@ -17,7 +18,8 @@
     background-color: #313131bd;
     display: flex;
     justify-content: space-evenly;
-    width: 100%;
+    width: 90%;
     margin: 1%;
     padding: 1%;
+    border-radius: 25px;
 }

@@ -1,5 +1,8 @@
 const axios = require('axios');
 export const GET_ALL_GAMES = 'GET_ALL_GAMES'
+export const GET_ALL_GAMES_BY_NAME = 'GET_ALL_GAMES_BY_NAME'
+export const GET_GAME_BY_ID = 'GET_GAME_BY_ID'
+export const CLEAR = 'CLEAR'
 
 export function getAllGames(name) {
 
@@ -8,7 +11,7 @@ export function getAllGames(name) {
             let response = await axios(`http://localhost:3001/videogames?name=${name}`) 
             dispatch({
                 
-                type: GET_ALL_GAMES,
+                type: GET_ALL_GAMES_BY_NAME,
                 payload: response.data
             })
         }
@@ -21,6 +24,21 @@ export function getAllGames(name) {
                 payload: response.data
             })
         }
+    }
+}
 
+export function getGameById(id) {
+    return async function (dispatch) {
+        let response = await axios(`http://localhost:3001/videogames/${id}`)
+        dispatch({
+            type: GET_GAME_BY_ID,
+            payload: response.data
+        })
+    }
+}
+
+export const clear = function() {
+    return {
+        type: CLEAR
     }
 }

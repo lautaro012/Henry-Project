@@ -7,7 +7,7 @@ const filterRating = async (req,res) =>  {
     const filterRating= allGames.filter((el)=> Number(el.rating)>=Number(rating));
     console.log(filterRating)
     return res.json(filterRating);
-  } catch (error) {
+catch (error) {
     console.log('error en filtrar por RATING',error)
   }
 }

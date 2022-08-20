@@ -38,7 +38,7 @@ export default function SearchBar ( { onSearch}) {
               </form>
           </div>
           <Link to='/home'> <button> DESCUBRI EL JUEGO PARA VOS </button> </Link>
-          <Link to='games'> <button> EXPLORA NUESTRO CATALOGO </button> </Link>
+          <Link to='/home/games'> <button> EXPLORA NUESTRO CATALOGO </button> </Link>
         </div>
     )
 }

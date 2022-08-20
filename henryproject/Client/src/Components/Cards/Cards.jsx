@@ -3,17 +3,19 @@ import { Link } from "react-router-dom";
 import './Cards.css';
 
 export default function Card(card){
-    console.log(card)
+  
      let {name, image, id, price, rating} = card.card
        return(
-        <Link to= {"/detail/"+id} className='Link'> 
-            <div className="card-videogame">
-                <h3 className="h">{name}</h3>
-                <h5 className="h">{price}</h5>
-                <h6> {rating} </h6>
-                <button className="button">Fav</button>
-                <img src={image} width="250 px" height= "250 px" alt="img" />
-            </div>
-        </Link>
+        <div className="card-videogame">
+            <Link to={`/home/games/${id}`} className='Link'>
+                <div className="image-card" style={{backgroundImage: `url(${image})`}}>
+                </div>
+                <div className="card-data">
+                    <span className="h">{name}</span>
+                    <span className="h">{price}</span>
+                    <span> {rating} </span>
+                </div>
+            </Link>
+        </div> 
        )
 }

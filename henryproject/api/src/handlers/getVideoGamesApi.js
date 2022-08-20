@@ -1,5 +1,6 @@
 const axios = require("axios")
 
+
 function videogameInfo(data) {
     return {
         id: data.id,

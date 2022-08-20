@@ -3,7 +3,10 @@ import './Filters.css'
 import Cards from '../Cards/Cards.jsx'
 import { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { getAllGames } from '../../redux/Actions/Index'
+import { getAllGames, clear } from '../../redux/Actions/Index'
+import { useState } from 'react';
+import Paginado from '../Paginado/Paginado';
+
 
 export default function Filters () {
 
@@ -17,15 +20,35 @@ export default function Filters () {
             dispatch(getAllGames())   
             console.log('Axios API') 
         }
+        return function cleaning() {
+            dispatch(clear())
+        }
     }, [])
 
     function onSearch(name) {
         dispatch(getAllGames(name))
     }
-     console.log(videogames)
-    return (
-        <div className='filters'>
 
+
+    //paginado
+    const [currentPage, setCurrentPage] = useState(1)
+    const [videogamesPerPage, setVideogamesPerPage] = useState(10)
+    
+    //videojuegos filtradas por pagina
+    const indexOfLastVideogame = currentPage * videogamesPerPage
+    const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage
+    const currentVideogame = videogames.slice(indexOfFirstVideogame, indexOfLastVideogame)
+    const paginado = (pageNumber) => {
+        setCurrentPage(pageNumber)
+    }
+    console.log(videogames)
+    return (
+        <div className='Search-Filters'>
+
+            <SearchBar
+            onSearch={onSearch}
+            ></SearchBar>
+        <div className='filters'>
             <div className="show-filters">
                 <span> Filter by </span>
              
@@ -33,25 +56,25 @@ export default function Filters () {
            
                 <span> tags </span>
             
-             
             </div>
-
-
             <div className='Sorts-Games'>
-
                 <div className='Sorts'>
                     <span> Sort </span>
-                    <br></br>
-                    <SearchBar
-                    onSearch={onSearch}
-                    ></SearchBar>
                 </div>
 
+                     <div className='PAGINADO'>
+                        <Paginado
+                        VideogamesPerPage = {videogamesPerPage}
+                        allVideogames = {videogames.length}
+                        paginado = {paginado}
+                        /> 
+                    </div>
                 <div className='Games-Cards-Div'>
                     {
-                        videogames.map(card => {
+                        currentVideogame.map(card => {
                             return (<Cards
                             card={card}
+                            key={card.id}
                             />)
                         })
                     }
@@ -60,6 +83,7 @@ export default function Filters () {
             </div>
 
 
+        </div>
         </div>
     )
 }
