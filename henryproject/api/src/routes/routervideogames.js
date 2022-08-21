@@ -30,7 +30,7 @@ router.get("/", async(req,res)=>{
     }
     
 })
-// router.get("/:gameId", findGameById)
-// router.post("/", createNewGame)
+router.get("/:gameId", findGameById)
+router.post("/", createNewGame)
 
 module.exports = router
