@@ -9,6 +9,7 @@ export const GET_PLATFORMS = 'GET_PLATFORMS'
 export const FILTER_GAMES_BY_GENRES = 'FILTER_GAMES'
 export const FILTER_GAMES_BY_PLATFORM = 'FILTER_GAMES_BY_PLATFORM'
 export const FILTER_GAMES_BY_TAGS = 'FILTER_GAMES_BY_TAGS'
+export const ORDER= 'ORDER'
 
 export function getAllGames(name) {
 
@@ -104,6 +105,13 @@ export const getPlatforms = function () {
                 payload: resp
             })
         })
+    }
+}
+
+export const order = function(payload) {
+    return {
+        type: ORDER,
+        payload
     }
 }
 // export const getTags = function () {

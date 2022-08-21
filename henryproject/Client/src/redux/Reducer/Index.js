@@ -3,6 +3,7 @@ import {
     GET_ALL_GAMES_BY_NAME, 
     GET_GAME_BY_ID, CLEAR, 
     GET_GENRES, 
+    ORDER,
     GET_PLATFORMS, 
     GET_TAGS, 
     FILTER_GAMES_BY_GENRES,
@@ -86,6 +87,33 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 filteredVideogames: action.payload
             }
+            case ORDER:
+                const orderType = action.payload.orderType
+                const orderBy = action.payload.orderBy
+                const sortedVideogames = orderType === 'asc' ?
+                        state.videogames.sort((a, b) => {
+                            if(a[orderBy] > b[orderBy]) {
+                                return 1
+                            }
+                            if(a[orderBy] < b[orderBy]) {
+                                return -1
+                            }
+                            return 0
+                        }):
+                        state.videogames.sort((a, b) => {
+                            if(a[orderBy] < b[orderBy]) {
+                                return 1
+                            }
+                            if(a[orderBy] > b[orderBy]) {
+                                return -1
+                            }
+                            return 0
+                        })
+                        
+                        return {
+                            ...state,
+                            videogames: sortedVideogames
+                        }
 
 
         default: return state
