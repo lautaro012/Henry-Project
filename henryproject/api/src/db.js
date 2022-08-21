@@ -3,7 +3,7 @@ const { Sequelize,Op } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER, DB_PASSWORD, DB_HOST,
+  DB_USER, DB_PASSWORD, DB_HOST,API_KEY
 } = process.env;
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/games`, {
@@ -59,6 +59,6 @@ const {Users, Orders, Games, Genres, Platforms, Comments} = sequelize.models;
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
-  Op,
+  Op,API_KEY,
   Games,Genres,Platforms
 };
