@@ -3,7 +3,7 @@ import './Filters.css'
 import Cards from '../Cards/Cards.jsx'
 import { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { getAllGames, clear, getGenres, getPlatforms } from '../../redux/Actions/Index'
+import { getAllGames, clear, getGenres, getPlatforms, order } from '../../redux/Actions/Index'
 import { useState } from 'react';
 import Paginado from '../Paginado/Paginado';
 import Filter from '../Filter/Filter';
@@ -53,6 +53,14 @@ export default function Filters () {
         setCurrentPage(pageNumber)
     }
 
+    function handleSort(e) {
+        e.preventDefault();
+        let orderBy = document.getElementById('orderBy').value
+        let orderType = document.getElementById('orderType').value
+        dispatch(order({orderBy : orderBy, orderType: orderType}));
+        setCurrentPage(1);
+        setRender(`${render} renderizado`);
+    }
 
     console.log('las recetas filtradas son  ', filteredVideogames )
 
@@ -76,7 +84,17 @@ export default function Filters () {
             </div>
             <div className='Sorts-Games'>
                 <div className='Sorts'>
-                    <span> Sort </span>
+                    <h4 color='#ffffff'> Name/Rate </h4>
+                    <select className='SELECT-ORDER' id='orderBy' onChange={(e) => handleSort(e)} defaultValue='orderBy'>
+                        <option value= 'name'> Name </option>
+                        <option value= 'rating'> Rate </option>
+                    </select>                                                             
+                    <h4>In What Order ?</h4>
+                    <select className='SELECT-ORDER' id='orderType' onChange={(e) => handleSort(e)} defaultValue='orderType'>
+                        <option value= 'asc'> Ascendent </option>
+                        <option value= 'des'> Descendent </option>
+                    </select>
+                    
                 </div>
 
                      <div className='PAGINADO'>
