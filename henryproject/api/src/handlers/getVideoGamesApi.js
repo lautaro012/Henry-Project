@@ -54,7 +54,7 @@ const {API_KEY}=require("../db.js");
 //     return total;
 // }  
 
-//CODIGO MEJORADO
+
 //API_URL
 const api_url=`https://api.rawg.io/api/games?key=${API_KEY}`;
 // var page=1;

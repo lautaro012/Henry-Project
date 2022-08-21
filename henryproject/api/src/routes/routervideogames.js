@@ -11,16 +11,17 @@ const router = Router()
 
 router.get("/", async(req,res)=>{
     try{
-        const {name,genre,platform,tag}=req.query;
+        const {name,genres,platforms,tag}=req.query;
         if(name){
             return res.status(200).json(await getVideogamesByName(name));
-         }else if(genre){
-            return res.status(200).json(await getVideogamesByGenre(genre));
-         }else if(platform){
-            return res.status(200).json(await getVideogamesByPlatforms(platform));
-         }else if(tag){
-            return res.status(200).json(await getVideogamesByTag(tag));
+         }else if(genres){
+            return res.status(200).json(await getVideogamesByGenre(genres));
+         }else if(platforms){
+            return res.status(200).json(await getVideogamesByPlatforms(platforms));
          }
+        // else if(tag){
+        //     return res.status(200).json(await getVideogamesByTag(tag));
+        //  }
         else{
             return res.status(200).json(await getAllVideoGames());
         }

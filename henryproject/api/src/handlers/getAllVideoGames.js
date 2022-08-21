@@ -44,16 +44,16 @@ const getVideogamesByPlatforms=async(platform)=>{
 }
 
 //funcion para filtrar videojuegos por tag
-const getVideogamesByTag=async(tag)=>{
-    const allGames=await getAllVideoGames();
-    let ta= tag[0].toUpperCase() + tag.slice(1);
-        let filterTags= allGames.filter((e) => e.tags.includes(ta));
-        if(filterTags.length>0){
-            return filterTags;
-        } else{
-            throw new Error("Error: No existe Tag de videojuego");
-        }
-}
+// const getVideogamesByTag=async(tag)=>{
+//     const allGames=await getAllVideoGames();
+//     let ta= tag[0].toUpperCase() + tag.slice(1);
+//         let filterTags= allGames.filter((e) => e.tags.includes(ta));
+//         if(filterTags.length>0){
+//             return filterTags;
+//         } else{
+//             throw new Error("Error: No existe Tag de videojuego");
+//         }
+// }
 
 
 //Función para traer juegos y buscar por nombre
@@ -109,5 +109,5 @@ const getVideogamesByTag=async(tag)=>{
     getVideogamesByName,
     getVideogamesByGenre,
     getVideogamesByPlatforms,
-    getVideogamesByTag
+    // getVideogamesByTag
 }
