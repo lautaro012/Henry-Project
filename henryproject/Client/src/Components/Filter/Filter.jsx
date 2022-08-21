@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { filterGames } from '../../redux/Actions/Index'
 import './Filter.css'
@@ -7,18 +8,18 @@ import './Filter.css'
 export default function Filter ({genres, platforms, tags, setFilters}) {
 
     const dispatch = useDispatch()
+    const [genresfilter, setGenreFilter] = useState([])
+    const [platformsfilter, setPlatformsFilter] = useState([])
+    const [tagsfilter, setTagsFilter] = useState([])
     
-   let genresfilter = []
-   let platformsfilter = []
-   let tagsfilter = []
    function handleGenres(e) {
         e.preventDefault();
         let genres = document.getElementById('genres').value
         if(genres=== 'all') {
-            genresfilter = []
+            setGenreFilter([])
             return setFilters(false)
         }
-        genresfilter.push(genres)
+        setGenreFilter([...genresfilter, ...genres])
         dispatch(filterGames(genresfilter, 'genres'))
         setFilters(true)
    }
@@ -26,10 +27,10 @@ export default function Filter ({genres, platforms, tags, setFilters}) {
         e.preventDefault();
         let tags = document.getElementById('tags').value
         if(tags=== 'all') {
-            tagsfilter = []
+            setTagsFilter([])
             return setFilters(false)
         }
-        tagsfilter.push(tags)
+        setTagsFilter([...tagsfilter, ...tags])
         dispatch(filterGames(tagsfilter, 'tags'))
         setFilters(true)
     }
@@ -37,15 +38,15 @@ export default function Filter ({genres, platforms, tags, setFilters}) {
         e.preventDefault();
         let platforms = document.getElementById('platforms').value
         if(platforms=== 'all') {
-            platformsfilter = []
+            setPlatformsFilter([])
             return setFilters(false)
         }
-        platformsfilter.push(platforms)
+        setPlatformsFilter([...platformsfilter, ...platforms])
         dispatch(filterGames, 'platforms')
         setFilters(true)
    }
 
-
+   console.log(genresfilter)
     return (
         <div className='Filter-box'>
             <h4>Platforms:</h4>
@@ -93,7 +94,42 @@ export default function Filter ({genres, platforms, tags, setFilters}) {
             </select>
 
             <div className='Show-filter-box'>
-                
+                <div className='show-filterss'>
+                    {
+                        genresfilter?.map(genres => {
+                            return (
+                            <div className='SEPARATED'>
+                                <span>{genres}</span>
+                               
+                            </div>     
+                            )
+                        })
+                    }
+                </div>
+                <div className='show-filterss'>
+                    {
+                        tagsfilter?.map(tags => {
+                            return (
+                                <div className='SEPARATED'>
+                                    <span>{tags}</span>
+                                
+                                </div>     
+                                )
+                        })
+                    }
+                </div>
+                <div className='show-filterss'>
+                    { 
+                        platformsfilter?.map(plats => {
+                            return (
+                                <div className='SEPARATED'>
+                                    <span>{plats}</span>
+                                  
+                                </div>     
+                                )
+                        })
+                    }
+                </div>
             </div>
         
         </div>
