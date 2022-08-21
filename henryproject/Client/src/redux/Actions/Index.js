@@ -8,9 +8,8 @@ export function getAllGames(name) {
 
     if(name) {
         return async function (dispatch) {
-            let response = await axios(`http://localhost:3001/videogames?name=${name}`) 
+            let response = await axios(`http://localhost:3001/videogames?name=${name}`)
             dispatch({
-                
                 type: GET_ALL_GAMES_BY_NAME,
                 payload: response.data
             })
@@ -41,4 +40,22 @@ export const clear = function() {
     return {
         type: CLEAR
     }
+}
+
+export const filterGames = function(filter, filterby) {
+
+    switch (filterby) {
+        case 'genre':
+
+            
+        case 'platform':
+        
+
+        case 'tag':
+    
+
+        default:
+            
+    }
+    
 }

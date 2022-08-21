@@ -13,6 +13,8 @@ export default function Filters () {
     let dispatch = useDispatch()
 
     let videogames = useSelector(state => state.videogames)
+
+    const [render, setRender] = useState('')
     
 
     useEffect(() => {    
@@ -20,13 +22,14 @@ export default function Filters () {
             dispatch(getAllGames())   
             console.log('Axios API') 
         }
-        return function cleaning() {
-            dispatch(clear())
-        }
+        // return function cleaning() {
+        //     dispatch(clear())
+        // }
     }, [])
 
     function onSearch(name) {
         dispatch(getAllGames(name))
+        setRender(render, 'hola')
     }
 
 
@@ -41,7 +44,6 @@ export default function Filters () {
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
-    console.log(videogames)
     return (
         <div className='Search-Filters'>
 
@@ -71,7 +73,7 @@ export default function Filters () {
                     </div>
                 <div className='Games-Cards-Div'>
                     {
-                        currentVideogame.map(card => {
+                        currentVideogame?.map(card => {
                             return (<Cards
                             card={card}
                             key={card.id}

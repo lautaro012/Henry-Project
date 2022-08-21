@@ -18,7 +18,7 @@ const getGamesByName = async (req, res) => {
     if(name) {
         let searchByName = allGames.filter(e => e.name.toLowerCase().includes(name.toLowerCase()))
         if(!searchByName.length) {
-            return res.send(allGames)
+            return res.send([])
         } else {
             return res.json(searchByName)
         }
