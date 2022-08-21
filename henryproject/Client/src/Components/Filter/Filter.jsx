@@ -19,7 +19,7 @@ export default function Filter ({genres, platforms, tags, setFilters}) {
             setGenreFilter([])
             return setFilters(false)
         }
-        setGenreFilter([...genresfilter, ...genres])
+        setGenreFilter([...genresfilter, genres])
         dispatch(filterGames(genresfilter, 'genres'))
         setFilters(true)
    }
@@ -30,7 +30,7 @@ export default function Filter ({genres, platforms, tags, setFilters}) {
             setTagsFilter([])
             return setFilters(false)
         }
-        setTagsFilter([...tagsfilter, ...tags])
+        setTagsFilter([...tagsfilter, tags])
         dispatch(filterGames(tagsfilter, 'tags'))
         setFilters(true)
     }
@@ -41,8 +41,8 @@ export default function Filter ({genres, platforms, tags, setFilters}) {
             setPlatformsFilter([])
             return setFilters(false)
         }
-        setPlatformsFilter([...platformsfilter, ...platforms])
-        dispatch(filterGames, 'platforms')
+        setPlatformsFilter([...platformsfilter, platforms])
+        dispatch(filterGames(platformsfilter, 'platforms'))
         setFilters(true)
    }
 

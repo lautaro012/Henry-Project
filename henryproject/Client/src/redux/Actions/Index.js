@@ -65,7 +65,7 @@ export const filterGames = function(filter, filterby) {
                                                                         // ['pc', 'playstation'] -> 'pc','playstation'
                 let response = await axios(`http://localhost:3001/videogames?platforms=${filter.toString()}`)
                 dispatch({
-                    type: GET_GAME_BY_ID,
+                    type: FILTER_GAMES_BY_PLATFORM,
                     payload: response.data
                 })
             }
@@ -73,7 +73,7 @@ export const filterGames = function(filter, filterby) {
             return async function (dispatch) {
                 let response = await axios(`http://localhost:3001/videogames?tags=${filter.toString()}`)
                 dispatch({
-                    type: GET_GAME_BY_ID,
+                    type: FILTER_GAMES_BY_TAGS,
                     payload: response.data
                 })
             }
