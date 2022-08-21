@@ -3,7 +3,7 @@ import './Filters.css'
 import Cards from '../Cards/Cards.jsx'
 import { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { getAllGames, clear } from '../../redux/Actions/Index'
+import { getAllGames, clear, getGenres, getPlatforms } from '../../redux/Actions/Index'
 import { useState } from 'react';
 import Paginado from '../Paginado/Paginado';
 import Filter from '../Filter/Filter';
@@ -14,11 +14,16 @@ export default function Filters () {
     let dispatch = useDispatch()
 
     let videogames = useSelector(state => state.videogames)
+    let tags = useSelector(state => state.tags)
+    let genres = useSelector(state => state.genres)
+    let platforms = useSelector(state => state.platforms)
 
     const [render, setRender] = useState('')
     
 
-    useEffect(() => {    
+    useEffect(() => {
+            dispatch(getGenres())
+            dispatch(getPlatforms())  
         if(videogames.length === 0) {
             dispatch(getAllGames())   
             console.log('Axios API') 
@@ -52,8 +57,14 @@ export default function Filters () {
             ></SearchBar>
         <div className='filters'>
             <div className="show-filters">
+
                <Filter
+               genres={genres}
+               platforms={platforms}
+               tags={tags}
+
                />
+
             </div>
             <div className='Sorts-Games'>
                 <div className='Sorts'>

@@ -70,19 +70,19 @@ export const getGenres = function () {
         .then(resp => {
             dispatch({
                 type: GET_GENRES,
-                payload: resp,
+                payload: resp
             })
         })
     }
 }
 export const getPlatforms = function () {
     return function (dispatch) {
-        fetch('http://localhost:3001/platforms')
+        fetch('http://localhost:3001/plataforms')
         .then(resp => resp.json())
         .then(resp => {
             dispatch({
                 type: GET_PLATFORMS,
-                payload: resp,
+                payload: resp
             })
         })
     }
