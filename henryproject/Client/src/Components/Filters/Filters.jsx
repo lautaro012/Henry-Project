@@ -3,9 +3,10 @@ import './Filters.css'
 import Cards from '../Cards/Cards.jsx'
 import { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { getAllGames, clear } from '../../redux/Actions/Index'
+import { getAllGames, clear, getGenres, getPlatforms } from '../../redux/Actions/Index'
 import { useState } from 'react';
 import Paginado from '../Paginado/Paginado';
+import Filter from '../Filter/Filter';
 
 
 export default function Filters () {
@@ -13,9 +14,16 @@ export default function Filters () {
     let dispatch = useDispatch()
 
     let videogames = useSelector(state => state.videogames)
+    let tags = useSelector(state => state.tags)
+    let genres = useSelector(state => state.genres)
+    let platforms = useSelector(state => state.platforms)
+
+    const [render, setRender] = useState('')
     
 
-    useEffect(() => {    
+    useEffect(() => {
+            dispatch(getGenres())
+            dispatch(getPlatforms())  
         if(videogames.length === 0) {
             dispatch(getAllGames())   
             console.log('Axios API') 
@@ -27,8 +35,8 @@ export default function Filters () {
 
     function onSearch(name) {
         dispatch(getAllGames(name))
+        setRender([...render, 'hola'])
     }
-
 
     //paginado
     const [currentPage, setCurrentPage] = useState(1)
@@ -41,7 +49,6 @@ export default function Filters () {
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
-    console.log(videogames)
     return (
         <div className='Search-Filters'>
 
@@ -50,12 +57,14 @@ export default function Filters () {
             ></SearchBar>
         <div className='filters'>
             <div className="show-filters">
-                <span> Filter by </span>
-             
-                <span> Genres </span>
-           
-                <span> tags </span>
-            
+
+               <Filter
+               genres={genres}
+               platforms={platforms}
+               tags={tags}
+
+               />
+
             </div>
             <div className='Sorts-Games'>
                 <div className='Sorts'>
@@ -71,7 +80,7 @@ export default function Filters () {
                     </div>
                 <div className='Games-Cards-Div'>
                     {
-                        currentVideogame.map(card => {
+                        currentVideogame?.map(card => {
                             return (<Cards
                             card={card}
                             key={card.id}
