@@ -1,5 +1,8 @@
 const { Router } = require("express");
+<<<<<<< HEAD
+=======
 // const filterGenres = require("../handlers/filterGenres");
+>>>>>>> Development
 const getGenres = require("../handlers/getGenres");
 
 const router = Router();
