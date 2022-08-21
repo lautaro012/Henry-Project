@@ -22,7 +22,11 @@ const { conn } = require('./src/db.js');
 const filterRating = require('./src/handlers/filterRating.js');
 const getPlatforms = require('./src/handlers/getPlataforms.js');
 const { getVideogamesApi } = require('./src/handlers/getVideoGamesApi.js');
+<<<<<<< HEAD
 
+=======
+// const filterGenres =require('./src/handlers/filterGenres');
+>>>>>>> Development
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
   server.listen(3001, async() => {

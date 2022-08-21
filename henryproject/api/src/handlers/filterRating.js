@@ -8,7 +8,11 @@ const filterRating = async (req,res) =>  {
     console.log(filterRating)
     return res.json(filterRating);
   }
+<<<<<<< HEAD
     catch (error) {
+=======
+  catch (error) {
+>>>>>>> Development
     console.log('error en filtrar por RATING',error)
   }
 }
