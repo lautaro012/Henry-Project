@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import React from "react";
 import '../About_Us/About.css'
-import lautaro from "./lautaro.jpeg"
-import sergior from "./sergior.jpeg"
-import juandavid from "./juandavid.jpeg"
-import lucianab from "./lucianab.jpeg"
-import sergiog from "./sergiog.jpeg"
-import pierino from "./pierino.jpeg"
-import frank from "./frank.jpeg"
+import lautaro from "../lautaro.jpeg"
+import sergior from "../sergior.jpeg"
+import juandavid from "../juandavid.jpeg"
+import lucianab from "../lucianab.jpeg"
+import sergiog from "../sergiog.jpeg"
+import pierino from "../pierino.jpeg"
+import frank from "../frank.jpeg"
 
 export default function About() {
     return (

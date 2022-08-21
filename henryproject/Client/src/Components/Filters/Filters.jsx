@@ -25,7 +25,7 @@ export default function Filters () {
 
     useEffect(() => {
             dispatch(getGenres())
-            dispatch(getPlatforms())  
+            dispatch(getPlatforms())
         if(videogames.length === 0) {
             dispatch(getAllGames())   
             console.log('Axios API') 
