@@ -20,14 +20,19 @@
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const filterRating = require('./src/handlers/filterRating.js');
+const getGenres = require('./src/handlers/getGenres.js');
 const getPlatforms = require('./src/handlers/getPlataforms.js');
+// <<<<<<< HEAD
+// =======
 const { getVideogamesApi } = require('./src/handlers/getVideoGamesApi.js');
 
 // const filterGenres =require('./src/handlers/filterGenres');
-
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
   server.listen(3001, async() => {
-   console.log('%s listening at 3001'); // eslint-disable-line no-console
+    await getPlatforms();
+    await getGenres();
+    filterRating(4);
+    console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
 });
