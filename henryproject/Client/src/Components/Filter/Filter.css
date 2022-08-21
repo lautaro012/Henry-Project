@@ -11,5 +11,14 @@
 
 .Show-filter-box{
     margin-top: 60%;
-    
+    display: flex;
+    flex-direction: column;
+}
+
+.show-filterss{
+    display: flex;
+}
+
+.SEPARATED{
+    margin: 1%;
 }
