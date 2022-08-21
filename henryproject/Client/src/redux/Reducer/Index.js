@@ -4,7 +4,10 @@ import {
     GET_GAME_BY_ID, CLEAR, 
     GET_GENRES, 
     GET_PLATFORMS, 
-    GET_TAGS } from "../Actions/Index"
+    GET_TAGS, 
+    FILTER_GAMES_BY_GENRES,
+    FILTER_GAMES_BY_PLATFORM,
+    FILTER_GAMES_BY_TAGS} from "../Actions/Index"
 
 const initialState = {
     Allvideogames: [],
@@ -12,6 +15,7 @@ const initialState = {
     game: [],
     platforms: [],
     genres: [],
+    filteredVideogames: [],
     tags: [
         'Singleplayer', 
         'Steam Achievements', 
@@ -66,6 +70,23 @@ export default function rootReducer(state = initialState, action) {
         //         ...state,
         //         tags: action.payload
         //     }
+        case FILTER_GAMES_BY_GENRES:
+
+            return{
+                ...state,
+                filteredVideogames: action.payload
+            }
+        case FILTER_GAMES_BY_TAGS:
+            return{
+                ...state,
+                filteredVideogames: action.payload
+            }
+        case FILTER_GAMES_BY_PLATFORM:
+            return{
+                ...state,
+                filteredVideogames: action.payload
+            }
+
 
         default: return state
     }

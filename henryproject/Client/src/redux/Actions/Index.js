@@ -6,6 +6,9 @@ export const CLEAR = 'CLEAR'
 export const GET_GENRES = 'GET_GENRES'
 export const GET_TAGS = 'GET_TAGS'
 export const GET_PLATFORMS = 'GET_PLATFORMS'
+export const FILTER_GAMES_BY_GENRES = 'FILTER_GAMES'
+export const FILTER_GAMES_BY_PLATFORM = 'FILTER_GAMES_BY_PLATFORM'
+export const FILTER_GAMES_BY_TAGS = 'FILTER_GAMES_BY_TAGS'
 
 export function getAllGames(name) {
 
@@ -48,17 +51,33 @@ export const clear = function() {
 export const filterGames = function(filter, filterby) {
 
     switch (filterby) {
-        case 'genre':
-
-            
-        case 'platform':
-        
-
-        case 'tag':
-    
-
+        case 'genres':
+            return async function (dispatch) {
+                let response = await axios(`http://localhost:3001/videogames?genres=${filter.toString()}`)
+                dispatch({
+                    type: FILTER_GAMES_BY_GENRES,
+                    payload: response.data
+                })
+            }
+        case 'platforms':
+            return async function (dispatch) {
+                                                                        // ['pc', 'playstation'] -> 'pc','playstation'
+                let response = await axios(`http://localhost:3001/videogames?platforms=${filter.toString()}`)
+                dispatch({
+                    type: GET_GAME_BY_ID,
+                    payload: response.data
+                })
+            }
+        case 'tags':
+            return async function (dispatch) {
+                let response = await axios(`http://localhost:3001/videogames?tags=${filter.toString()}`)
+                dispatch({
+                    type: GET_GAME_BY_ID,
+                    payload: response.data
+                })
+            }
         default:
-            
+            break;
     }
     
 }
