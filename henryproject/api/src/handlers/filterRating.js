@@ -9,7 +9,9 @@ const filterRating = async (req,res) =>  {
     return res.json(filterRating);
   }
   catch (error) {
+
     console.log('error en filtrar por RATING',error)
   }
 }
+
 module.exports = filterRating;
