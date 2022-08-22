@@ -9,17 +9,21 @@ module.exports = (sequelize) => {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4
     },
+    numb: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     price: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.STRING,
       allowNull: false
   }, 
     description: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     rating: {
         type: DataTypes.FLOAT,
@@ -27,16 +31,15 @@ module.exports = (sequelize) => {
     },
     image: {
       type: DataTypes.TEXT,
-      allowNull: false,
       defaultValue: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
     },
     videoTrailer: {
       type: DataTypes.TEXT,
       allowNull:true
     },
-    image:{
-      type:DataTypes.STRING,
-      allowNull:false
+    screenshots: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: true
     },
     tags: {
       type: DataTypes.TEXT,
@@ -44,7 +47,6 @@ module.exports = (sequelize) => {
     },
     createdInDb:{
         type: DataTypes.BOOLEAN,
-        allowNull:false,
         defaultValue:true,
     }
 

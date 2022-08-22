@@ -14,5 +14,8 @@
 
 .imagenesJuego {
     display: flex;
+}
 
+.game_detail{
+    color: white;
 }
