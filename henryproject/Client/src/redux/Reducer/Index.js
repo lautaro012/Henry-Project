@@ -6,6 +6,7 @@ import {
     ORDER,
     GET_PLATFORMS, 
     GET_TAGS, 
+    GET_GAMES_BY_GENRE,
     CREATE_GAME,
     FILTER_GAMES_BY_GENRES,
     FILTER_GAMES_BY_PLATFORM,
@@ -15,12 +16,13 @@ import {
 const initialState = {
     Allvideogames: [],
     videogames: [],
-    videogamesByFilter: [],
+    videogamesBygenre: [],
     game: [],
     platforms: [],
     genres: [],
-    genrefilter: 'all',
-    platformfilter: 'all',
+    genreby: 'all',
+    platformby: 'all',
+    tagsFilter: [],
     tags: [
         'Singleplayer', 
         'Steam Achievements', 
@@ -43,7 +45,7 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 videogames: action.payload,
                 Allvideogames: action.payload,
-                videogamesToFilter: action.payload
+                tagsFilter: action.payload
             }
 
         case GET_ALL_GAMES_BY_NAME:
@@ -76,72 +78,79 @@ export default function rootReducer(state = initialState, action) {
         //         ...state,
         //         tags: action.payload
         //     }
-        // case FILTER_GAMES_BY_GENRES:
-        //     return{
-        //         ...state,
-        //         videogamesByFilter: action.payload
-        //     }
-        // case FILTER_GAMES_BY_PLATFORM:
-        //     let videogamesfromfilter = action.payload
-        //     let allgames = state.videogamesByFilter
+        case GET_GAMES_BY_GENRE:
+            console.log(action.payload)
+            return {
+                ...state,
+                videogamesBygenre: action.payload
+            }
 
-        //     let currentvideogames = allgames.filter(value => videogamesfromfilter.includes(value))
-        //     return{
-        //         ...state,
-        //         videogames: currentvideogames
-        //     }
-        // case FILTER_GAMES_BY_TAGS:
-        //     return{
-        //         ...state,
-        //         filteredVideogames: action.payload
-        //     }
-            case ORDER:
-                const orderType = action.payload.orderType
-                const orderBy = action.payload.orderBy
-                const sortedVideogames = orderType === 'asc' ?
-                        state.videogames.sort((a, b) => {
-                            if(a[orderBy] > b[orderBy]) {
-                                return 1
-                            }
-                            if(a[orderBy] < b[orderBy]) {
-                                return -1
-                            }
-                            return 0
-                        }):
-                        state.videogames.sort((a, b) => {
-                            if(a[orderBy] < b[orderBy]) {
-                                return 1
-                            }
-                            if(a[orderBy] > b[orderBy]) {
-                                return -1
-                            }
-                            return 0
-                        })
-                        
-                        return {
-                            ...state,
-                            videogames: sortedVideogames
+        case ORDER:
+            const orderType = action.payload.orderType
+            const orderBy = action.payload.orderBy
+            const sortedVideogames = orderType === 'asc' ?
+                    state.videogames.sort((a, b) => {
+                        if(a[orderBy] > b[orderBy]) {
+                            return 1
                         }
+                        if(a[orderBy] < b[orderBy]) {
+                            return -1
+                        }
+                        return 0
+                    }):
+                    state.videogames.sort((a, b) => {
+                        if(a[orderBy] < b[orderBy]) {
+                            return 1
+                        }
+                        if(a[orderBy] > b[orderBy]) {
+                            return -1
+                        }
+                        return 0
+                    })
+                    
+                    return {
+                        ...state,
+                        videogames: sortedVideogames
+                    }
 
-            case CREATE_GAME:
-                return{
-                    ...state,
-                    videogames: [...state.videogames, action.payload],
-                }
+        case CREATE_GAME:
+            return{
+                ...state,
+                videogames: [...state.videogames, action.payload],
+            }
 
-            case FILTER_GAMES:
-                let { platformby, genreby } = action.payload
+        case FILTER_GAMES:
+            let { platformby, genreby } = action.payload
+            
 
-                let Allvideogames = state.Allvideogames
-                const games1 = platformby === 'all' ? Allvideogames : Allvideogames.filter(game => game.platforms.find(platforms => platforms === platformby ))
-                const games2 = genreby === 'all' ? Allvideogames : Allvideogames.filter(game => game.genres.find(genre => genre === genreby ))
-                const total = games1.filter(element => games2.includes(element));
-                return {
-                    ...state,
-                    videogames: total,
-                    genrefilter: genreby,
-                    platformfilter: platformby
-                }
+            let Allvideogames = state.Allvideogames
+            const games1 = platformby === 'all' ? Allvideogames : Allvideogames.filter(game => game.platforms.find(platforms => platforms === platformby ))
+            const games2 = genreby === 'all' ? Allvideogames : Allvideogames.filter(game => game.genres.find(genre => genre === genreby ))
+            const arr1 = games1.filter(element => games2.includes(element));
+            const total = arr1.filter(element => state.tagsFilter.includes(element));
+            return {
+                ...state,
+                videogames: total,
+                genreby: genreby,
+                platformby: platformby
+            }
+        case FILTER_GAMES_BY_TAGS:
+            const specificTag = action.payload
+                const statusFiltered = 
+                specificTag.length === 0 ? 
+                state.Allvideogames     
+                : 
+                state.Allvideogames.filter(games => {
+                    let exist = specificTag?.every(tag => games.tags?.includes(tag));
+                     if (exist) return games
+                     return console.log('se filtraron los juegos')
+                }) 
+
+            return {
+                ...state,
+                tagsFilter: statusFiltered
+            }
+       
 
         default: return state
     }

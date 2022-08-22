@@ -1,30 +1,38 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { filterGames } from '../../redux/Actions/Index'
+import { filterGames, filterGamesByTags } from '../../redux/Actions/Index'
 import './Filter.css'
 
 
 
-export default function Filter ({genres, platforms, tags, setRender}) {
+export default function Filter ({genres, platforms, tags}) {
 
     let dispatch =  useDispatch()
 
-    let TagsToFilter=[]
-    function handleTags(e) {
-        TagsToFilter.push(e.target.value)
-    }
 
-
-    function handleFilter(e) {
+    function handleFilter() {
         let platformby = document.getElementById('platforms').value
         let genreby = document.getElementById('genres').value
-        console.log(platformby)
-        console.log(genreby)
         dispatch(filterGames({platformby, genreby}))
     }
+
+    const tagsCheckboxes = document.querySelectorAll('input[type="checkbox"]')
+    
+    function handleCheck(e) {
+        let tagstofilter = []
+        tagsCheckboxes.forEach(checkbox => {
+            if(checkbox.checked) {
+                tagstofilter.push(checkbox.value)
+            }
+        })
+        console.log(tagstofilter)
+        dispatch(filterGamesByTags(tagstofilter))
+    }
+
+
     return (
         <div className='Filter-box'>
-            <h4> Platforms:</h4>
+            <h4>Select a Platform:</h4>
             <select id='platforms' defaultValue={'all'} onChange={(e) => handleFilter(e)}>
                 <option value='all' >All</option>
                 {
@@ -53,20 +61,25 @@ export default function Filter ({genres, platforms, tags, setRender}) {
                 }
             </select>
             
-            <h4>Tags:</h4>
-            <select id='tags' defaultValue={''} onChange={(e) => handleTags(e)}>
-                <option value= 'all' > All </option>
-                {
-                     tags.map((plat, index) => {
-                        return(
-                            <option 
-                            key={index}
-                            value={plat}
-                            >{plat}</option>
+            <div>
+                <details className='DETAILS-TAGS' open>
+                    <summary className='SUMMARY-TAGS'> Tags: </summary>
+                    
+                    {tags?.map((tags, index) => {
+                        return (
+                            <label className='LABEL-TAGS' key= {index} ><br></br><input
+                            key= {tags}
+                            type='checkbox'
+                            name='tags'
+                            value={tags}
+                            onClick={e => handleCheck(e)}
+                            ></input>{tags}</label>
                         )
-                    })
-                }
-            </select>
+                    })}
+
+                </details >
+                <button onClick={handleFilter}> Buscar Tags </button>
+            </div>
         
         </div>
     )
