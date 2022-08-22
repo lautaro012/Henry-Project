@@ -12,7 +12,7 @@ import frank from "../frank.jpeg"
 export default function About() {
     return (
         <div className="About-general">
-                <h1> Integrantes </h1>
+                <h1 className="h"> Integrantes </h1>
             <div className="About">
                 <div className="name">
                     <a className="Link" href='https://ar.linkedin.com/in/lautaro-robles-57a5ba242?trk=people-guest_people_search-card'>
