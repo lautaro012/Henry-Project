@@ -17,10 +17,8 @@ export default function Filters () {
     let tags = useSelector(state => state.tags)
     let genres = useSelector(state => state.genres)
     let platforms = useSelector(state => state.platforms)
-    let filteredVideogames = useSelector(state => state.filteredVideogames)
 
     const [render, setRender] = useState('')
-    const [filters, setFilters] = useState(false)
     
 
     useEffect(() => {
@@ -48,7 +46,6 @@ export default function Filters () {
     const indexOfLastVideogame = currentPage * videogamesPerPage
     const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage
     const currentVideogame = videogames.slice(indexOfFirstVideogame, indexOfLastVideogame)
-    const currentVideogamesFiltered = filteredVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame)
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
@@ -62,7 +59,7 @@ export default function Filters () {
         setRender(`${render} renderizado`);
     }
 
-    console.log('las recetas filtradas son  ', filteredVideogames )
+    console.log(videogames)
 
     return (
         <div className='Search-Filters'>
@@ -78,7 +75,7 @@ export default function Filters () {
                genres={genres}
                platforms={platforms}
                tags={tags}
-               setFilters={setFilters}
+               setRender={el => setRender(el + render)}
                />
 
             </div>
@@ -106,14 +103,6 @@ export default function Filters () {
                     </div>
                 <div className='Games-Cards-Div'>
                     {
-                        filters ?
-                        currentVideogamesFiltered?.map(card => {
-                            return (<Cards
-                                card={card}
-                                key={card.id}
-                                />) 
-                        })
-                        :
                         currentVideogame?.map(card => {
                             return (<Cards
                             card={card}

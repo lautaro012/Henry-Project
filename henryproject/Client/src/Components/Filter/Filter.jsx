@@ -5,52 +5,27 @@ import './Filter.css'
 
 
 
-export default function Filter ({genres, platforms, tags, setFilters}) {
+export default function Filter ({genres, platforms, tags, setRender}) {
 
-    const dispatch = useDispatch()
-    const [genresfilter, setGenreFilter] = useState([])
-    const [platformsfilter, setPlatformsFilter] = useState([])
-    const [tagsfilter, setTagsFilter] = useState([])
-    
-   function handleGenres(e) {
-        e.preventDefault();
-        let genres = document.getElementById('genres').value
-        if(genres=== 'all') {
-            setGenreFilter([])
-            return setFilters(false)
-        }
-        setGenreFilter([...genresfilter, genres])
-        dispatch(filterGames(genresfilter, 'genres'))
-        setFilters(true)
-   }
-   function handleTags(e) {
-        e.preventDefault();
-        let tags = document.getElementById('tags').value
-        if(tags=== 'all') {
-            setTagsFilter([])
-            return setFilters(false)
-        }
-        setTagsFilter([...tagsfilter, tags])
-        dispatch(filterGames(tagsfilter, 'tags'))
-        setFilters(true)
+    let dispatch =  useDispatch()
+
+    let TagsToFilter=[]
+    function handleTags(e) {
+        TagsToFilter.push(e.target.value)
     }
-    function handlePlatforms(e) {
-        e.preventDefault();
-        let platforms = document.getElementById('platforms').value
-        if(platforms=== 'all') {
-            setPlatformsFilter([])
-            return setFilters(false)
-        }
-        setPlatformsFilter([...platformsfilter, platforms])
-        dispatch(filterGames(platformsfilter, 'platforms'))
-        setFilters(true)
-   }
 
-   console.log(genresfilter)
+
+    function handleFilter(e) {
+        let platformby = document.getElementById('platforms').value
+        let genreby = document.getElementById('genres').value
+        console.log(platformby)
+        console.log(genreby)
+        dispatch(filterGames({platformby, genreby}))
+    }
     return (
         <div className='Filter-box'>
-            <h4>Platforms:</h4>
-            <select id='platforms' defaultValue={''} onChange={(e) => handlePlatforms(e)}>
+            <h4> Platforms:</h4>
+            <select id='platforms' defaultValue={'all'} onChange={(e) => handleFilter(e)}>
                 <option value='all' >All</option>
                 {
                     platforms.map(plat => {
@@ -63,8 +38,8 @@ export default function Filter ({genres, platforms, tags, setFilters}) {
                     })
                 }
             </select>
-            <h4>Genres:</h4>
-            <select id='genres' defaultValue={''} onChange={(e) => handleGenres(e)}>
+            <h4> Select a Genre:</h4>
+            <select id='genres' defaultValue={'all'}  onChange={(e) => handleFilter(e)}>
                 <option value= 'all'> All </option>
                 {
                     genres.map(plat => {
@@ -92,45 +67,6 @@ export default function Filter ({genres, platforms, tags, setFilters}) {
                     })
                 }
             </select>
-
-            <div className='Show-filter-box'>
-                <div className='show-filterss'>
-                    {
-                        genresfilter?.map(genres => {
-                            return (
-                            <div className='SEPARATED'>
-                                <span>{genres}</span>
-                               
-                            </div>     
-                            )
-                        })
-                    }
-                </div>
-                <div className='show-filterss'>
-                    {
-                        tagsfilter?.map(tags => {
-                            return (
-                                <div className='SEPARATED'>
-                                    <span>{tags}</span>
-                                
-                                </div>     
-                                )
-                        })
-                    }
-                </div>
-                <div className='show-filterss'>
-                    { 
-                        platformsfilter?.map(plats => {
-                            return (
-                                <div className='SEPARATED'>
-                                    <span>{plats}</span>
-                                  
-                                </div>     
-                                )
-                        })
-                    }
-                </div>
-            </div>
         
         </div>
     )
