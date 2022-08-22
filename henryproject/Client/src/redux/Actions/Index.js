@@ -11,6 +11,7 @@ export const FILTER_GAMES_BY_PLATFORM = 'FILTER_GAMES_BY_PLATFORM'
 export const FILTER_GAMES_BY_TAGS = 'FILTER_GAMES_BY_TAGS'
 export const ORDER= 'ORDER'
 export const CREATE_GAME = 'CREATE_GAME'
+export const FILTER_GAMES = 'FILTER_GAMES'
 
 export function getAllGames(name) {
 
@@ -50,36 +51,11 @@ export const clear = function() {
     }
 }
 
-export const filterGames = function(filter, filterby) {
+export const filterGames = function(payload) {
 
-    switch (filterby) {
-        case 'genres':
-            return async function (dispatch) {
-                let response = await axios(`http://localhost:3001/videogames?genres=${filter.toString()}`)
-                dispatch({
-                    type: FILTER_GAMES_BY_GENRES,
-                    payload: response.data
-                })
-            }
-        case 'platforms':
-            return async function (dispatch) {
-                                                                        // ['pc', 'playstation'] -> 'pc','playstation'
-                let response = await axios(`http://localhost:3001/videogames?platforms=${filter.toString()}`)
-                dispatch({
-                    type: FILTER_GAMES_BY_PLATFORM,
-                    payload: response.data
-                })
-            }
-        case 'tags':
-            return async function (dispatch) {
-                let response = await axios(`http://localhost:3001/videogames?tags=${filter.toString()}`)
-                dispatch({
-                    type: FILTER_GAMES_BY_TAGS,
-                    payload: response.data
-                })
-            }
-        default:
-            break;
+    return {
+        type: FILTER_GAMES,
+        payload
     }
     
 }
@@ -163,4 +139,40 @@ export const createvideogame = function(payload, history) {
 //             })
 //         })
 //     }
+// }
+
+
+// switch (filterby) {
+//     case 'genres':
+//         return async function (dispatch) {
+//             if(filter === 'all') {
+//                return getAllGames()
+//             }
+//             let response = await axios(`http://localhost:3001/videogames?genres=${filter}`)
+//             dispatch({
+//                 type: FILTER_GAMES_BY_GENRES,
+//                 payload: response.data
+//             })
+//         }
+//     case 'platforms':
+//         return async function (dispatch) {
+//             if(filter === 'all') {
+//                return getAllGames()
+//             }                                                    // ['pc', 'playstation'] -> 'pc','playstation'
+//             let response = await axios(`http://localhost:3001/videogames?platforms=${filter}`)
+//             dispatch({
+//                 type: FILTER_GAMES_BY_PLATFORM,
+//                 payload: response.data
+//             })
+//         }
+//     case 'tags':
+//         return async function (dispatch) {
+//             let response = await axios(`http://localhost:3001/videogames?tags=${filter}`)
+//             dispatch({
+//                 type: FILTER_GAMES_BY_TAGS,
+//                 payload: response.data
+//             })
+//         }
+//     default:
+//         break;
 // }
