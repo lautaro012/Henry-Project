@@ -1,4 +1,6 @@
-
+.h{
+    color: ghostwhite;
+}
 
 .home-primary-videogames {
     display: flex;
@@ -45,9 +47,6 @@
     flex-direction: column;
     align-items: center;
 }
-.double {
-    display: flex;
-}
 
 .img-populars{
     height: 700px;
@@ -55,4 +54,9 @@
 
 .carruseles{
     margin:5%
+}
+
+.carrusel-triple{
+ display:flex;
+ margin: 3%;
 }
