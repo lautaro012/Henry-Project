@@ -7,6 +7,8 @@ import Home from './Components/Home/Home.jsx'
 import Filters from './Components/Filters/Filters';
 import NavBar from './Components/Nav_bar/Nav_bar';
 import GameDetail from './Components/Game_Details/GameDetails.jsx'
+import CreateVideogame from './Components/CreateVideogame/CreateVideogame';
+
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
         <Route path='/home' element={<Home />} />
         <Route path='/home/games' element={<Filters/>}/>
         <Route path='/home/games/:id' element={<GameDetail />} />
+        <Route path='/home/create' element={<CreateVideogame/>} />
       </Routes>
     </Router>
   );
