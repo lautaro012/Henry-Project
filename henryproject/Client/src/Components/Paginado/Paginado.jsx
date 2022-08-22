@@ -2,7 +2,7 @@ import React from "react";
 import './Paginado.css'
 
 
-export default function Paginado ({ paginado, allVideogames, VideogamesPerPage}) {
+export default function Paginado ({ paginado, allVideogames, VideogamesPerPage, actual}) {
 
     const pageNumber = []
 
@@ -10,6 +10,18 @@ export default function Paginado ({ paginado, allVideogames, VideogamesPerPage})
         pageNumber.push(i+1)        
     }
 
+    function handlePaginado(orden){
+        if(orden === "prev"){
+            if( (actual - 1) > 0 ){
+                paginado(actual - 1)
+            }
+        }
+        if(orden === "next"){
+            if((actual +1 ) <= pageNumber.length ){
+                paginado(actual + 1)
+            }
+        }
+    }
     
     return (
         <div className="Paginado-conteiner">        
@@ -21,7 +33,10 @@ export default function Paginado ({ paginado, allVideogames, VideogamesPerPage})
                         </li>
                     ))}
                 </ul>
-
+                <div id="prev_next">
+                    <button onClick={() => handlePaginado("prev")}>PREVIUS</button>
+                    <button onClick={() => handlePaginado("next")}>NEXT</button>
+                </div>
         </div>
         )
     

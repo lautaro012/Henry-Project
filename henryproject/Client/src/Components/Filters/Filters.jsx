@@ -2,14 +2,16 @@ import SearchBar from '../SearchBar/SearchBar'
 import './Filters.css'
 import Cards from '../Cards/Cards.jsx'
 import { useEffect } from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import { getAllGames, clear, getGenres, getPlatforms, order } from '../../redux/Actions/Index'
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllGames, clear, getGenres, getPlatforms, order, vaciarGame } from '../../redux/Actions/Index'
 import { useState } from 'react';
 import Paginado from '../Paginado/Paginado';
 import Filter from '../Filter/Filter';
 
 
-export default function Filters () {
+
+
+export default function Filters() {
 
     let dispatch = useDispatch()
 
@@ -18,16 +20,17 @@ export default function Filters () {
     let genres = useSelector(state => state.genres)
     let platforms = useSelector(state => state.platforms)
     let genresgames = useSelector(state => state.tagsFilter)
-    console.log('GENEROS FILTRADS',genresgames)
+    console.log('GENEROS FILTRADS', genresgames)
     const [render, setRender] = useState('')
-    
+
 
     useEffect(() => {
-            dispatch(getGenres())
-            dispatch(getPlatforms())
-        if(videogames.length === 0) {
-            dispatch(getAllGames())   
-            console.log('Axios API') 
+        dispatch(getGenres())
+        dispatch(getPlatforms())
+        dispatch(vaciarGame()) // para vaciar estado global del juegodetail
+        if (videogames.length === 0) {
+            dispatch(getAllGames())
+            console.log('Axios API')
         }
         return function cleaning() {
             dispatch(clear())
@@ -42,7 +45,7 @@ export default function Filters () {
     //paginado
     const [currentPage, setCurrentPage] = useState(1)
     const [videogamesPerPage, setVideogamesPerPage] = useState(10)
-    
+
     //videojuegos filtradas por pagina
     const indexOfLastVideogame = currentPage * videogamesPerPage
     const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage
@@ -55,7 +58,7 @@ export default function Filters () {
         e.preventDefault();
         let orderBy = document.getElementById('orderBy').value
         let orderType = document.getElementById('orderType').value
-        dispatch(order({orderBy : orderBy, orderType: orderType}));
+        dispatch(order({ orderBy: orderBy, orderType: orderType }));
         setCurrentPage(1);
         setRender(`${render} renderizado`);
     }
@@ -65,60 +68,63 @@ export default function Filters () {
         <div className='Search-Filters'>
 
             <SearchBar
-            onSearch={onSearch}
+                onSearch={onSearch}
             ></SearchBar>
 
-        <div className='filters'>
-            <div className="show-filters">
+            <div className='filters'>
+                <div className="show-filters">
 
-               <Filter
-               genres={genres}
-               platforms={platforms}
-               tags={tags}
-               setRender={el => setRender(el + render)}
-               />
+                    <Filter
+                        genres={genres}
+                        platforms={platforms}
+                        tags={tags}
+                        setRender={el => setRender(el + render)}
+                    />
 
-            </div>
-            <div className='Sorts-Games'>
-                <div className='Sorts'>
-                    <h4 color='#ffffff'> Name/Rate </h4>
-                    <select className='SELECT-ORDER' id='orderBy' onChange={(e) => handleSort(e)} defaultValue='orderBy'>
-                        <option value= 'name'> Name </option>
-                        <option value= 'rating'> Rate </option>
-                    </select>                                                             
-                    <h4>In What Order ?</h4>
-                    <select className='SELECT-ORDER' id='orderType' onChange={(e) => handleSort(e)} defaultValue='orderType'>
-                        <option value= 'asc'> Ascendent </option>
-                        <option value= 'des'> Descendent </option>
-                    </select>
-                    
                 </div>
+                <div className='Sorts-Games'>
+                    <div className='Sorts'>
+                        <h4 color='#ffffff'> Name/Rate </h4>
+                        <select className='SELECT-ORDER' id='orderBy' onChange={(e) => handleSort(e)} defaultValue='orderBy'>
+                            <option value='name'> Name </option>
+                            <option value='rating'> Rate </option>
+                        </select>
+                        <h4>In What Order ?</h4>
+                        <select className='SELECT-ORDER' id='orderType' onChange={(e) => handleSort(e)} defaultValue='orderType'>
+                            <option value='asc'> Ascendent </option>
+                            <option value='des'> Descendent </option>
+                        </select>
 
-                     <div className='PAGINADO'>
-                        <Paginado
-                        VideogamesPerPage = {videogamesPerPage}
-                        allVideogames = {videogames.length}
-                        paginado = {paginado}
-                        /> 
                     </div>
-                <div className='Games-Cards-Div'>
-                    {
-                        currentVideogame.length > 0 ?
-                        currentVideogame?.map(card => {
-                            return (<Cards
-                            card={card}
-                            key={card.id}
-                            />)
-                        })
-                        :
-                        <h1 className='h'> NO GAMES THAT MATCH YOUR REQUISITES </h1>
-                    }
+
+                    <div className='PAGINADO'>
+                        <Paginado
+                            VideogamesPerPage={videogamesPerPage}
+                            allVideogames={videogames.length}
+                            paginado={paginado}
+                            actual={currentPage}
+                        />
+                    </div>
+                    <div className='Games-Cards-Div'>
+                        {
+                            currentVideogame.length > 0 ?
+
+                                currentVideogame?.map(card => {
+                                    return (<Cards
+                                        card={card}
+                                        key={card.id}
+                                    />)
+                                })
+                                :
+                                <h1 className='h'> NO GAMES THAT MATCH YOUR REQUISITES </h1>
+
+                        }
+                    </div>
+
                 </div>
 
+
             </div>
-
-
-        </div>
         </div>
     )
 }
