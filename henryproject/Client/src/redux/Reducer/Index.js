@@ -1,17 +1,19 @@
-import { 
-    GET_ALL_GAMES, 
-    GET_ALL_GAMES_BY_NAME, 
-    GET_GAME_BY_ID, CLEAR, 
-    GET_GENRES, 
+import {
+    GET_ALL_GAMES,
+    GET_ALL_GAMES_BY_NAME,
+    GET_GAME_BY_ID, CLEAR,
+    GET_GENRES,
     ORDER,
-    GET_PLATFORMS, 
-    GET_TAGS, 
+    GET_PLATFORMS,
+    GET_TAGS,
     GET_GAMES_BY_GENRE,
     CREATE_GAME,
     FILTER_GAMES_BY_GENRES,
     FILTER_GAMES_BY_PLATFORM,
     FILTER_GAMES_BY_TAGS,
-    FILTER_GAMES} from "../Actions/Index"
+    FILTER_GAMES,
+    EMPTY_GAME_STATE,
+} from "../Actions/Index"
 
 const initialState = {
     Allvideogames: [],
@@ -24,15 +26,15 @@ const initialState = {
     platformby: 'all',
     tagsFilter: [],
     tags: [
-        'Singleplayer', 
-        'Steam Achievements', 
-        'Multiplayer', 
-        'Atmospheric', 
-        'steam-trading-cards', 
-        'Full controller support', 
-        'Steam Cloud', 
-        'Great Soundtrack', 
-        'RPG', 
+        'Singleplayer',
+        'Steam Achievements',
+        'Multiplayer',
+        'Atmospheric',
+        'steam-trading-cards',
+        'Full controller support',
+        'Steam Cloud',
+        'Great Soundtrack',
+        'RPG',
         'Co-op'
     ]
 }
@@ -69,7 +71,7 @@ export default function rootReducer(state = initialState, action) {
                 genres: action.payload
             }
         case GET_PLATFORMS:
-            return{
+            return {
                 ...state,
                 platforms: action.payload
             }
@@ -89,43 +91,43 @@ export default function rootReducer(state = initialState, action) {
             const orderType = action.payload.orderType
             const orderBy = action.payload.orderBy
             const sortedVideogames = orderType === 'asc' ?
-                    state.videogames.sort((a, b) => {
-                        if(a[orderBy] > b[orderBy]) {
-                            return 1
-                        }
-                        if(a[orderBy] < b[orderBy]) {
-                            return -1
-                        }
-                        return 0
-                    }):
-                    state.videogames.sort((a, b) => {
-                        if(a[orderBy] < b[orderBy]) {
-                            return 1
-                        }
-                        if(a[orderBy] > b[orderBy]) {
-                            return -1
-                        }
-                        return 0
-                    })
-                    
-                    return {
-                        ...state,
-                        videogames: sortedVideogames
+                state.videogames.sort((a, b) => {
+                    if (a[orderBy] > b[orderBy]) {
+                        return 1
                     }
+                    if (a[orderBy] < b[orderBy]) {
+                        return -1
+                    }
+                    return 0
+                }) :
+                state.videogames.sort((a, b) => {
+                    if (a[orderBy] < b[orderBy]) {
+                        return 1
+                    }
+                    if (a[orderBy] > b[orderBy]) {
+                        return -1
+                    }
+                    return 0
+                })
+
+            return {
+                ...state,
+                videogames: sortedVideogames
+            }
 
         case CREATE_GAME:
-            return{
+            return {
                 ...state,
                 videogames: [...state.videogames, action.payload],
             }
 
         case FILTER_GAMES:
             let { platformby, genreby } = action.payload
-            
+
 
             let Allvideogames = state.Allvideogames
-            const games1 = platformby === 'all' ? Allvideogames : Allvideogames.filter(game => game.platforms.find(platforms => platforms === platformby ))
-            const games2 = genreby === 'all' ? Allvideogames : Allvideogames.filter(game => game.genres.find(genre => genre === genreby ))
+            const games1 = platformby === 'all' ? Allvideogames : Allvideogames.filter(game => game.platforms.find(platforms => platforms === platformby))
+            const games2 = genreby === 'all' ? Allvideogames : Allvideogames.filter(game => game.genres.find(genre => genre === genreby))
             const arr1 = games1.filter(element => games2.includes(element));
             const total = arr1.filter(element => state.tagsFilter.includes(element));
             return {
@@ -136,21 +138,26 @@ export default function rootReducer(state = initialState, action) {
             }
         case FILTER_GAMES_BY_TAGS:
             const specificTag = action.payload
-                const statusFiltered = 
-                specificTag.length === 0 ? 
-                state.Allvideogames     
-                : 
-                state.Allvideogames.filter(games => {
-                    let exist = specificTag?.every(tag => games.tags?.includes(tag));
-                     if (exist) return games
-                     return console.log('se filtraron los juegos')
-                }) 
+            const statusFiltered =
+                specificTag.length === 0 ?
+                    state.Allvideogames
+                    :
+                    state.Allvideogames.filter(games => {
+                        let exist = specificTag?.every(tag => games.tags?.includes(tag));
+                        if (exist) return games
+                        return console.log('se filtraron los juegos')
+                    })
 
             return {
                 ...state,
                 tagsFilter: statusFiltered
             }
-       
+        case EMPTY_GAME_STATE:
+            return {
+                ...state,
+                game: []
+            }
+
 
         default: return state
     }

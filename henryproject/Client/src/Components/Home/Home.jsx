@@ -16,12 +16,10 @@ export default function Home () {
     let Allvideogames = useSelector(state => state.Allvideogames)
     let videogames = useSelector(state => state.videogames)
     let videogamesBygenre = useSelector(state => state.videogamesBygenre)
-    
 
     useEffect(() => {    
         if(Allvideogames.length === 0) {
             dispatch(getAllGames())   
-            console.log('Axios API') 
         }
         dispatch(Getbygenre('Indie'))
     }, [])
