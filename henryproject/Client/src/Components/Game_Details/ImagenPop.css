@@ -1,8 +1,7 @@
 .ImagenPop {
     position: absolute;
-    display: flex;
-    flex-direction: column;
-    width: 70%;
+    height: 100%;
+    width: 100%;
     pointer-events: auto;
     background-color: #0000007F;
     background-clip: padding-box;
