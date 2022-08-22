@@ -73,7 +73,7 @@ export default function GameDetails() {
                                 <div><img src={game[0].image} alt="imagenJuego" width="40%"></img></div>
                                 <div><img src={game[0].image} alt="imagenJuego" width="40%"></img></div>
                             </div> */}
-                            <div className='carruseles' >
+                            <div className='' >
                                 <Carousel
                                     showArrows={true}
                                     emulateTouch={true}

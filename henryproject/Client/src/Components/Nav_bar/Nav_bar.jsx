@@ -27,7 +27,7 @@ export default function Nav_bar() {
 
                 <Link to='/home'><button>Tienda</button></Link>
 
-                <Link to='/home/games'><button>Explorar</button></Link>
+                <Link to='/home/create'><button>Create Videogame</button></Link>
 
                 <button onClick={() => onHanddlePop()}>Loggin</button>
             </div>
