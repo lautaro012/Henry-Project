@@ -9,17 +9,21 @@ module.exports = (sequelize) => {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4
     },
+    numb: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     price: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.STRING,
       allowNull: false
   }, 
     description: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     rating: {
         type: DataTypes.FLOAT,
@@ -33,7 +37,10 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull:true
     },
-
+    screenshots: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: true
+    },
     tags: {
       type: DataTypes.TEXT,
       allowNull: true

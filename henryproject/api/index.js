@@ -17,8 +17,10 @@
 //     =====`-.____`.___ \_____/___.-`___.-'=====
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// const { getAllGames } = require('../Client/src/redux/Actions/Index.js');
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
+const { getAllVideoGames } = require('./src/handlers/getAllVideoGames.js');
 const getGenres = require('./src/handlers/getGenres.js');
 const getPlatforms = require('./src/handlers/getPlataforms.js');
 
@@ -27,6 +29,7 @@ conn.sync({ force: true }).then(() => {
   server.listen(3001, async() => {
     await getGenres();
     await getPlatforms();
+     await getAllVideoGames()
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
 });
