@@ -4,10 +4,10 @@ import './Cards.css';
 
 export default function Card(card){
   
-     let {name, image, id, price, rating} = card.card
+     let {name, image, price, rating, numb} = card.card
        return(
         <div className="card-videogame">
-            <Link to={`/home/games/${id}`} className='Link'>
+            <Link to={`/home/games/${numb}`} className='Link'>
                 <div className="image-card" style={{backgroundImage: `url(${image})`}}>
                 </div>
                 <div className="card-data">
