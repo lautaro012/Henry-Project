@@ -61,9 +61,10 @@ const api_url=`https://api.rawg.io/api/games?key=${API_KEY}`;
 // var page=1;
 //Traer los datos de la api
 const getVideogamesApi=async()=>{
-    function getRandomArbitrary(min, max) {
-  return Math.random() * (max - min) + min;
-}
+            function getRandomArbitrary(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
      const dbGames = await Games.findAll();
      if(dbGames.length === 0) {
         const getApi=await axios.get(api_url);
@@ -91,7 +92,7 @@ const getVideogamesApi=async()=>{
                 return{
                     numb: data.id,
                     name:data.name,
-                    price: `$ ${getRandomArbitrary(10, 40)}`,
+                    price: `$ ${Math.round(getRandomArbitrary(10, 40))}`,
                     rating: data.rating,
                     image: data.background_image,
                     // platforms: data.platforms.map(e => e.platform.name),
