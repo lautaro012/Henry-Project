@@ -1,16 +1,16 @@
 import React from "react";
-
+import '../Game_Details/ImagenPop.css'
 import { Modal } from 'reactstrap'
 
 export default function imagenPop({ show, imgPop, img }) {
 
 
     return (
-        <Modal isOpen={imgPop}>
+        <div className="ImagenPop">
 
                 <img src={img} alt="ImagenPOP"></img>
                 <button onClick={() => show()}>X</button>
-
-        </Modal>
+       
+        </div>
     )
 }

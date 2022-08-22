@@ -6,12 +6,13 @@ export const CLEAR = 'CLEAR'
 export const GET_GENRES = 'GET_GENRES'
 export const GET_TAGS = 'GET_TAGS'
 export const GET_PLATFORMS = 'GET_PLATFORMS'
-export const FILTER_GAMES_BY_GENRES = 'FILTER_GAMES'
+export const GET_GAMES_BY_GENRE = 'GET_GAMES_BY_GENRE'
 export const FILTER_GAMES_BY_PLATFORM = 'FILTER_GAMES_BY_PLATFORM'
 export const FILTER_GAMES_BY_TAGS = 'FILTER_GAMES_BY_TAGS'
 export const ORDER= 'ORDER'
 export const CREATE_GAME = 'CREATE_GAME'
 export const FILTER_GAMES = 'FILTER_GAMES'
+export const EMPTY_GAME_STATE = 'EMPTY_GAME_STATE'
 
 export function getAllGames(name) {
 
@@ -128,6 +129,31 @@ export const createvideogame = function(payload, history) {
         }
     }
 }
+
+export const Getbygenre = function(genre) {
+    return function (dispatch) {
+        fetch(`http://localhost:3001/videogames?genres=${genre}`)
+        .then(resp => resp.json())
+        .then(resp => {
+            dispatch({
+                type: GET_GAMES_BY_GENRE,
+                payload: resp
+            })
+        })
+    }
+}
+export const filterGamesByTags = function(payload) {
+    return {
+        type: FILTER_GAMES_BY_TAGS,
+        payload
+    }
+}
+
+export function vaciarGame(){
+    return {
+        type: EMPTY_GAME_STATE,
+    }
+}
 // export const getTags = function () {
 //     return function (dispatch) {
 //         fetch('http://localhost:3001/tags')
@@ -139,40 +165,4 @@ export const createvideogame = function(payload, history) {
 //             })
 //         })
 //     }
-// }
-
-
-// switch (filterby) {
-//     case 'genres':
-//         return async function (dispatch) {
-//             if(filter === 'all') {
-//                return getAllGames()
-//             }
-//             let response = await axios(`http://localhost:3001/videogames?genres=${filter}`)
-//             dispatch({
-//                 type: FILTER_GAMES_BY_GENRES,
-//                 payload: response.data
-//             })
-//         }
-//     case 'platforms':
-//         return async function (dispatch) {
-//             if(filter === 'all') {
-//                return getAllGames()
-//             }                                                    // ['pc', 'playstation'] -> 'pc','playstation'
-//             let response = await axios(`http://localhost:3001/videogames?platforms=${filter}`)
-//             dispatch({
-//                 type: FILTER_GAMES_BY_PLATFORM,
-//                 payload: response.data
-//             })
-//         }
-//     case 'tags':
-//         return async function (dispatch) {
-//             let response = await axios(`http://localhost:3001/videogames?tags=${filter}`)
-//             dispatch({
-//                 type: FILTER_GAMES_BY_TAGS,
-//                 payload: response.data
-//             })
-//         }
-//     default:
-//         break;
 // }

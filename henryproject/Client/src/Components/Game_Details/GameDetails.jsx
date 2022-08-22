@@ -9,6 +9,7 @@ import { useState } from "react";
 import Video from '../../Style/Videos/IntroVid.mp4'
 import ReactPlayer from 'react-player'
 import ImagenPop from '../Game_Details/ImagenPop.jsx';
+import Loading from '../../Style/Imagenes/Loading.gif'
 
 import '../Game_Details/GameDetails.css'
 
@@ -53,6 +54,12 @@ export default function GameDetails() {
             {
                 game[0] ?
                     <>
+                        {
+                            imgPop === true ?
+                                <ImagenPop show={onHanddlePop} imgPop={imgPop} img={game[0].image} />
+                                :
+                                null
+                        }
                         < ReactPlayer
                             id="game_video"
                             url={Video}
@@ -66,48 +73,17 @@ export default function GameDetails() {
                         <div>
                             <h1>{game[0].name}</h1>
                             <p>{stars(game[0].rating)}</p>
-                            {/* <div className="detail_imgs">
-                                <div><img src={game[0].image} alt="imagenJuego" width="40%"></img></div>
-                                <div><img src={game[0].image} alt="imagenJuego" width="40%"></img></div>
-                                <div><img src={game[0].image} alt="imagenJuego" width="40%"></img></div>
-                                <div><img src={game[0].image} alt="imagenJuego" width="40%"></img></div>
-                                <div><img src={game[0].image} alt="imagenJuego" width="40%"></img></div>
-                            </div> */}
-                            <div className='carruseles' >
-                                <Carousel
-                                    showArrows={true}
-                                    emulateTouch={true}
-                                    swipeable={true}
-                                    autoPlay={true}
-                                    interval={3000}
-                                    infiniteLoop={true}
-                                    stopOnHover={true}
-                                    centerMode={true}
-                                    showThumbs={false}
-                                    width={800}>
-                                    <div className='double'>
-                                        <button onClick={() => onHanddlePop()}><img src={game[0].image} alt="imagenJuego" width="40%"></img></button>
-                                        <div><img src={game[0].image} alt="imagenJuego" width="40%"></img></div>
-                                        <div><img src={game[0].image} alt="imagenJuego" width="40%"></img></div>
-                                        {
-                                            imgPop === true ?
-                                                <ImagenPop show={onHanddlePop} imgPop={imgPop} img={game[0].image} />
-                                                :
-                                                null
-                                        }
-                                    </div>
-                                    <div className='double'>
-                                        <div><img src={game[0].image} alt="imagenJuego" width="40%"></img></div>
-                                        <div><img src={game[0].image} alt="imagenJuego" width="40%"></img></div>
-                                        <div><img src={game[0].image} alt="imagenJuego" width="40%"></img></div>
-                                    </div>
-                                    <div className='double'>
-                                        <div><img src={game[0].image} alt="imagenJuego" width="40%"></img></div>
-                                        <div><img src={game[0].image} alt="imagenJuego" width="40%"></img></div>
-                                        <div><img src={game[0].image} alt="imagenJuego" width="40%"></img></div>
-                                    </div>
-                                </Carousel>
+
+                            <div className='imagenesJuego' >
+
+                                <button onClick={() => onHanddlePop()}><img src={game[0].image} alt="imagenJuego" width="40%"></img></button>
+                                <button onClick={() => onHanddlePop()}><img src={game[0].image} alt="imagenJuego" width="40%"></img></button>
+                                <button onClick={() => onHanddlePop()}><img src={game[0].image} alt="imagenJuego" width="40%"></img></button>
+                                <button onClick={() => onHanddlePop()}><img src={game[0].image} alt="imagenJuego" width="40%"></img></button>
+                                <button onClick={() => onHanddlePop()}><img src={game[0].image} alt="imagenJuego" width="40%"></img></button>
+
                             </div>
+
                         </div>
                         <hr />
                         <p dangerouslySetInnerHTML={{ __html: game[0].description }} />
@@ -115,11 +91,10 @@ export default function GameDetails() {
                     </>
                     :
                     <div id="loading_detail">
-                        <h1>Loading...</h1>
+                        <img src={Loading} alt="Loading"></img>
                     </div>
-            }
-            {/* <video autoPlay="autoplay" muted type={"video/mp4"} preload="auto" loop src={Video}></video> */}
 
+            }
         </div>
     )
 }

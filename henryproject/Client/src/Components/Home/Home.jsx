@@ -5,7 +5,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Link, useNavigate  } from "react-router-dom";
 import { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { getAllGames } from '../../redux/Actions/Index'
+import { getAllGames, Getbygenre } from '../../redux/Actions/Index'
 
 
 export default function Home () {
@@ -14,13 +14,14 @@ export default function Home () {
     const navigate = useNavigate()
     
     let Allvideogames = useSelector(state => state.Allvideogames)
-    
+    let videogames = useSelector(state => state.videogames)
+    let videogamesBygenre = useSelector(state => state.videogamesBygenre)
 
     useEffect(() => {    
         if(Allvideogames.length === 0) {
             dispatch(getAllGames())   
-            console.log('Axios API') 
         }
+        dispatch(Getbygenre('Indie'))
     }, [])
     
     const onSearch = (name) => {
@@ -29,7 +30,10 @@ export default function Home () {
     }
 
     let populars = Allvideogames?.filter(games => games.rating > 4.5)
-
+    const mostpopular = videogames[0]
+  
+    console.log(videogamesBygenre)
+    
     return (
     <div className="Home">
 
@@ -63,6 +67,7 @@ export default function Home () {
             </div >
         
             <div className='carruseles'>
+                <h1 className='h'> Most Popular:</h1>
                 <Carousel 
                     showArrows={true} 
                     emulateTouch={true}
@@ -73,22 +78,22 @@ export default function Home () {
                     stopOnHover={true} 
                     showThumbs={false}
                     width={800}>
-                        <div>
-                            <img src="https://magnifiedtech.com/wp-content/uploads/2021/08/How-video-games-are-coded-1.webp" />
-                            <Link to='/details'><p className="legend"> 20% DISCOUNT </p></Link>
-                            
-                        </div>
-                        <div>
-                            <img src="https://mobidictum.biz/wp-content/uploads/2022/05/FIFA-and-EA-end-partnership-800x400.jpg" />
-                            
-                            <Link to='/details'><p className="legend"> PLAY WHIT YOUR FRIENDS ! </p></Link>
-                            
-                        </div>
+                        {
+                            mostpopular?.screenshots?.map(img => {
+                                return (
+                                    <div>
+                                        <img src={img} alt='img'></img>
+                                        <Link to={`/home/games/${mostpopular.id}`} className='Link'><p className="legend"> {mostpopular.name} CLICK FOR DETAILS !</p> </Link>
+                                    </div>
+                                )
+                            })
+                        }
                 </Carousel>
              </div>
 
-            
+           
             <div className='carruseles' >
+                <h1 className='h'> OUR INDIE SECTION ! </h1>
                 <Carousel 
                 showArrows={true} 
                 emulateTouch={true}
@@ -99,55 +104,27 @@ export default function Home () {
                 stopOnHover={true}
                 centerMode={true}
                 showThumbs={false}
-                width={800}>
-                    <div className='double'>
-                            <div>
-                                <img src="https://magnifiedtech.com/wp-content/uploads/2021/08/How-video-games-are-coded-1.webp" />
-                                
-                            </div>
-                            <div >
-                                <img src="https://magnifiedtech.com/wp-content/uploads/2021/08/How-video-games-are-coded-1.webp" />
-                                
-                                
-                            </div>
-                            <div>
-                                <img src="https://magnifiedtech.com/wp-content/uploads/2021/08/How-video-games-are-coded-1.webp" />
-                                
-                                
-                            </div>
-                    </div>
-                    <div className='double'>
-                            <div>
-                                <img src="https://mobidictum.biz/wp-content/uploads/2022/05/FIFA-and-EA-end-partnership-800x400.jpg" />
-                                
-                            </div>
-                            <div >
-                                <img src="https://mobidictum.biz/wp-content/uploads/2022/05/FIFA-and-EA-end-partnership-800x400.jpg" />
-                                
-                                
-                            </div>
-                            <div>
-                                <img src="https://mobidictum.biz/wp-content/uploads/2022/05/FIFA-and-EA-end-partnership-800x400.jpg " />
-                                
-                                
-                            </div>
-                    </div>
-                    <div className='double'>
-                            <div>
-                                <img src="https://magnifiedtech.com/wp-content/uploads/2021/08/How-video-games-are-coded-1.webp" />
-                                
-                            </div>
-                            <div >
-                                <img src="https://magnifiedtech.com/wp-content/uploads/2021/08/How-video-games-are-coded-1.webp" />
-                                
-                                
-                            </div>
-                            <div>
-                                <img src="https://magnifiedtech.com/wp-content/uploads/2021/08/How-video-games-are-coded-1.webp" />
-                                
-                                
-                            </div>
-                    </div>
+                width={1000}>
+                   {
+                    videogamesBygenre?.map(games => {
+                        return (
+                                <Link to={`/home/games/${games.id}`} className='Link'>
+                                    <h4 className='h'> {games.name}</h4>
+                                    <div className='carrusel-triple'>
+                                        <div>
+                                            <img width={200} height={200} src={games.image} alt='img'></img>                               
+                                        </div>
+                                        <div>
+                                              <img width={200} height={200} src={games.screenshots[1]} alt='img'></img>
+                                        </div>
+                                        <div>
+                                             <img width={200} height={200} src={games.screenshots[2]} alt='img'></img>
+                                        </div>
+                                       
+                                    </div>
+                                </Link>
+                        )})           
+                   }
                 </Carousel>
             </div>
 
