@@ -11,98 +11,69 @@ import frank from "../frank.jpeg"
 
 export default function About() {
     return (
-        <div className="About">
-            <h1>Nuestro proyecto</h1>
-            <p>
-             Visite nuestro Ecommerce en donde va a encontrar las mejores ofertas
-             de videojuegos para que pueda elegir la diversion ideal.
-            </p>
-            <div className="name">
-                <h3>Lautaro</h3>
-                <p>Frontend</p>
-                <a href='https://ar.linkedin.com/in/lautaro-robles-57a5ba242?trk=people-guest_people_search-card'>LinkedIn</a>
-                <img id="imgl" src={lautaro} alt="lautaro"></img>
-            </div>
+        <div className="About-general">
+                <h1> Integrantes </h1>
+            <div className="About">
+                <div className="name">
+                    <a className="Link" href='https://ar.linkedin.com/in/lautaro-robles-57a5ba242?trk=people-guest_people_search-card'>
+                        <h3>Lautaro</h3>
+                        <img width={200} height={200} id="imgl" src={lautaro} alt="lautaro"></img>
+                    </a>
+                </div>
+    
+                
+                <div className="name">
+                    <a className="Link" href='https://ar.linkedin.com/in/sergio-leonel-romero-sanchez-rajoy-fullstack?trk=public_profile_browsemap'>
+                        <h3>Sergio</h3>
+                        <img width={200} height={200} id="imgl" src={sergior} alt="sergior"></img>
+                    </a>
+                </div>
 
-            <div>
-                <Link to='/home'>
-                    <button id="backToHome">Back to Home</button>
-                </Link>
-            </div>
-            <div className="name">
-                <h3>Sergio</h3>
-                <p>Frontend</p>
-                <a href='https://ar.linkedin.com/in/sergio-leonel-romero-sanchez-rajoy-fullstack?trk=public_profile_browsemap'>LinkedIn</a>
-                <img id="imgl" src={sergior} alt="sergior"></img>
-            </div>
+            
+                <div className="name">
+                    <a className="Link" href='https://www.linkedin.com/in/juan-david-pabon-porras-4123b389/'>
+                        <h3>Juan David</h3>
+                     <img width={200} height={200} id="imgl" src={juandavid} alt="juandavid"></img>
+                    </a>
+                </div>
 
-            <div>
-                <Link to='/home'>
-                    <button id="backToHome">Back to Home</button>
-                </Link>
-            </div>
-            <div className="name">
-                <h3>Juan David</h3>
-                <p>Frontend</p>
-                <a href='https://www.linkedin.com/in/juan-david-pabon-porras-4123b389/'>LinkedIn</a>
-                <img id="imgl" src={juandavid} alt="juandavid"></img>
-            </div>
+            
+                <div className="name">
+                    <a className="Link" href='https://www.linkedin.com/in/luciana-bermudez-72a40520b'>
+                        <h3>Luciana</h3>
+                        <img width={200} height={200} id="imgl" src={lucianab} alt="lucianab"></img>
+                    </a>
+                </div>
 
-            <div>
-                <Link to='/home'>
-                    <button id="backToHome">Back to Home</button>
-                </Link>
-            </div>
-            <div className="name">
-                <h3>Luciana</h3>
-                <p>Backend</p>
-                <a href='https://www.linkedin.com/in/luciana-bermudez-72a40520b'>LinkedIn</a>
-                <img id="imgl" src={lucianab} alt="lucianab"></img>
-            </div>
+            
+                <div className="name">
+                    <a className="Link" href='https://www.linkedin.com/in/serch07/?originalSubdomain=co'>
+                        <h3>Sergio</h3>
+                      <img width={200} height={200} id="imgl" src={sergiog} alt="sergiog"></img>
+                    </a>
+                </div>
 
-            <div>
-                <Link to='/home'>
-                    <button id="backToHome">Back to Home</button>
-                </Link>
-            </div>
-            <div className="name">
-                <h3>Sergio</h3>
-                <p>Backend</p>
-                <a href='https://www.linkedin.com/in/serch07/?originalSubdomain=co'>LinkedIn</a>
-                <img id="imgl" src={sergiog} alt="sergiog"></img>
-            </div>
+            
+                <div className="name">
+                    <a className="Link" href='https://www.linkedin.com/in/frank-smith-bocangelino-rojas-351157168/'>
+                        <h3>Frank</h3>
+                        <img width={200} height={200} id="imgl" src={frank} alt="frank"></img>
+                    </a>
+                </div>
 
-            <div>
-                <Link to='/home'>
-                    <button id="backToHome">Back to Home</button>
-                </Link>
+            
+                <div className="name">
+                    <a className="Link" href='https://www.linkedin.com/in/pierino-esteban-juncos-9a4804240/'>
+                        <h3>Pierino</h3>
+                        <img width={200} height={200} id="imgl" src={pierino} alt="pierino"></img>
+                    </a>
+                </div>
             </div>
-            <div className="name">
-                <h3>Frank</h3>
-                <p>Backend</p>
-                <a href='https://www.linkedin.com/in/frank-smith-bocangelino-rojas-351157168/'>LinkedIn</a>
-                <img id="imgl" src={frank} alt="frank"></img>
-            </div>
-
-            <div>
-                <Link to='/home'>
-                    <button id="backToHome">Back to Home</button>
-                </Link>
-            </div>
-            <div className="name">
-                <h3>Pierino</h3>
-                <p>Backend</p>
-                <a href='https://www.linkedin.com/in/pierino-esteban-juncos-9a4804240/'>LinkedIn</a>
-                <img id="imgl" src={pierino} alt="pierino"></img>
-            </div>
-
-            <div>
-                <Link to='/home'>
-                    <button id="backToHome">Back to Home</button>
-                </Link>
-            </div>
-
-
+                <div>
+                    <Link to='/home'>
+                        <button id="backToHome">Back to Home</button>
+                    </Link>
+                </div>
         </div>
     )
 }
