@@ -25,6 +25,7 @@ export default function Paginado ({ paginado, allVideogames, VideogamesPerPage, 
     
     return (
         <div className="Paginado-conteiner">        
+                    <button onClick={() => handlePaginado("prev")}>PREVIUS</button>
                 <ul className="Paginado">
                     {
                     pageNumber?.map(num => (
@@ -33,10 +34,9 @@ export default function Paginado ({ paginado, allVideogames, VideogamesPerPage, 
                         </li>
                     ))}
                 </ul>
-                <div id="prev_next">
-                    <button onClick={() => handlePaginado("prev")}>PREVIUS</button>
+              
                     <button onClick={() => handlePaginado("next")}>NEXT</button>
-                </div>
+          
         </div>
         )
     
