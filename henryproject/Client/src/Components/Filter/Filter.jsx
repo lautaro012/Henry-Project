@@ -24,7 +24,7 @@ export default function Filter ({genres, platforms, tags, setRender}) {
     }
     return (
         <div className='Filter-box'>
-            <h4> Platforms:</h4>
+            <h4>Select a Platform:</h4>
             <select id='platforms' defaultValue={'all'} onChange={(e) => handleFilter(e)}>
                 <option value='all' >All</option>
                 {
