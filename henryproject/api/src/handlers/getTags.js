@@ -1,6 +1,5 @@
 const axios = require('axios');
 require('dotenv').config();
-//const {API_KEY} = process.env
 
 const getTags = async () => {
     let tags = []
@@ -11,7 +10,7 @@ const getTags = async () => {
         });
         page++
     }
-    // console.log(tags)
+    console.log(tags)
     return tags
 }
 
