@@ -2,7 +2,7 @@ import React from "react"
 import { useDispatch, useSelector } from "react-redux"
 import './CreateVideogame.css'
  import { useEffect, useState } from 'react';
-import { getGenres, getPlatforms } from "../../redux/Actions/Index"
+import { getGenres, getPlatforms, createvideogame } from "../../redux/Actions/Index"
 
 export default function CreateVideogame () {
 
@@ -11,9 +11,14 @@ export default function CreateVideogame () {
     let platforms = useSelector(state => state.platforms)
 
     useEffect(() => {
-        dispatch(getGenres())
-        dispatch(getPlatforms())
+        if(genres.length === 0) {
+            dispatch(getGenres())
+        }
+        if(platforms.length === 0) {
+            dispatch(getPlatforms())
+        }
     }, [])
+
     const [game, setGame] = useState({
         name: '',
         price: 0,
@@ -21,9 +26,8 @@ export default function CreateVideogame () {
         rating: 1 ,
         image: '',
         videoTrailer: '' ,
-        platform: [],
+        platforms: [],
         genres: [],
-        image:'url'
 
     })
 
@@ -38,9 +42,8 @@ function handleSubmit(e) {
             rating: 1 ,
             image: '',
             videoTrailer: '' ,
-            platform: [],
+            platforms: [],
             genres: [],
-            image:'url'
         })
     }
 
@@ -51,9 +54,21 @@ function handleSubmit(e) {
             [e.target.name]: e.target.value
         })
     }
-    // function handleGenre(e) {}
+    function handleGenre(e) {
+        setGame([{
+            ...game,
+            genres:[...game.genres, e.target.value]
+        }
+        ])
+    }
 
-    // function handlePlatform (e){}
+    function handlePlatform (e){
+        setGame([{
+            ...game,
+            platforms:[...game.platforms, e.target.value]
+        }
+        ])
+    }
 
 
 

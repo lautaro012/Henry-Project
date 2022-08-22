@@ -10,6 +10,7 @@ export const FILTER_GAMES_BY_GENRES = 'FILTER_GAMES'
 export const FILTER_GAMES_BY_PLATFORM = 'FILTER_GAMES_BY_PLATFORM'
 export const FILTER_GAMES_BY_TAGS = 'FILTER_GAMES_BY_TAGS'
 export const ORDER= 'ORDER'
+export const CREATE_GAME = 'CREATE_GAME'
 
 export function getAllGames(name) {
 
@@ -112,6 +113,43 @@ export const order = function(payload) {
     return {
         type: ORDER,
         payload
+    }
+}
+
+export const createvideogame = function(payload, history) {
+    console.log(payload)
+    return function(dispatch) {
+        try {
+            fetch(`http://localhost:3001/videogames`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json'
+                  },
+                body: JSON.stringify(payload)
+    
+            })
+            .then(response => response.json())
+            .then(games => {
+               
+                let promises = payload.genres.map(genres => {
+                    return fetch(`http://localhost:3001/videogames/${games.id}/diet/${genres}` , {    
+                        method: 'POST'
+                    })
+                })
+
+                Promise.all(promises).then(
+                    dispatch({
+                        type:CREATE_GAME,
+                        payload: games
+                    })
+                )
+                history.push("/videogame/" + games.id)
+            })
+            
+        } catch (error) {
+            console.log('error PORQUE:' + error)
+        }
     }
 }
 // export const getTags = function () {

@@ -6,6 +6,7 @@ import {
     ORDER,
     GET_PLATFORMS, 
     GET_TAGS, 
+    CREATE_GAME,
     FILTER_GAMES_BY_GENRES,
     FILTER_GAMES_BY_PLATFORM,
     FILTER_GAMES_BY_TAGS} from "../Actions/Index"
@@ -115,7 +116,11 @@ export default function rootReducer(state = initialState, action) {
                             videogames: sortedVideogames
                         }
 
-
+            case CREATE_GAME:
+                return{
+                    ...state,
+                    videogames: [...state.videogames, action.payload],
+                }
         default: return state
     }
 }
