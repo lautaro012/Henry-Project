@@ -20,8 +20,9 @@ const initialState = {
     game: [],
     platforms: [],
     genres: [],
-    genrefilter: 'all',
-    platformfilter: 'all',
+    genreby: 'all',
+    platformby: 'all',
+    tagsFilter: [],
     tags: [
         'Singleplayer', 
         'Steam Achievements', 
@@ -44,7 +45,7 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 videogames: action.payload,
                 Allvideogames: action.payload,
-                videogamesToFilter: action.payload
+                tagsFilter: action.payload
             }
 
         case GET_ALL_GAMES_BY_NAME:
@@ -120,17 +121,36 @@ export default function rootReducer(state = initialState, action) {
 
         case FILTER_GAMES:
             let { platformby, genreby } = action.payload
+            
 
             let Allvideogames = state.Allvideogames
             const games1 = platformby === 'all' ? Allvideogames : Allvideogames.filter(game => game.platforms.find(platforms => platforms === platformby ))
             const games2 = genreby === 'all' ? Allvideogames : Allvideogames.filter(game => game.genres.find(genre => genre === genreby ))
-            const total = games1.filter(element => games2.includes(element));
+            const arr1 = games1.filter(element => games2.includes(element));
+            const total = arr1.filter(element => state.tagsFilter.includes(element));
             return {
                 ...state,
                 videogames: total,
-                genrefilter: genreby,
-                platformfilter: platformby
+                genreby: genreby,
+                platformby: platformby
             }
+        case FILTER_GAMES_BY_TAGS:
+            const specificTag = action.payload
+                const statusFiltered = 
+                specificTag.length === 0 ? 
+                state.Allvideogames     
+                : 
+                state.Allvideogames.filter(games => {
+                    let exist = specificTag?.every(tag => games.tags?.includes(tag));
+                     if (exist) return games
+                     return console.log('se filtraron los juegos')
+                }) 
+
+            return {
+                ...state,
+                tagsFilter: statusFiltered
+            }
+       
 
         default: return state
     }

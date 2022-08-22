@@ -17,7 +17,8 @@ export default function Filters () {
     let tags = useSelector(state => state.tags)
     let genres = useSelector(state => state.genres)
     let platforms = useSelector(state => state.platforms)
-
+    let genresgames = useSelector(state => state.tagsFilter)
+    console.log('GENEROS FILTRADS',genresgames)
     const [render, setRender] = useState('')
     
 
@@ -59,7 +60,6 @@ export default function Filters () {
         setRender(`${render} renderizado`);
     }
 
-    console.log(videogames)
 
     return (
         <div className='Search-Filters'>
@@ -103,12 +103,15 @@ export default function Filters () {
                     </div>
                 <div className='Games-Cards-Div'>
                     {
+                        currentVideogame.length > 0 ?
                         currentVideogame?.map(card => {
                             return (<Cards
                             card={card}
                             key={card.id}
                             />)
                         })
+                        :
+                        <h1 className='h'> NO GAMES THAT MATCH YOUR REQUISITES </h1>
                     }
                 </div>
 

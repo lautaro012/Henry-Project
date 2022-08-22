@@ -141,6 +141,12 @@ export const Getbygenre = function(genre) {
         })
     }
 }
+export const filterGamesByTags = function(payload) {
+    return {
+        type: FILTER_GAMES_BY_TAGS,
+        payload
+    }
+}
 // export const getTags = function () {
 //     return function (dispatch) {
 //         fetch('http://localhost:3001/tags')
