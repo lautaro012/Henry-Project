@@ -6,6 +6,10 @@
     margin-bottom: 5%;
 }
 .About-general {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin-top: 10%;
 }
 .name {
