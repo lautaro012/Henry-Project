@@ -1,7 +1,7 @@
 const {Games} = require('../db')
 
 const createNewGame = async (req, res) => {
-    let { name, price, description, rating, createdInDb, videoTrailer } = req.body;
+    let { name, price, description, rating, createdInDb, videoTrailer, screenshot } = req.body;
 
     if (!name || !price || !description) return res.status(404).send("Falta enviar datos obligatorios")
     try {
@@ -11,7 +11,8 @@ const createNewGame = async (req, res) => {
             description,
             rating,
             createdInDb,
-            videoTrailer
+            videoTrailer,
+            image
         })
 
         res.send(gameCreated)
