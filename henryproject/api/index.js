@@ -23,13 +23,11 @@ const { conn } = require('./src/db.js');
 const { getAllVideoGames } = require('./src/handlers/getAllVideoGames.js');
 const getGenres = require('./src/handlers/getGenres.js');
 const getPlatforms = require('./src/handlers/getPlataforms.js');
+const getTags = require('./src/handlers/getTags.js');
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
   server.listen(3001, async() => {
-    await getGenres();
-    await getPlatforms();
-     await getAllVideoGames()
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
 });

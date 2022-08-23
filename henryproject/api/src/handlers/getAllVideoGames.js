@@ -2,10 +2,10 @@ const { getVideoGamesDB } = require("./getGamesDB")
 const { getVideogamesApi } = require("./getVideoGamesApi")
 //Funcion que trae todos los juegos api y db
 const getAllVideoGames = async () => {
-    // let dbGames = await getVideoGamesDB()
-    // let apiGames = 
+    let dbGames = await getVideoGamesDB()
     let allGames = await getVideogamesApi()
-    return allGames
+    
+    return dbGames;
 }
 
 //funcion para filtrar videojuegos por name
