@@ -22,8 +22,8 @@ const getVideogamesByName=async(name)=>{
 //funcion para filtrar videojuegos por genre
 const getVideogamesByGenre=async(genre)=>{
         const allGames=await getAllVideoGames();
-        let gen= genre[0].toUpperCase() + genre.slice(1);
-        let filterGenre= allGames.filter((e) => e.genres.includes(gen));
+        let gen= genre[0].toUpperCase() + genre.slice(1) ;
+        let filterGenre= allGames.filter((e) => e.genres.map((el) =>el.name === gen ));
         if(filterGenre.length>0){
             return filterGenre
         } else{
@@ -35,7 +35,7 @@ const getVideogamesByGenre=async(genre)=>{
 const getVideogamesByPlatforms=async(platform)=>{
         const allGames=await getAllVideoGames();
         let plat= platform[0].toUpperCase() + platform.slice(1);
-        let filterPlatform= allGames.filter((e) => e.platforms.includes(plat));
+        let filterPlatform= allGames.filter((e) =>  e.platforms.map((el) =>el.name === plat ));
         if(filterPlatform.length>0){
             return filterPlatform;
         } else{
