@@ -32,11 +32,7 @@ const getTags = async () => {
     } catch (error) {
         console.log('Error en Tags',error)
     }
-<<<<<<< HEAD
-=======
-    console.log(tags)
-    return tags
->>>>>>> Development
+
 }
 
 
