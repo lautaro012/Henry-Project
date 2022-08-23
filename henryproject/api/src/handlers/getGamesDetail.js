@@ -19,6 +19,13 @@ function getGameInfo(data, datita, videito, screens) {
     return{
         name: data.name,
         description: data.description,
+        metacritic:data.metacritic,
+        stores:data.stores.map((e)=>e.store.name),
+        developers:data.developers.map((e)=>e.name),
+        genres:data.genres.map((e)=>e.name),
+        tags:data.tags.map((e)=>e.name),
+        publishers:data.publishers,
+        esrb_rating:data.esrb_rating,
         image: data.background_image,
         realeaseDate: data.released,
         rating: data.rating,
@@ -26,7 +33,8 @@ function getGameInfo(data, datita, videito, screens) {
         platforms: data.platforms,
         website: data.website,
         series: datita.results.map((e) => [{id: e.id, name: e.name, released: e.released, image: e.background_image}]),
-        videos: videito.results.map((e) => e.data.max),
+        videos: videito.results===[]?videito.results.map((e) => e.data.max):"https://c.tenor.com/x8v1oNUOmg4AAAAd/rickroll-roll.gif",
+        // videos: console.log(videito.results===[]?videito.results:"asd"),
         screenshots: screens.results.map((e) => e.image)   
         }
 }
