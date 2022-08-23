@@ -25,7 +25,8 @@ const initialState = {
     genreby: 'all',
     platformby: 'all',
     tagsFilter: [],
-    tags: []
+    tags: [],
+    Tagsinfilter: []
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -139,7 +140,8 @@ export default function rootReducer(state = initialState, action) {
 
             return {
                 ...state,
-                tagsFilter: statusFiltered
+                tagsFilter: statusFiltered,
+                Tagsinfilter: specificTag
             }
         case EMPTY_GAME_STATE:
             return {

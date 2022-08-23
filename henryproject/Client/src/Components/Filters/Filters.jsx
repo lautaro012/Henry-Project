@@ -20,7 +20,6 @@ export default function Filters() {
     let genres = useSelector(state => state.genres)
     let platforms = useSelector(state => state.platforms)
     let genresgames = useSelector(state => state.tagsFilter)
-    console.log('GENEROS FILTRADS', genresgames)
     const [render, setRender] = useState('')
 
 

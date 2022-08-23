@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { filterGames, filterGamesByTags } from '../../redux/Actions/Index'
 import './Filter.css'
 
@@ -9,6 +9,7 @@ export default function Filter ({genres, platforms, tags}) {
 
     let dispatch =  useDispatch()
 
+    let Tagsinfilter = useSelector(state => state.Tagsinfilter)
 
     function handleFilter() {
         let platformby = document.getElementById('platforms').value
@@ -78,6 +79,13 @@ export default function Filter ({genres, platforms, tags}) {
                     })}
 
                 </details >
+                <ul className='listtags'>
+                {
+                    Tagsinfilter.map(el => {
+                        return <li className='taglist'>{el}</li>
+                    })
+                }
+                 </ul>
                 <button onClick={handleFilter}> Buscar Tags </button>
             </div>
         

@@ -47,4 +47,18 @@
     height: 32rem;
   }
 
-  
+  .taglist {
+    margin: 2%;
+    padding: 1%;
+    border-radius: 10px;
+    background-color: #ffffff7f;
+  }
+
+  .Filter-box ul {
+    background-color: #0000007f;
+    border-radius: 10%;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1%;
+  }
