@@ -22,7 +22,7 @@ export default function GameDetails() {
 
     useEffect(() => {
         dispatch(getGameById(id))
-    }, [dispatch])
+    }, [dispatch,id])
 
     function stars(number) {
         if (number >= 1 && number < 2) {
@@ -55,7 +55,6 @@ export default function GameDetails() {
             return "https://www.youtube.com/watch?v=dQw4w9WgXcQ"        
         }
     }
-    console.log(game)
 
     return (
         <div className="game_detail">
@@ -87,7 +86,7 @@ export default function GameDetails() {
                                     {
                                         game[0].screenshots && game[0].screenshots.map(img => {
                                             return (
-                                                <div id="boton_juego">
+                                                <div key={img} id="boton_juego">
                                                     <button onClick={() => onHanddlePop(img)}><img className="imagenJuego" src={img} alt="imagenJuego"></img></button>
                                                 </div>
                                             )
@@ -112,7 +111,7 @@ export default function GameDetails() {
                                 {
                                     game[0].platforms && game[0].platforms.map(plat => {
                                         return (
-                                            <p>{plat.platform.name}</p>
+                                            <p key={plat.platform.name}>{plat.platform.name}</p>
                                         )
                                     })
 
