@@ -1,7 +1,9 @@
 const axios = require('axios');
 const {API_KEY} =process.env;
 require('dotenv').config();
+
 const { Games, Platforms, Genres, Tags }=require("../db.js");
+
 
 const getTags = async () => {
   try {
@@ -30,6 +32,11 @@ const getTags = async () => {
     } catch (error) {
         console.log('Error en Tags',error)
     }
+<<<<<<< HEAD
+=======
+    console.log(tags)
+    return tags
+>>>>>>> Development
 }
 
 

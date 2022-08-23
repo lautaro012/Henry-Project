@@ -27,11 +27,13 @@ module.exports = (sequelize) => {
     },
     image: {
       type: DataTypes.TEXT,
-      defaultValue: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+      defaultValue: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+      allowNull:false
     },
     videoTrailer: {
       type: DataTypes.TEXT,
-      allowNull:true
+      defaultValue:"https://c.tenor.com/x8v1oNUOmg4AAAAd/rickroll-roll.gif",
+      allowNull:false
     },
     screenshots: {
       type: DataTypes.ARRAY(DataTypes.STRING),
