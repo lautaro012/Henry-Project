@@ -1,11 +1,13 @@
 const { Router } = require("express")
 const { Platforms } = require("../db")
 // const { getAllVideogamesApiAndDB } = require("../handlers/convineAllVideogames")
-const { getAllVideoGames, getVideogamesByName, getVideogamesByGenre, getVideogamesByPlatforms, getVideogamesByTag } = require("../handlers/getAllVideoGames")
+const { llVideoGamesApi, getVideogamesByName, getVideogamesByGenre, getVideogamesByPlatforms, getVideogamesByTag, getAllVideoGames } = require("../handlers/getAllVideoGames")
+// const { getVideoGamesDB } = require('../handlers/getGamesDB')
 const { findGameById } = require("../handlers/getGamesDetail")
 // const { getVideogamesApi } = require("../handlers/getVideoGamesApi")
 const { createNewGame } = require("../handlers/postNewGame")
 // const { getVideogames } = require("../handlers/routeGetVideogamesApi")
+
 
 const router = Router()
 

@@ -9,10 +9,6 @@ module.exports = (sequelize) => {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4
     },
-    numb: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -41,9 +37,9 @@ module.exports = (sequelize) => {
       type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: true
     },
-    tags: {
-      type: DataTypes.TEXT,
-      allowNull: true
+    metacritic: {
+      type: DataTypes.INTEGER,
+      allowNull:true,
     },
     createdInDb:{
         type: DataTypes.BOOLEAN,
