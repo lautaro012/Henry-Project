@@ -1,10 +1,12 @@
-.detail_imgs {
-    display: flex;
+#game_video {
+    margin-top: 0%;
+    margin-left: 15%;
+    margin-bottom: 5%;
+    min-height: 100%;
 }
 
-#game_video {
-    margin-top: 7%;
-    margin-left: 20%;
+#boton_juego {
+    padding: 1%;
 }
 
 #loading_detail {
@@ -12,10 +14,58 @@
     margin-top: 15%;
 }
 
+#conteiner_detalles{
+    display: flex;
+}
+
+#conteinerDetails {
+    display: flex;
+}
+
+#conteinerData_detalles {
+    width: 95%;
+}
+
+#conteinerSide_detalles2 {
+    width: 20%;
+    display: block;
+}
+
+#conteinerSide_detalles {
+    border-radius: 10px;
+    border: 1px;
+    border-style: groove;
+    border-color: black;
+
+    background-color: rgba(0, 0, 0, 0.473);
+    padding: 10%;
+    position: sticky;
+    display: table;
+    text-decoration: none;
+}
+
+#conteinerSide_detalles button {
+    border-radius: 5px;
+    max-height: 10%;
+    min-width: 100%;
+}
+
 .imagenesJuego {
     display: flex;
 }
 
-.game_detail{
+.imagenJuego {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.game_detail {
     color: white;
+    padding: 10%;
+}
+
+.imagenesJuego button {
+    background: none;
+    border-radius: 20px;
+    padding: 0;
 }
