@@ -61,16 +61,23 @@ const api_url=`https://api.rawg.io/api/games?key=${API_KEY}`;
 // var page=1;
 //Traer los datos de la api
 const getVideogamesApi=async()=>{
-            function getRandomArbitrary(min, max) {
-                return Math.random() * (max - min) + min;
-            }
+            // function getRandomArbitrary(min, max) {
+            //     return Math.random() * (max - min) + min;
+            // }
 
-     const dbGames = await Games.findAll();
+            //fixie el math random
+            function getRandomArbitrary(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+    const dbGames = await Games.findAll();
      if(dbGames.length === 0) {
         const getApi=await axios.get(api_url);
-    const getDataNextPage=await getApi.data.next;
-    const getApiInfo=await getApi.data.results;
-    const totalPage=Math.floor(100/getApiInfo.length);
+        const getDataNextPage=await getApi.data.next;
+        const getApiInfo=await getApi.data.results;
+
+
+        const totalPage=Math.floor(100/getApiInfo.length);
+
         var newArreglo=getDataNextPage.split("&");
         var newArreglo2=newArreglo[1].split("=");
         var newAPI=[];
@@ -111,7 +118,7 @@ const getVideogamesApi=async()=>{
     })
     return data.flat();
      }  else{
-        console.log(dbGames)
+        // console.log(dbGames)
         return dbGames;
      }
     
