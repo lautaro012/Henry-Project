@@ -4,15 +4,11 @@ const { DataTypes, UUID, UUIDV4  } = require('sequelize');
 module.exports = (sequelize) => {
 
   sequelize.define('games', {
-    id:{
-      primaryKey: true,
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4
-    },
-    numb: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+    // id:{
+    //   primaryKey: true,
+    //   type: DataTypes.UUID,
+    //   defaultValue: DataTypes.UUIDV4
+    // },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -43,9 +39,9 @@ module.exports = (sequelize) => {
       type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: true
     },
-    tags: {
-      type: DataTypes.TEXT,
-      allowNull: true
+    metacritic: {
+      type: DataTypes.INTEGER,
+      allowNull:true,
     },
     createdInDb:{
         type: DataTypes.BOOLEAN,
