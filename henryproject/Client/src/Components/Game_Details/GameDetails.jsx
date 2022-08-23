@@ -48,13 +48,15 @@ export default function GameDetails() {
     }
 
     function getVideo(){
-        if (typeof game[0].videos[0] === "string"){
-            return game[0].videos[0]
+        if (typeof game[0].videos === "string"){
+            return game[0].videos
         } 
         else {
             return "https://www.youtube.com/watch?v=dQw4w9WgXcQ"        
         }
     }
+
+    console.log(game)
 
     return (
         <div className="game_detail">

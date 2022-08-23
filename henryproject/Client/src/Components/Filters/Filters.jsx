@@ -62,6 +62,7 @@ export default function Filters() {
         setRender(`${render} renderizado`);
     }
 
+    console.log(currentVideogame)
 
     return (
         <div className='Search-Filters'>
