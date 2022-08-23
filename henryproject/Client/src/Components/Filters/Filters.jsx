@@ -3,7 +3,7 @@ import './Filters.css'
 import Cards from '../Cards/Cards.jsx'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllGames, clear, getGenres, getPlatforms, order, vaciarGame } from '../../redux/Actions/Index'
+import { getAllGames, clear, getGenres, getPlatforms, order, vaciarGame, getTags } from '../../redux/Actions/Index'
 import { useState } from 'react';
 import Paginado from '../Paginado/Paginado';
 import Filter from '../Filter/Filter';
@@ -19,8 +19,6 @@ export default function Filters() {
     let tags = useSelector(state => state.tags)
     let genres = useSelector(state => state.genres)
     let platforms = useSelector(state => state.platforms)
-    let genresgames = useSelector(state => state.tagsFilter)
-
     const [render, setRender] = useState('')
 
 
@@ -28,6 +26,7 @@ export default function Filters() {
         dispatch(getGenres())
         dispatch(getPlatforms())
         dispatch(vaciarGame()) // para vaciar estado global del juegodetail
+        dispatch(getTags())
         if (videogames.length === 0) {
             dispatch(getAllGames())
         }
