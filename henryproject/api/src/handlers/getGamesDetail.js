@@ -33,7 +33,7 @@ function getGameInfo(data, datita, videito, screens) {
         platforms: data.platforms,
         website: data.website,
         series: datita.results.map((e) => [{id: e.id, name: e.name, released: e.released, image: e.background_image}]),
-        videos: videito.results===[]?videito.results.map((e) => e.data.max):"https://c.tenor.com/x8v1oNUOmg4AAAAd/rickroll-roll.gif",
+        videos: videito.results===[]?videito.results.map((e) => e.data.max):videito.results,
         // videos: console.log(videito.results===[]?videito.results:"asd"),
         screenshots: screens.results.map((e) => e.image)   
         }

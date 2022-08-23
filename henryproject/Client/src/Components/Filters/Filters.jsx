@@ -19,7 +19,6 @@ export default function Filters() {
     let tags = useSelector(state => state.tags)
     let genres = useSelector(state => state.genres)
     let platforms = useSelector(state => state.platforms)
-    let genresgames = useSelector(state => state.tagsFilter)
     const [render, setRender] = useState('')
 
 
@@ -30,12 +29,11 @@ export default function Filters() {
         dispatch(getTags())
         if (videogames.length === 0) {
             dispatch(getAllGames())
-            console.log('Axios API')
         }
         return function cleaning() {
             dispatch(clear())
         }
-    }, [])
+    }, [dispatch, videogames.length])
 
     function onSearch(name) {
         dispatch(getAllGames(name))
@@ -44,7 +42,7 @@ export default function Filters() {
 
     //paginado
     const [currentPage, setCurrentPage] = useState(1)
-    const [videogamesPerPage, setVideogamesPerPage] = useState(10)
+    const videogamesPerPage = 10
 
     //videojuegos filtradas por pagina
     const indexOfLastVideogame = currentPage * videogamesPerPage
@@ -63,6 +61,7 @@ export default function Filters() {
         setRender(`${render} renderizado`);
     }
 
+    console.log(currentVideogame)
 
     return (
         <div className='Search-Filters'>
@@ -117,13 +116,9 @@ export default function Filters() {
                                 })
                                 :
                                 <h1 className='h'> NO GAMES THAT MATCH YOUR REQUISITES </h1>
-
                         }
                     </div>
-
                 </div>
-
-
             </div>
         </div>
     )

@@ -26,7 +26,6 @@ export default function Filter ({genres, platforms, tags}) {
                 tagstofilter.push(checkbox.value)
             }
         })
-        console.log(tagstofilter)
         dispatch(filterGamesByTags(tagstofilter))
     }
 

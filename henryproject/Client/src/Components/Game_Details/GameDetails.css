@@ -40,7 +40,11 @@
     background-color: rgba(0, 0, 0, 0.473);
     padding: 10%;
     position: sticky;
-    display: table;
+    display: table-caption;
+}
+
+#conteinerSide_detalles a {
+
     text-decoration: none;
 }
 
