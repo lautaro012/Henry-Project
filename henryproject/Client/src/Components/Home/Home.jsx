@@ -18,11 +18,10 @@ export default function Home () {
     let videogamesBygenre = useSelector(state => state.videogamesBygenre)
 
     useEffect(() => {    
-        if(Allvideogames.length === 0) {
-            dispatch(getAllGames())   
-        }
+
+        dispatch(getAllGames())   
         dispatch(Getbygenre('Indie'))
-    }, [])
+    }, [dispatch])
     
     const onSearch = (name) => {
         navigate("../home/games", { replace: true });

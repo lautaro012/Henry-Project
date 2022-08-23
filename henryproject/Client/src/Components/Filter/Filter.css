@@ -17,7 +17,9 @@
 
 .show-filterss{
     display: flex;
+
 }
+
 
 .SEPARATED{
     margin: 1%;
@@ -41,4 +43,8 @@
     display: flex;
     margin: 1%;
     padding: 1%;
+    overflow-y: scroll;
+    height: 32rem;
   }
+
+  

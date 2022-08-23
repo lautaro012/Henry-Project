@@ -65,7 +65,7 @@ export default function Filter ({genres, platforms, tags}) {
                 <details className='DETAILS-TAGS' open>
                     <summary className='SUMMARY-TAGS'> Tags: </summary>
                     
-                    {tags?.map((tags, index) => {
+                    {tags.map(el => el.name)?.map((tags, index) => {
                         return (
                             <label className='LABEL-TAGS' key= {index} ><br></br><input
                             key= {tags}
