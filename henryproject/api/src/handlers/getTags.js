@@ -2,7 +2,9 @@ const axios = require('axios');
 const {API_KEY} =process.env;
 require('dotenv').config();
 
+
 const { Games, Platforms, Genres, Tags }=require("../db.js");
+
 
 
 const getTags = async () => {
