@@ -17,7 +17,7 @@ export default function CreateVideogame () {
         if(platforms.length === 0) {
             dispatch(getPlatforms())
         }
-    }, [])
+    }, [dispatch, genres.length, platforms.length])
 
     const [game, setGame] = useState({
         name: '',

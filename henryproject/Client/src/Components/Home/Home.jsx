@@ -22,7 +22,7 @@ export default function Home () {
             dispatch(getAllGames())   
         }
         dispatch(Getbygenre('Indie'))
-    }, [])
+    }, [dispatch, Allvideogames.length])
     
     const onSearch = (name) => {
         navigate("../home/games", { replace: true });
@@ -32,8 +32,10 @@ export default function Home () {
     let populars = Allvideogames?.filter(games => games.rating > 4.5)
     const mostpopular = videogames[0]
   
-    console.log(videogamesBygenre)
+    console.log("TODOS LOS JUEGOS NUMERO", Allvideogames.length)
     
+    console.log("TODOS LOS JUEGOS", Allvideogames)
+
     return (
     <div className="Home">
 
