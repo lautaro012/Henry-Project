@@ -1,5 +1,6 @@
 const axios = require("axios")
-const {API_KEY}=require("../db.js");
+const {API_KEY, Games}=require("../db.js");
+const { getVideoGamesDB } = require("./getGamesDB.js");
 
 // function videogameInfo(data) {
 //     return {
@@ -60,7 +61,13 @@ const api_url=`https://api.rawg.io/api/games?key=${API_KEY}`;
 // var page=1;
 //Traer los datos de la api
 const getVideogamesApi=async()=>{
-    const getApi=await axios.get(api_url);
+            function getRandomArbitrary(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+     const dbGames = await Games.findAll();
+     if(dbGames.length === 0) {
+        const getApi=await axios.get(api_url);
     const getDataNextPage=await getApi.data.next;
     const getApiInfo=await getApi.data.results;
     const totalPage=Math.floor(100/getApiInfo.length);
@@ -83,23 +90,31 @@ const getVideogamesApi=async()=>{
             const newAPIinfo=[...values[i].data.results];
             const getnewApiInfo=newAPIinfo.map(data=>{
                 return{
-                    id:data.id,
+                    numb: data.id,
                     name:data.name,
-                    price: "$19.99",
+                    price: `$ ${Math.round(getRandomArbitrary(10, 40))}`,
                     rating: data.rating,
                     image: data.background_image,
-                    platforms: data.platforms.map(e => e.platform.name),
-                    genres: data.genres.map(e=>e.name),
+                    // platforms: data.platforms.map(e => e.platform.name),
+                    // genres: data.genres.map(e=>e.name),
                     screenshots: data.short_screenshots.map(e=>e.image),
-                    tags: data.tags.map(e=>e.name)
+                    createdInDb: false
+                    // tags: data.tags.map(e=>e.name)
                 }
             });
             data.push(getnewApiInfo);
+            
+            Games.bulkCreate(data.flat())
         }
     }).catch(error=>{
         console.log("API"+error.message);
     })
     return data.flat();
+     }  else{
+        console.log(dbGames)
+        return dbGames;
+     }
+    
 }
 
 

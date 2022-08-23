@@ -1,0 +1,13 @@
+.About {
+    display: flex;
+    flex-wrap: wrap;
+    color: white;
+    justify-content: center;
+    margin-bottom: 5%;
+}
+.About-general {
+    margin-top: 10%;
+}
+.name {
+    padding: 2%
+}

@@ -12,6 +12,7 @@ export const FILTER_GAMES_BY_TAGS = 'FILTER_GAMES_BY_TAGS'
 export const ORDER= 'ORDER'
 export const CREATE_GAME = 'CREATE_GAME'
 export const FILTER_GAMES = 'FILTER_GAMES'
+export const EMPTY_GAME_STATE = 'EMPTY_GAME_STATE'
 
 export function getAllGames(name) {
 
@@ -145,6 +146,12 @@ export const filterGamesByTags = function(payload) {
     return {
         type: FILTER_GAMES_BY_TAGS,
         payload
+    }
+}
+
+export function vaciarGame(){
+    return {
+        type: EMPTY_GAME_STATE,
     }
 }
 // export const getTags = function () {
