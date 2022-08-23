@@ -126,8 +126,8 @@ export default function rootReducer(state = initialState, action) {
 
 
             let Allvideogames = state.Allvideogames
-            const games1 = platformby === 'all' ? Allvideogames : Allvideogames.filter(game => game.platforms.find(platforms => platforms === platformby))
-            const games2 = genreby === 'all' ? Allvideogames : Allvideogames.filter(game => game.genres.find(genre => genre === genreby))
+            const games1 = platformby === 'all' ? Allvideogames : Allvideogames.filter(game => game.platforms.map(el => el.name).find(platforms => platforms === platformby))
+            const games2 = genreby === 'all' ? Allvideogames : Allvideogames.filter(game => game.genres.map(el => el.name).find(genre => genre === genreby))
             const arr1 = games1.filter(element => games2.includes(element));
             const total = arr1.filter(element => state.tagsFilter.includes(element));
             return {
@@ -143,7 +143,7 @@ export default function rootReducer(state = initialState, action) {
                     state.Allvideogames
                     :
                     state.Allvideogames.filter(games => {
-                        let exist = specificTag?.every(tag => games.tags?.includes(tag));
+                        let exist = specificTag?.every(tag => games.tags.map(el => el.name)?.includes(tag));
                         if (exist) return games
                         return console.log('se filtraron los juegos')
                     })
