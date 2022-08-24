@@ -15,6 +15,8 @@ import Cart from './Components/Cart/Cart.jsx';
 
 
 function App() {
+
+  
   return (
     <Router>
       <NavBar/>
