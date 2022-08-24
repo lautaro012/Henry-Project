@@ -4,13 +4,13 @@ import { useEffect } from "react";
 import { getGameById, addToCart } from "../../redux/Actions/Index.js";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+
 import ReactPlayer from 'react-player'
 import ImagenPop from '../Game_Details/ImagenPop.jsx';
 import Loading from '../../Style/Imagenes/Loading.gif'
+import LoadingScreen from "../LoadingScreen/LoadingScreen.jsx";
 
 import '../Game_Details/GameDetails.css'
-import LoadingScreen from "../LoadingScreen/LoadingScreen.jsx";
 
 export default function GameDetails() {
 
@@ -63,6 +63,7 @@ export default function GameDetails() {
             name : game[0].name
         }
         dispatch(addToCart(item))
+        alert(`${game[0].name} added to cart!`)
     }
 
     console.log(game)
@@ -171,7 +172,6 @@ export default function GameDetails() {
                     </div>
                     :
                     <LoadingScreen/>
-
             }
         </div>
     )

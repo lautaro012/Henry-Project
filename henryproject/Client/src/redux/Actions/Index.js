@@ -14,6 +14,7 @@ export const CREATE_GAME = 'CREATE_GAME'
 export const FILTER_GAMES = 'FILTER_GAMES'
 export const EMPTY_GAME_STATE = 'EMPTY_GAME_STATE'
 export const ADD_TO_CART = 'ADD_TO_CART'
+export const DELETE_FOR_CART = 'DELETE_FOR_CART'
 
 export function getAllGames(name) {
 
@@ -172,5 +173,12 @@ export function addToCart(game) {
     return {
         type: ADD_TO_CART,
         payload: game
+    }
+}
+
+export function deleteItemFromCart(id) {
+    return {
+        type: DELETE_FOR_CART,
+        payload: id
     }
 }

@@ -14,6 +14,7 @@ import {
     FILTER_GAMES,
     EMPTY_GAME_STATE,
     ADD_TO_CART,
+    DELETE_FOR_CART,
 } from "../Actions/Index"
 
 const initialState = {
@@ -48,26 +49,34 @@ export default function rootReducer(state = initialState, action) {
                 videogames: action.payload,
             }
         case ADD_TO_CART:
-            const itemFound = state.cart.find(game => { return game === action.payload })
-            console.log(itemFound)
-            console.log(action.payload)
-            if (itemFound) {
+            let itemFound = state.cart.map( games => games.id).includes(action.payload.id)
+            if (!itemFound) {
+                return {
+                    ...state,
+                    cart: [...state.cart, action.payload]
+                }
+            }
+            else{
                 return {
                     ...state
                 }
             }
-            else {
-                return {
-                    ...state,
-                    cart: action.payload,
-                }
+        case DELETE_FOR_CART:
+            let items = state.cart.map( game => game.id)
+            let itemsFiltered = items.filter( id => id !== action.payload )
+            console.log("ITEMS FILTERED", itemsFiltered)
+            console.log("ITEMS", items)
+            console.log(action.payload)
+            // ARREGLAR NO FUNCIONA
+            return {
+                ...state,
+                cart: itemsFiltered,
             }
         case GET_GAME_BY_ID:
             return {
                 ...state,
                 game: action.payload,
             }
-
         case CLEAR:
             return {
                 ...state,
