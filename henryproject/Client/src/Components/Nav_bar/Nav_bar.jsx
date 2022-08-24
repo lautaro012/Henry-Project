@@ -29,7 +29,7 @@ export default function Nav_bar() {
 
                 <Link to='/home/create'><button>Create Videogame</button></Link>
 
-
+                <Link to='/profile'> <button> My Profile </button></Link>
             
                 <button onClick={() => onHanddlePop()}>Loggin</button>
             </div>
