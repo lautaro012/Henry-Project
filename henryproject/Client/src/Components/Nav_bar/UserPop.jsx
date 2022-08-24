@@ -6,6 +6,12 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input, Label } f
 
 export default function Pop({ show, user }) {
 
+    function handleClick(e) {
+        e.preventDefault()
+        window.open("http://localhost:3001/auth/google", "_self")
+
+    }
+
 
     return (
         <Modal isOpen={user} className="UserPop">
@@ -26,6 +32,8 @@ export default function Pop({ show, user }) {
             <ModalFooter>
                 <button onClick={() => show()}>X</button>
                 <button>Iniciar sesion</button>
+                <button onClick={(e) => handleClick(e)}>Ingresar con cuenta de Google</button>
+
             </ModalFooter>
         </Modal>
     )

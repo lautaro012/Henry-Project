@@ -3,9 +3,19 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
+require('./passport')
+const passport = require('passport')
+const cors = require('cors')
+const cookieSession = require('cookie-session')
+
 
 
 require('./db.js');
+
+/* npm i passport cors cookie-session
+    en el json cambiar la versión de passport por la 0.5.0
+    npm install passport-google-oauth
+*/
 
 const server = express();
 
@@ -33,4 +43,26 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   res.status(status).send(message);
 });
 
+//GOOGLE AUTH:
+
+server.use(cookieSession({
+  name: 'session',
+  keys: ['algo'],
+  maxAge: 24*60*60*100
+
+}))
+
+server.use(passport.initialize())
+server.use(passport.session())
+server.use(cors({
+  origin: "http://localhost:3000",
+  methods: "GET, POST, PUT, DELETE",
+  credentials: true
+}))
+
+
 module.exports = server;
+
+
+
+

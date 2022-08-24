@@ -14,6 +14,8 @@ import LoadingScreen from './Components/LoadingScreen/LoadingScreen';
 
 
 function App() {
+
+  
   return (
     <Router>
       <NavBar/>
