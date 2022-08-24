@@ -25,10 +25,12 @@ export default function Nav_bar() {
 
             <div>
 
-                <Link to='/home'><button>Tienda</button></Link>
+                <Link to='/home'><button>Home</button></Link>
 
                 <Link to='/home/create'><button>Create Videogame</button></Link>
 
+
+            
                 <button onClick={() => onHanddlePop()}>Loggin</button>
             </div>
 

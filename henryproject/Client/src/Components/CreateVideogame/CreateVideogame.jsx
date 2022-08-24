@@ -9,11 +9,11 @@ export default function CreateVideogame () {
     let genres = useSelector(state => state.genres)
     let platforms = useSelector(state => state.platforms)
 
+
     useEffect(()=>{
         dispatch(getGenres());
         dispatch(getPlatforms());
     },[dispatch])
-    console.log(genres)
      //estados
      const [state,setState]=useState({
          name:"",
@@ -26,6 +26,7 @@ export default function CreateVideogame () {
          genres: [],
          
      })
+
      const[errors,setErrors]=useState({
         name:false,
         price: false,
@@ -37,13 +38,13 @@ export default function CreateVideogame () {
         genres: false,
         
     })
+
     const[validate,setValidate]=useState({
         name:false,
         price: false,
         description: false,
         rating: false ,
-        
-        
+          
     })
     //function name
     function onChangeName(e){
