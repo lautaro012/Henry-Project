@@ -15,6 +15,9 @@ router.use("/genres",genresRouter)
 router.use("/plataforms",plataformsRouter);
 router.use("/filter",filterRoute);
 router.use("/tags", tagsRoute);
+//MERCADO DE PAGO
+// router.use('/mercadopago', mercadopago)
+
 
 
 router.use("/auth", authRoute)
