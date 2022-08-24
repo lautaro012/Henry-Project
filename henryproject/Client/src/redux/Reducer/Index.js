@@ -25,19 +25,13 @@ const initialState = {
     genreby: 'all',
     platformby: 'all',
     tagsFilter: [],
+
     cart: [],
-    tags: [
-        'Singleplayer',
-        'Steam Achievements',
-        'Multiplayer',
-        'Atmospheric',
-        'steam-trading-cards',
-        'Full controller support',
-        'Steam Cloud',
-        'Great Soundtrack',
-        'RPG',
-        'Co-op'
     ]
+
+    tags: [],
+    Tagsinfilter: []
+
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -76,11 +70,11 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 platforms: action.payload
             }
-        // case GET_TAGS:
-        //     return{
-        //         ...state,
-        //         tags: action.payload
-        //     }
+        case GET_TAGS:
+            return{
+                ...state,
+                tags: action.payload
+            }
         case GET_GAMES_BY_GENRE:
             console.log(action.payload)
             return {
@@ -151,7 +145,8 @@ export default function rootReducer(state = initialState, action) {
 
             return {
                 ...state,
-                tagsFilter: statusFiltered
+                tagsFilter: statusFiltered,
+                Tagsinfilter: specificTag
             }
         case EMPTY_GAME_STATE:
             return {

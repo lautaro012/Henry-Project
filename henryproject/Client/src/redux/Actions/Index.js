@@ -154,15 +154,15 @@ export function vaciarGame(){
         type: EMPTY_GAME_STATE,
     }
 }
-// export const getTags = function () {
-//     return function (dispatch) {
-//         fetch('http://localhost:3001/tags')
-//         .then(resp => resp.json())
-//         .then(resp => {
-//             dispatch({
-//                 type: GET_TAGS,
-//                 payload: resp,
-//             })
-//         })
-//     }
-// }
+export const getTags = function () {
+    return function (dispatch) {
+        fetch('http://localhost:3001/tags')
+        .then(resp => resp.json())
+        .then(resp => {
+            dispatch({
+                type: GET_TAGS,
+                payload: resp,
+            })
+        })
+    }
+}
