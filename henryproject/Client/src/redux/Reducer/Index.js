@@ -25,8 +25,13 @@ const initialState = {
     genreby: 'all',
     platformby: 'all',
     tagsFilter: [],
+
+    cart: [],
+    ]
+
     tags: [],
     Tagsinfilter: []
+
 }
 
 export default function rootReducer(state = initialState, action) {
