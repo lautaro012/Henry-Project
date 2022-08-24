@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import { getAllGames, Getbygenre } from '../../redux/Actions/Index'
 
 
+
 export default function Home () {
 
     const dispatch = useDispatch()

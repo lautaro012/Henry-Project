@@ -1,46 +1,38 @@
+import './Profile.css'
+
 export function Profile () {
 
     return (
         <div className='Search-Filters'>
 
         <div>
-            <img alt='imagen de perfil'></img>
             SEARCHBAR
         </div>
 
         <div className='filters'>
-            <div className="show-filters">
+            <div className="show-profile-settings">
+                <div>
+                    <img width={150} src='https://img2.thejournal.ie/inline/1881369/original/?width=630&version=1881369' alt='imagen de perfil'></img>
+                </div>
+                <div className='settings'>
+                        
+                    <span >  MI PERFIL  </span>  
 
-                MI PERFIL 
+                    <span > MY GAMES</span>
 
-                <span> MY GAMES</span>
-
-                <span> SETTINGS </span>
+                    <span> SETTINGS </span>
+                </div>
 
             </div>
-            <div className='Sorts-Games'>
-                <div className='Sorts'>
-                    <h4 color='#ffffff'> Name/Rate </h4>
-                    <select className='SELECT-ORDER' id='orderBy'  defaultValue='orderBy'>
-                        <option value='name'> Name </option>
-                        <option value='rating'> Rate </option>
-                    </select>
-                    <h4>In What Order ?</h4>
-                    <select className='SELECT-ORDER' id='orderType'  defaultValue='orderType'>
-                        <option value='asc'> Ascendent </option>
-                        <option value='des'> Descendent </option>
-                    </select>
 
-                </div>
-
-                <div className='PAGINADO'>
-                    PAGINADO
-                </div>
+            <div className='show-current-setting'>
                 <div className='Games-Cards-Div'>
-                   ACA VAN MIS JUEGOS
+                   MY GAMES <br></br>
+                   SETTINGS <br></br>
                 </div>
             </div>
         </div>
+   
     </div>
     )
 }

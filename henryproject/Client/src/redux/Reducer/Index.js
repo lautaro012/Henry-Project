@@ -25,10 +25,7 @@ const initialState = {
     genreby: 'all',
     platformby: 'all',
     tagsFilter: [],
-
     cart: [],
-    
-
     tags: [],
     Tagsinfilter: []
 

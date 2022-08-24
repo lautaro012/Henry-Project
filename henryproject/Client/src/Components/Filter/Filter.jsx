@@ -28,6 +28,7 @@ export default function Filter ({genres, platforms, tags}) {
         })
         dispatch(filterGamesByTags(tagstofilter))
     }
+    
 
 
     return (
@@ -85,7 +86,7 @@ export default function Filter ({genres, platforms, tags}) {
                     })
                 }
                  </ul>
-                <button onClick={handleFilter}> Buscar Tags </button>
+                <button onClick={handleFilter}> Search Tags </button>
             </div>
         
         </div>
