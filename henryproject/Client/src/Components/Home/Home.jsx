@@ -31,9 +31,6 @@ export default function Home () {
     let populars = Allvideogames?.filter(games => games.rating > 4.5)
     const mostpopular = videogames[0]
   
-    console.log("TODOS LOS JUEGOS NUMERO", Allvideogames.length)
-    
-    console.log("TODOS LOS JUEGOS", Allvideogames)
 
     return (
     <div className="Home">

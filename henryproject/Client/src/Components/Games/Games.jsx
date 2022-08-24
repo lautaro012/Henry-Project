@@ -1,5 +1,5 @@
 import SearchBar from '../SearchBar/SearchBar'
-import './Filters.css'
+import './Games.css'
 import Cards from '../Cards/Cards.jsx'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,7 +11,7 @@ import Filter from '../Filter/Filter';
 
 
 
-export default function Filters() {
+export default function Games() {
 
     let dispatch = useDispatch()
 
@@ -33,7 +33,7 @@ export default function Filters() {
         return function cleaning() {
             dispatch(clear())
         }
-    }, [dispatch, videogames.length])
+    }, [])
 
     function onSearch(name) {
         dispatch(getAllGames(name))
