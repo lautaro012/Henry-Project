@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { getGameById } from "../../redux/Actions/Index.js";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 import ReactPlayer from 'react-player'
 import ImagenPop from '../Game_Details/ImagenPop.jsx';
 import Loading from '../../Style/Imagenes/Loading.gif'

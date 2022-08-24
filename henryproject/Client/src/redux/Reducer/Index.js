@@ -25,6 +25,7 @@ const initialState = {
     genreby: 'all',
     platformby: 'all',
     tagsFilter: [],
+    cart: [],
     tags: [
         'Singleplayer',
         'Steam Achievements',
