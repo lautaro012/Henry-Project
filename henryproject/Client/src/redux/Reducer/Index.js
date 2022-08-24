@@ -13,6 +13,7 @@ import {
     FILTER_GAMES_BY_TAGS,
     FILTER_GAMES,
     EMPTY_GAME_STATE,
+    ADD_TO_CART,
 } from "../Actions/Index"
 
 const initialState = {
@@ -46,11 +47,27 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 videogames: action.payload,
             }
+        case ADD_TO_CART:
+            const itemFound = state.cart.find(game => { return game === action.payload })
+            console.log(itemFound)
+            console.log(action.payload)
+            if (itemFound) {
+                return {
+                    ...state
+                }
+            }
+            else {
+                return {
+                    ...state,
+                    cart: action.payload,
+                }
+            }
         case GET_GAME_BY_ID:
             return {
                 ...state,
                 game: action.payload,
             }
+
         case CLEAR:
             return {
                 ...state,
@@ -67,7 +84,7 @@ export default function rootReducer(state = initialState, action) {
                 platforms: action.payload
             }
         case GET_TAGS:
-            return{
+            return {
                 ...state,
                 tags: action.payload
             }

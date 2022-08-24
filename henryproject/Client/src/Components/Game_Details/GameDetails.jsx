@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getGameById } from "../../redux/Actions/Index.js";
+import { getGameById, addToCart } from "../../redux/Actions/Index.js";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -54,6 +54,14 @@ export default function GameDetails() {
         else {
             return "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
         }
+    }
+
+    function addGameToCart() {
+        let item = {
+            id : game[0].id,
+            name : game[0].name
+        }
+        dispatch(addToCart(item))
     }
 
     console.log(game)
@@ -155,7 +163,7 @@ export default function GameDetails() {
                                 </div>
                                 
                                 <button>COMPRAR AHORA</button>
-                                <button>AÑADIR AL CARRITO</button>
+                                <button onClick={()=> addGameToCart()}>AÑADIR AL CARRITO</button>
                                 <button>AÑADIR A LA LISTA DE DESEOS</button>
                             </aside>
                         </div>
