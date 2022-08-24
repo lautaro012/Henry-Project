@@ -10,6 +10,7 @@ import ImagenPop from '../Game_Details/ImagenPop.jsx';
 import Loading from '../../Style/Imagenes/Loading.gif'
 
 import '../Game_Details/GameDetails.css'
+import LoadingScreen from "../LoadingScreen/LoadingScreen.jsx";
 
 export default function GameDetails() {
 
@@ -161,9 +162,7 @@ export default function GameDetails() {
                         </div>
                     </div>
                     :
-                    <div id="loading_detail">
-                        <img src={Loading} alt="Loading"></img>
-                    </div>
+                    <LoadingScreen/>
 
             }
         </div>
