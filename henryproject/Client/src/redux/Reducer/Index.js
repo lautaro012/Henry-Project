@@ -27,7 +27,7 @@ const initialState = {
     tagsFilter: [],
 
     cart: [],
-    ]
+    
 
     tags: [],
     Tagsinfilter: []
