@@ -132,7 +132,7 @@ export const createvideogame = function(payload, history) {
 
 export const Getbygenre = function(genre) {
     return function (dispatch) {
-        fetch(`http://localhost:3001/videogames?genre=${genre}`)
+        fetch(`http://localhost:3001/videogames?genres=${genre}`)
         .then(resp => resp.json())
         .then(resp => {
             dispatch({
