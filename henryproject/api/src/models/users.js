@@ -28,10 +28,6 @@ module.exports = (sequelize) => {
     userName: {
       type: DataTypes.STRING,
       allowNull: false
-    },
-    lastName:  {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
     }, 
     image:  {
       type: DataTypes.STRING,
