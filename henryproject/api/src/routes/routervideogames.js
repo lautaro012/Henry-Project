@@ -21,9 +21,9 @@ router.get("/", async(req,res)=>{
          }else if(platforms){
             return res.status(200).json(await getVideogamesByPlatforms(platforms));
          }
-        // else if(tag){
-        //     return res.status(200).json(await getVideogamesByTag(tag));
-        //  }
+        else if(tag){
+            return res.status(200).json(await getVideogamesByTag(tag));
+         }
         else{
             return res.status(200).json(await getAllVideoGames());
         }
