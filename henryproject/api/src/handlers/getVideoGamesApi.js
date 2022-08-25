@@ -41,9 +41,10 @@ const { uuid } = require('uuid');
     function getRandomArbitrary(min, max) {
         return Math.random() * (max - min) + min;
     }
+    
     const allGames= await Games.findAll();
     
-    if(allGames.length === 0){
+    if(allGames.length == 0){
         console.log('cargo la base de datos')
         let page =[]
         for(let i=1;i<6;i++){
