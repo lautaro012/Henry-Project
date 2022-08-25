@@ -12,7 +12,7 @@ export default function EditVideogame(){
             //onChange= {(e) => handleOnChange(e)}
             placeholder="Buscar videojuego..."
           />
-          <button className ="bottom" type="submit" onClick= {(e) => handleSubmit(e)}>Buscar</button>
+          {/* <button className ="bottom" type="submit" onClick= {(e) => handleSubmit(e)}>Buscar</button> */}
           </div>
           <div>
             <div>
