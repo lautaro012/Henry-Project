@@ -43,7 +43,7 @@ function App() {
    }
      getUser()
 
-  }, [user])
+  }, [])
 
   console.log(user)
   
