@@ -1,6 +1,6 @@
 const axios = require('axios');
-const {API_KEY} =process.env;
 require('dotenv').config();
+const {API_KEY} =process.env;
 
 
 const { Games, Platforms, Genres, Tags }=require("../db.js");
@@ -14,7 +14,7 @@ const getTags = async () => {
         let tags = []
         let page = 1
         while (page < 6) {
-            const info = await axios("https://api.rawg.io/api/games?key=22b7d9c1190846e38e66003610885078&page=" + page)
+            const info = await axios(`https://api.rawg.io/api/games?key=${API_KEY}&page=` + page)
             info.data.results.forEach(e => {
                 tags.push(e.tags)
             });
