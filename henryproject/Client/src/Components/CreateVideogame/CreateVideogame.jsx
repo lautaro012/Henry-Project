@@ -1,8 +1,8 @@
 import React from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import './CreateVideogame.css'
  import { useEffect, useState } from 'react';
-import { getGenres, getPlatforms, createvideogame, getAllGames } from "../../redux/Actions/Index"
+import { getGenres, getPlatforms } from "../../redux/Actions/Index"
 
 export default function CreateVideogame () {
     const dispatch= useDispatch()

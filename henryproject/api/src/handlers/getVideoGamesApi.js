@@ -43,7 +43,7 @@ const { uuid } = require('uuid');
     }
     const allGames= await Games.findAll();
     
-    if(allGames.length == 0){
+    if(allGames.length === 0){
         console.log('cargo la base de datos')
         let page =[]
         for(let i=1;i<6;i++){

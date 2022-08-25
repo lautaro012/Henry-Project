@@ -1,5 +1,5 @@
 DB_USER=postgres
 DB_PASSWORD=1234
 DB_HOST=localhost:5432
-API_KEY = 31af0f34ced04db88f37d23f50707c6b
+API_KEY = fa21ba75f5d548b3b624db8641be4cb5
 
