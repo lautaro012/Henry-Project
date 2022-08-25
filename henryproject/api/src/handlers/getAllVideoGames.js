@@ -1,11 +1,24 @@
 const { getVideoGamesDB } = require("./getGamesDB")
+const getGenres = require("./getGenres");
+const getPlatforms = require("./getPlataforms");
+const getTags = require("./getTags");
 const { getVideogamesApi } = require("./getVideoGamesApi")
+const { Games } = require('../db');
 //Funcion que trae todos los juegos api y db
 const getAllVideoGames = async () => {
-    let dbGames = await getVideoGamesDB()
-    let allGames = await getVideogamesApi()
     
-    return dbGames;
+    let dbGames = await getVideoGamesDB();
+    // console.log(dbGames)
+    if(dbGames.length==0){
+        let gen = await getGenres();
+        let plat= await getPlatforms();
+        let tag = await  getTags();
+        let allGames =   getVideogamesApi();
+        return getVideoGamesDB()
+    }
+    return  dbGames;
+       
+
 }
 
 //funcion para filtrar videojuegos por name
