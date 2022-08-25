@@ -1,7 +1,9 @@
 const axios = require("axios");
 const e = require("express");
 const {Games, Platforms, Genres, Tags }=require("../db.js");
-const {API_KEY} =process.env;
+
+const {API_KEY} = process.env
+
 const { getVideoGamesDB } = require("./getGamesDB.js");
 const getGenres = require("./getGenres.js");
 const getPlatforms = require("./getPlataforms.js");
