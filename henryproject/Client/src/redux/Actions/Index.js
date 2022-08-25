@@ -96,6 +96,16 @@ export const order = function(payload) {
     }
 }
 
+export function postNewUser(user) {
+    return async function () {
+        try {
+            await axios.post('http://localhost:3001/newUser', user)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}
+
 export const createvideogame = function(payload, history) {
     console.log(payload)
     return function(dispatch) {
