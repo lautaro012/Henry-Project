@@ -41,7 +41,15 @@ function App() {
        console.log(err)
      })
    }
-     getUser()
+     const saveLocalStorage = async () => {
+       let usuario = user
+       localStorage.setItem("usuario", JSON.stringify(usuario))
+     }     
+   
+     if(!localStorage.getItem("usuario")) {
+           saveLocalStorage()
+     }
+    getUser()
 
   }, [])
 
