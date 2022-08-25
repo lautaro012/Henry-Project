@@ -11,6 +11,7 @@ import CreateVideogame from './Components/CreateVideogame/CreateVideogame';
 import Admin from './Components/Admin/Admin';
 import { Profile } from './Components/Profile/Profile';
 import LoadingScreen from './Components/LoadingScreen/LoadingScreen';
+import EditVideogame from './Components/CreateVideogame/EditVideogame/EditVideogame';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path='/admin' element={<Admin></Admin>} />
         <Route path='/profile' element={<Profile></Profile>} />
         <Route path='/Loading' element={<LoadingScreen></LoadingScreen>} />
+        <Route path='/edit' element={<EditVideogame></EditVideogame>}/>
       </Routes>
     </Router>
   );
