@@ -38,6 +38,7 @@ export default function Nav_bar() {
                 <img src={Cart} alt="cart" />
             </Link>
 
+
             {
                 user === true ?
                 <UserPop show={onHanddlePop} user={user}/>
