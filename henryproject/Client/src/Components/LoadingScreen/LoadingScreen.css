@@ -1,14 +1,6 @@
-.fondo {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: black;
-}
 #load {
   position:absolute;
-  width:600px;
+  min-width:600px;
   height:36px;
   left:50%;
   top:40%;

@@ -13,6 +13,8 @@ import {
     FILTER_GAMES_BY_TAGS,
     FILTER_GAMES,
     EMPTY_GAME_STATE,
+    ADD_TO_CART,
+    DELETE_FOR_CART,
 } from "../Actions/Index"
 
 const initialState = {
@@ -28,7 +30,6 @@ const initialState = {
     cart: [],
     tags: [],
     Tagsinfilter: []
-
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -47,10 +48,35 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 videogames: action.payload,
             }
+        case ADD_TO_CART:
+            let itemFound = state.cart.map( games => games.id).includes(action.payload.id)
+            if (!itemFound) {
+                return {
+                    ...state,
+                    cart: [...state.cart, action.payload],
+                }
+            }
+            else{
+                return {
+                    ...state
+                }
+            }
+        case DELETE_FOR_CART:
+            let items = state.cart.map( game => game.id)
+            let itemsFiltered = items.filter( id => id !== action.payload )
+            console.log("ITEMS FILTERED", itemsFiltered)
+            console.log("ITEMS", items)
+            console.log(action.payload)
+            // ARREGLAR NO FUNCIONA
+            return {
+                ...state,
+                cart: itemsFiltered,
+            }
         case GET_GAME_BY_ID:
             return {
                 ...state,
-                game:{name:"game to Edit",price:1,image:undefined,videoTrailer:undefined,description:"esto es un juego que vamos a editar",rating:1,platforms:[{name:"platform1",id:1},{name:"platform2",id:2}],genres:[{name:"genre1",id:1},{name:"genre2",id:2}]},
+                //game:{name:"game to Edit",price:1,image:undefined,videoTrailer:undefined,description:"esto es un juego que vamos a editar",rating:1,platforms:[{name:"platform1",id:1},{name:"platform2",id:2}],genres:[{name:"genre1",id:1},{name:"genre2",id:2}]},
+                game: action.payload
             }
         case CLEAR:
             return {
@@ -68,7 +94,7 @@ export default function rootReducer(state = initialState, action) {
                 platforms: action.payload
             }
         case GET_TAGS:
-            return{
+            return {
                 ...state,
                 tags: action.payload
             }

@@ -5,8 +5,12 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Link, useNavigate  } from "react-router-dom";
 import { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+<<<<<<< HEAD
 import { getAllGames, Getbygenre } from '../../redux/Actions/Index'
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
+=======
+import { getAllGames, Getbygenre, vaciarGame } from '../../redux/Actions/Index'
+>>>>>>> Development
 
 
 
@@ -23,6 +27,7 @@ export default function Home () {
 
         dispatch(getAllGames())   
         dispatch(Getbygenre('Indie'))
+        dispatch(vaciarGame()) // para vaciar estado global del juegodetail
     }, [dispatch, Allvideogames.length])
     
     const onSearch = (name) => {

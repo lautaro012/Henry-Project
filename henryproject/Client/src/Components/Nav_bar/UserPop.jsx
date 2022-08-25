@@ -7,7 +7,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input, Label } f
 export default function Pop({ show, user }) {
 
     function handleClick(e) {
-        e.preventDefault()
+        // e.preventDefault()
         window.open("http://localhost:3001/auth/google", "_self")
 
     }
