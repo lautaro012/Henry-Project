@@ -14,6 +14,7 @@ import LoadingScreen from './Components/LoadingScreen/LoadingScreen';
 import Cart from './Components/Cart/Cart.jsx';
 import EditVideogame from './Components/CreateVideogame/EditVideogame/EditVideogame';
 import { useEffect, useState } from 'react';
+import Register from './Components/Register/Register';
 
 
 
@@ -61,6 +62,8 @@ function App() {
         <Route path='/Loading' element={<LoadingScreen/>} />
         <Route path='/cart' element={<Cart/>} />
         <Route path='/edit' element={<EditVideogame></EditVideogame>}/>
+        <Route path='/register' element={<Register></Register>}/>
+
       </Routes>
     </Router>
   );

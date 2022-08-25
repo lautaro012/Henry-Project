@@ -3,7 +3,7 @@ import User from '../../Style/Imagenes/User.jpg'
 import './UserPop.css'
 import { Link } from "react-router-dom";
 
-import { Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input, Label } from 'reactstrap'
+import { Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input, Label, ButtonToggle } from 'reactstrap'
 
 export default function Pop({ modal, setModal }) {
 
@@ -32,13 +32,13 @@ export default function Pop({ modal, setModal }) {
                 </FormGroup>
             </ModalBody>
             <ModalFooter className="MODAL-FOOTER">
-                <button>Iniciar sesion</button>
+                <button toggle={toggle}>Iniciar sesion</button>
             </ModalFooter>
             <ModalFooter className="MODAL-FOOTER">
                 <button onClick={(e) => handleClick(e)} className='login-with-google-btn' >Ingresar con cuenta de Google</button>
             </ModalFooter>
             <ModalFooter>
-                Are you new ? <Link to='/'> Register free now ! </Link>
+                Are you new ? <Link to='/register' toggle={toggle}> Register free now ! </Link>
             </ModalFooter>
         </Modal>
     )
