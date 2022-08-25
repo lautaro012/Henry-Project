@@ -12,6 +12,8 @@ import Admin from './Components/Admin/Admin';
 import { Profile } from './Components/Profile/Profile';
 import LoadingScreen from './Components/LoadingScreen/LoadingScreen';
 import Cart from './Components/Cart/Cart.jsx';
+import EditVideogame from './Components/CreateVideogame/EditVideogame/EditVideogame';
+
 
 
 function App() {
@@ -31,6 +33,7 @@ function App() {
         <Route path='/profile' element={<Profile/>} />
         <Route path='/Loading' element={<LoadingScreen/>} />
         <Route path='/cart' element={<Cart/>} />
+        <Route path='/edit' element={<EditVideogame></EditVideogame>}/>
       </Routes>
     </Router>
   );
