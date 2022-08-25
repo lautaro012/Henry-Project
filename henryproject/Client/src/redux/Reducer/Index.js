@@ -53,7 +53,7 @@ export default function rootReducer(state = initialState, action) {
             if (!itemFound) {
                 return {
                     ...state,
-                    cart: [...state.cart, action.payload]
+                    cart: [...state.cart, action.payload],
                 }
             }
             else{
@@ -75,7 +75,8 @@ export default function rootReducer(state = initialState, action) {
         case GET_GAME_BY_ID:
             return {
                 ...state,
-                game:{name:"game to Edit",price:1,image:undefined,videoTrailer:undefined,description:"esto es un juego que vamos a editar",rating:1,platforms:[{name:"platform1",id:1},{name:"platform2",id:2}],genres:[{name:"genre1",id:1},{name:"genre2",id:2}]},
+                //game:{name:"game to Edit",price:1,image:undefined,videoTrailer:undefined,description:"esto es un juego que vamos a editar",rating:1,platforms:[{name:"platform1",id:1},{name:"platform2",id:2}],genres:[{name:"genre1",id:1},{name:"genre2",id:2}]},
+                game: action.payload
             }
         case CLEAR:
             return {

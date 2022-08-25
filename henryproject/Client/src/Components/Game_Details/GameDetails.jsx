@@ -88,6 +88,7 @@ export default function GameDetails() {
                                     controls
                                     playing
                                     loop
+                                    muted
                                 />
                                 <div>
                                     <h1>{game[0].name}</h1>

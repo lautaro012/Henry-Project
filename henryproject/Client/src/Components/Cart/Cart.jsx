@@ -8,7 +8,7 @@ import '../Cart/Cart.css'
 export default function Cart() {
 
     const dispatch = useDispatch()
-    const items = useSelector(state => state.cart)
+    const items = window.localStorage.getItem("cart")
     const [cambios, setCambios] = useState("")
 
     function deleteItem(id) {
@@ -18,7 +18,7 @@ export default function Cart() {
 
     return (
         <div className="conteinerCart">
-            {
+            {/* {
                 items.length ?
                  items.map(item => {
                     return (
@@ -31,7 +31,8 @@ export default function Cart() {
                 })
                 :
                 <h1>No hay juegos en CART</h1>
-            }
+            } */}
+            <h1>{items.name}</h1>
         </div>
     )
 }
