@@ -1,0 +1,11 @@
+.conteinerCart {
+    color: white;
+    margin-top: 20%;
+    display: inline-grid
+}
+
+#item {
+    border-style: groove;
+    display: inline-flex;
+    align-items: center;
+}

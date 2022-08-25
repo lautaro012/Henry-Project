@@ -17,6 +17,7 @@ const {API_KEY} = process.env;
 
 function getGameInfo(data, datita, videito, screens) {
     return{
+        id: data.id,
         name: data.name,
         description: data.description,
         metacritic:data.metacritic,
