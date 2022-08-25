@@ -3,7 +3,6 @@ const getGenres = require("./getGenres");
 const getPlatforms = require("./getPlataforms");
 const getTags = require("./getTags");
 const { getVideogamesApi } = require("./getVideoGamesApi")
-const { Games } = require('../db');
 //Funcion que trae todos los juegos api y db
 const getAllVideoGames = async () => {
     
