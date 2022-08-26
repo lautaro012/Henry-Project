@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import React from "react";
 import Icon from '../../Style/Imagenes/Icon.PNG'
 import Cart from '../../Style/Imagenes/cart.png'
+import { useSelector } from 'react-redux'
 
 import UserPop from './UserPop.jsx'
 
@@ -12,6 +13,7 @@ export default function Nav_bar() {
 
     const [modal, setModal] = useState(false)
     const [userLogged, setUserLogged] = useState(false)
+    const itemsCart = useSelector(state => state.itemsCart)
 
     function onHanddlePop() {
         modal === false ? setModal(true) : setModal(false)
@@ -35,16 +37,18 @@ export default function Nav_bar() {
                 <button onClick={() => onHanddlePop()}>Loggin</button>
             </div>
 
-            <Link id="cart" to='/cart'>
-                <img src={Cart} alt="cart" />
-            </Link>
+            <div id="cart">
+                <Link to='/cart'>
+                    <img src={Cart} alt="cart" />
+                </Link>
 
-
+                <h3>{itemsCart}</h3>
+            </div>
             {
                 modal ?
-                <UserPop show={onHanddlePop} setModal={e => setModal(e)} modal={modal}/>
-                :
-                 null
+                    <UserPop show={onHanddlePop} setModal={e => setModal(e)} modal={modal} />
+                    :
+                    null
             }
 
         </nav>
