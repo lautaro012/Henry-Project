@@ -53,11 +53,11 @@ server.use(cookieSession({
 
 server.use(passport.initialize())
 server.use(passport.session())
-server.use(cors({
-  origin: "http://localhost:3000",
-  methods: "GET, POST, PUT, DELETE",
-  credentials: true
-}))
+// server.use(cors({
+//   origin: "http://localhost:3000",
+//   methods: "GET, POST, PUT, DELETE",
+//   credentials: true
+// }))
 
 server.use('/', routes);
 
