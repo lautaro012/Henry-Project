@@ -1,10 +1,11 @@
 import React from "react";
 import User from '../../Style/Imagenes/User.jpg'
 import './UserPop.css'
+import { Link } from "react-router-dom";
 
-import { Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input, Label } from 'reactstrap'
+import { Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input, Label, ButtonToggle } from 'reactstrap'
 
-export default function Pop({ show, user }) {
+export default function Pop({ modal, setModal }) {
 
     function handleClick(e) {
         // e.preventDefault()
@@ -12,10 +13,11 @@ export default function Pop({ show, user }) {
 
     }
 
+    const toggle = () => setModal(false);
 
     return (
-        <Modal isOpen={user} className="UserPop">
-            <ModalHeader>
+        <Modal isOpen={modal} fade={true} toggle={toggle} className="UserPop">
+            <ModalHeader toggle={toggle}>
                 <img src={User} alt="User" />
                 Bienvenido
             </ModalHeader>
@@ -29,11 +31,14 @@ export default function Pop({ show, user }) {
                     <Input type="password" id="Pass"></Input>
                 </FormGroup>
             </ModalBody>
+            <ModalFooter className="MODAL-FOOTER">
+                <button toggle={toggle}>Iniciar sesion</button>
+            </ModalFooter>
+            <ModalFooter className="MODAL-FOOTER">
+                <button onClick={(e) => handleClick(e)} className='login-with-google-btn' >Ingresar con cuenta de Google</button>
+            </ModalFooter>
             <ModalFooter>
-                <button onClick={() => show()}>X</button>
-                <button>Iniciar sesion</button>
-                <button onClick={(e) => handleClick(e)}>Ingresar con cuenta de Google</button>
-
+                Are you new ? <Link to='/register' toggle={toggle}> Register free now ! </Link>
             </ModalFooter>
         </Modal>
     )
