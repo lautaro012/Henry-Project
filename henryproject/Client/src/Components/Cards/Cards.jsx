@@ -4,31 +4,20 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/Actions/Index.js";
 
 import './Cards.css';
-import { useState } from "react";
 
 export default function Card(card) {
 
     let { name, image, price, rating, id } = card.card
     const dispatch = useDispatch()
-    
-    const [cart, setCart] = useState(
-        window.localStorage.getItem("cart")
-    )
 
     function addGameToCart() {
         let item = {
             id: id,
             name: name,
+            price: price
         }
-        //dispatch(addToCart(item))
-        try {
-                    setCart(item)
-                    window.localStorage.setItem("cart", item)
-                    alert(`${name} added to cart!`)
-        }
-        catch (error){
-            console.log(error)
-        }
+        dispatch(addToCart(item))
+        alert(`${name} added to cart!`)
     }
 
     return (
@@ -38,7 +27,7 @@ export default function Card(card) {
                 </div>
                 <div className="card-data">
                     <span className="h">{name}</span>
-                    <span className="h">{price}</span>
+                    <span className="h">${price}</span>
                     <span> {rating} </span>
                 </div>
             </Link>

@@ -24,7 +24,7 @@ const { conn } = require('./src/db.js');
 const { getVideogamesApi } = require('./src/handlers/getVideoGamesApi.js');
 
 // Syncing all the models at once.
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: true }).then(() => {
   server.listen(3001, async() => {
     await getVideogamesApi()
     console.log('%s listening at 3001'); // eslint-disable-line no-console
