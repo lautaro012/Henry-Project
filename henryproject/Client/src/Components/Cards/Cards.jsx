@@ -27,7 +27,7 @@ export default function Card(card) {
                 </div>
                 <div className="card-data">
                     <span className="h">{name}</span>
-                    <span className="h">{price}</span>
+                    <span className="h">${price}</span>
                     <span> {rating} </span>
                 </div>
             </Link>

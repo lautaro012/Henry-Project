@@ -22,9 +22,7 @@ export default function Cart() {
     useEffect(() => {
         localStorage.setItem("products", JSON.stringify(items));
       }, [items]);
-    
 
-    console.log(items)
 
     return (
         <div className="conteinerCart">
@@ -35,7 +33,7 @@ export default function Cart() {
                             return (
                                 <div id="item">
                                     <h1>{item.name}</h1>
-                                    <p>{item.id}</p>
+                                    <p>$ {item.price}</p>
                                     <button onClick={() => deleteItem(item.id)}>Delete</button>
                                 </div>
                             )
@@ -43,7 +41,7 @@ export default function Cart() {
                     }
                         <div>
                             <button onClick={() => deleteItem("All")}>Vaciar carrito</button>
-                            <h2>Suma total : {precios}</h2>
+                            <h2>Suma total : ${precios}</h2>
                         </div>
                     </div>
 
