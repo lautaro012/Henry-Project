@@ -22,6 +22,7 @@ function App() {
   const [user, setUser] = useState(null)
    
   useEffect(() =>  {
+    
    const getUser = async () => {
      fetch("http://localhost:3001/auth/success", {
        method: "GET",
@@ -41,7 +42,6 @@ function App() {
        console.log(err)
      })
    }
-
      const saveLocalStorage = async () => {
        let usuario = user
        localStorage.setItem("usuario", JSON.stringify(usuario))
