@@ -61,7 +61,9 @@ export default function GameDetails() {
     function addGameToCart() {
         let item = {
             id: game.id,
-            name: game.name
+            name: game.name,
+            price: game.price,
+            image: game.image,
         }
         dispatch(addToCart(item))
         alert(`${game.name} added to cart!`)
@@ -135,10 +137,15 @@ export default function GameDetails() {
                                     <div className='imagenesJuego' >
 
                                         {
-                                            game.screenshots && game.screenshots.map(img => {
+                                            game.screenshots && game.screenshots.map((img , index) => {
                                                 return (
                                                     <div key={img} id="boton_juego">
-                                                        <button onClick={() => onHanddlePop(img)}><img className="imagenJuego" src={img} alt="imagenJuego"></img></button>
+                                                        {
+                                                            index !== 0 ?
+                                                            <button onClick={() => onHanddlePop(img)}><img className="imagenJuego" src={img} alt="imagenJuego"></img></button>
+                                                            :
+                                                            null
+                                                        }
                                                     </div>
                                                 )
                                             })
@@ -154,7 +161,7 @@ export default function GameDetails() {
                             <aside id="conteinerSide_detalles">
                                 <h1>{game.name}</h1>
                                 <a href={game.website} target="_blank" rel="noreferrer"><h3>{game.website}</h3></a>
-                                <img src={game.image} alt="gameImage" width="100%"></img>
+                                <button onClick={() => onHanddlePop(game.image)}><img className="imagenJuego" src={game.image} alt="imagenJuego"></img></button>
                                 <h3>Release date :</h3>
                                 <p>{game.realeaseDate}</p>
                                 <div>

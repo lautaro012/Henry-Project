@@ -14,7 +14,8 @@ export default function Card(card) {
         let item = {
             id: id,
             name: name,
-            price: price
+            price: price,
+            image: image,
         }
         dispatch(addToCart(item))
         alert(`${name} added to cart!`)

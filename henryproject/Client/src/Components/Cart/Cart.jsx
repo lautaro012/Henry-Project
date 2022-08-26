@@ -28,12 +28,13 @@ export default function Cart() {
         <div className="conteinerCart">
             {
                 items.length ?
-                    <div>{
+                    <div id="conteinerCart2">{
                         items.map(item => {
                             return (
                                 <div id="item">
+                                    <img src={item.image} alt={item.id}></img>
                                     <h1>{item.name}</h1>
-                                    <p>$ {item.price}</p>
+                                    <h3>$ {item.price}</h3>
                                     <button onClick={() => deleteItem(item.id)}>Delete</button>
                                 </div>
                             )
