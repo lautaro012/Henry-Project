@@ -1,0 +1,36 @@
+.filters {
+    display: flex;
+   
+}
+
+.show-filters{
+    background-color: ghostwhite;
+    background-image: linear-gradient(225deg, #1f1d38 0%, rgb(37, 36, 36) 40%, #323232bd 70%, #4a49497f 100%);
+    color: white;
+    border-radius: 20px;
+    width: 20%;
+}
+
+.Sorts-Games{
+    width: 80%;
+}
+
+.Sorts {
+    color:white;
+    margin: 1%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.Games-Cards-Div {
+    height: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.Search-Filters{
+    margin-top: 10%;
+}
+
+

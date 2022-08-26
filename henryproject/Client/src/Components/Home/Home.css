@@ -1,0 +1,62 @@
+.h{
+    color: ghostwhite;
+}
+
+.home-primary-videogames {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin:30px;
+    background-color: rgb(49, 49, 49);
+}   
+
+.home-show-img-secundary{
+    display: flex;
+    flex-direction: column;
+}
+
+.home-img-primary {
+    display: flex;
+    background-size: cover;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    background-image: url('https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2020/12/minecraft.jpg?fit=2048%2C1350&quality=50&strip=all&ssl=1');
+    width: 500px;
+    height: 312px;
+}
+
+.home-img-secundary {
+    width: 250px;
+    height: 125px;
+}
+
+.home-card{
+    display: flex;
+}
+
+.Home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+}
+
+.Home-Games {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.img-populars{
+    height: 700px;
+}
+
+.carruseles{
+    margin:5%
+}
+
+.carrusel-triple{
+ display:flex;
+ margin: 3%;
+}

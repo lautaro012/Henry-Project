@@ -1,0 +1,15 @@
+.body_landing {
+  background-color: rgb(49, 49, 49);
+  width: 100%;
+  height: 100%;
+}
+
+.carrousel {
+  display: flex;
+  justify-content: center;
+  z-index: -1;
+}
+
+.carrousel_card {
+  display: flex;
+}

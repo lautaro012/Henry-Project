@@ -1,0 +1,64 @@
+.box-tag {
+    margin: 1%;
+    padding: 1%;
+}
+
+.Filter-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Show-filter-box{
+    margin-top: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+.show-filterss{
+    display: flex;
+
+}
+
+
+.SEPARATED{
+    margin: 1%;
+}
+.Filter-box button {
+    cursor: pointer;
+    padding: 10px 40px;
+    background: rgb(49, 49, 49);
+    border: none;
+    color: white;
+    border-radius: 20px;
+    box-shadow: 1px 1px 10px -5px #000000;
+  }
+  
+.Filter-box button:hover {
+    box-shadow: 5px 5px 20px #000000;
+    transform: translateY(-5px);
+  }
+
+  .DETAILS-TAGS {
+    display: flex;
+    margin: 1%;
+    padding: 1%;
+    overflow-y: scroll;
+    height: 32rem;
+  }
+
+  .taglist {
+    margin: 2%;
+    padding: 1%;
+    border-radius: 10px;
+    background-color: #ffffff7f;
+  }
+
+  .Filter-box ul {
+    background-color: #0000007f;
+    border-radius: 10%;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1%;
+  }

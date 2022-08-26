@@ -1,0 +1,39 @@
+.card-videogame{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    margin: 2rem;   
+    background-color: ghostwhite;
+  background-image: linear-gradient(225deg, #05003a 0%, #000000ff 40%, #000000bd 70%, #0000007f 100%);
+     height: 250px;
+}
+
+.card-videogame:hover{
+
+}
+
+.h{
+    text-align: center;
+}
+
+.image-card {
+    width: 225px;
+    height: 150px;
+    border-radius: 15px;
+    background: round;
+    
+}
+
+.Link {
+    text-decoration: none;
+    color: white;
+}
+
+.card-data{
+    color: ghostwhite;
+    display: flex;
+    flex-direction: column;
+    max-width: 225px;
+    align-items: center;
+}

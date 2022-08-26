@@ -1,0 +1,68 @@
+#icon img{
+    width: 100px;
+    border-radius: 100%;
+}
+
+#icon {
+    padding-left: 40px;
+}
+
+#cart img {
+    width: 70px;
+    border-radius: 100%;
+}
+
+#cart {
+    align-self: center;
+    padding-right: 40px;
+    display: flex;
+    justify-content: flex-end;
+    width: fit-content;
+}
+
+#cart h3{
+    background-color: red;
+    border-style: solid;
+    border-radius: 100%;
+    text-align: center;
+    width: 40px;
+    position: absolute;
+    top: 0;
+    right: 2%;
+}
+
+.Nav_bar {
+    display: flex;
+    background-color: #3131317F ;
+    position: absolute;
+    z-index: 10;
+    top: 2%;
+    right: 2%;
+    left: 2%;
+    border-radius: 40px;
+    backdrop-filter: blur(10px);
+}
+
+.Nav_bar div {
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.Nav_bar button {
+    cursor: pointer;
+    padding: 10px 40px;
+    background: rgb(49, 49, 49);
+    border: none;
+    color: white;
+    border-radius: 20px;
+    box-shadow: 1px 1px 10px -5px #000000;
+  }
+  
+.Nav_bar button:hover {
+    box-shadow: 5px 5px 20px #000000;
+    transform: translateY(-5px);
+  }

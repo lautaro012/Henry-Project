@@ -1,0 +1,38 @@
+/* .carrousel_card {
+    display: flex;
+    flex-direction: row;
+    animation: slide 10s linear infinite;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.carrousel_card :hover{
+    z-index: 1;
+}
+
+.banner {
+    display: flex;
+    width: 100%;
+}
+
+.banner img {
+    opacity: 100%;
+
+}
+
+.banner img:hover {
+    opacity: 100%;
+    box-shadow: 5px 5px 20px #000000;
+    transform: translateY(-25px);
+    z-index: 1;
+} */
+
+@keyframes slide {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+        transform: translate3d(-100%, 0, 0);
+    }
+}

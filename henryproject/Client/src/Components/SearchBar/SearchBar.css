@@ -1,0 +1,25 @@
+.home-navbar button {
+    cursor: pointer;
+    padding: 10px 40px;
+    background: rgb(49, 49, 49);
+    border: none;
+    color: white;
+    border-radius: 5px;
+    
+    box-shadow: 1px 1px 10px -5px #000000;
+  }
+  
+.home-navbar button:hover {
+    box-shadow: 5px 5px 20px #000000;
+    transform: translateY(-5px);
+  }
+
+.home-navbar{
+    background-color: #313131bd;
+    display: flex;
+    justify-content: space-evenly;
+    width: 90%;
+    margin: 1%;
+    padding: 1%;
+    border-radius: 25px;
+}

@@ -1,0 +1,23 @@
+.conteinerCart {
+    color: white;
+    margin-top: 20%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#item {
+    border-style: groove;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 75%;
+}
+
+#item img {
+    max-width: 25%;
+}
+
+#conteinerCart2 {
+    display: contents;
+}
