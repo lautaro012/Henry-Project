@@ -70,7 +70,7 @@ export default function Games() {
                 onSearch={onSearch}
             ></SearchBar>
             {
-                allvideogames.length ?
+                tags.length ?
                 <div className='filters'>
                     <div className="show-filters">
 
