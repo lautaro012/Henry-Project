@@ -183,8 +183,8 @@ const[value,setValue]=useState({
            
        }
     return(
-       <div className="div">
-       <input type="text" onChange={(e)=>onChangeFilterVideoGame(e)}name="name" value={value.name}/>
+       <div className="divedit">
+       {/* { <input type="text" className="search_edit" onChange={(e)=>onChangeFilterVideoGame(e)}name="name" value={value.name}/>} */}
        <form onSubmit={e=>validar(e)} id="edit">
         {/* componente name */}
         <div>
@@ -332,13 +332,13 @@ const[value,setValue]=useState({
         </form>
         {/* visualizar */}
 
-        <div className="game_detail">
+        <div className="game_detail_edit">
             {
                 state ?
 
-                    <div id="conteiner_detalles">
-                        <div id="conteinerData_detalles2">
-                            <div id="conteinerData_detalles">
+                    <div id="conteiner_detalles_edit">
+                        <div id="conteinerData_detalles2_edit">
+                            <div id="conteinerData_detalles_edit">
                                 {/* {
                                     false === true ?
                                         <ImagenPop show={onHanddlePop} imgPop={imgPop} img={img} />
@@ -374,8 +374,8 @@ const[value,setValue]=useState({
                                 <p dangerouslySetInnerHTML={{ __html: state.description }} />
                             </div>
                         </div>
-                        <div id="conteinerSide_detalles2">
-                            <aside id="conteinerSide_detalles">
+                        <div id="conteinerSide_detalles2_edit">
+                            <aside id="conteinerSide_detalles_edit">
                                 <h1>{state.name}</h1>
                                 {/* <a href={game[0].website} target="_blank" rel="noreferrer"><h3>{game[0].website}</h3></a> */}
                                 <img src={state.image} alt="gameImage" width="100%"></img>
