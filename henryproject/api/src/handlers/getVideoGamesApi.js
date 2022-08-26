@@ -51,7 +51,7 @@ const getTags = require("./getTags.js");
           return {
             id: data.id,
             name: data.name,
-            price: `$ ${Math.round(getRandomArbitrary(10, 40))}`,
+            price: Math.round(getRandomArbitrary(10, 40)),
             rating: data.rating,
             image: data.background_image,
             platforms: data.platforms.map(e => e.platform.name),

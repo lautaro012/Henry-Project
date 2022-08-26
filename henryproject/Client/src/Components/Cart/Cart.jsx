@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteItemFromCart } from "../../redux/Actions/Index.js";
 
@@ -8,31 +8,48 @@ import '../Cart/Cart.css'
 export default function Cart() {
 
     const dispatch = useDispatch()
-    const items = window.localStorage.getItem("cart")
-    const [cambios, setCambios] = useState("")
+    const items = useSelector(state => state.cart)
 
     function deleteItem(id) {
         dispatch(deleteItemFromCart(id))
-        setCambios("Renderizar")
     }
+
+    let precios = 0;
+    for (let i = 0; i < items.length; i++) {
+            precios += items[i].price;
+    }
+
+    useEffect(() => {
+        localStorage.setItem("products", JSON.stringify(items));
+      }, [items]);
+    
+
+    console.log(items)
 
     return (
         <div className="conteinerCart">
-            {/* {
+            {
                 items.length ?
-                 items.map(item => {
-                    return (
-                        <div id="item">
-                            <h1>{item.name}</h1>
-                            <p>{item.id}</p>
-                            <button onClick={()=> deleteItem(item.id)}>Delete</button>
+                    <div>{
+                        items.map(item => {
+                            return (
+                                <div id="item">
+                                    <h1>{item.name}</h1>
+                                    <p>{item.id}</p>
+                                    <button onClick={() => deleteItem(item.id)}>Delete</button>
+                                </div>
+                            )
+                        })
+                    }
+                        <div>
+                            <button onClick={() => deleteItem("All")}>Vaciar carrito</button>
+                            <h2>Suma total : {precios}</h2>
                         </div>
-                    )
-                })
-                :
-                <h1>No hay juegos en CART</h1>
-            } */}
-            <h1>{items.name}</h1>
+                    </div>
+
+                    :
+                    <h1>No hay juegos en CART</h1>
+            }
         </div>
     )
 }
