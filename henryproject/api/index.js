@@ -22,10 +22,14 @@ const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 
 const { getVideogamesApi } = require('./src/handlers/getVideoGamesApi.js');
+require('dotenv').config();
+const {
+    PORT,
+  } = process.env;
 
 // Syncing all the models at once.
 conn.sync({ force: false }).then(() => {
-  server.listen(3001, async() => {
+  server.listen(PORT, async() => {
     await getVideogamesApi()
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
