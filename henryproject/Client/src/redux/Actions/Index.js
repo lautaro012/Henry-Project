@@ -51,7 +51,7 @@ export function getGameById(id) {
         console.log("RESPONSE ID GAME", response.data)
         dispatch({
             type: GET_GAME_BY_ID,
-            payload: [response.data]
+            payload: response.data
         })
     }
 }

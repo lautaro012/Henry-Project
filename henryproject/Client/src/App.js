@@ -23,34 +23,34 @@ function App() {
    
   useEffect(() =>  {
     
-   const getUser = async () => {
-     fetch("http://localhost:3001/auth/success", {
-       method: "GET",
-       credentials: "include",
-       headers: {
-       Accept: "application/json", 
-       "Content-Type": "application/json",
-      //  "Access-Control-Allow-Credentials": true
+  //  const getUser = async () => {
+  //    fetch("http://localhost:3001/auth/success", {
+  //      method: "GET",
+  //      credentials: "include",
+  //      headers: {
+  //      Accept: "application/json", 
+  //      "Content-Type": "application/json",
+  //     //  "Access-Control-Allow-Credentials": true
 
-       },
-     }).then((response) => {
-       if(response.status === 200) return response.json();
-       throw new Error('authentication has been failed')
-     }).then(resObject => {
-       setUser(resObject.user)
-     }).catch(err => {
-       console.log(err)
-     })
-   }
-     const saveLocalStorage = async () => {
-       let usuario = user
-       localStorage.setItem("usuario", JSON.stringify(usuario))
-     }     
+  //      },
+  //    }).then((response) => {
+  //      if(response.status === 200) return response.json();
+  //      throw new Error('authentication has been failed')
+  //    }).then(resObject => {
+  //      setUser(resObject.user)
+  //    }).catch(err => {
+  //      console.log(err)
+  //    })
+  //  }
+  //    const saveLocalStorage = async () => {
+  //      let usuario = user
+  //      localStorage.setItem("usuario", JSON.stringify(usuario))
+  //    }     
    
-     if(!localStorage.getItem("usuario")) {
-           saveLocalStorage()
-     }
-    getUser()
+  //    if(!localStorage.getItem("usuario")) {
+  //          saveLocalStorage()
+  //    }
+  //   getUser()
 
   }, [])
 

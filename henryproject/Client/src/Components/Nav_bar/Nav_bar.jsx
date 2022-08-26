@@ -35,9 +35,9 @@ export default function Nav_bar() {
                 <button onClick={() => onHanddlePop()}>Loggin</button>
             </div>
 
-            {/* <Link id="cart" to='/cart'>
+            <Link id="cart" to='/cart'>
                 <img src={Cart} alt="cart" />
-            </Link> */}
+            </Link>
 
 
             {
