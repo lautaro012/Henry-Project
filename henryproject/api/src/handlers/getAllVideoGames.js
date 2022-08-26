@@ -1,11 +1,23 @@
 const { getVideoGamesDB } = require("./getGamesDB")
+const getGenres = require("./getGenres");
+const getPlatforms = require("./getPlataforms");
+const getTags = require("./getTags");
 const { getVideogamesApi } = require("./getVideoGamesApi")
 //Funcion que trae todos los juegos api y db
 const getAllVideoGames = async () => {
-    let dbGames = await getVideoGamesDB()
-    let allGames = await getVideogamesApi()
     
-    return dbGames;
+    let dbGames = await getVideoGamesDB();
+    // console.log(dbGames)
+    if(dbGames.length==0){
+        let gen = await getGenres();
+        let plat= await getPlatforms();
+        let tag = await  getTags();
+        let allGames =   getVideogamesApi();
+        return getVideoGamesDB()
+    }
+    return  dbGames;
+       
+
 }
 
 //funcion para filtrar videojuegos por name
@@ -23,7 +35,8 @@ const getVideogamesByName=async(name)=>{
 const getVideogamesByGenre=async(genre)=>{
         const allGames=await getAllVideoGames();
         let gen= genre[0].toUpperCase() + genre.slice(1) ;
-        let filterGenre= allGames.filter((e) => e.genres.map((el) =>el.name === gen ));
+        let filterGenre= allGames.filter((game) => game.genres.map((el) =>el.name).includes(gen));
+      
         if(filterGenre.length>0){
             return filterGenre
         } else{
@@ -35,7 +48,7 @@ const getVideogamesByGenre=async(genre)=>{
 const getVideogamesByPlatforms=async(platform)=>{
         const allGames=await getAllVideoGames();
         let plat= platform[0].toUpperCase() + platform.slice(1);
-        let filterPlatform= allGames.filter((e) =>  e.platforms.map((el) =>el.name === plat ));
+        let filterPlatform= allGames.filter((e) =>  e.platforms.map((el) =>el.name).includes(plat));
         if(filterPlatform.length>0){
             return filterPlatform;
         } else{
@@ -44,16 +57,16 @@ const getVideogamesByPlatforms=async(platform)=>{
 }
 
 //funcion para filtrar videojuegos por tag
-// const getVideogamesByTag=async(tag)=>{
-//     const allGames=await getAllVideoGames();
-//     let ta= tag[0].toUpperCase() + tag.slice(1);
-//         let filterTags= allGames.filter((e) => e.tags.includes(ta));
-//         if(filterTags.length>0){
-//             return filterTags;
-//         } else{
-//             throw new Error("Error: No existe Tag de videojuego");
-//         }
-// }
+const getVideogamesByTag=async(tag)=>{
+    const allGames=await getAllVideoGames();
+    let ta= tag[0].toUpperCase() + tag.slice(1);
+        let filterTags= allGames.filter((e) => e.tags.map(el=>el.name).includes(ta));
+        if(filterTags.length>0){
+            return filterTags;
+        } else{
+            throw new Error("Error: No existe Tag de videojuego");
+        }
+}
 
 
 //Función para traer juegos y buscar por nombre
@@ -109,5 +122,5 @@ const getVideogamesByPlatforms=async(platform)=>{
     getVideogamesByName,
     getVideogamesByGenre,
     getVideogamesByPlatforms,
-    // getVideogamesByTag
+    getVideogamesByTag
 }

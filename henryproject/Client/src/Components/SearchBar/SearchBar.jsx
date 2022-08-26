@@ -14,7 +14,7 @@ export default function SearchBar ( { onSearch}) {
     function handleSubmit (e) {
         e.preventDefault();
         onSearch(name)
-        setName('')
+        // setName('')
     }
 
     
