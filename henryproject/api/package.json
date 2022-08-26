@@ -30,13 +30,11 @@
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
     "randomstring": "^1.2.2",
-    "nodemon": "^2.0.19",
     "sequelize": "^6.21.4"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^8.2.1",
-    "nodemon": "^2.0.19",
     "supertest": "^6.0.1",
     "supertest-session": "^4.1.0"
   }
