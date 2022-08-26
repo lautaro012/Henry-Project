@@ -30,6 +30,7 @@
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
     "randomstring": "^1.2.2",
+    "nodemon": "^2.0.6",
     "sequelize": "^6.21.4"
   },
   "devDependencies": {
