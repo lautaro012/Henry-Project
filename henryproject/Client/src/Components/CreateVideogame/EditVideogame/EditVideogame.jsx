@@ -3,7 +3,7 @@ import "./EditVideogame.css"
 import { useParams } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getGameById,getGenres,getPlatforms } from "../../../redux/Actions/Index";
+import { getGameById,getGenres,getPlatforms,getAllGames } from "../../../redux/Actions/Index";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import LoadingScreen from "../../LoadingScreen/LoadingScreen";
@@ -34,6 +34,9 @@ export default function EditVideogame(){
     description: false,
     rating: false ,
       
+})
+const[value,setValue]=useState({
+   name:"" 
 })
 
     useEffect(()=>{
@@ -169,8 +172,19 @@ export default function EditVideogame(){
         
            return <span>Cargando</span>
        }
+       //function onClickGuardar(e){
+        //     e.preventDefault()
+         //    dispatch(guardarVideogames)
+       //}
+       function onChangeFilterVideoGame(e){
+           e.preventDefault()
+           setValue({...value,name:e.target.value})
+           dispatch(getAllGames(value.name))
+           
+       }
     return(
        <div className="div">
+       <input type="text" onChange={(e)=>onChangeFilterVideoGame(e)}name="name" value={value.name}/>
        <form onSubmit={e=>validar(e)} id="edit">
         {/* componente name */}
         <div>
@@ -422,7 +436,9 @@ export default function EditVideogame(){
 
             }
         </div>
+        {/* <button onClick={e=>}></button> */}
         </div>
+        
     )
 
     
