@@ -15,7 +15,7 @@ import LoadingScreen from '../LoadingScreen/LoadingScreen';
 export default function Games() {
 
     let dispatch = useDispatch()
-
+    let allvideogames = useSelector(state => state.Allvideogames)
     let videogames = useSelector(state => state.videogames)
     let tags = useSelector(state => state.tags)
     let genres = useSelector(state => state.genres)
@@ -62,7 +62,6 @@ export default function Games() {
         setRender(`${render} renderizado`);
     }
 
-    console.log(currentVideogame)
 
 
     return (
@@ -71,7 +70,7 @@ export default function Games() {
                 onSearch={onSearch}
             ></SearchBar>
             {
-                videogames.length ?
+                tags.length ?
                 <div className='filters'>
                     <div className="show-filters">
 

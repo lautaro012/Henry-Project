@@ -51,8 +51,6 @@ export default function Nav_bar() {
                     null
             }
 
-
-
         </nav>
     )
 }
