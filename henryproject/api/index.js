@@ -20,6 +20,11 @@
 // const { getAllGames } = require('../Client/src/redux/Actions/Index.js');
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
+const { getVideogamesByPlatforms } = require('./src/handlers/getAllVideoGames.js');
+const { getVideoGamesDB } = require('./src/handlers/getGamesDB.js');
+const getGenres = require('./src/handlers/getGenres.js');
+const getPlatforms = require('./src/handlers/getPlataforms.js');
+const getTags = require('./src/handlers/getTags.js');
 
 const { getVideogamesApi } = require('./src/handlers/getVideoGamesApi.js');
 require('dotenv').config();
@@ -29,7 +34,7 @@ const {
 
 // Syncing all the models at once.
 
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: true }).then(() => {
   server.listen(PORT, async() => {
 
     await getVideogamesApi()

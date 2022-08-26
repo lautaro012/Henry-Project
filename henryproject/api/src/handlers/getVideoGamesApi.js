@@ -12,7 +12,12 @@ async function getVideogamesApi(){
     function getRandomArbitrary(min, max) {
         return Math.random() * (max - min) + min;
     }
-    
+    if(true) {
+        await getTags()
+        await getGenres()
+        await getPlatforms()
+    }
+
     const allGames= await Games.findAll();
     
     if(allGames.length == 0){
