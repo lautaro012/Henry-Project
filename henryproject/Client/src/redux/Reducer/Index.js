@@ -28,14 +28,11 @@ const initialState = {
     platformby: 'all',
     tagsFilter: [],
     cart: [],
-    itemsCart: 0,
     tags: [],
     Tagsinfilter: []
 }
 
 export default function rootReducer(state = initialState, action) {
-
-   
 
     switch (action.type) {
         case GET_ALL_GAMES:
@@ -52,34 +49,21 @@ export default function rootReducer(state = initialState, action) {
                 videogames: action.payload,
             }
         case ADD_TO_CART:
-            let itemFound = state.cart.map( games => games.id).includes(action.payload.id)
-            let numberItem = state.itemsCart + 1
-            if (!itemFound) {
-                return {
-                    ...state,
-                    cart: [...state.cart, action.payload],
-                    itemsCart: numberItem
-                }
-            }
-            else{
-                return {
-                    ...state
-                }
-            }
+           return {
+            ...state,
+            cart: action.payload
+           }
         case DELETE_FOR_CART:
             if(action.payload === "All"){
                 return {
                     ...state,
                     cart: [],
-                    itemsCart: 0,
                 }
             }
             else{
-                let numberItem = state.itemsCart - 1
                 return {
                     ...state,
                     cart: state.cart.filter( (item) =>  item.id !== action.payload ),
-                    itemsCart: numberItem,
                 }
             }
         case GET_GAME_BY_ID:

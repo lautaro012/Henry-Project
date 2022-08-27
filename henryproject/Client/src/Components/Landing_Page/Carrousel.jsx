@@ -11,22 +11,22 @@ import { Link } from 'react-router-dom';
 
 const items = [
     {
-        src: require('../../Style/_temp/mclaren.jpg'),
+        src: require('../../Style/Temp/mclaren.jpg'),
         altText: 'Slide 1',
         caption: 'Auto'
     },
     {
-        src: require('../../Style/_temp/chica.jpg'),
+        src: require('../../Style/Temp/chica.jpg'),
         altText: 'Slide 2',
         caption: 'Chica'
     },
     {
-        src: require('../../Style/_temp/robot.jpg'),
+        src: require('../../Style/Temp/robot.jpg'),
         altText: 'Slide 3',
         caption: 'Robot'
     },
     {
-        src: require('../../Style/_temp/fortnite.jpg'),
+        src: require('../../Style/Temp/fortnite.jpg'),
         altText: 'Slide 3',
         caption: 'El fornai pa'
     }
