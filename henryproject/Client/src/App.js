@@ -15,7 +15,7 @@ import Cart from './Components/Cart/Cart.jsx';
 import EditVideogame from './Components/CreateVideogame/EditVideogame/EditVideogame';
 import { useEffect, useState } from 'react';
 import Register from './Components/Register/Register';
-
+import Footer from "./Components/Footer/Footer.jsx";
 
 
 function App() {
@@ -72,8 +72,8 @@ function App() {
         <Route path='/cart' element={<Cart/>} />
         <Route path='/edit' element={<EditVideogame></EditVideogame>}/>
         <Route path='/register' element={<Register></Register>}/>
-
       </Routes>
+      <Footer/>
     </Router>
   );
 }
