@@ -10,27 +10,23 @@ export default function Cart() {
 
     const dispatch = useDispatch()
     const items = useSelector(state => state.cart)
-    //const items = window.localStorage.getItem("products");
 
     function deleteItem(id) {
         dispatch(deleteItemFromCart(id))
+        localStorage.setItem("products", JSON.stringify(items))
     }
 
     let precios = 0;
     for (let i = 0; i < items.length; i++) {
-            precios += items[i].price;
+        precios += items[i].price;
     }
-
-    useEffect(() => {
-        window.localStorage.setItem("products", JSON.stringify(items));
-      }, [items]);
 
 
     return (
         <div className="conteinerCart">
             <h1>Bienvenido a tu CART !</h1>
             {
-                items.length ?
+                 items.length ?
                     <div id="conteinerCart2">{
                         items.map(item => {
                             return (
@@ -51,8 +47,8 @@ export default function Cart() {
 
                     :
                     <div>
-                    <img src={Sad} alt="Sad Face"></img>
-                    <h1>No hay juegos en tu CART</h1>
+                        <img src={Sad} alt="Sad Face"></img>
+                        <h1>No hay juegos en tu CART</h1>
                     </div>
             }
         </div>

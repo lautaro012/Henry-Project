@@ -159,8 +159,7 @@ export default function GameDetails() {
                             <aside id="conteinerSide_detalles">
                                 <h1>{game.name}</h1>
                                 <a href={game.website} target="_blank" rel="noreferrer"><h3>{game.website}</h3></a>
-                                <button onClick={() => onHanddlePop(game.image)}><img className="imagenJuego" src={game.image} alt="imagenJuego"></img></button>
-                                <h3>Release date :</h3>
+                                <img className="imagenJuego" src={game.image} alt="imagenJuego"></img>
                                 <p>{game.realeaseDate}</p>
                                 <div>
                                     <h3>Plataformas</h3>

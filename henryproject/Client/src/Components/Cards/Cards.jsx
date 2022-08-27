@@ -18,7 +18,6 @@ export default function Card(card) {
             image: image,
         }
         dispatch(addToCart(item))
-        window.localStorage.setItem("products", JSON.stringify(item));
         alert(`${name} added to cart!`)
     }
 
