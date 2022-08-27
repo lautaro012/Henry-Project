@@ -12,7 +12,8 @@ const Register = () => {
         name: "",
         lastName: "",
         mail: "",
-        adress: ""
+        address: "",
+        password: ""
 
     })
 
@@ -31,7 +32,6 @@ const Register = () => {
     function handleSubmit(e) {
         e.preventDefault()
         dispatch(postNewUser(newUser))
-        alert('Te has registrado correctamente')
     }
 
 
@@ -49,8 +49,10 @@ const Register = () => {
             <input name="mail" onChange={(e) => handleChange(e)} ></input>
             <label>Profile Photo:</label>
             <input name="image" type="file"></input>
-            <label>Adress:</label>
-            <input name="adress" type="text"  onChange={(e) => handleChange(e)}></input>
+            <label>password:</label>
+            <input name="password" type="text"  onChange={(e) => handleChange(e)}></input>
+            <label>address:</label>
+            <input name="address" type="text"  onChange={(e) => handleChange(e)}></input>
             <button type="submit" className='buttonFormRegister'> REGISTER </button>
 
         </form>
