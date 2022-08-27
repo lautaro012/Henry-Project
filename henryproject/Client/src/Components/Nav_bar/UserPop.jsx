@@ -13,6 +13,10 @@ export default function Pop({ modal, setModal }) {
 
     }
 
+    function handleLinkClick(e) {
+        setModal(false)
+    }
+
     const toggle = () => setModal(false);
 
     return (
@@ -38,7 +42,7 @@ export default function Pop({ modal, setModal }) {
                 <button onClick={(e) => handleClick(e)} className='login-with-google-btn' >Ingresar con cuenta de Google</button>
             </ModalFooter>
             <ModalFooter>
-                Are you new ? <Link to='/register' toggle={toggle}> Register free now ! </Link>
+                Are you new ? <Link to='/register' onClick={(e) => handleLinkClick(e)} toggle={toggle}> Register free now ! </Link>
             </ModalFooter>
         </Modal>
     )
