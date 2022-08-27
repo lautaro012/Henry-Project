@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteItemFromCart } from "../../redux/Actions/Index.js";
+import Sad from '../../Style/Imagenes/sadFace.png'
 
 import '../Cart/Cart.css'
 
@@ -9,6 +10,7 @@ export default function Cart() {
 
     const dispatch = useDispatch()
     const items = useSelector(state => state.cart)
+    //const items = window.localStorage.getItem("products");
 
     function deleteItem(id) {
         dispatch(deleteItemFromCart(id))
@@ -20,12 +22,13 @@ export default function Cart() {
     }
 
     useEffect(() => {
-        localStorage.setItem("products", JSON.stringify(items));
+        window.localStorage.setItem("products", JSON.stringify(items));
       }, [items]);
 
 
     return (
         <div className="conteinerCart">
+            <h1>Bienvenido a tu CART !</h1>
             {
                 items.length ?
                     <div id="conteinerCart2">{
@@ -47,7 +50,10 @@ export default function Cart() {
                     </div>
 
                     :
-                    <h1>No hay juegos en CART</h1>
+                    <div>
+                    <img src={Sad} alt="Sad Face"></img>
+                    <h1>No hay juegos en tu CART</h1>
+                    </div>
             }
         </div>
     )

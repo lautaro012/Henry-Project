@@ -85,13 +85,11 @@ export default function GameDetails() {
                                         :
                                         null
                                 }
+
                                 <Carousel
                                     showArrows={true}
-
-
-
+                                    id="video_detalle"
                                     infiniteLoop={true}
-
                                     showThumbs={false}
                                 >
                                     {
@@ -137,14 +135,14 @@ export default function GameDetails() {
                                     <div className='imagenesJuego' >
 
                                         {
-                                            game.screenshots && game.screenshots.map((img , index) => {
+                                            game.screenshots && game.screenshots.map((img, index) => {
                                                 return (
                                                     <div key={img} id="boton_juego">
                                                         {
                                                             index !== 0 ?
-                                                            <button onClick={() => onHanddlePop(img)}><img className="imagenJuego" src={img} alt="imagenJuego"></img></button>
-                                                            :
-                                                            null
+                                                                <button onClick={() => onHanddlePop(img)}><img className="imagenJuego" src={img} alt="imagenJuego"></img></button>
+                                                                :
+                                                                null
                                                         }
                                                     </div>
                                                 )

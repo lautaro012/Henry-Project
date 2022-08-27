@@ -8,26 +8,26 @@ export default function Carrousel2() {
 
     const bestGames = [
         {
-            img: require('../../Style/_temp/mclaren.jpg'),
+            src: require('../../Style/Temp/mclaren.jpg'),
             altText: 'Slide 1',
-            Name: 'Auto'
+            caption: 'Auto'
         },
         {
-            img: require('../../Style/_temp/chica.jpg'),
+            src: require('../../Style/Temp/chica.jpg'),
             altText: 'Slide 2',
-            name: 'Chica'
+            caption: 'Chica'
         },
         {
-            img: require('../../Style/_temp/robot.jpg'),
+            src: require('../../Style/Temp/robot.jpg'),
             altText: 'Slide 3',
-            name: 'Robot'
+            caption: 'Robot'
         },
         {
-            img: require('../../Style/_temp/fortnite.jpg'),
+            src: require('../../Style/Temp/fortnite.jpg'),
             altText: 'Slide 3',
-            name: 'El fornai pa'
+            caption: 'El fornai pa'
         }
-    ]
+    ];
 
     return (
         <div className="banner">
