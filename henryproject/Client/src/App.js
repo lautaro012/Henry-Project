@@ -17,12 +17,11 @@ import EditVideogame from './Components/CreateVideogame/EditVideogame/EditVideog
 import { useEffect, useState } from 'react';
 import Register from './Components/Register/Register';
 import { FormularioPago } from './Components/FormularioPago/FormularioPago';
-
 import {Elements} from "@stripe/react-stripe-js";
 import {loadStripe} from "@stripe/stripe-js"
-const stripePromise=loadStripe("pk_test_51LaZvGBnw8Rgt2NjQI3zwuWRhuXnnGKWZNCgHwz0UPBxh6t0l0SlRlMVMwTWvQUGfgyh9e4D0b7MD8sGiArVOQMg00JrfIx5p5")
 import { useDispatch } from 'react-redux';
 import { actualizarCart, actualizarFav } from './redux/Actions/Index';
+const stripePromise=loadStripe("pk_test_51LaZvGBnw8Rgt2NjQI3zwuWRhuXnnGKWZNCgHwz0UPBxh6t0l0SlRlMVMwTWvQUGfgyh9e4D0b7MD8sGiArVOQMg00JrfIx5p5")
 require('dotenv').config();
 const {
   REACT_APP_API
@@ -32,7 +31,7 @@ function App() {
   let dispatch = useDispatch()
   const [user, setUser] = useState(null)
 
-<<<<<<< HEAD
+// <<<<<<< HEAD
   useEffect(() =>  {
 
          const getUser = async () => {
@@ -66,35 +65,8 @@ function App() {
   console.log(user)
 
 
- useEffect(() => {
-=======
-  useEffect(() => {
-
-    if (localStorage.length === 0) {
-      localStorage.setItem("products", JSON.stringify([]));
-      localStorage.setItem("favProducts", JSON.stringify([]));
-      localStorage.setItem("user", JSON.stringify([]));
-    }
-    const getUser = () => {
-      axios.get(`/auth/success`, {
-        // withCredentials: true,
-        "origin": [`${REACT_APP_API}`],
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": true,
-      })
-        .then(res => {
-          localStorage.setItem('user', JSON.stringify(res.data.user))
-        })
-        .catch((err) => {
-          console.log('LOGIN_ERROR', err);
-        });
-    };
-    getUser()
-
-  }, [])
 
   useEffect(() => {
->>>>>>> Development
     if (localStorage.length === 0) {
       localStorage.setItem("products", JSON.stringify([]));
       localStorage.setItem("favProducts", JSON.stringify([]));
