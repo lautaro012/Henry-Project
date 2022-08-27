@@ -75,6 +75,7 @@ const singIn=async (req,res) => {
                     expiresIn: Math.floor(Date.now() / 1000) + (60 * 60)
                 });
                 res.json({user: user,token: token})
+                // .redirect("http://localhost:3000/home")
             }else{
                 res.status(401).json({msg: "Contrasenia incorrecta"})
             }
