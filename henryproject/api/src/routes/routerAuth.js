@@ -1,10 +1,7 @@
 const router = require('express').Router()
 const passport = require('passport')
 // const { Users } = require('../db')
-const auth = require('../handlers/authHandler')
 
-router.post('/singup', auth.singUp);
-router.post('/singin', auth.singIn)
 
 router.get("/google", passport.authenticate("google", {scope:["profile"]}))
 router.get("/google/callback", passport.authenticate("google", {
