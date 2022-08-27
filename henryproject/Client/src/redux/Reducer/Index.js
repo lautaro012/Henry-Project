@@ -1,3 +1,4 @@
+import { NavItem } from "reactstrap"
 import {
     GET_ALL_GAMES,
     GET_ALL_GAMES_BY_NAME,
@@ -15,6 +16,10 @@ import {
     EMPTY_GAME_STATE,
     ADD_TO_CART,
     DELETE_FOR_CART,
+    DELETE_FOR_FAVS,
+    ADD_TO_FAV,
+    ACTUALIZAR_CART,
+    ACTUALIZAR_FAV,
 } from "../Actions/Index"
 
 const initialState = {
@@ -28,8 +33,9 @@ const initialState = {
     platformby: 'all',
     tagsFilter: [],
     cart: [],
+    favorites: [],
     tags: [],
-    Tagsinfilter: []
+    Tagsinfilter: [],
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -48,22 +54,66 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 videogames: action.payload,
             }
+        case ACTUALIZAR_CART:
+            return {
+                ...state,
+                cart: action.payload,
+            }
         case ADD_TO_CART:
-           return {
-            ...state,
-            cart: action.payload
-           }
+            let itemFound = state.cart.map(games => games.id).includes(action.payload.id)
+            if (!itemFound) {
+                return {
+                    ...state,
+                    cart: [...state.cart, action.payload]
+                }
+            }
+            else {
+                return {
+                    ...state
+                }
+            }
         case DELETE_FOR_CART:
-            if(action.payload === "All"){
+            if (action.payload === "All") {
                 return {
                     ...state,
                     cart: [],
                 }
             }
-            else{
+            else {
                 return {
                     ...state,
-                    cart: state.cart.filter( (item) =>  item.id !== action.payload ),
+                    cart: state.cart.filter((item) => item.id !== action.payload),
+                }
+            }
+        case ACTUALIZAR_FAV:
+            return {
+                ...state,
+                favorites: action.payload,
+            }
+        case ADD_TO_FAV:
+            let itemFoundFav = state.favorites.map(games => games.id).includes(action.payload.id)
+            if (!itemFoundFav) {
+                return {
+                    ...state,
+                    favorites: [...state.favorites, action.payload]
+                }
+            }
+            else {
+                return {
+                    ...state
+                }
+            }
+        case DELETE_FOR_FAVS:
+            if (action.payload === "All") {
+                return {
+                    ...state,
+                    favorites: [],
+                }
+            }
+            else {
+                return {
+                    ...state,
+                    favorites: state.favorites.filter((item) => item.id !== action.payload),
                 }
             }
         case GET_GAME_BY_ID:
