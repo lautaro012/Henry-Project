@@ -1,5 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addToCart } from './redux/Actions/Index';
 import axios from 'axios'
 import LandingPage from './Components/Landing_Page/LandingPage.jsx'
 import About from './Components/About_Us/About.jsx'
@@ -20,8 +22,7 @@ import { FormularioPago } from './Components/FormularioPago/FormularioPago';
 import {Elements} from "@stripe/react-stripe-js";
 import {loadStripe} from "@stripe/stripe-js"
 const stripePromise=loadStripe("pk_test_51LaZvGBnw8Rgt2NjQI3zwuWRhuXnnGKWZNCgHwz0UPBxh6t0l0SlRlMVMwTWvQUGfgyh9e4D0b7MD8sGiArVOQMg00JrfIx5p5")
-import { useDispatch } from 'react-redux';
-import { addToCart } from './redux/Actions/Index';
+
 require('dotenv').config();
 const {
   REACT_APP_API
