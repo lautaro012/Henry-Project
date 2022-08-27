@@ -2,9 +2,12 @@ import './Profile.css'
 
 export function Profile () {
 
-        let profile = JSON.parse(localStorage.getItem('usuario'))
-        const { displayName, photos } = profile
-        console.log(profile)
+
+        let profile = localStorage.getItem('usuario')
+        let displayName = ''
+        let photos = ''
+    
+        
   
 
     return (
@@ -17,7 +20,7 @@ export function Profile () {
         <div className='filters'>
             <div className="show-profile-settings">
                 <div>
-                    <img width={150} src={`${photos[0].value}`} alt='imagen de perfil'/>
+                    <img width={150} src={photos} alt='imagen de perfil'/>
                     {displayName}
         
                 </div>

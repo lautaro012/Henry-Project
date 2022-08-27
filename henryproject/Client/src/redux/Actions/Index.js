@@ -245,11 +245,11 @@ export function deleteItemFromCart(id) {
 
 export function signin (payload) {
     return function () {
-            axios.post(`/singin`, payload)
+            axios.post(`/login`, payload)
             .then(resp => resp.data)
             .then(resp => {
                 console.log(resp)
-                localStorage.setItem('user', resp)
+                localStorage.setItem('usuario', JSON.parse(resp))
             })
             .catch(err => console.log(payload))
         
