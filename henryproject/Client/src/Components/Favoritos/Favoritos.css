@@ -1,0 +1,23 @@
+.conteinerFav {
+    color: white;
+    margin-top: 10%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#itemFav {
+    border-style: groove;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 75%;
+}
+
+#itemFav img {
+    max-width: 25%;
+}
+
+#conteinerFav2 {
+    display: contents;
+}

@@ -14,7 +14,11 @@ export const CREATE_GAME = 'CREATE_GAME'
 export const FILTER_GAMES = 'FILTER_GAMES'
 export const EMPTY_GAME_STATE = 'EMPTY_GAME_STATE'
 export const ADD_TO_CART = 'ADD_TO_CART'
-export const DELETE_FOR_CART = 'DELETE_FOR_CART'+
+export const DELETE_FOR_CART = 'DELETE_FOR_CART'
+export const DELETE_FOR_FAVS = "DELETE_FOR_FAVS"
+export const ADD_TO_FAV = "ADD_TO_FAV"
+export const ACTUALIZAR_CART = "ACTUALIZAR_CART"
+export const ACTUALIZAR_FAV = "ACTUALIZAR_FAV"
 
 require('dotenv').config();
 const {
@@ -227,6 +231,13 @@ export const getTags = function () {
     }
 }
 
+export function actualizarCart(game) {
+    return {
+        type: ACTUALIZAR_CART,
+        payload: game
+    }
+}
+
 export function addToCart(game) {
     return {
         type: ADD_TO_CART,
@@ -237,6 +248,27 @@ export function addToCart(game) {
 export function deleteItemFromCart(id) {
     return {
         type: DELETE_FOR_CART,
+        payload: id
+    }
+}
+
+export function actualizarFav(game) {
+    return {
+        type: ACTUALIZAR_FAV,
+        payload: game
+    }
+}
+
+export function addToFav(game) {
+    return {
+        type: ADD_TO_FAV,
+        payload: game
+    }
+}
+
+export function deleteItemFromFavs(id) {
+    return {
+        type: DELETE_FOR_FAVS,
         payload: id
     }
 }

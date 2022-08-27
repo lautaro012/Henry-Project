@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import React from "react";
 import Icon from '../../Style/Imagenes/Icon.PNG'
 import Cart from '../../Style/Imagenes/cart.png'
+import Cora from '../../Style/Imagenes/Corazon.png'
 import { useSelector } from 'react-redux'
 
 import UserPop from './UserPop.jsx'
@@ -13,7 +14,8 @@ export default function Nav_bar() {
 
     const [modal, setModal] = useState(false)
     const [userLogged, setUserLogged] = useState(false)
-    const itemsCart = useSelector(state => state.itemsCart)
+    const itemsCart = useSelector(state => state.cart)
+    const itemsFavorites = useSelector(state => state.favorites)
 
     function onHanddlePop() {
         modal === false ? setModal(true) : setModal(false)
@@ -41,8 +43,14 @@ export default function Nav_bar() {
                 <Link to='/cart'>
                     <img src={Cart} alt="cart" />
                 </Link>
+                <h3>{itemsCart && itemsCart.length ? itemsCart.length : 0}</h3>
+            </div>
 
-                <h3>{itemsCart}</h3>
+            <div id="fav">
+                <Link to='/favorites'>
+                    <img src={Cora} alt="fav_item" />
+                </Link>
+                <h3>{itemsFavorites && itemsFavorites.length ? itemsFavorites.length : 0}</h3>
             </div>
             {
                 modal ?

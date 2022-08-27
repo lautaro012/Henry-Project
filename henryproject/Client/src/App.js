@@ -12,11 +12,12 @@ import Admin from './Components/Admin/Admin';
 import { Profile } from './Components/Profile/Profile';
 import LoadingScreen from './Components/LoadingScreen/LoadingScreen';
 import Cart from './Components/Cart/Cart.jsx';
+import Favoritos from './Components/Favoritos/Favoritos.jsx'
 import EditVideogame from './Components/CreateVideogame/EditVideogame/EditVideogame';
 import { useEffect, useState } from 'react';
 import Register from './Components/Register/Register';
 import { useDispatch } from 'react-redux';
-import { addToCart } from './redux/Actions/Index';
+import { actualizarCart, actualizarFav } from './redux/Actions/Index';
 require('dotenv').config();
 const {
   REACT_APP_API
@@ -28,29 +29,33 @@ function App() {
 
   let dispatch = useDispatch()
   const [user, setUser] = useState(null)
-   
-  useEffect(() =>  {
-      const getUser = () => {
-        axios.get(`/auth/success`, {
-          // withCredentials: true,
-          "origin": [`${REACT_APP_API}`],
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-        })
-      .then(res => {
-        localStorage.setItem('user', JSON.stringify(res.data.user))
+
+  useEffect(() => {
+
+    if (localStorage.length === 0) {
+      localStorage.setItem("products", JSON.stringify([]));
+      localStorage.setItem("favProducts", JSON.stringify([]));
+      localStorage.setItem("user", JSON.stringify([]));
+    }
+    const getUser = () => {
+      axios.get(`/auth/success`, {
+        // withCredentials: true,
+        "origin": [`${REACT_APP_API}`],
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": true,
       })
-      .catch((err) => {
-        console.log('LOGIN_ERROR', err);
-      });
-      };
-      getUser()
+        .then(res => {
+          localStorage.setItem('user', JSON.stringify(res.data.user))
+        })
+        .catch((err) => {
+          console.log('LOGIN_ERROR', err);
+        });
+    };
+    getUser()
 
   }, [])
 
-
-
- useEffect(() => {
+  useEffect(() => {
     if (localStorage.length === 0) {
       localStorage.setItem("products", JSON.stringify([]));
       localStorage.setItem("favProducts", JSON.stringify([]));
@@ -60,32 +65,35 @@ function App() {
   const videogamesLS = JSON.parse(localStorage.getItem("products"));
 
   useEffect(() => {
-    dispatch(addToCart(videogamesLS));
-  }, [videogamesLS]);
+    console.log()
+    dispatch(actualizarCart(videogamesLS));
+  }, [dispatch, videogamesLS]);
 
-  // const favoritesLS = JSON.parse(localStorage.getItem("favProducts"));
-  // useEffect(() => {
-  //   dispatch(LocalStorageToFavs(favoritesLS));
-  // }, [favoritesLS]);
-  
+  const favoritesLS = JSON.parse(localStorage.getItem("favProducts"));
+
+  useEffect(() => {
+    dispatch(actualizarFav(favoritesLS));
+  }, [dispatch, favoritesLS]);
+
   return (
     <Router>
-      <NavBar/>
+      <NavBar />
       <Routes>
         <Route exact path='/' element={<LandingPage />} />
-        <Route path='/about' element={<About/>} />
+        <Route path='/about' element={<About />} />
         <Route path='/home' element={<Home />} />
-        <Route path='/home/games' element={<Games/>}/>
+        <Route path='/home/games' element={<Games />} />
         <Route path='/home/games/:id' element={<GameDetail />} />
-        <Route path='/home/create' element={<CreateVideogame/>} />
-        <Route path='/admin' element={<Admin/>} />
-        <Route path='/profile' element={<Profile/>} />
-        <Route path='/Loading' element={<LoadingScreen/>} />
-        <Route path='/cart' element={<Cart/>} />
-        <Route path='/edit' element={<EditVideogame></EditVideogame>}/>
-        <Route path='/register' element={<Register></Register>}/>
-      </Routes>   
-      </Router>
+        <Route path='/home/create' element={<CreateVideogame />} />
+        <Route path='/admin' element={<Admin />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/Loading' element={<LoadingScreen />} />
+        <Route path='/cart' element={<Cart />} />
+        <Route path='/favorites' element={<Favoritos />} />
+        <Route path='/edit' element={<EditVideogame></EditVideogame>} />
+        <Route path='/register' element={<Register></Register>} />
+      </Routes>
+    </Router>
   );
 }
 
