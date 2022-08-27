@@ -10,7 +10,7 @@ export default function Carrousel2({games}) {
             {
                 games && games.map(game => {
                     return (
-                            <Link to={'/home/games/' + game.id} className="carrousel_card">
+                            <Link to={'/home/games/' + game.id} key={game.id} className="carrousel_card">
                                 <img src={game.image} alt={game.id} />
                             </Link>
                     )

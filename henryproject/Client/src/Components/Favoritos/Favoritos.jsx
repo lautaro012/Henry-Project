@@ -1,38 +1,33 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteItemFromCart } from "../../redux/Actions/Index.js";
+import { deleteItemFromFavs } from "../../redux/Actions/Index.js";
 import Sad from '../../Style/Imagenes/sadFace.png'
 
-import '../Cart/Cart.css'
+import '../Favoritos/Favoritos.css'
 
-export default function Cart() {
+export default function Favs() {
 
     const dispatch = useDispatch()
-    const items = useSelector(state => state.cart)
+    const items = useSelector(state => state.favorites)
 
     function deleteItem(id) {
-        dispatch(deleteItemFromCart(id))
-    }
-
-    let precios = 0;
-    for (let i = 0; i < items.length; i++) {
-        precios += items[i].price;
+        dispatch(deleteItemFromFavs(id))
     }
 
     useEffect(() => {
-        localStorage.setItem("products", JSON.stringify(items));
-      }, [items]);
+        localStorage.setItem("favProducts", JSON.stringify(items));
+    }, [items]);
 
     return (
-        <div className="conteinerCart">
-            <h1>Bienvenido a tu CART !</h1>
+        <div className="conteinerFav">
+            <h1>Bienvenido a tu lista de favoritos !</h1>
             {
-                 items && items.length ?
-                    <div id="conteinerCart2">{
+                items && items.length ?
+                    <div id="conteinerFav2">{
                         items && items.map(item => {
                             return (
-                                <div key={item.id} id="item">
+                                <div id="itemFav">
                                     <img src={item.image} alt={item.id}></img>
                                     <h1>{item.name}</h1>
                                     <h3>$ {item.price}</h3>
@@ -42,15 +37,13 @@ export default function Cart() {
                         })
                     }
                         <div>
-                            <button onClick={() => deleteItem("All")}>Vaciar carrito</button>
-                            <h2>Suma total : ${precios}</h2>
+                            <button onClick={() => deleteItem("All")}>Vaciar favoritos</button>
                         </div>
                     </div>
-
                     :
                     <div>
                         <img src={Sad} alt="Sad Face"></img>
-                        <h1>No hay juegos en tu CART</h1>
+                        <h1>No hay juegos en tu lista de favoritos</h1>
                     </div>
             }
         </div>
