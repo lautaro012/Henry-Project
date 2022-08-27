@@ -4,6 +4,7 @@ import Icon from '../../Style/Imagenes/Icon.PNG'
 import Cart from '../../Style/Imagenes/cart.png'
 import Cora from '../../Style/Imagenes/Corazon.png'
 import { useSelector } from 'react-redux'
+import SignUserModal from './SignUserModal.jsx'
 
 import UserPop from './UserPop.jsx'
 
@@ -21,6 +22,12 @@ export default function Nav_bar() {
         modal === false ? setModal(true) : setModal(false)
     }
 
+    const [isOpen, setIsOpen] = useState(false);
+
+    function toggleModal() {
+     setIsOpen(!isOpen);
+    }
+
     return (
         <nav className="Nav_bar">
 
@@ -36,8 +43,11 @@ export default function Nav_bar() {
                 <Link to='/profile'> <button> My Profile </button></Link>
              */}
 
-                <button onClick={() => onHanddlePop()}>Loggin</button>
+                <button onClick={toggleModal}>Open modal</button>
+                <SignUserModal toggleModal={toggleModal} isOpen={isOpen} />
+   
             </div>
+           
 
             <div id="cart">
                 <Link to='/cart'>
@@ -52,13 +62,7 @@ export default function Nav_bar() {
                 </Link>
                 <h3>{itemsFavorites && itemsFavorites.length ? itemsFavorites.length : 0}</h3>
             </div>
-            {
-                modal ?
-                    <UserPop show={onHanddlePop} setModal={e => setModal(e)} modal={modal} />
-                    :
-                    null
-            }
-
+            
         </nav>
     )
 }

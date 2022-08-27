@@ -16,14 +16,17 @@ import Favoritos from './Components/Favoritos/Favoritos.jsx'
 import EditVideogame from './Components/CreateVideogame/EditVideogame/EditVideogame';
 import { useEffect, useState } from 'react';
 import Register from './Components/Register/Register';
+import { FormularioPago } from './Components/FormularioPago/FormularioPago';
+
+import {Elements} from "@stripe/react-stripe-js";
+import {loadStripe} from "@stripe/stripe-js"
+const stripePromise=loadStripe("pk_test_51LaZvGBnw8Rgt2NjQI3zwuWRhuXnnGKWZNCgHwz0UPBxh6t0l0SlRlMVMwTWvQUGfgyh9e4D0b7MD8sGiArVOQMg00JrfIx5p5")
 import { useDispatch } from 'react-redux';
 import { actualizarCart, actualizarFav } from './redux/Actions/Index';
 require('dotenv').config();
 const {
   REACT_APP_API
 } = process.env;
-
-
 
 function App() {
 
@@ -84,14 +87,15 @@ function App() {
         <Route path='/home' element={<Home />} />
         <Route path='/home/games' element={<Games />} />
         <Route path='/home/games/:id' element={<GameDetail />} />
-        <Route path='/home/create' element={<CreateVideogame />} />
-        <Route path='/admin' element={<Admin />} />
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/Loading' element={<LoadingScreen />} />
-        <Route path='/cart' element={<Cart />} />
         <Route path='/favorites' element={<Favoritos />} />
         <Route path='/edit' element={<EditVideogame></EditVideogame>} />
         <Route path='/register' element={<Register></Register>} />
+        <Route path='/home/create' element={<CreateVideogame/>} />
+        <Route path='/admin' element={<Admin/>} />
+        <Route path='/profile' element={<Profile/>} />
+        <Route path='/Loading' element={<LoadingScreen/>} />
+        <Route path='/cart' element={<Cart/>} />
+        <Route path='/cart/formularioPago' element={<Elements stripe={stripePromise}><FormularioPago></FormularioPago></Elements>}/>
       </Routes>
     </Router>
   );
