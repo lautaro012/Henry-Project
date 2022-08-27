@@ -24,7 +24,6 @@ const {
 
 
 
-
 function App() {
 
   let dispatch = useDispatch()
@@ -85,7 +84,6 @@ function App() {
         <Route path='/cart' element={<Cart/>} />
         <Route path='/edit' element={<EditVideogame></EditVideogame>}/>
         <Route path='/register' element={<Register></Register>}/>
-
       </Routes>   
       </Router>
   );
