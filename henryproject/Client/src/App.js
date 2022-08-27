@@ -17,7 +17,6 @@ import { useEffect, useState } from 'react';
 import Register from './Components/Register/Register';
 import { useDispatch } from 'react-redux';
 import { addToCart } from './redux/Actions/Index';
-import Footer from "./Components/Footer/Footer.jsx";
 require('dotenv').config();
 const {
   REACT_APP_API
@@ -87,8 +86,7 @@ function App() {
         <Route path='/edit' element={<EditVideogame></EditVideogame>}/>
         <Route path='/register' element={<Register></Register>}/>
 
-      </Routes>
-      <Footer/>    
+      </Routes>   
       </Router>
   );
 }
