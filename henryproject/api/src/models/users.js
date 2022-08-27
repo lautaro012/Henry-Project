@@ -17,20 +17,24 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     mail:  {
       type: DataTypes.STRING,
       allowNull: false
     },
-    adress:  {
+    address:  {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     userName: {
       type: DataTypes.STRING,
       allowNull: false
     }, 
     image:  {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       defaultValue: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
     },
   });

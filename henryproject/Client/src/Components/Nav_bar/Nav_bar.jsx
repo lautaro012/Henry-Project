@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import React from "react";
 import Icon from '../../Style/Imagenes/Icon.PNG'
 import Cart from '../../Style/Imagenes/cart.png'
+import { useSelector } from 'react-redux'
 
 import UserPop from './UserPop.jsx'
 
@@ -10,10 +11,12 @@ import { useState } from "react";
 
 export default function Nav_bar() {
 
-    const [user, setUser] = useState(false)
+    const [modal, setModal] = useState(false)
+    const [userLogged, setUserLogged] = useState(false)
+    const itemsCart = useSelector(state => state.itemsCart)
 
     function onHanddlePop() {
-        user === false ? setUser(true) : setUser(false)
+        modal === false ? setModal(true) : setModal(false)
     }
 
     return (
@@ -26,25 +29,28 @@ export default function Nav_bar() {
             <div>
 
                 <Link to='/home'><button>Home</button></Link>
-
-                <Link to='/home/create'><button>Create Videogame</button></Link>
+                {/* <Link to='/home/create'><button>Create Videogame</button></Link>
 
                 <Link to='/profile'> <button> My Profile </button></Link>
-            
+             */}
+
                 <button onClick={() => onHanddlePop()}>Loggin</button>
             </div>
 
-            <Link id="cart" to='/cart'>
-                <img src={Cart} alt="cart" />
-            </Link>
+            <div id="cart">
+                <Link to='/cart'>
+                    <img src={Cart} alt="cart" />
+                </Link>
 
-
+                <h3>{itemsCart}</h3>
+            </div>
             {
-                user === true ?
-                <UserPop show={onHanddlePop} user={user}/>
-                :
+                modal ?
+                    <UserPop show={onHanddlePop} setModal={e => setModal(e)} modal={modal} />
+                    :
                     null
             }
+
         </nav>
     )
 }

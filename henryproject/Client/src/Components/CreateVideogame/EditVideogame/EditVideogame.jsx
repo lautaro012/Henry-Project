@@ -3,7 +3,7 @@ import "./EditVideogame.css"
 import { useParams } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getGameById,getGenres,getPlatforms } from "../../../redux/Actions/Index";
+import { getGameById,getGenres,getPlatforms,getAllGames } from "../../../redux/Actions/Index";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import LoadingScreen from "../../LoadingScreen/LoadingScreen";
@@ -34,6 +34,9 @@ export default function EditVideogame(){
     description: false,
     rating: false ,
       
+})
+const[value,setValue]=useState({
+   name:"" 
 })
 
     useEffect(()=>{
@@ -169,8 +172,19 @@ export default function EditVideogame(){
         
            return <span>Cargando</span>
        }
+       //function onClickGuardar(e){
+        //     e.preventDefault()
+         //    dispatch(guardarVideogames)
+       //}
+       function onChangeFilterVideoGame(e){
+           e.preventDefault()
+           setValue({...value,name:e.target.value})
+           dispatch(getAllGames(value.name))
+           
+       }
     return(
-       <div className="div">
+       <div className="divedit">
+       {/* { <input type="text" className="search_edit" onChange={(e)=>onChangeFilterVideoGame(e)}name="name" value={value.name}/>} */}
        <form onSubmit={e=>validar(e)} id="edit">
         {/* componente name */}
         <div>
@@ -318,13 +332,13 @@ export default function EditVideogame(){
         </form>
         {/* visualizar */}
 
-        <div className="game_detail">
+        <div className="game_detail_edit">
             {
                 state ?
 
-                    <div id="conteiner_detalles">
-                        <div id="conteinerData_detalles2">
-                            <div id="conteinerData_detalles">
+                    <div id="conteiner_detalles_edit">
+                        <div id="conteinerData_detalles2_edit">
+                            <div id="conteinerData_detalles_edit">
                                 {/* {
                                     false === true ?
                                         <ImagenPop show={onHanddlePop} imgPop={imgPop} img={img} />
@@ -360,8 +374,8 @@ export default function EditVideogame(){
                                 <p dangerouslySetInnerHTML={{ __html: state.description }} />
                             </div>
                         </div>
-                        <div id="conteinerSide_detalles2">
-                            <aside id="conteinerSide_detalles">
+                        <div id="conteinerSide_detalles2_edit">
+                            <aside id="conteinerSide_detalles_edit">
                                 <h1>{state.name}</h1>
                                 {/* <a href={game[0].website} target="_blank" rel="noreferrer"><h3>{game[0].website}</h3></a> */}
                                 <img src={state.image} alt="gameImage" width="100%"></img>
@@ -422,7 +436,9 @@ export default function EditVideogame(){
 
             }
         </div>
+        {/* <button onClick={e=>}></button> */}
         </div>
+        
     )
 
     

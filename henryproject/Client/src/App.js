@@ -14,6 +14,7 @@ import LoadingScreen from './Components/LoadingScreen/LoadingScreen';
 import Cart from './Components/Cart/Cart.jsx';
 import EditVideogame from './Components/CreateVideogame/EditVideogame/EditVideogame';
 import { useEffect, useState } from 'react';
+import Register from './Components/Register/Register';
 
 
 
@@ -21,26 +22,35 @@ function App() {
   const [user, setUser] = useState(null)
    
   useEffect(() =>  {
-   const getUser = async () => {
-     fetch("http://localhost:3001/auth/success", {
-       method: "GET",
-       credentials: "include",
-       headers: {
-       Accept: "application/json", 
-       "Content-Type": "application/json",
-      //  "Access-Control-Allow-Credentials": true
+    
+  //  const getUser = async () => {
+  //    fetch("http://localhost:3001/auth/success", {
+  //      method: "GET",
+  //      credentials: "include",
+  //      headers: {
+  //      Accept: "application/json", 
+  //      "Content-Type": "application/json",
+  //     //  "Access-Control-Allow-Credentials": true
 
-       },
-     }).then((response) => {
-       if(response.status === 200) return response.json();
-       throw new Error('authentication has been failed')
-     }).then(resObject => {
-       setUser(resObject.user)
-     }).catch(err => {
-       console.log(err)
-     })
-   }
-     getUser()
+  //      },
+  //    }).then((response) => {
+  //      if(response.status === 200) return response.json();
+  //      throw new Error('authentication has been failed')
+  //    }).then(resObject => {
+  //      setUser(resObject.user)
+  //    }).catch(err => {
+  //      console.log(err)
+  //    })
+  //  }
+  //    const saveLocalStorage = async () => {
+  //      let usuario = user
+  //      localStorage.setItem("usuario", JSON.stringify(usuario))
+  //    }     
+   
+  //    if(!localStorage.getItem("usuario")) {
+  //          saveLocalStorage()
+  //    }
+  //   getUser()
 
   }, [])
 
@@ -61,6 +71,8 @@ function App() {
         <Route path='/Loading' element={<LoadingScreen/>} />
         <Route path='/cart' element={<Cart/>} />
         <Route path='/edit' element={<EditVideogame></EditVideogame>}/>
+        <Route path='/register' element={<Register></Register>}/>
+
       </Routes>
     </Router>
   );

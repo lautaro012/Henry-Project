@@ -9,6 +9,7 @@ import ReactPlayer from 'react-player'
 import ImagenPop from '../Game_Details/ImagenPop.jsx';
 import Loading from '../../Style/Imagenes/Loading.gif'
 import LoadingScreen from "../LoadingScreen/LoadingScreen.jsx";
+import { Carousel } from 'react-responsive-carousel';
 
 import '../Game_Details/GameDetails.css'
 
@@ -48,22 +49,24 @@ export default function GameDetails() {
         imgPop === false ? setImgPop(true) : setImgPop(false)
     }
 
-    function getVideo() {
-        if (typeof game[0].videos === "string") {
-            return game[0].videos
-        }
-        else {
-            return "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-        }
-    }
+    // function getVideo() {
+    //     if (typeof game.video === "object") {
+    //         return game.video[0]
+    //     }
+    //     else {
+    //         return "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    //     }
+    // }
 
     function addGameToCart() {
         let item = {
-            id : game[0].id,
-            name : game[0].name
+            id: game.id,
+            name: game.name,
+            price: game.price,
+            image: game.image,
         }
         dispatch(addToCart(item))
-        alert(`${game[0].name} added to cart!`)
+        alert(`${game.name} added to cart!`)
     }
 
     console.log(game)
@@ -71,7 +74,7 @@ export default function GameDetails() {
     return (
         <div className="game_detail">
             {
-                game[0] ?
+                typeof game === "object" ?
 
                     <div id="conteiner_detalles">
                         <div id="conteinerData_detalles2">
@@ -82,25 +85,67 @@ export default function GameDetails() {
                                         :
                                         null
                                 }
-                                < ReactPlayer
-                                    id="game_video"
-                                    url={getVideo()}
-                                    controls
-                                    playing
-                                    loop
-                                    muted
-                                />
+                                <Carousel
+                                    showArrows={true}
+
+
+
+                                    infiniteLoop={true}
+
+                                    showThumbs={false}
+                                >
+                                    {
+                                        typeof game.video === "object" ?
+                                            game.video.length > 0 ?
+                                                game.video.map((video) => {
+                                                    return (
+                                                        < ReactPlayer
+                                                            id="game_video"
+                                                            url={video}
+                                                            controls
+                                                            playing
+                                                            loop
+                                                            muted
+                                                        />
+                                                    )
+                                                })
+                                                :
+                                                < ReactPlayer
+                                                    id="game_video"
+                                                    url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                                                    controls
+                                                    playing
+                                                    loop
+                                                    muted
+                                                />
+                                            :
+                                            < ReactPlayer
+                                                id="game_video"
+                                                url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                                                controls
+                                                playing
+                                                loop
+                                                muted
+                                            />
+                                    }
+                                </Carousel>
+
                                 <div>
-                                    <h1>{game[0].name}</h1>
-                                    <h3>{stars(game[0].rating)} {game[0].rating}</h3>
+                                    <h1>{game.name}</h1>
+                                    <h3>{stars(game.rating)} {game.rating}</h3>
 
                                     <div className='imagenesJuego' >
 
                                         {
-                                            game[0].screenshots && game[0].screenshots.map(img => {
+                                            game.screenshots && game.screenshots.map((img , index) => {
                                                 return (
                                                     <div key={img} id="boton_juego">
-                                                        <button onClick={() => onHanddlePop(img)}><img className="imagenJuego" src={img} alt="imagenJuego"></img></button>
+                                                        {
+                                                            index !== 0 ?
+                                                            <button onClick={() => onHanddlePop(img)}><img className="imagenJuego" src={img} alt="imagenJuego"></img></button>
+                                                            :
+                                                            null
+                                                        }
                                                     </div>
                                                 )
                                             })
@@ -109,20 +154,20 @@ export default function GameDetails() {
 
                                 </div>
                                 <hr />
-                                <p dangerouslySetInnerHTML={{ __html: game[0].description }} />
+                                <p dangerouslySetInnerHTML={{ __html: game.description }} />
                             </div>
                         </div>
                         <div id="conteinerSide_detalles2">
                             <aside id="conteinerSide_detalles">
-                                <h1>{game[0].name}</h1>
-                                <a href={game[0].website} target="_blank" rel="noreferrer"><h3>{game[0].website}</h3></a>
-                                <img src={game[0].image} alt="gameImage" width="100%"></img>
+                                <h1>{game.name}</h1>
+                                <a href={game.website} target="_blank" rel="noreferrer"><h3>{game.website}</h3></a>
+                                <button onClick={() => onHanddlePop(game.image)}><img className="imagenJuego" src={game.image} alt="imagenJuego"></img></button>
                                 <h3>Release date :</h3>
-                                <p>{game[0].realeaseDate}</p>
+                                <p>{game.realeaseDate}</p>
                                 <div>
                                     <h3>Plataformas</h3>
                                     {
-                                        game[0].platforms && game[0].platforms.map(plat => {
+                                        game.platforms && game.platforms.map(plat => {
                                             return (
                                                 <p key={plat.platform.name}>{plat.platform.name}</p>
                                             )
@@ -133,7 +178,7 @@ export default function GameDetails() {
                                 <div>
                                     <h3>Developers</h3>
                                     {
-                                        game[0].developers && game[0].developers.map(dev => {
+                                        game.developers && game.developers.map(dev => {
                                             return (
                                                 <p key={dev}>{dev}</p>
                                             )
@@ -143,20 +188,20 @@ export default function GameDetails() {
                                 </div>
                                 <div>
                                     <h3>ESRB</h3>
-                                    <p key={game[0].esrb_rating.id}>{game[0].esrb_rating.name}</p>
+                                    <p key={game.esrb_rating}>{game.esrb_rating}</p>
                                 </div>
                                 <div>
                                     <h3>Metacritic</h3>
-                                    <p>{game[0].metacritic}</p>
+                                    <p>{game.metacritic}</p>
                                 </div>
                                 <div>
                                     <h3>Publisher</h3>
-                                    <p>{game[0].publishers[0].name}</p>
+                                    <p>{game.publishers}</p>
                                 </div>
                                 <div>
                                     <h3>Stores</h3>
                                     {
-                                        game[0].stores && game[0].stores.map(sto => {
+                                        game.store && game.store.map(sto => {
                                             return (
                                                 <p key={sto}>{sto}</p>
                                             )
@@ -164,15 +209,17 @@ export default function GameDetails() {
 
                                     }
                                 </div>
-                                
+
+                                <h2>Price : ${game.price}</h2>
+
                                 <button>COMPRAR AHORA</button>
-                                <button onClick={()=> addGameToCart()}>AÑADIR AL CARRITO</button>
+                                <button onClick={() => addGameToCart()}>AÑADIR AL CARRITO</button>
                                 <button>AÑADIR A LA LISTA DE DESEOS</button>
                             </aside>
                         </div>
                     </div>
                     :
-                    <LoadingScreen/>
+                    <LoadingScreen />
             }
         </div>
     )

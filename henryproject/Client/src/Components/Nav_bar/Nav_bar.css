@@ -15,6 +15,20 @@
 #cart {
     align-self: center;
     padding-right: 40px;
+    display: flex;
+    justify-content: flex-end;
+    width: fit-content;
+}
+
+#cart h3{
+    background-color: red;
+    border-style: solid;
+    border-radius: 100%;
+    text-align: center;
+    width: 40px;
+    position: absolute;
+    top: 0;
+    right: 2%;
 }
 
 .Nav_bar {
