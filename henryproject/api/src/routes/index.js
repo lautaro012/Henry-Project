@@ -18,7 +18,7 @@ router.use("/plataforms",plataformsRouter);
 router.use("/filter",filterRoute);
 router.use("/tags", tagsRoute);
 router.use("/newUser", userRouter)
-router.use("login", singIn)
+router.use("/login", singIn)
 //MERCADO DE PAGO
 // router.use('/mercadopago', mercadopago)
 
