@@ -1,12 +1,37 @@
 import CreateVideogame from '../CreateVideogame/CreateVideogame'
 import './Admin.css'
+import { useDispatch } from 'react-redux'
+import { useState } from 'react'
+import { getAllGames } from '../../redux/Actions/Index'
+import { Link } from 'react-router-dom'
+
 
 export default function Admin () {
+    const dispatch= useDispatch()
+    const [name,setName]= useState("")
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        dispatch(getAllGames(name))
+    };
+    function handleOnChange(e){
+        e.preventDefault()
+        setName(e.target.value)
+        dispatch(getAllGames(name))
+    }
     return (
         <div className='Search-Filters'>
 
         <div>
-            SEARCHBAR
+        <input
+            id="search"
+            className="search"
+            type="text"
+            value={name} 
+            onChange= {(e) => handleOnChange(e)}
+            placeholder="Buscar videojuego..."
+          />
+          <button className ="bottom" type="submit" onClick= {(e) => handleSubmit(e)}> Buscar </button>   
         </div>
 
         <div className='filters'>
@@ -16,10 +41,10 @@ export default function Admin () {
                 </div>
                 <div className='settings-admin'>
                         
-                    <button><span >  EDIT PERFIL  </span></button> 
-
-                   <button><span > EDIT GAMES</span></button> 
-
+                    <button><span >  CREAR VIDEOJUEGO  </span></button> 
+                   <Link to= "/admin/editgames"> 
+                   <button className ="bottom" type="submit" onClick= {(e) => handleSubmit(e)} > EDIT GAMES</button> 
+                   </Link>
                     <button><span> SETTINGS </span></button>
                 </div>
 
