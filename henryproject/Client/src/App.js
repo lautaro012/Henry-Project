@@ -14,51 +14,61 @@ import Admin from './Components/Admin/Admin';
 import { Profile } from './Components/Profile/Profile';
 import LoadingScreen from './Components/LoadingScreen/LoadingScreen';
 import Cart from './Components/Cart/Cart.jsx';
+import Favoritos from './Components/Favoritos/Favoritos.jsx'
 import EditVideogame from './Components/CreateVideogame/EditVideogame/EditVideogame';
 import { useEffect, useState } from 'react';
 import Register from './Components/Register/Register';
 import { FormularioPago } from './Components/FormularioPago/FormularioPago';
-
 import {Elements} from "@stripe/react-stripe-js";
 import {loadStripe} from "@stripe/stripe-js"
+import { useDispatch } from 'react-redux';
+import { actualizarCart, actualizarFav } from './redux/Actions/Index';
 const stripePromise=loadStripe("pk_test_51LaZvGBnw8Rgt2NjQI3zwuWRhuXnnGKWZNCgHwz0UPBxh6t0l0SlRlMVMwTWvQUGfgyh9e4D0b7MD8sGiArVOQMg00JrfIx5p5")
-
 require('dotenv').config();
 const {
   REACT_APP_API
 } = process.env;
 
-
-
-
 function App() {
-
   let dispatch = useDispatch()
   const [user, setUser] = useState(null)
-   
+
+// <<<<<<< HEAD
   useEffect(() =>  {
-      const getUser = () => {
-        axios.get(`/auth/success`, {
-          // withCredentials: true,
-          "origin": [`${REACT_APP_API}`],
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-        })
-      .then(res => {
-          localStorage.setItem('usuario', JSON.stringify(res.data.user))   
-          console.log('entro al local')  
+
+         const getUser = async () => {
+      fetch("http://localhost:3001/auth/success", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+        Accept: "application/json", 
+        "Content-Type": "application/json",
+       //  "Access-Control-Allow-Credentials": true
+ 
+        },
+      }).then((response) => {
+        if(response.status === 200) {
+          console.log('entra a response')
+          return response.json()};
+        throw new Error('authentication has been failed')
+      }).then(resObject => {
+        localStorage.setItem('user', JSON.stringify(resObject))
+        setUser(resObject.user)
+      }).catch(err => {
+        console.log(err)
       })
-      .catch((err) => {
-        console.log('LOGIN_ERROR', err);
-      });
-      };
+    }
       getUser()
+    
+
 
   }, [])
 
+  console.log(user)
 
 
- useEffect(() => {
+
+  useEffect(() => {
     if (localStorage.length === 0) {
       localStorage.setItem("products", JSON.stringify([]));
       localStorage.setItem("favProducts", JSON.stringify([]));
@@ -68,30 +78,33 @@ function App() {
   const videogamesLS = JSON.parse(localStorage.getItem("products"));
 
   useEffect(() => {
-    dispatch(addToCart(videogamesLS));
-  }, [videogamesLS]);
+    console.log()
+    dispatch(actualizarCart(videogamesLS));
+  }, [dispatch, videogamesLS]);
 
-  // const favoritesLS = JSON.parse(localStorage.getItem("favProducts"));
-  // useEffect(() => {
-  //   dispatch(LocalStorageToFavs(favoritesLS));
-  // }, [favoritesLS]);
-  
+  const favoritesLS = JSON.parse(localStorage.getItem("favProducts"));
+
+  useEffect(() => {
+    dispatch(actualizarFav(favoritesLS));
+  }, [dispatch, favoritesLS]);
+
   return (
     <Router>
-      <NavBar/>
+      <NavBar />
       <Routes>
         <Route exact path='/' element={<LandingPage />} />
-        <Route path='/about' element={<About/>} />
+        <Route path='/about' element={<About />} />
         <Route path='/home' element={<Home />} />
-        <Route path='/home/games' element={<Games/>}/>
+        <Route path='/home/games' element={<Games />} />
         <Route path='/home/games/:id' element={<GameDetail />} />
+        <Route path='/favorites' element={<Favoritos />} />
+        <Route path='/edit' element={<EditVideogame></EditVideogame>} />
+        <Route path='/register' element={<Register></Register>} />
         <Route path='/home/create' element={<CreateVideogame/>} />
         <Route path='/admin' element={<Admin/>} />
         <Route path='/profile' element={<Profile/>} />
         <Route path='/Loading' element={<LoadingScreen/>} />
         <Route path='/cart' element={<Cart/>} />
-        <Route path='/edit' element={<EditVideogame></EditVideogame>}/>
-        <Route path='/register' element={<Register></Register>}/>
         <Route path='/cart/formularioPago' element={<Elements stripe={stripePromise}><FormularioPago></FormularioPago></Elements>}/>
       </Routes>
     </Router>
