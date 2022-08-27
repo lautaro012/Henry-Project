@@ -126,10 +126,9 @@ export function postNewUser(user) {
     return async function () {
         try {
             await axios.post(`/newUser`, user)
-            alert('Te has registrado correctamente')
+            console.log(user)
         } catch (err) {
             console.log(err)
-            alert('No pudimos registrarte :(')
         }
     }
 }
