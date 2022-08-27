@@ -17,7 +17,6 @@ const Register = () => {
         lastName: "",
         address: "",
         image: image
-
     })
 
 

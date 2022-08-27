@@ -3,10 +3,13 @@ import './SignUserModal.css'
 import User from '../../Style/Imagenes/User.jpg'
 import Modal from "react-modal";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { signin } from "../../redux/Actions/Index";
 
 
 export default function UserSign({toggleModal, isOpen}) {
 
+    let dispatch = useDispatch()
     const [input, setInput] = useState({
         mail: '',
         password: ''
@@ -32,7 +35,13 @@ export default function UserSign({toggleModal, isOpen}) {
 
 
     function handleSubmit(e) {
-
+        e.preventDefault()
+        dispatch(signin(input));
+        setInput({
+        mail: '',
+        password: ''
+        })
+        console.log('logueado con', input)
     }
 
   return (

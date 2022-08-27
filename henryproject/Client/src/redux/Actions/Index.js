@@ -133,6 +133,8 @@ export function postNewUser(user) {
     }
 }
 
+
+
 export const createvideogame = function(payload, history) {
     console.log(payload)
     return function(dispatch) {
@@ -241,4 +243,13 @@ export function deleteItemFromCart(id) {
     }
 }
 
-
+export function signin (payload) {
+    return async function () {
+        try {
+            await axios.post(`/singin`, payload)
+            console.log(payload)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}
