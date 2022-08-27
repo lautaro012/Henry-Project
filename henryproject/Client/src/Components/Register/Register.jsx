@@ -11,11 +11,11 @@ const Register = () => {
 
     const [newUser, setNewUser] = useState({
         userName: "",
+        mail: "",
+        password: "",
         name: "",
         lastName: "",
-        mail: "",
         address: "",
-        password: "",
         image: image
 
     })
@@ -82,7 +82,7 @@ const Register = () => {
             <input name="mail" onChange={(e) => handleChange(e)} ></input>
             <label>Profile Photo:</label>
             <input  name="image" type="file" placeholder='Choose File' onChange={uploadImage} id="profile-photo" />
-            {loading ? (<p>Uploading your image...</p>) : <img src={image} style={{width: "300px"}} ></img>}
+            {loading ? (<p>Uploading your image...</p>) : <img src={image} style={{width: "300px"}} alt='asdf'></img>}
             <label>password:</label>
             <input name="password" type="text"  onChange={(e) => handleChange(e)}></input>
             <label>address:</label>

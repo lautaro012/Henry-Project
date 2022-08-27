@@ -240,3 +240,5 @@ export function deleteItemFromCart(id) {
         payload: id
     }
 }
+
+
