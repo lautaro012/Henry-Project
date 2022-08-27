@@ -133,6 +133,8 @@ export function postNewUser(user) {
     }
 }
 
+
+
 export const createvideogame = function(payload, history) {
     console.log(payload)
     return function(dispatch) {
@@ -238,5 +240,18 @@ export function deleteItemFromCart(id) {
     return {
         type: DELETE_FOR_CART,
         payload: id
+    }
+}
+
+export function signin (payload) {
+    return function () {
+            axios.post(`/login`, payload)
+            .then(resp => resp.data)
+            .then(resp => {
+                console.log(resp)
+                localStorage.setItem('usuario', JSON.parse(resp))
+            })
+            .catch(err => console.log(payload))
+        
     }
 }
