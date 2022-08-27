@@ -244,12 +244,14 @@ export function deleteItemFromCart(id) {
 }
 
 export function signin (payload) {
-    return async function () {
-        try {
-            await axios.post(`/singin`, payload)
-            console.log(payload)
-        } catch (err) {
-            console.log(err)
-        }
+    return function () {
+            axios.post(`/singin`, payload)
+            .then(resp => resp.data)
+            .then(resp => {
+                console.log(resp)
+                localStorage.setItem('user', resp)
+            })
+            .catch(err => console.log(payload))
+        
     }
 }

@@ -63,9 +63,9 @@ export default function UserSign({toggleModal, isOpen}) {
         <div>
             <form className="form-modal" onSubmit={handleSubmit}>
                 <label> E-Mail:</label>
-                <input onChange={e => handleChange(e)} type="mail" id="mail"></input>
+                <input onChange={handleChange} type="mail" id="mail" name='mail'></input>
                 <label>Password:</label>   
-                <input onChange={e => handleChange(e)} type="password" id="password"></input>
+                <input onChange={handleChange} type="password" id="password" name='password'></input>
                 <button type="submit" onClick={toggleModal}> Loggin </button>
             </form>
         </div>

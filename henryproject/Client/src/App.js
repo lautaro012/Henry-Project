@@ -38,7 +38,9 @@ function App() {
           "Access-Control-Allow-Credentials": true,
         })
       .then(res => {
-        localStorage.setItem('user', JSON.stringify(res.data.user))
+        if(localStorage.length === 0) {
+          localStorage.setItem('user', JSON.stringify(res.data.user))
+        }
       })
       .catch((err) => {
         console.log('LOGIN_ERROR', err);

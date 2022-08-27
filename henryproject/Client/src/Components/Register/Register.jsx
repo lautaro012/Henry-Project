@@ -61,9 +61,7 @@ const Register = () => {
              setNewUser({...newUser, ["image"]: image})
             }
             dispatch(postNewUser(newUser))
-            alert('registrado bro')
-        
-        
+            alert('registrado bro')   
     }
 
 
