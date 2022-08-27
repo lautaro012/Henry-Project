@@ -15,12 +15,18 @@ import Cart from './Components/Cart/Cart.jsx';
 import EditVideogame from './Components/CreateVideogame/EditVideogame/EditVideogame';
 import { useEffect, useState } from 'react';
 import Register from './Components/Register/Register';
+import { FormularioPago } from './Components/FormularioPago/FormularioPago';
+
+import {Elements} from "@stripe/react-stripe-js";
+import {loadStripe} from "@stripe/stripe-js"
+const stripePromise=loadStripe("pk_test_51LaZvGBnw8Rgt2NjQI3zwuWRhuXnnGKWZNCgHwz0UPBxh6t0l0SlRlMVMwTWvQUGfgyh9e4D0b7MD8sGiArVOQMg00JrfIx5p5")
 import { useDispatch } from 'react-redux';
 import { addToCart } from './redux/Actions/Index';
 require('dotenv').config();
 const {
   REACT_APP_API
 } = process.env;
+
 
 
 
@@ -85,8 +91,9 @@ function App() {
         <Route path='/cart' element={<Cart/>} />
         <Route path='/edit' element={<EditVideogame></EditVideogame>}/>
         <Route path='/register' element={<Register></Register>}/>
-      </Routes>   
-      </Router>
+        <Route path='/cart/formularioPago' element={<Elements stripe={stripePromise}><FormularioPago></FormularioPago></Elements>}/>
+      </Routes>
+    </Router>
   );
 }
 
