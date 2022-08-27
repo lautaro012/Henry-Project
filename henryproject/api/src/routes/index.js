@@ -7,7 +7,9 @@ const filterRoute =require('./routerFilters.js');
 const tagsRoute = require('./routerTags')
 const authRoute = require('./routerAuth')
 const userRouter = require('./routerNewUser')
+const checkoutRouter=require("./routerCheckout");
 const router = Router();
+
 
 // Configurar los routers
 
@@ -17,8 +19,7 @@ router.use("/plataforms",plataformsRouter);
 router.use("/filter",filterRoute);
 router.use("/tags", tagsRoute);
 router.use("/newUser", userRouter)
-//MERCADO DE PAGO
-// router.use('/mercadopago', mercadopago)
+router.use('/checkout', checkoutRouter)
 
 
 

@@ -3,7 +3,7 @@ const { Sequelize,Op } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER, DB_PASSWORD, DB_HOST,API_KEY, DB_NAME
+  DB_USER, DB_PASSWORD, DB_HOST,API_KEY, DB_NAME,KEY_CHECK
 } = process.env;
 let sequelize =
   process.env.NODE_ENV === "production"
@@ -94,6 +94,6 @@ const {Users, Orders, Games, Genres, Platforms, Comments, Tags} = sequelize.mode
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
-  Op,API_KEY,
+  Op,API_KEY,KEY_CHECK,
   Games,Genres,Platforms,Tags,Orders,Users
 };
