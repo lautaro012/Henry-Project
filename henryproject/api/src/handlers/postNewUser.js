@@ -17,14 +17,17 @@ function validateAttributes(name, lastName, userName, mail){
     }
 }
 
+
 const createNewUser = async (req, res) => {
-    if(req.body.password !== undefined)  
+console.log(`IMAGEN: ${req.body.image}`)
+
+  if(req.body.password !== undefined)  
         {
         try {
        
         
         let password = bcrypt.hashSync(req.body.password, 8);
-        const { name, lastName, userName, mail, address} = req.body
+        const { name, lastName, userName, mail, address, image} = req.body
         
         const validation = validateAttributes(name, lastName, userName, mail, address);
         if (validation === true) {
@@ -39,6 +42,7 @@ const createNewUser = async (req, res) => {
               userName,
               address,
               password,
+              image
             },
           })
           let token = jwt.sign({ user: newUser }, 'aaa', {
@@ -47,7 +51,7 @@ const createNewUser = async (req, res) => {
   
          if (!created ) res.status(201).send('There is already a user with that mail') 
          else {
-          console.log('hola')
+          console.log(newUser)
          }
   
         } else {
