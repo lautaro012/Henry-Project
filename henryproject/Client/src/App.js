@@ -29,10 +29,45 @@ const {
 } = process.env;
 
 function App() {
-
   let dispatch = useDispatch()
   const [user, setUser] = useState(null)
 
+<<<<<<< HEAD
+  useEffect(() =>  {
+
+         const getUser = async () => {
+      fetch("http://localhost:3001/auth/success", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+        Accept: "application/json", 
+        "Content-Type": "application/json",
+       //  "Access-Control-Allow-Credentials": true
+ 
+        },
+      }).then((response) => {
+        if(response.status === 200) {
+          console.log('entra a response')
+          return response.json()};
+        throw new Error('authentication has been failed')
+      }).then(resObject => {
+        localStorage.setItem('user', JSON.stringify(resObject))
+        setUser(resObject.user)
+      }).catch(err => {
+        console.log(err)
+      })
+    }
+      getUser()
+    
+
+
+  }, [])
+
+  console.log(user)
+
+
+ useEffect(() => {
+=======
   useEffect(() => {
 
     if (localStorage.length === 0) {
@@ -59,6 +94,7 @@ function App() {
   }, [])
 
   useEffect(() => {
+>>>>>>> Development
     if (localStorage.length === 0) {
       localStorage.setItem("products", JSON.stringify([]));
       localStorage.setItem("favProducts", JSON.stringify([]));
