@@ -17,13 +17,13 @@ export default function Favs() {
 
     useEffect(() => {
         localStorage.setItem("favProducts", JSON.stringify(items));
-      }, [items]);
+    }, [items]);
 
     return (
         <div className="conteinerFav">
             <h1>Bienvenido a tu lista de favoritos !</h1>
             {
-                 items && items.length ?
+                items && items.length ?
                     <div id="conteinerFav2">{
                         items && items.map(item => {
                             return (
