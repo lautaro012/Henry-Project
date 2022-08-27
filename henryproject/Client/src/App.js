@@ -25,30 +25,40 @@ const {
 
 
 function App() {
-
   let dispatch = useDispatch()
   const [user, setUser] = useState(null)
-   
+
   useEffect(() =>  {
-      const getUser = () => {
-        axios.get(`/auth/success`, {
-          // withCredentials: true,
-          "origin": [`${REACT_APP_API}`],
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-        })
-      .then(res => {
-          localStorage.setItem('usuario', JSON.stringify(res.data.user))   
-          console.log('entro al local')  
+
+         const getUser = async () => {
+      fetch("http://localhost:3001/auth/success", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+        Accept: "application/json", 
+        "Content-Type": "application/json",
+       //  "Access-Control-Allow-Credentials": true
+ 
+        },
+      }).then((response) => {
+        if(response.status === 200) {
+          console.log('entra a response')
+          return response.json()};
+        throw new Error('authentication has been failed')
+      }).then(resObject => {
+        localStorage.setItem('user', JSON.stringify(resObject))
+        setUser(resObject.user)
+      }).catch(err => {
+        console.log(err)
       })
-      .catch((err) => {
-        console.log('LOGIN_ERROR', err);
-      });
-      };
+    }
       getUser()
+    
+
 
   }, [])
 
+  console.log(user)
 
 
  useEffect(() => {
