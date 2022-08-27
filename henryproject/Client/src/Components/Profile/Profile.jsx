@@ -2,7 +2,10 @@ import './Profile.css'
 
 export function Profile () {
 
-    
+        let profile = JSON.parse(localStorage.getItem('usuario'))
+        const { displayName, photos } = profile
+        console.log(profile)
+  
 
     return (
         <div className='Search-Filters'>
@@ -14,7 +17,9 @@ export function Profile () {
         <div className='filters'>
             <div className="show-profile-settings">
                 <div>
-                    <img width={150} src='https://img2.thejournal.ie/inline/1881369/original/?width=630&version=1881369' alt='imagen de perfil'></img>
+                    <img width={150} src={`${photos[0].value}`} alt='imagen de perfil'/>
+                    {displayName}
+        
                 </div>
                 <div className='settings'>
                         

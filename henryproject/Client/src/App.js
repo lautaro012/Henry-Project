@@ -18,7 +18,6 @@ import Register from './Components/Register/Register';
 import { useDispatch } from 'react-redux';
 import { addToCart } from './redux/Actions/Index';
 import Footer from "./Components/Footer/Footer.jsx";
-
 require('dotenv').config();
 const {
   REACT_APP_API
@@ -47,7 +46,7 @@ function App() {
         console.log('LOGIN_ERROR', err);
       });
       };
-      getUser();
+      getUser()
 
   }, [])
 
