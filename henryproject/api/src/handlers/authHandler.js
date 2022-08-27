@@ -1,7 +1,6 @@
-const {Users} = require('../db')
+const {Users} = require('../db');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const {Op} = require('sequelize')
 
 function validateAttributes(name, lastName, userName, mail){
     if (!name || (typeof name !== "string") || (name.length < 0) ){
@@ -16,18 +15,14 @@ function validateAttributes(name, lastName, userName, mail){
         return true;
     }
 }
-
-
-const createNewUser = async (req, res) => {
-console.log(`IMAGEN: ${req.body.image}`)
-
-  if(req.body.password !== undefined)  
+const singUp = async (req, res) =>    {
+    if(req.body.password !== undefined)  
         {
         try {
        
         
         let password = bcrypt.hashSync(req.body.password, 8);
-        const { name, lastName, userName, mail, address, image} = req.body
+        const { name, lastName, userName, mail, address} = req.body
         
         const validation = validateAttributes(name, lastName, userName, mail, address);
         if (validation === true) {
@@ -42,16 +37,15 @@ console.log(`IMAGEN: ${req.body.image}`)
               userName,
               address,
               password,
-              image
             },
           })
           let token = jwt.sign({ user: newUser }, 'aaa', {
             expiresIn: Math.floor(Date.now() / 1000) + (60 * 60)
         });
-  
+
          if (!created ) res.status(201).send('There is already a user with that mail') 
          else {
-          console.log(newUser)
+          res.json({newUser,token})
          }
   
         } else {
@@ -63,29 +57,33 @@ console.log(`IMAGEN: ${req.body.image}`)
         res.status(500).json(error)
       }
     };
+}
+
+const singIn=async (req,res) => {
+    let { mail, password} = req.body;
+    try {
+        const user = await Users.findOne({
+            where: {mail : mail}
+        }) 
+        if(!user){
+            res.send(404).json({ msg: "Usuario con este correo no se encuentra" })
+        }else{
+
+            if(bcrypt.compareSync(password,user.password)){
+                let token = jwt.sign({ user: user }, 'aaa', {
+                    expiresIn: Math.floor(Date.now() / 1000) + (60 * 60)
+                });
+                res.json({user: user,token: token})
+            }else{
+                res.status(401).json({msg: "Contrasenia incorrecta"})
+            }
+        }
+    } catch (error) {
+        console.log('Error en inciar sesion',error)
     }
     
-    
-    // let { name, lastName, mail, adress, userName, image } = req.body;
-
-    // if (!userName || !name || !lastName || !mail) return res.status(404).send("Falta enviar datos obligatorios")
-    // try {
-    //     let newUser = await Users.create({
-    //         name,
-    //         lastName,
-    //         mail,
-    //         adress,
-    //         userName,
-    //         image
-    //     })
-
-    //     res.send(newUser)
-
-    // } catch (error) {
-    //     return res.status(404).send("Error en alguno de los datos provistos")
-    // }
 
 
-
-module.exports = {createNewUser}
-  
+}
+module.exports = {singUp,singIn}
+// module.exports = {singIn}
