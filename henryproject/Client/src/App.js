@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import axios from 'axios'
 import LandingPage from './Components/Landing_Page/LandingPage.jsx'
 import About from './Components/About_Us/About.jsx'
 import Home from './Components/Home/Home.jsx'
@@ -15,46 +15,61 @@ import Cart from './Components/Cart/Cart.jsx';
 import EditVideogame from './Components/CreateVideogame/EditVideogame/EditVideogame';
 import { useEffect, useState } from 'react';
 import Register from './Components/Register/Register';
+import { useDispatch } from 'react-redux';
+import { addToCart } from './redux/Actions/Index';
 import Footer from "./Components/Footer/Footer.jsx";
+
+require('dotenv').config();
+const {
+  REACT_APP_API
+} = process.env;
+
+
 
 
 function App() {
+
+  let dispatch = useDispatch()
   const [user, setUser] = useState(null)
    
   useEffect(() =>  {
-    
-  //  const getUser = async () => {
-  //    fetch("http://localhost:3001/auth/success", {
-  //      method: "GET",
-  //      credentials: "include",
-  //      headers: {
-  //      Accept: "application/json", 
-  //      "Content-Type": "application/json",
-  //     //  "Access-Control-Allow-Credentials": true
-
-  //      },
-  //    }).then((response) => {
-  //      if(response.status === 200) return response.json();
-  //      throw new Error('authentication has been failed')
-  //    }).then(resObject => {
-  //      setUser(resObject.user)
-  //    }).catch(err => {
-  //      console.log(err)
-  //    })
-  //  }
-  //    const saveLocalStorage = async () => {
-  //      let usuario = user
-  //      localStorage.setItem("usuario", JSON.stringify(usuario))
-  //    }     
-   
-  //    if(!localStorage.getItem("usuario")) {
-  //          saveLocalStorage()
-  //    }
-  //   getUser()
+      const getUser = () => {
+        axios.get(`/auth/success`, {
+          // withCredentials: true,
+          "origin": [`${REACT_APP_API}`],
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+        })
+      .then(res => {
+        localStorage.setItem('user', JSON.stringify(res.data.user))
+      })
+      .catch((err) => {
+        console.log('LOGIN_ERROR', err);
+      });
+      };
+      getUser();
 
   }, [])
 
-  console.log(user)
+
+
+ useEffect(() => {
+    if (localStorage.length === 0) {
+      localStorage.setItem("products", JSON.stringify([]));
+      localStorage.setItem("favProducts", JSON.stringify([]));
+    }
+  }, [user]);
+
+  const videogamesLS = JSON.parse(localStorage.getItem("products"));
+
+  useEffect(() => {
+    dispatch(addToCart(videogamesLS));
+  }, [videogamesLS]);
+
+  // const favoritesLS = JSON.parse(localStorage.getItem("favProducts"));
+  // useEffect(() => {
+  //   dispatch(LocalStorageToFavs(favoritesLS));
+  // }, [favoritesLS]);
   
   return (
     <Router>
@@ -72,9 +87,10 @@ function App() {
         <Route path='/cart' element={<Cart/>} />
         <Route path='/edit' element={<EditVideogame></EditVideogame>}/>
         <Route path='/register' element={<Register></Register>}/>
+
       </Routes>
-      <Footer/>
-    </Router>
+      <Footer/>    
+      </Router>
   );
 }
 
