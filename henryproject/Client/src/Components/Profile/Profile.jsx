@@ -5,16 +5,17 @@ export function Profile () {
 
 
     function handleClick() {
-        console.log(profile.user)
+        console.log(profile.user)    
+
     }
     let profile = JSON.parse(localStorage.getItem('user'))
 
 
-     let displayName = `Bienvenid@ ${profile.user.displayName || profile.user.userName}`
+    let displayName = `Bienvenid@ ${profile.user.displayName || profile.user.userName}`
     let photos = profile.user.photos[0].value
-    console.log(photos)
        
-    
+    console.log(photos)
+
         
   
 
