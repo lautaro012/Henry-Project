@@ -36,6 +36,7 @@ const {
 
 function App() {
   let dispatch = useDispatch()
+
   const [user, setUser] = useState(null)
   const [userLogged, setUserLogged] = useState(false)
 
@@ -67,8 +68,6 @@ function App() {
     }
       getUser()
     
-
-
   }, [])
 
   console.log(user)
@@ -77,11 +76,13 @@ function App() {
 
   useEffect(() => {
     if(localStorage.getItem('user')) {
-      setUserLogged(true)}
+      setUserLogged(true)
+    }
  
     if (localStorage.length === 0) {
       localStorage.setItem("products", JSON.stringify([]));
       localStorage.setItem("favProducts", JSON.stringify([]));
+      
     }
   }, [user]);
 

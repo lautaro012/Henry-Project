@@ -15,7 +15,6 @@ const axios = require('axios')
 
 export default function Nav_bar({userLogged , setUserLogged}) {
 
-    const [modal, setModal] = useState(false)
     const itemsCart = useSelector(state => state.cart)
     const itemsFavorites = useSelector(state => state.favorites)
 
@@ -42,10 +41,6 @@ export default function Nav_bar({userLogged , setUserLogged}) {
     }
 
 
-    function onHanddlePop() {
-        modal === false ? setModal(true) : setModal(false)
-    }
-
     const [isOpen, setIsOpen] = useState(false);
 
     function toggleModal() {
@@ -69,7 +64,7 @@ export default function Nav_bar({userLogged , setUserLogged}) {
              {userLogged ? <button onClick={(e) => logOutClick(e)}>LOGOUT</button> : 
              
              <div>
-                <button onClick={toggleModal}>Open modal</button>
+                <button onClick={toggleModal}>Loggin</button>
                 <SignUserModal toggleModal={toggleModal} isOpen={isOpen} />
              </div>
                 

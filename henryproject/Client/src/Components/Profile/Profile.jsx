@@ -11,8 +11,8 @@ export function Profile () {
 
 
      let displayName = `Bienvenid@ ${profile.user.displayName || profile.user.userName}`
-    // let photos = profile.user.photos[0].value
-
+    let photos = profile.user.photos[0].value
+    console.log(photos)
        
     
         
@@ -28,8 +28,7 @@ export function Profile () {
         <div className='filters'>
             <div className="show-profile-settings">
                 <div>
-                    {/* <img width={150} src={photos} alt='imagen de perfil'/> */}
-        
+                    <img width={150} src={`${photos}`} alt='imagen de perfil'/>
                 </div>
                 <div className='settings'>
                     <button onClick={handleClick} >probar consola</button>
