@@ -1,4 +1,6 @@
 import './App.css';
+import { useDispatch } from 'react-redux';
+import { actualizarCart, actualizarFav } from './redux/Actions/Index';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios'
 import LandingPage from './Components/Landing_Page/LandingPage.jsx'
@@ -12,17 +14,16 @@ import Admin from './Components/Admin/Admin';
 import { Profile } from './Components/Profile/Profile';
 import LoadingScreen from './Components/LoadingScreen/LoadingScreen';
 import Cart from './Components/Cart/Cart.jsx';
+import Footer from './Components/Footer/Footer.jsx'
 import Favoritos from './Components/Favoritos/Favoritos.jsx'
 import EditVideogame from './Components/CreateVideogame/EditVideogame/EditVideogame';
 import { useEffect, useState } from 'react';
 import Register from './Components/Register/Register';
 import { FormularioPago } from './Components/FormularioPago/FormularioPago';
 
-import {Elements} from "@stripe/react-stripe-js";
-import {loadStripe} from "@stripe/stripe-js"
-const stripePromise=loadStripe("pk_test_51LaZvGBnw8Rgt2NjQI3zwuWRhuXnnGKWZNCgHwz0UPBxh6t0l0SlRlMVMwTWvQUGfgyh9e4D0b7MD8sGiArVOQMg00JrfIx5p5")
-import { useDispatch } from 'react-redux';
-import { actualizarCart, actualizarFav } from './redux/Actions/Index';
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js"
+const stripePromise = loadStripe("pk_test_51LaZvGBnw8Rgt2NjQI3zwuWRhuXnnGKWZNCgHwz0UPBxh6t0l0SlRlMVMwTWvQUGfgyh9e4D0b7MD8sGiArVOQMg00JrfIx5p5")
 require('dotenv').config();
 const {
   REACT_APP_API
@@ -90,13 +91,14 @@ function App() {
         <Route path='/favorites' element={<Favoritos />} />
         <Route path='/edit' element={<EditVideogame></EditVideogame>} />
         <Route path='/register' element={<Register></Register>} />
-        <Route path='/home/create' element={<CreateVideogame/>} />
-        <Route path='/admin' element={<Admin/>} />
-        <Route path='/profile' element={<Profile/>} />
-        <Route path='/Loading' element={<LoadingScreen/>} />
-        <Route path='/cart' element={<Cart/>} />
-        <Route path='/cart/formularioPago' element={<Elements stripe={stripePromise}><FormularioPago></FormularioPago></Elements>}/>
+        <Route path='/home/create' element={<CreateVideogame />} />
+        <Route path='/admin' element={<Admin />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/Loading' element={<LoadingScreen />} />
+        <Route path='/cart' element={<Cart />} />
+        <Route path='/cart/formularioPago' element={<Elements stripe={stripePromise}><FormularioPago></FormularioPago></Elements>} />
       </Routes>
+      <Footer />
     </Router>
   );
 }

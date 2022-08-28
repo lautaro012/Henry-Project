@@ -25,7 +25,7 @@ export default function Nav_bar() {
     const [isOpen, setIsOpen] = useState(false);
 
     function toggleModal() {
-     setIsOpen(!isOpen);
+        setIsOpen(!isOpen);
     }
 
     return (
@@ -36,18 +36,16 @@ export default function Nav_bar() {
             </Link>
 
             <div>
+            <Link to='/home'><button>Home</button></Link>
+            </div>
+            {/* <Link to='/home/create'><button>Create Videogame</button></Link>
 
-                <Link to='/home'><button>Home</button></Link>
-                {/* <Link to='/home/create'><button>Create Videogame</button></Link>
-
-                <Link to='/profile'> <button> My Profile </button></Link>
-             */}
-
+<Link to='/profile'> <button> My Profile </button></Link>
+*/}
+            <div>
                 <button onClick={toggleModal}>Open modal</button>
                 <SignUserModal toggleModal={toggleModal} isOpen={isOpen} />
-   
             </div>
-           
 
             <div id="cart">
                 <Link to='/cart'>
@@ -62,7 +60,7 @@ export default function Nav_bar() {
                 </Link>
                 <h3>{itemsFavorites && itemsFavorites.length ? itemsFavorites.length : 0}</h3>
             </div>
-            
+
         </nav>
     )
 }
