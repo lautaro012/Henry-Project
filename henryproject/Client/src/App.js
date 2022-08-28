@@ -38,7 +38,7 @@ function App() {
 // <<<<<<< HEAD
   useEffect(() =>  {
 
-         const getUser = async () => {
+      const getUser = async () => {
       fetch("http://localhost:3001/auth/success", {
         method: "GET",
         credentials: "include",
@@ -72,6 +72,8 @@ function App() {
 
 
   useEffect(() => {
+    if(localStorage.getItem('user')) {
+      setUserLogged(true)}
  
     if (localStorage.length === 0) {
       localStorage.setItem("products", JSON.stringify([]));
