@@ -2,7 +2,8 @@ const router = require('express').Router()
 const passport = require('passport')
 // const { Users } = require('../db')
 
-router.get("/google", passport.authenticate("google", {scope:["profile"]}))
+
+router.get("/google", passport.authenticate("google", {scope:["profile", "email"]}))
 router.get("/google/callback", passport.authenticate("google", {
     successRedirect: "http://localhost:3000/profile",
     failureRedirect: "http://localhost:3000/"
