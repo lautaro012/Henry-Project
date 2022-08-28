@@ -44,11 +44,10 @@ export default function Cart({props}) {
                             )
                         })
                     }
-                        <div>
+                        <div id="caja">
                             <button onClick={() => deleteItem("All")}>Vaciar carrito</button>
                             <h2>Suma total : ${precios}</h2>
                             <Link to={"/cart/formularioPago"}><button>Pagar</button></Link>
-
                         </div>
                     </div>
 

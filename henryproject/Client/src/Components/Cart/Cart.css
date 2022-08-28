@@ -21,3 +21,9 @@
 #conteinerCart2 {
     display: contents;
 }
+
+#caja {
+    display: flex;
+    align-items: center;
+    border-style:inset
+}
