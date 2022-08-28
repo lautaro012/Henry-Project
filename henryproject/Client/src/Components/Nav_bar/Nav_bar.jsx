@@ -10,6 +10,7 @@ import UserPop from './UserPop.jsx'
 
 import './Nav_bar.css'
 import { useState } from "react";
+import ProfileNav from "../ProfileNav/ProfileNav";
 const axios = require('axios')
 
 
@@ -18,27 +19,6 @@ export default function Nav_bar({userLogged , setUserLogged}) {
     const itemsCart = useSelector(state => state.cart)
     const itemsFavorites = useSelector(state => state.favorites)
 
-   async function logOutClick() {
-
-        fetch("http://localhost:3001/auth/logout", {
-          method: "GET",
-          credentials: "include",
-          mode: "no-cors",
-          headers: {
-          Accept: "application/json", 
-          "Content-Type": "application/json",
-        //    "Access-Control-Allow-Credentials": true,
-        //   "Access-Control-Allow-Origin": true
-   
-          },
-        }).then(() => {
-            localStorage.removeItem('user')
-            setUserLogged(false)
-        }).catch(err => {
-          console.log(err)
-        })
-
-    }
 
 
     const [isOpen, setIsOpen] = useState(false);
@@ -61,7 +41,7 @@ export default function Nav_bar({userLogged , setUserLogged}) {
 
                 <Link to='/profile'> <button> My Profile </button></Link>
              */}
-             {userLogged ? <button onClick={(e) => logOutClick(e)}>LOGOUT</button> : 
+             {userLogged ? <ProfileNav userLogged={userLogged} setUserLogged={setUserLogged} />: 
              
              <div>
                 <button onClick={toggleModal}>Loggin</button>
