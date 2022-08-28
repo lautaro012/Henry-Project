@@ -13,30 +13,30 @@ import { useState } from "react";
 const axios = require('axios')
 
 
-export default function Nav_bar({userLogged , setUserLogged}) {
+export default function Nav_bar({ userLogged, setUserLogged }) {
 
     const [modal, setModal] = useState(false)
     const itemsCart = useSelector(state => state.cart)
     const itemsFavorites = useSelector(state => state.favorites)
 
-   async function logOutClick() {
+    async function logOutClick() {
 
         fetch("http://localhost:3001/auth/logout", {
-          method: "GET",
-          credentials: "include",
-          mode: "no-cors",
-          headers: {
-          Accept: "application/json", 
-          "Content-Type": "application/json",
-        //    "Access-Control-Allow-Credentials": true,
-        //   "Access-Control-Allow-Origin": true
-   
-          },
+            method: "GET",
+            credentials: "include",
+            mode: "no-cors",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                //    "Access-Control-Allow-Credentials": true,
+                //   "Access-Control-Allow-Origin": true
+
+            },
         }).then(() => {
             localStorage.removeItem('user')
             setUserLogged(false)
         }).catch(err => {
-          console.log(err)
+            console.log(err)
         })
 
     }
@@ -60,7 +60,7 @@ export default function Nav_bar({userLogged , setUserLogged}) {
             </Link>
 
             <div>
-            <Link to='/home'><button>Home</button></Link>
+                <Link to='/home'><button>Home</button></Link>
             </div>
             {/* <Link to='/home/create'><button>Create Videogame</button></Link>
 
@@ -70,25 +70,23 @@ export default function Nav_bar({userLogged , setUserLogged}) {
             <div>
                 <button onClick={toggleModal}>Open modal</button>
                 <SignUserModal toggleModal={toggleModal} isOpen={isOpen} />
-=======
-                <Link to='/home'><button>Home</button></Link>
-                {/* <Link to='/home/create'><button>Create Videogame</button></Link>
+            </div>
+            {/* <Link to='/home/create'><button>Create Videogame</button></Link>
 
                 <Link to='/profile'> <button> My Profile </button></Link>
              */}
-             {userLogged ? <button onClick={(e) => logOutClick(e)}>LOGOUT</button> : 
-             
-             <div>
-                <button onClick={toggleModal}>Open modal</button>
-                <SignUserModal toggleModal={toggleModal} isOpen={isOpen} userLogged={userLogged} setUserLogged={setUserLogged} />
-             </div>
-                
-             }
+            {
+                userLogged ?
+                    <div>
+                        <button onClick={(e) => logOutClick(e)}>LOGOUT</button>
+                    </div>
+                    :
+                    <div>
+                        <button onClick={toggleModal}>Open modal</button>
+                        <SignUserModal toggleModal={toggleModal} isOpen={isOpen} userLogged={userLogged} setUserLogged={setUserLogged} />
+                    </div>
 
-                
-   
->>>>>>> Development
-            </div>
+            }
 
             <div id="cart">
                 <Link to='/cart'>

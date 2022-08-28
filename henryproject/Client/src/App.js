@@ -26,8 +26,6 @@ import { FormularioPago } from './Components/FormularioPago/FormularioPago';
 
 import {Elements} from "@stripe/react-stripe-js";
 import {loadStripe} from "@stripe/stripe-js"
-import { useDispatch } from 'react-redux';
-import { actualizarCart, actualizarFav } from './redux/Actions/Index';
 const stripePromise=loadStripe("pk_test_51LaZvGBnw8Rgt2NjQI3zwuWRhuXnnGKWZNCgHwz0UPBxh6t0l0SlRlMVMwTWvQUGfgyh9e4D0b7MD8sGiArVOQMg00JrfIx5p5")
 
 require('dotenv').config();
