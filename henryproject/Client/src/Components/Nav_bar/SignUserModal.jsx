@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { signin } from "../../redux/Actions/Index";
 
 
-export default function UserSign({toggleModal, isOpen}) {
+export default function UserSign({toggleModal, isOpen, userLogged, setUserLogged}) {
 
     let dispatch = useDispatch()
     const [input, setInput] = useState({
@@ -41,6 +41,7 @@ export default function UserSign({toggleModal, isOpen}) {
         mail: '',
         password: ''
         })
+        if(localStorage.getItem('user')) {setUserLogged(true)}
         console.log('logueado con', input)
     }
 
