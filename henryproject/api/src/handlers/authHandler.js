@@ -69,13 +69,12 @@ const singIn=async (req,res) => {
         if(!user){
             res.send(404).json({ msg: "Usuario con este correo no se encuentra" })
         }else{
-
             if(bcrypt.compareSync(password,user.password)){
                 let token = jwt.sign({ user: user }, 'aaa', {
                     expiresIn: Math.floor(Date.now() / 1000) + (60 * 60)
                 });
                 res.json({user: user,token: token})
-                // .redirect("http://localhost:3000/home")
+                // .redirect("http://localhost:3000/profile")
             }else{
                 res.status(401).json({msg: "Contrasenia incorrecta"})
             }

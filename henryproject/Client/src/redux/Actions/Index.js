@@ -31,11 +31,18 @@ export function getAllGames(name) {
 
     if (name) {
         return async function (dispatch) {
-            let response = await axios(`/videogames?name=${name}`)
-            dispatch({
-                type: GET_ALL_GAMES_BY_NAME,
-                payload: response.data
-            })
+            try {
+                let response = await axios(`/videogames?name=${name}`)
+                dispatch({
+                    type: GET_ALL_GAMES_BY_NAME,
+                    payload: response.data
+                })
+            } catch (error) {
+                alert('no games whit that name :(')
+                dispatch({
+                    type: CLEAR,                  
+                })
+            }
         }
     } else {
         return async function (dispatch) {
@@ -281,7 +288,7 @@ export function signin(payload) {
             .then(resp => resp.data)
             .then(resp => {
                 console.log(resp)
-                localStorage.setItem('user', JSON.parse(resp))
+                localStorage.setItem('user', JSON.stringify(resp))
             })
             .catch(err => console.log(payload))
     }
