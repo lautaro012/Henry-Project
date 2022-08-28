@@ -42,7 +42,7 @@ export default function UserSign({toggleModal, isOpen, setUserLogged }) {
         mail: '',
         password: ''
         })
-
+        setUserLogged(true)
         console.log('logueado con', input)
         setUserLogged(true)
     }

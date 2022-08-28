@@ -31,11 +31,18 @@ export function getAllGames(name) {
 
     if (name) {
         return async function (dispatch) {
-            let response = await axios(`/videogames?name=${name}`)
-            dispatch({
-                type: GET_ALL_GAMES_BY_NAME,
-                payload: response.data
-            })
+            try {
+                let response = await axios(`/videogames?name=${name}`)
+                dispatch({
+                    type: GET_ALL_GAMES_BY_NAME,
+                    payload: response.data
+                })
+            } catch (error) {
+                alert('no games whit that name :(')
+                dispatch({
+                    type: CLEAR,                  
+                })
+            }
         }
     } else {
         return async function (dispatch) {
