@@ -27,7 +27,7 @@ export default function Admin () {
             id="search"
             className="search"
             type="text"
-            value={name} 
+            //value={name} 
             onChange= {(e) => handleOnChange(e)}
             placeholder="Buscar videojuego..."
           />

@@ -74,7 +74,6 @@ function App() {
         <Route path='/edit' element={<EditVideogame></EditVideogame>}/>
         <Route path='/register' element={<Register></Register>}/>
         <Route path='/admin/editgames' element={<NewCard/>} />
-
       </Routes>
     </Router>
   );
