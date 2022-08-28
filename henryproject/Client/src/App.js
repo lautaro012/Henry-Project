@@ -1,5 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import { useDispatch } from 'react-redux';
+import { addToCart } from './redux/Actions/Index';
 import axios from 'axios'
 import LandingPage from './Components/Landing_Page/LandingPage.jsx'
 import About from './Components/About_Us/About.jsx'
@@ -30,6 +32,8 @@ const {
 function App() {
   let dispatch = useDispatch()
   const [user, setUser] = useState(null)
+  const [userLogged, setUserLogged] = useState(false)
+
 
 // <<<<<<< HEAD
   useEffect(() =>  {
@@ -50,6 +54,7 @@ function App() {
           return response.json()};
         throw new Error('authentication has been failed')
       }).then(resObject => {
+        setUserLogged(true)
         localStorage.setItem('user', JSON.stringify(resObject))
         setUser(resObject.user)
       }).catch(err => {
@@ -67,6 +72,7 @@ function App() {
 
 
   useEffect(() => {
+ 
     if (localStorage.length === 0) {
       localStorage.setItem("products", JSON.stringify([]));
       localStorage.setItem("favProducts", JSON.stringify([]));
@@ -88,7 +94,7 @@ function App() {
 
   return (
     <Router>
-      <NavBar />
+      <NavBar userLogged={userLogged} setUserLogged={setUserLogged} />
       <Routes>
         <Route exact path='/' element={<LandingPage />} />
         <Route path='/about' element={<About />} />
