@@ -1,12 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { deleteItemFromCart } from "../../redux/Actions/Index.js";
 import Sad from '../../Style/Imagenes/sadFace.png'
 
 import '../Cart/Cart.css'
+// import { FormularioPago } from "../FormularioPago/FormularioPago.jsx";
 
-export default function Cart() {
+export default function Cart({props}) {
 
     const dispatch = useDispatch()
     const items = useSelector(state => state.cart)
@@ -22,7 +24,8 @@ export default function Cart() {
 
     useEffect(() => {
         localStorage.setItem("products", JSON.stringify(items));
-      }, [items]);
+        localStorage.setItem("precioTotal", JSON.stringify(precios));
+      }, [items][precios]);
 
     return (
         <div className="conteinerCart">
@@ -44,6 +47,8 @@ export default function Cart() {
                         <div>
                             <button onClick={() => deleteItem("All")}>Vaciar carrito</button>
                             <h2>Suma total : ${precios}</h2>
+                            <Link to={"/cart/formularioPago"}><button>Pagar</button></Link>
+
                         </div>
                     </div>
 
