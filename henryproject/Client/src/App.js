@@ -30,6 +30,8 @@ const {
 function App() {
   let dispatch = useDispatch()
   const [user, setUser] = useState(null)
+  const [userLogged, setUserLogged] = useState(false)
+
 
 // <<<<<<< HEAD
   useEffect(() =>  {
@@ -50,6 +52,7 @@ function App() {
           return response.json()};
         throw new Error('authentication has been failed')
       }).then(resObject => {
+        setUserLogged(true)
         localStorage.setItem('user', JSON.stringify(resObject))
         setUser(resObject.user)
       }).catch(err => {
@@ -67,6 +70,7 @@ function App() {
 
 
   useEffect(() => {
+ 
     if (localStorage.length === 0) {
       localStorage.setItem("products", JSON.stringify([]));
       localStorage.setItem("favProducts", JSON.stringify([]));
@@ -88,7 +92,7 @@ function App() {
 
   return (
     <Router>
-      <NavBar />
+      <NavBar userLogged={userLogged} setUserLogged={setUserLogged} />
       <Routes>
         <Route exact path='/' element={<LandingPage />} />
         <Route path='/about' element={<About />} />
