@@ -2,10 +2,14 @@ import './Profile.css'
 
 export function Profile () {
 
+    function handleClick() {
+        console.log(profile.user.provider)
+    }
+    let profile = JSON.parse(localStorage.getItem('user'))
+    let displayName = profile.user.displayName
+    let photos = profile.user.photos[0].value
 
-        let profile = localStorage.getItem('usuario')
-        let displayName = ''
-        let photos = ''
+       
     
         
   
@@ -21,11 +25,11 @@ export function Profile () {
             <div className="show-profile-settings">
                 <div>
                     <img width={150} src={photos} alt='imagen de perfil'/>
-                    {displayName}
         
                 </div>
                 <div className='settings'>
-                        
+                    <button onClick={handleClick} >probar consola</button>
+                    <span>{displayName}</span>
                     <span >  MI PERFIL  </span>  
 
                     <span > MY GAMES</span>
