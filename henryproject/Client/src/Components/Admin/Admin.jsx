@@ -52,7 +52,7 @@ export default function Admin () {
 
             <div className='show-current-setting-admin'>
                 <div className='half'>
-                    <CreateVideogame></CreateVideogame>
+                    {/* <CreateVideogame></CreateVideogame> */}
                 </div>
                 <div className='half'>
                     <span> PREVIEW </span>
