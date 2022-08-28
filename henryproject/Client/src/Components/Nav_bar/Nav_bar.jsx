@@ -10,13 +10,37 @@ import UserPop from './UserPop.jsx'
 
 import './Nav_bar.css'
 import { useState } from "react";
+const axios = require('axios')
 
-export default function Nav_bar() {
+
+export default function Nav_bar({userLogged , setUserLogged}) {
 
     const [modal, setModal] = useState(false)
-    const [userLogged, setUserLogged] = useState(false)
     const itemsCart = useSelector(state => state.cart)
     const itemsFavorites = useSelector(state => state.favorites)
+
+   async function logOutClick() {
+
+        fetch("http://localhost:3001/auth/logout", {
+          method: "GET",
+          credentials: "include",
+          mode: "no-cors",
+          headers: {
+          Accept: "application/json", 
+          "Content-Type": "application/json",
+        //    "Access-Control-Allow-Credentials": true,
+        //   "Access-Control-Allow-Origin": true
+   
+          },
+        }).then(() => {
+            localStorage.removeItem('user')
+            setUserLogged(false)
+        }).catch(err => {
+          console.log(err)
+        })
+
+    }
+
 
     function onHanddlePop() {
         modal === false ? setModal(true) : setModal(false)
@@ -40,11 +64,30 @@ export default function Nav_bar() {
             </div>
             {/* <Link to='/home/create'><button>Create Videogame</button></Link>
 
+<<<<<<< HEAD
 <Link to='/profile'> <button> My Profile </button></Link>
 */}
             <div>
                 <button onClick={toggleModal}>Open modal</button>
                 <SignUserModal toggleModal={toggleModal} isOpen={isOpen} />
+=======
+                <Link to='/home'><button>Home</button></Link>
+                {/* <Link to='/home/create'><button>Create Videogame</button></Link>
+
+                <Link to='/profile'> <button> My Profile </button></Link>
+             */}
+             {userLogged ? <button onClick={(e) => logOutClick(e)}>LOGOUT</button> : 
+             
+             <div>
+                <button onClick={toggleModal}>Open modal</button>
+                <SignUserModal toggleModal={toggleModal} isOpen={isOpen} userLogged={userLogged} setUserLogged={setUserLogged} />
+             </div>
+                
+             }
+
+                
+   
+>>>>>>> Development
             </div>
 
             <div id="cart">
