@@ -1,4 +1,4 @@
-.conteinerCart {
+.conteinerFav {
     color: white;
     margin-top: 10%;
     display: flex;
@@ -6,7 +6,7 @@
     flex-direction: column;
 }
 
-#item {
+#itemFav {
     border-style: groove;
     display: inline-flex;
     align-items: center;
@@ -14,10 +14,10 @@
     max-width: 75%;
 }
 
-#item img {
+#itemFav img {
     max-width: 25%;
 }
 
-#conteinerCart2 {
+#conteinerFav2 {
     display: contents;
 }
