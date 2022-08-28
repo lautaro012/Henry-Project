@@ -20,6 +20,7 @@ import {
     ADD_TO_FAV,
     ACTUALIZAR_CART,
     ACTUALIZAR_FAV,
+    POST_VIDEOGAME,
 } from "../Actions/Index"
 
 const initialState = {
@@ -181,6 +182,10 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 videogames: [...state.videogames, action.payload],
             }
+            case POST_VIDEOGAME:
+        return{
+          ...state
+        }
 
         case FILTER_GAMES:
             let { platformby, genreby } = action.payload
