@@ -281,7 +281,7 @@ export function signin(payload) {
             .then(resp => resp.data)
             .then(resp => {
                 console.log(resp)
-                localStorage.setItem('user', JSON.parse(resp))
+                localStorage.setItem('user', JSON.stringify(resp))
             })
             .catch(err => console.log(payload))
     }

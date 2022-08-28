@@ -12,6 +12,7 @@ import GameDetail from './Components/Game_Details/GameDetails.jsx'
 import CreateVideogame from './Components/CreateVideogame/CreateVideogame';
 import Admin from './Components/Admin/Admin';
 import { Profile } from './Components/Profile/Profile';
+import UserSign from './Components/Nav_bar/SignUserModal';
 import LoadingScreen from './Components/LoadingScreen/LoadingScreen';
 import Cart from './Components/Cart/Cart.jsx';
 import Favoritos from './Components/Favoritos/Favoritos.jsx'
@@ -106,7 +107,7 @@ function App() {
         <Route path='/register' element={<Register></Register>} />
         <Route path='/home/create' element={<CreateVideogame/>} />
         <Route path='/admin' element={<Admin/>} />
-        <Route path='/profile' element={<Profile/>} />
+        <Route path='/profile' element={ userLogged ? <Profile/> : <UserSign isOpen={true}/>} />
         <Route path='/Loading' element={<LoadingScreen/>} />
         <Route path='/cart' element={<Cart/>} />
         <Route path='/cart/formularioPago' element={<Elements stripe={stripePromise}><FormularioPago></FormularioPago></Elements>}/>

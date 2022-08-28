@@ -69,7 +69,7 @@ export default function Nav_bar({userLogged , setUserLogged}) {
              {userLogged ? <button onClick={(e) => logOutClick(e)}>LOGOUT</button> : 
              
              <div>
-                <button onClick={toggleModal}>Open modal</button>
+                <button onClick={toggleModal}> Loggin </button>
                 <SignUserModal toggleModal={toggleModal} isOpen={isOpen} />
              </div>
                 
