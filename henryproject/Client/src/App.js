@@ -18,6 +18,7 @@ import Favoritos from './Components/Favoritos/Favoritos.jsx'
 import EditVideogame from './Components/CreateVideogame/EditVideogame/EditVideogame';
 import { useEffect, useState } from 'react';
 import Register from './Components/Register/Register';
+import NewCard from './Components/Admin/newCard';
 import { FormularioPago } from './Components/FormularioPago/FormularioPago';
 import {Elements} from "@stripe/react-stripe-js";
 import {loadStripe} from "@stripe/stripe-js"
@@ -35,7 +36,6 @@ function App() {
   const [userLogged, setUserLogged] = useState(false)
 
 
-// <<<<<<< HEAD
   useEffect(() =>  {
 
          const getUser = async () => {
@@ -109,7 +109,13 @@ function App() {
         <Route path='/profile' element={<Profile/>} />
         <Route path='/Loading' element={<LoadingScreen/>} />
         <Route path='/cart' element={<Cart/>} />
+
+        <Route path='/edit' element={<EditVideogame></EditVideogame>}/>
+        <Route path='/register' element={<Register></Register>}/>
+        <Route path='/admin/editgames' element={<NewCard/>} />
+
         <Route path='/cart/formularioPago' element={<Elements stripe={stripePromise}><FormularioPago></FormularioPago></Elements>}/>
+
       </Routes>
     </Router>
   );
