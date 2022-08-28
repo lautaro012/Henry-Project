@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteItemFromFavs } from "../../redux/Actions/Index.js";
+import { addToCart, deleteItemFromFavs } from "../../redux/Actions/Index.js";
 import Sad from '../../Style/Imagenes/sadFace.png'
 
 import '../Favoritos/Favoritos.css'
@@ -13,6 +13,11 @@ export default function Favs() {
 
     function deleteItem(id) {
         dispatch(deleteItemFromFavs(id))
+    }
+
+    function agregarAlCarrito(item){
+        dispatch(deleteItemFromFavs(item.id))
+        dispatch(addToCart(item))
     }
 
     useEffect(() => {
@@ -32,6 +37,7 @@ export default function Favs() {
                                     <h1>{item.name}</h1>
                                     <h3>$ {item.price}</h3>
                                     <button onClick={() => deleteItem(item.id)}>Delete</button>
+                                    <button onClick={() => agregarAlCarrito(item)}>Agregar al carrito</button>
                                 </div>
                             )
                         })

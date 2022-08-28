@@ -63,12 +63,13 @@
     left: 2%;
     border-radius: 40px;
     backdrop-filter: blur(10px);
+    justify-content: space-between;
 }
 
 .Nav_bar div {
     padding-left: 0;
     padding-right: 0;
-    width: 100%;
+    width: fit-content;
     display: flex;
     align-items: center;
     justify-content: space-around;
