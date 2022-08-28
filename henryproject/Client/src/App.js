@@ -14,6 +14,7 @@ import GameDetail from './Components/Game_Details/GameDetails.jsx'
 import CreateVideogame from './Components/CreateVideogame/CreateVideogame';
 import Admin from './Components/Admin/Admin';
 import { Profile } from './Components/Profile/Profile';
+import UserSign from './Components/Nav_bar/SignUserModal';
 import LoadingScreen from './Components/LoadingScreen/LoadingScreen';
 import Cart from './Components/Cart/Cart.jsx';
 import Footer from './Components/Footer/Footer.jsx'
@@ -35,6 +36,7 @@ const {
 
 function App() {
   let dispatch = useDispatch()
+
   const [user, setUser] = useState(null)
   const [userLogged, setUserLogged] = useState(false)
 
@@ -66,8 +68,6 @@ function App() {
     }
       getUser()
     
-
-
   }, [])
 
   console.log(user)
@@ -77,10 +77,12 @@ function App() {
   useEffect(() => {
     if(localStorage.getItem('user')) {
       setUserLogged(true)} else {setUserLogged(false)}
+
  
     if (localStorage.length === 0) {
       localStorage.setItem("products", JSON.stringify([]));
       localStorage.setItem("favProducts", JSON.stringify([]));
+      
     }
   }, [user]);
 
@@ -112,7 +114,7 @@ function App() {
 
         <Route path='/home/create' element={<CreateVideogame/>} />
         <Route path='/admin' element={<Admin/>} />
-        <Route path='/profile' element={<Profile/>} />
+        <Route path='/profile' element={ userLogged ? <Profile/> : <UserSign isOpen={true}/>} />
         <Route path='/Loading' element={<LoadingScreen/>} />
         <Route path='/cart' element={<Cart/>} />
 
