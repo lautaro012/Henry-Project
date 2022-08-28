@@ -15,7 +15,7 @@ import Cart from './Components/Cart/Cart.jsx';
 import EditVideogame from './Components/CreateVideogame/EditVideogame/EditVideogame';
 import { useEffect, useState } from 'react';
 import Register from './Components/Register/Register';
-import NewCard from './Components/Admin/newCard';
+import newCard from './Components/Admin/newCard';
 
 
 
@@ -73,7 +73,7 @@ function App() {
         <Route path='/cart' element={<Cart/>} />
         <Route path='/edit' element={<EditVideogame></EditVideogame>}/>
         <Route path='/register' element={<Register></Register>}/>
-        <Route path='/admin/editgames' element={<NewCard/>} />
+        <Route path='/admin/editgames' element={<newCard/>} />
       </Routes>
     </Router>
   );
