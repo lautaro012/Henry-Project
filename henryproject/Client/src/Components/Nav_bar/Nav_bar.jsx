@@ -67,10 +67,7 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
 <<<<<<< HEAD
 <Link to='/profile'> <button> My Profile </button></Link>
 */}
-            <div>
-                <button onClick={toggleModal}>Open modal</button>
-                <SignUserModal toggleModal={toggleModal} isOpen={isOpen} />
-            </div>
+
             {/* <Link to='/home/create'><button>Create Videogame</button></Link>
 
                 <Link to='/profile'> <button> My Profile </button></Link>
@@ -78,11 +75,11 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
             {
                 userLogged ?
                     <div>
-                        <button onClick={(e) => logOutClick(e)}>LOGOUT</button>
+                        <button onClick={(e) => logOutClick(e)}>Loggout</button>
                     </div>
                     :
                     <div>
-                        <button onClick={toggleModal}>Open modal</button>
+                        <button onClick={toggleModal}>Loggin</button>
                         <SignUserModal toggleModal={toggleModal} isOpen={isOpen} userLogged={userLogged} setUserLogged={setUserLogged} />
                     </div>
 
