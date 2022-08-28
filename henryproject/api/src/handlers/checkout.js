@@ -7,7 +7,7 @@ const checkout=async(id,amount)=>{
       const payment = await stripe.paymentIntents.create({
         amount,
         currency: "USD", //la moneda
-        description: "Gaming Keyboard", //descripcion de producto
+        description: "Videogames", //descripcion de producto
         payment_method: id, //id del fronted
         confirm: true, //confirm the payment at the same time
       });
