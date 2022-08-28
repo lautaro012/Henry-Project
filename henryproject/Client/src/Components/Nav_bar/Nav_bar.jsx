@@ -49,7 +49,7 @@ export default function Nav_bar({userLogged , setUserLogged}) {
     const [isOpen, setIsOpen] = useState(false);
 
     function toggleModal() {
-     setIsOpen(!isOpen);
+        setIsOpen(!isOpen);
     }
 
     return (
@@ -60,7 +60,17 @@ export default function Nav_bar({userLogged , setUserLogged}) {
             </Link>
 
             <div>
+            <Link to='/home'><button>Home</button></Link>
+            </div>
+            {/* <Link to='/home/create'><button>Create Videogame</button></Link>
 
+<<<<<<< HEAD
+<Link to='/profile'> <button> My Profile </button></Link>
+*/}
+            <div>
+                <button onClick={toggleModal}>Open modal</button>
+                <SignUserModal toggleModal={toggleModal} isOpen={isOpen} />
+=======
                 <Link to='/home'><button>Home</button></Link>
                 {/* <Link to='/home/create'><button>Create Videogame</button></Link>
 
@@ -77,8 +87,8 @@ export default function Nav_bar({userLogged , setUserLogged}) {
 
                 
    
+>>>>>>> Development
             </div>
-           
 
             <div id="cart">
                 <Link to='/cart'>
@@ -93,7 +103,7 @@ export default function Nav_bar({userLogged , setUserLogged}) {
                 </Link>
                 <h3>{itemsFavorites && itemsFavorites.length ? itemsFavorites.length : 0}</h3>
             </div>
-            
+
         </nav>
     )
 }

@@ -12,6 +12,7 @@ export default function Carrousel2({games}) {
                     return (
                             <Link to={'/home/games/' + game.id} key={game.id} className="carrousel_card">
                                 <img src={game.image} alt={game.id} />
+                                <h1>{game.name}</h1>
                             </Link>
                     )
                 })
