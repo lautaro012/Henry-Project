@@ -21,17 +21,36 @@ const server = express();
 
 server.name = 'API';
 
+//GOOGLE AUTH:
+
+server.use(cookieSession({
+  name: 'session',
+  keys: ['algo'],
+  maxAge: 24*60*60*100
+
+}))
+
+server.use(passport.initialize())
+server.use(passport.session())
+server.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true,
+  })
+);
+
+server.use(cors())
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
-server.use(cors())
 
 server.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Credentials', 'true'); // update to match the domain you will make the request from
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   next();
 });
 
@@ -44,19 +63,8 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   res.status(status).send(message);
 });
 
-//GOOGLE AUTH:
-
-server.use(cookieSession({
-  name: 'session',
-  keys: ['algo'],
-  maxAge: 24*60*60*100
-
-}))
 
 
-
-server.use(passport.initialize())
-server.use(passport.session())
 
 server.use('/', routes);
 
