@@ -14,7 +14,7 @@ import ProfileNav from "../ProfileNav/ProfileNav";
 const axios = require('axios')
 
 
-export default function Nav_bar({userLogged , setUserLogged}) {
+export default function Nav_bar({ userLogged, setUserLogged }) {
 
     const itemsCart = useSelector(state => state.cart)
     const itemsFavorites = useSelector(state => state.favorites)
@@ -24,7 +24,7 @@ export default function Nav_bar({userLogged , setUserLogged}) {
     const [isOpen, setIsOpen] = useState(false);
 
     function toggleModal() {
-     setIsOpen(!isOpen);
+        setIsOpen(!isOpen);
     }
 
     return (
@@ -34,26 +34,22 @@ export default function Nav_bar({userLogged , setUserLogged}) {
                 <img src={Icon} alt="Icon" />
             </Link>
 
-            <div>
 
+            <div>
                 <Link to='/home'><button>Home</button></Link>
-                {/* <Link to='/home/create'><button>Create Videogame</button></Link>
+            </div>
+            {/* <Link to='/home/create'><button>Create Videogame</button></Link>
 
                 <Link to='/profile'> <button> My Profile </button></Link>
              */}
-             {userLogged ? <ProfileNav userLogged={userLogged} setUserLogged={setUserLogged} />: 
-             
-             <div>
-                <button onClick={toggleModal}>Loggin</button>
-                <SignUserModal toggleModal={toggleModal} isOpen={isOpen} />
-             </div>
-                
-             }
+            {userLogged ? <ProfileNav userLogged={userLogged} setUserLogged={setUserLogged} /> :
 
-                
-   
-            </div>
-           
+                <div>
+                    <button onClick={toggleModal}>Loggin</button>
+                    <SignUserModal toggleModal={toggleModal} isOpen={isOpen} />
+                </div>
+
+            }
 
             <div id="cart">
                 <Link to='/cart'>
@@ -68,7 +64,7 @@ export default function Nav_bar({userLogged , setUserLogged}) {
                 </Link>
                 <h3>{itemsFavorites && itemsFavorites.length ? itemsFavorites.length : 0}</h3>
             </div>
-            
+
         </nav>
     )
 }
