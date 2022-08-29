@@ -44,8 +44,8 @@ export default function Card(card) {
                 </div>
             </Link>
             <div id="button_card">
-                <button onClick={() => addGameToFav()}>AÑADIR A LISTA DE FAVORITOS</button>
-                <button onClick={() => addGameToCart()}>AÑADIR AL CARRITO</button>
+                <button onClick={() => addGameToFav()}>Add to favorites</button>
+                <button onClick={() => addGameToCart()}>Add to cart</button>
             </div>
         </div>
     )
