@@ -29,7 +29,7 @@ export default function Cart({props}) {
 
     return (
         <div className="conteinerCart">
-            <h1>Bienvenido a tu CART !</h1>
+            <h1>Welcome to your cart !</h1>
             {
                  items && items.length ?
                     <div id="conteinerCart2">{
@@ -45,16 +45,16 @@ export default function Cart({props}) {
                         })
                     }
                         <div id="caja">
-                            <button onClick={() => deleteItem("All")}>Vaciar carrito</button>
+                            <button onClick={() => deleteItem("All")}>Empty cart</button>
                             <h2>Suma total : ${precios}</h2>
-                            <Link to={"/cart/formularioPago"}><button>Pagar</button></Link>
+                            <Link to={"/cart/formularioPago"}><button>Buy now !</button></Link>
                         </div>
                     </div>
 
                     :
                     <div>
                         <img src={Sad} alt="Sad Face"></img>
-                        <h1>No hay juegos en tu CART</h1>
+                        <h1>There are no games in your cart</h1>
                     </div>
             }
         </div>
