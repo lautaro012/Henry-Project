@@ -19,6 +19,7 @@ export const DELETE_FOR_FAVS = "DELETE_FOR_FAVS"
 export const ADD_TO_FAV = "ADD_TO_FAV"
 export const ACTUALIZAR_CART = "ACTUALIZAR_CART"
 export const ACTUALIZAR_FAV = "ACTUALIZAR_FAV"
+export const POST_VIDEOGAME= "POST_VIDEOGAME"
 
 require('dotenv').config();
 const {
@@ -217,6 +218,15 @@ export function vaciarGame() {
         type: EMPTY_GAME_STATE,
     }
 }
+
+export function postVideoGame(payload){
+    return async function(dispatch){
+        await axios.post("/videoGame",payload)
+       return dispatch({type: POST_VIDEOGAME, payload})
+     }
+}
+
+
 export const getTags = function () {
     return function (dispatch) {
         axios.get('/tags')
