@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import React from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import '../Footer/Footer.css'
 
@@ -44,11 +44,10 @@ export default function Footer() {
                             </li>
                         </ul>
                         <hr />
-                        <h3>In this proyect: </h3>
+                        <h3>Henry's grupal proyect: </h3>
                         <p>
-                            HLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                            in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            Hi! We are a group of students in Henry's bootcamp. Through these months we start this path in IT world and we love it! We are proud of our improvement and we are conscious that we have to keep studying after this, to get better and better, cause that is our goal.
+                            Please, be free to explore our page and give your opinion about it. We were more than pleased to read your commentaries to improve.
                         </p>
                         <div id="about_button">
                             <Link to='/about'>
