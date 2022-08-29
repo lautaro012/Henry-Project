@@ -28,29 +28,7 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
     const [isOpen, setIsOpen] = useState(false);
 
     function toggleModal() {
-        const getUser = async () => {
-                fetch("http://localhost:3001/auth/success", {
-                  method: "GET",
-                  credentials: "include",
-                  headers: {
-                  Accept: "application/json", 
-                  "Content-Type": "application/json",
-                 //  "Access-Control-Allow-Credentials": true
-           
-                  },
-                }).then((response) => {
-                  if(response.status === 200) {
-                    console.log('entra a response')
-                    return response.json()};
-                  throw new Error('authentication has been failed')
-                }).then(resObject => {
-                  setUserLogged(true)
-                  localStorage.setItem('user', JSON.stringify(resObject))
-                }).catch(err => {
-                  console.log(err)
-                })
-              }
-                getUser()
+        
         setIsOpen(!isOpen);
     }
 
@@ -88,7 +66,7 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
 
                 <div>
                     <button onClick={toggleModal}>Loggin</button>
-                    <SignUserModal toggleModal={toggleModal} isOpen={isOpen} />
+                    <SignUserModal toggleModal={toggleModal} isOpen={isOpen} setUserLogged={setUserLogged} />
                 </div>
 
             }
