@@ -1,5 +1,5 @@
 import '../Home/Home.css'
-import SearchBar from '../SearchBar/SearchBar'
+//import SearchBar from '../SearchBar/SearchBar'
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Link, useNavigate  } from "react-router-dom";
@@ -13,7 +13,7 @@ import { getAllGames, Getbygenre, vaciarGame } from '../../redux/Actions/Index'
 export default function Home () {
 
     const dispatch = useDispatch()
-    const navigate = useNavigate()
+   // const navigate = useNavigate()
     
     let Allvideogames = useSelector(state => state.Allvideogames)
     let videogames = useSelector(state => state.videogames)
@@ -26,10 +26,10 @@ export default function Home () {
         dispatch(vaciarGame()) // para vaciar estado global del juegodetail
     }, [dispatch, Allvideogames.length])
     
-    const onSearch = (name) => {
-        navigate("../home/games", { replace: true });
-        dispatch(getAllGames(name))
-    }
+    // const onSearch = (name) => {
+    //     navigate("../home/games", { replace: true });
+    //     dispatch(getAllGames(name))
+    // }
 
     let populars = Allvideogames?.filter(games => games.rating > 4.5)
     const mostpopular = videogames[0]
@@ -37,9 +37,6 @@ export default function Home () {
 
     return (
     <div className="Home">
-        <SearchBar
-        onSearch={onSearch}
-        ></SearchBar>
         {
             Allvideogames[0] ?
             <div className='Home-Games'>

@@ -21,25 +21,23 @@ export default function SearchBar({ onSearch }) {
 
 
     return (
-        <div className="home-navbar">
-            <div className="cont-searchbar">
-                <form onSubmit={(e) => handleSubmit(e)}>
-                    <button
-                        className="HOME-BTN"
-                        type='submit'
-                    >
-                        <img src={lupita} alt="lupa" />
-                    </button>
-                    <input
-                        className="INPUT-SEARCH"
-                        type='text'
-                        placeholder="Search..."
-                        onChange={(e) => handleInputChange(e)}
-                    />
-                </form>
-            </div>
-            <Link to='/home'> <button> Discover your game ! </button> </Link>
-            <Link to='/home/games'> <button> Search in our game list </button> </Link>
+
+        <div className="cont-searchbar">
+            <form onSubmit={(e) => handleSubmit(e)}>
+                <button
+                    className="HOME-BTN"
+                    type='submit'
+                >
+                    <img src={lupita} alt="lupa" />
+                </button>
+                <input
+                    className="INPUT-SEARCH"
+                    type='text'
+                    placeholder="Search..."
+                    onChange={(e) => handleInputChange(e)}
+                />
+            </form>
         </div>
+
     )
 }

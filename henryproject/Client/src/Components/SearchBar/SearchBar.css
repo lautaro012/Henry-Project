@@ -59,7 +59,7 @@
 .cont-searchbar form input{
   outline: none;
   font-size: 1em;
-  background-color: var(--color-secundary);
+  background-color: #191a22;
   padding-left: 0px;
   height: 35px;
   width: 0px;
