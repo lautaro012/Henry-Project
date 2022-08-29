@@ -1,0 +1,15 @@
+.containerVideogame{
+    border: 1px solid black;
+    border-radius: 20px;
+    padding-left: 5px;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.subcontainer1{
+    width: 80%;
+}
+
+.ubcontainer2{
+    width: 100%;
+}
