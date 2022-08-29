@@ -3,7 +3,8 @@ import User from '../../Style/Imagenes/User.jpg'
 import './UserPop.css'
 import { Link } from "react-router-dom";
 
-import { Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input, Label, ButtonToggle } from 'reactstrap'
+
+import { Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input, Label } from 'reactstrap'
 
 export default function Pop({ modal, setModal }) {
 
@@ -11,6 +12,10 @@ export default function Pop({ modal, setModal }) {
         // e.preventDefault()
         window.open("http://localhost:3001/auth/google", "_self")
 
+    }
+
+    function handleLinkClick(e) {
+        setModal(false)
     }
 
     const toggle = () => setModal(false);
@@ -38,7 +43,7 @@ export default function Pop({ modal, setModal }) {
                 <button onClick={(e) => handleClick(e)} className='login-with-google-btn' >Ingresar con cuenta de Google</button>
             </ModalFooter>
             <ModalFooter>
-                Are you new ? <Link to='/register' toggle={toggle}> Register free now ! </Link>
+                Are you new ? <Link to='/register' onClick={(e) => handleLinkClick(e)} toggle={toggle}> Register free now ! </Link>
             </ModalFooter>
         </Modal>
     )

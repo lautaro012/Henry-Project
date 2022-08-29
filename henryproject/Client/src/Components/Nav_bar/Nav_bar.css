@@ -7,9 +7,22 @@
     padding-left: 40px;
 }
 
+#fav img {
+    width: 70px;
+    border-radius: 100%;
+}
+
 #cart img {
     width: 70px;
     border-radius: 100%;
+}
+
+#fav {
+    align-self: center;
+    padding-right: 40px;
+    display: flex;
+    justify-content: flex-end;
+    width: fit-content;
 }
 
 #cart {
@@ -20,33 +33,43 @@
     width: fit-content;
 }
 
+#fav h3 {
+    background-color: red;
+    border-style: solid;
+    border-radius: 100%;
+    text-align: center;
+    width: 40px;
+    position: relative;
+    right: 25%;
+}
+
 #cart h3{
     background-color: red;
     border-style: solid;
     border-radius: 100%;
     text-align: center;
     width: 40px;
-    position: absolute;
-    top: 0;
-    right: 2%;
+    position: relative;
+    right: 25%;
 }
 
 .Nav_bar {
     display: flex;
     background-color: #3131317F ;
-    position: absolute;
+    position: fixed;
     z-index: 10;
     top: 2%;
     right: 2%;
     left: 2%;
     border-radius: 40px;
     backdrop-filter: blur(10px);
+    justify-content: space-between;
 }
 
 .Nav_bar div {
     padding-left: 0;
     padding-right: 0;
-    width: 100%;
+    width: fit-content;
     display: flex;
     align-items: center;
     justify-content: space-around;

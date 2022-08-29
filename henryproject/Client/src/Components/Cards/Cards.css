@@ -13,6 +13,11 @@
 
 }
 
+#button_card {
+    width: min-content;
+    display: flex;
+}
+
 .h{
     text-align: center;
 }

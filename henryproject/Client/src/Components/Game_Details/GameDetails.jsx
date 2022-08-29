@@ -85,13 +85,11 @@ export default function GameDetails() {
                                         :
                                         null
                                 }
+
                                 <Carousel
                                     showArrows={true}
-
-
-
+                                    id="video_detalle"
                                     infiniteLoop={true}
-
                                     showThumbs={false}
                                 >
                                     {
@@ -137,14 +135,14 @@ export default function GameDetails() {
                                     <div className='imagenesJuego' >
 
                                         {
-                                            game.screenshots && game.screenshots.map((img , index) => {
+                                            game.screenshots && game.screenshots.map((img, index) => {
                                                 return (
                                                     <div key={img} id="boton_juego">
                                                         {
                                                             index !== 0 ?
-                                                            <button onClick={() => onHanddlePop(img)}><img className="imagenJuego" src={img} alt="imagenJuego"></img></button>
-                                                            :
-                                                            null
+                                                                <button onClick={() => onHanddlePop(img)}><img className="imagenJuego" src={img} alt="imagenJuego"></img></button>
+                                                                :
+                                                                null
                                                         }
                                                     </div>
                                                 )
@@ -161,11 +159,10 @@ export default function GameDetails() {
                             <aside id="conteinerSide_detalles">
                                 <h1>{game.name}</h1>
                                 <a href={game.website} target="_blank" rel="noreferrer"><h3>{game.website}</h3></a>
-                                <button onClick={() => onHanddlePop(game.image)}><img className="imagenJuego" src={game.image} alt="imagenJuego"></img></button>
-                                <h3>Release date :</h3>
+                                <img className="imagenJuego" src={game.image} alt="imagenJuego"></img>
                                 <p>{game.realeaseDate}</p>
                                 <div>
-                                    <h3>Plataformas</h3>
+                                    <h3>Platforms</h3>
                                     {
                                         game.platforms && game.platforms.map(plat => {
                                             return (
@@ -212,9 +209,9 @@ export default function GameDetails() {
 
                                 <h2>Price : ${game.price}</h2>
 
-                                <button>COMPRAR AHORA</button>
-                                <button onClick={() => addGameToCart()}>AÑADIR AL CARRITO</button>
-                                <button>AÑADIR A LA LISTA DE DESEOS</button>
+                                <button>Buy now ! 💰</button>
+                                <button onClick={() => addGameToCart()}>Add to cart 🛒</button>
+                                <button>Add to favorites 🤍</button>
                             </aside>
                         </div>
                     </div>
