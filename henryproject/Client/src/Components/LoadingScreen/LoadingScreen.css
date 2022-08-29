@@ -1,6 +1,7 @@
 #load {
   position:absolute;
   min-width:600px;
+  min-height: 100%;
   height:36px;
   left:50%;
   top:40%;
