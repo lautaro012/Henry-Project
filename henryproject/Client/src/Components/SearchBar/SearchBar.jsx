@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import './SearchBar.css'
 import { useState } from "react";
+import lupita from '../../Style/Imagenes/lupa.png'
 
 export default function SearchBar ( { onSearch}) {
 
@@ -33,7 +34,7 @@ export default function SearchBar ( { onSearch}) {
                   className="HOME-BTN"
                   type = 'submit'
                   >
-                  SEARCH
+                    <img src={lupita} alt="lupa" width="20"  color="white"/>
                   </button>    
               </form>
           </div>

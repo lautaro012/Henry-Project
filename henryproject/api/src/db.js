@@ -3,7 +3,7 @@ const { Sequelize,Op } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER, DB_PASSWORD, DB_HOST,API_KEY, DB_NAME
+  DB_USER, DB_PASSWORD, DB_HOST,API_KEY, DB_NAME,KEY_CHECK
 } = process.env;
 let sequelize =
   process.env.NODE_ENV === "production"
@@ -61,7 +61,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 // const { Videogame } = sequelize.models;
-const {Users, Orders, Games, Genres, Platforms, Comments, Tags, Sale} = sequelize.models;
+const {Users, Orders, Games, Genres, Platforms, Comments, Tags} = sequelize.models;
 
 
 // Aca vendrian las relaciones
@@ -89,11 +89,11 @@ const {Users, Orders, Games, Genres, Platforms, Comments, Tags, Sale} = sequeliz
         Comments.belongsTo(Games);
 
         //sale
-        Games.hasMany(Sale)
+        // Games.hasMany(Sale)
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
-  Op,API_KEY,
+  Op,API_KEY,KEY_CHECK,
   Games,Genres,Platforms,Tags,Orders,Users
 };

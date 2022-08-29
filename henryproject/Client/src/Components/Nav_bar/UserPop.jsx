@@ -3,7 +3,8 @@ import User from '../../Style/Imagenes/User.jpg'
 import './UserPop.css'
 import { Link } from "react-router-dom";
 
-import { Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input, Label, ButtonToggle } from 'reactstrap'
+
+import { Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input, Label } from 'reactstrap'
 
 export default function Pop({ modal, setModal }) {
 

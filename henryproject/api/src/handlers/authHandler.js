@@ -22,7 +22,7 @@ const singUp = async (req, res) =>    {
        
         
         let password = bcrypt.hashSync(req.body.password, 8);
-        const { name, lastName, userName, mail, address} = req.body
+        const { name, lastName, userName, mail, address, image} = req.body
         
         const validation = validateAttributes(name, lastName, userName, mail, address);
         if (validation === true) {
@@ -37,6 +37,7 @@ const singUp = async (req, res) =>    {
               userName,
               address,
               password,
+              image
             },
           })
           let token = jwt.sign({ user: newUser }, 'aaa', {
@@ -68,12 +69,12 @@ const singIn=async (req,res) => {
         if(!user){
             res.send(404).json({ msg: "Usuario con este correo no se encuentra" })
         }else{
-
             if(bcrypt.compareSync(password,user.password)){
                 let token = jwt.sign({ user: user }, 'aaa', {
                     expiresIn: Math.floor(Date.now() / 1000) + (60 * 60)
                 });
                 res.json({user: user,token: token})
+                // .redirect("http://localhost:3000/profile")
             }else{
                 res.status(401).json({msg: "Contrasenia incorrecta"})
             }
@@ -85,5 +86,6 @@ const singIn=async (req,res) => {
 
 
 }
+//singUp --> registrar
 module.exports = {singUp,singIn}
 // module.exports = {singIn}

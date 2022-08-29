@@ -1,8 +1,23 @@
+import { useState } from 'react'
 import './Profile.css'
 
 export function Profile () {
 
-    
+
+    function handleClick() {
+        console.log(profile.user)    
+
+    }
+    let profile = JSON.parse(localStorage.getItem('user'))
+
+
+    let displayName = `Bienvenid@ ${profile.user.displayName || profile.user.userName}`
+    let photos = profile.user.photos[0].value
+       
+    console.log(photos)
+
+        
+  
 
     return (
         <div className='Search-Filters'>
@@ -14,10 +29,11 @@ export function Profile () {
         <div className='filters'>
             <div className="show-profile-settings">
                 <div>
-                    <img width={150} src='https://img2.thejournal.ie/inline/1881369/original/?width=630&version=1881369' alt='imagen de perfil'></img>
+                    <img width={150} src={`${photos}`} alt='imagen de perfil'/>
                 </div>
                 <div className='settings'>
-                        
+                    <button onClick={handleClick} >probar consola</button>
+                   <span>{displayName}</span>
                     <span >  MI PERFIL  </span>  
 
                     <span > MY GAMES</span>
