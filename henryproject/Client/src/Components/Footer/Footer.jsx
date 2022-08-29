@@ -44,7 +44,7 @@ export default function Footer() {
                             </li>
                         </ul>
                         <hr />
-                        <h3>Henry's grupal proyect: </h3>
+                        <h3>Henry's grupal proyect:  </h3>
                         <p>
                             Hi! We are a group of students in Henry's bootcamp. Through these months we start this path in IT world and we love it! We are proud of our improvement and we are conscious that we have to keep studying after this, to get better and better, cause that is our goal.
                             Please, be free to explore our page and give your opinion about it. We were more than pleased to read your commentaries to improve.
