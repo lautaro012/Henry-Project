@@ -3,7 +3,7 @@ import React from "react";
 
 import '../Landing_Page/Carrousel2.css'
 
-export default function Carrousel2({games}) {
+export default function Carrousel2({ games }) {
 
     return (
         <div className="banner">

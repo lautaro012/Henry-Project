@@ -50,12 +50,12 @@ let history=useNavigate();
                   amount: precioTotal,
                 })
                 console.log(data);
-                alert(`Se ah pagado $ ${precioTotal} con exito`)
+                alert(`You have pay $ ${precioTotal} successfully`)
                 // localStorage.setItem("precioTotal", JSON.stringify(precios));
                 history("/")
               
             } catch (error) {
-              alert("Error al Pagar")
+              alert("Error in payment")
             }
           }
         

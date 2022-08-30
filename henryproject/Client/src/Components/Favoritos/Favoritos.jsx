@@ -26,7 +26,7 @@ export default function Favs() {
 
     return (
         <div className="conteinerFav">
-            <h1>Bienvenido a tu lista de favoritos !</h1>
+            <h1>Welcome to your favorites list !</h1>
             {
                 items && items.length ?
                     <div id="conteinerFav2">{
@@ -37,19 +37,19 @@ export default function Favs() {
                                     <h1>{item.name}</h1>
                                     <h3>$ {item.price}</h3>
                                     <button onClick={() => deleteItem(item.id)}>Delete</button>
-                                    <button onClick={() => agregarAlCarrito(item)}>Agregar al carrito</button>
+                                    <button onClick={() => agregarAlCarrito(item)}>Add to cart</button>
                                 </div>
                             )
                         })
                     }
                         <div>
-                            <button onClick={() => deleteItem("All")}>Vaciar favoritos</button>
+                            <button onClick={() => deleteItem("All")}>Empty favorites list</button>
                         </div>
                     </div>
                     :
                     <div>
                         <img src={Sad} alt="Sad Face"></img>
-                        <h1>No hay juegos en tu lista de favoritos</h1>
+                        <h1>The are no games in your favorites list</h1>
                     </div>
             }
         </div>

@@ -39,7 +39,7 @@ export default function Admin () {
             onChange= {(e) => handleOnChange(e)}
             placeholder="Buscar videojuego..."
           />
-          <button className ="bottom" type="submit" onClick= {(e) => handleSubmit(e)}> Buscar </button>   
+          <button className ="bottom" type="submit" onClick= {(e) => handleSubmit(e)}> Search </button>   
         </div>
 
         <div className='filters'>
@@ -49,7 +49,7 @@ export default function Admin () {
                 </div>
                 <div className='settings-admin'>
                       <Link to="/home/create">
-                    <button><span >  CREAR VIDEOJUEGO  </span></button> 
+                    <button><span >  Create videogame  </span></button> 
                     </Link> 
                    <Link to= "/admin/editgames"> 
                    <button className ="bottom" type="submit" onClick= {(e) => handleSubmit(e)} > EDIT GAMES</button> 
