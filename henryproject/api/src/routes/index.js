@@ -9,6 +9,8 @@ const authRoute = require('./routerAuth')
 const userRouter = require('./routerNewUser')
 const checkoutRouter=require("./routerCheckout");
 const userLogged = require("./routerGetUserLogged")
+const gameDisabled = require ("./routerDisableGame")
+const gameAbled = require("./routerAbleGame")
 const { singIn } = require('../handlers/authHandler');
 const router = Router();
 
@@ -24,6 +26,8 @@ router.use("/newUser", userRouter)
 router.use('/checkout', checkoutRouter)
 router.use("/login", singIn)
 router.use('/userLogged', userLogged)
+router.use('/disabled', gameDisabled)
+router.use('/abled', gameAbled )
 
 
 
