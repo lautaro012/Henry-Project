@@ -271,27 +271,28 @@ export function deleteItemFromFavs(id) {
 }
 
 export function signin(payload) {
-    return function (dispatch) {
-        axios.post(`/userLogged`, payload)
+    return function () {
+        axios.post(`/login`, payload)
             .then(resp => resp.data)
             .then(resp => {
                 console.log(resp)
-                dispatch({
-                    type: GET_USER,
-                    payload
-                })
+                localStorage.setItem('user', JSON.stringify(resp))
             })
             .catch(err => console.log(payload))
     }
 }
 
-//TRAER USUARIO DESDE DB
-export function getUser(payload) {
-    return function () {
-        axios.get('/userlog', payload)
+export function getUser (payload) {
+    return function (dispatch) {
+        axios.post(`/userLogged/?mail=${payload}`)
         .then(resp => resp.data)
         .then(resp => {
-
+            console.log(resp)
+            dispatch({
+                type: GET_USER,
+                payload
+            })
         })
+        .catch(err => console.log(payload))
     }
 }
