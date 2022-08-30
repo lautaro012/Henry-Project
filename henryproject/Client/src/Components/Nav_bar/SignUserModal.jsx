@@ -42,9 +42,8 @@ export default function UserSign({toggleModal, isOpen, setUserLogged }) {
         mail: '',
         password: ''
         })
-        setUserLogged(true)
+        if(localStorage.getItem('user')){setUserLogged(true)}
         console.log('logueado con', input)
-        setUserLogged(true)
     }
 
   return (

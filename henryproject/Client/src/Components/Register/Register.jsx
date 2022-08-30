@@ -48,18 +48,23 @@ const Register = () => {
             let usuario = {...newUser}
             usuario[e.target.name] = e.target.value 
             setNewUser({...newUser, [e.target.name]: e.target.value})
-        } 
+        }
         else {
             return console.log('falta enviar datos')
         }
 
     }
+    function handleClickMil(e){
+        e.preventDefault(e)
+        if(image !== "") {
+            setNewUser({...newUser, ["image"]: image})
+            console.log('imagen cargada correctamente')
+        }
+    }
 
     function handleSubmit(e) {
         e.preventDefault()
-            if(image !== "") {
-             setNewUser({...newUser, ["image"]: image})
-            }
+         
             dispatch(postNewUser(newUser))
             alert('registrado bro')   
     }
@@ -69,6 +74,10 @@ const Register = () => {
   return (
     <div className='divFormRegister'>
         <form className='formRegister' onSubmit={(e) => handleSubmit(e)} >
+            <label>Profile Photo:</label>
+            <input  name="image" type="file" placeholder='Choose File' onChange={uploadImage} id="profile-photo" />
+            {loading ? (<p>Uploading your image...</p>) : <img src={image} style={{width: "300px"}} alt='asdf'></img>}
+            <button onClick={(e) => handleClickMil(e)}>Confirm</button>
             <label type="text" >UserName:</label>
             <input name="userName" onChange={(e) => handleChange(e)}></input>
             <label type="text" >Name:</label>
@@ -77,9 +86,6 @@ const Register = () => {
             <input name="lastName" onChange={(e) => handleChange(e)} ></input>
             <label type="text" >Mail:</label>
             <input name="mail" onChange={(e) => handleChange(e)} ></input>
-            <label>Profile Photo:</label>
-            <input  name="image" type="file" placeholder='Choose File' onChange={uploadImage} id="profile-photo" />
-            {loading ? (<p>Uploading your image...</p>) : <img src={image} style={{width: "300px"}} alt='asdf'></img>}
             <label>password:</label>
             <input name="password" type="text"  onChange={(e) => handleChange(e)}></input>
             <label>address:</label>
