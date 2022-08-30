@@ -5,10 +5,6 @@
     min-height: 100%;
 }
 
-#video_detalle {
-    display: grid;
-}
-
 #boton_juego {
     padding: 1%;
 }
@@ -26,8 +22,8 @@
     display: flex;
 }
 
-#conteinerData_detalles {
-   
+carrito {
+    display: inline-grid;
 }
 
 #conteinerSide_detalles2 {
