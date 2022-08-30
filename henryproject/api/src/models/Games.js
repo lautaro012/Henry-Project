@@ -77,6 +77,11 @@ module.exports = (sequelize) => {
       type: DataTypes.ARRAY(DataTypes.JSONB),
       allowNull:true,
     },
+    disabled:{
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
     createdInDb:{
         type: DataTypes.BOOLEAN,
         defaultValue:true,
