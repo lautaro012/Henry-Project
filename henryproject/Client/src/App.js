@@ -56,7 +56,7 @@ function App() {
         },
       }).then((response) => {
         if(response.status === 200) {
-          console.log('entra a response')
+          // console.log('entra a response')
           return response.json()};
         throw new Error('authentication has been failed')
       }).then(resObject => {
@@ -71,15 +71,14 @@ function App() {
     
   }, [])
 
-  console.log(user)
+  console.log(`USUARIO: ${user}`)
 
 
 
   useEffect(() => {
     if(localStorage.getItem('user')) {
-      setUserLogged(true)} else {setUserLogged(false)}
+      setUserLogged(true)}
 
- 
     if (localStorage.length === 0) {
       localStorage.setItem("products", JSON.stringify([]));
       localStorage.setItem("favProducts", JSON.stringify([]));
@@ -102,6 +101,7 @@ function App() {
 
   return (
     <Router>
+
       <NavBar userLogged={userLogged} setUserLogged={setUserLogged} />
       <Routes>
         <Route exact path='/' element={<LandingPage />} />

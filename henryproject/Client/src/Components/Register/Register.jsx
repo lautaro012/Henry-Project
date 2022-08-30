@@ -52,16 +52,16 @@ const Register = () => {
             let usuario = {...newUser}
             usuario[e.target.name] = e.target.value 
             setNewUser({...newUser, [e.target.name]: e.target.value})
-        } 
+        }
         else {
             return console.log('falta enviar datos')
         }
 
     }
 
+
     function handleSubmit(e) {
         e.preventDefault()
-
             dispatch(postNewUser(newUser))
             alert('registrado bro')   
     }
