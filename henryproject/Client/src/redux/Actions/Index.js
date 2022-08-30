@@ -20,6 +20,8 @@ export const ADD_TO_FAV = "ADD_TO_FAV"
 export const ACTUALIZAR_CART = "ACTUALIZAR_CART"
 export const ACTUALIZAR_FAV = "ACTUALIZAR_FAV"
 export const POST_VIDEOGAME= "POST_VIDEOGAME"
+export const GET_USER = 'GET_USER'
+export const CLEAR_USER = 'CLEAR_USER'
 
 require('dotenv').config();
 const {
@@ -278,5 +280,27 @@ export function signin(payload) {
                 localStorage.setItem('user', JSON.stringify(resp))
             })
             .catch(err => console.log(payload))
+    }
+}
+
+export function getUser (payload) {
+    return function (dispatch) {
+        axios.get(`/userLogged/${payload}`)
+        .then(resp => resp.data)
+        .then(resp => {
+            // console.log('response del back', resp)
+            dispatch({
+                type: GET_USER,
+                payload: resp
+            })
+        })
+        .catch(err => console.log(payload))
+    }
+}
+export function clearUser() {
+    return function (dispatch) {
+        dispatch({
+            type: CLEAR_USER
+        })
     }
 }

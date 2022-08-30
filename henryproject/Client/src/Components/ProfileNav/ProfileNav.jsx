@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 // import Cora from '../../Style/Imagenes/Corazon.png'
 
 
-export default function ProfileNav ( {setUserLogged, userLogged}) {
+export default function ProfileNav ( {setUserLogged}) {
    
     const itemsFavorites = useSelector(state => state.favorites)
    

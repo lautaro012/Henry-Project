@@ -1,39 +1,46 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import './Profile.css'
+import {getUser, clearUser} from '../../redux/Actions/Index'
 
 export function Profile () {
 
+    let dispatch = useDispatch()
 
-    function handleClick() {
-        console.log(profile.user)    
-
-    }
-    let profile = JSON.parse(localStorage.getItem('user'))
-
-
-    let displayName = `Bienvenid@ ${profile.user.displayName || profile.user.userName}`
-    let photos = profile.user.photos[0].value || profile.user.image
-       
-    console.log(photos)
-
+    
+    
+    useEffect(() => {
+        let usermail = JSON.parse(localStorage.getItem('user'))
+        if(usermail.user.mail) {
+            console.log('log normal', usermail.user.mail)
+            usermail = usermail.user.mail
+        } else {
+            console.log('google', usermail.user.emails[0].value)
+            usermail = usermail.user.emails[0].value
+        }
+        dispatch(getUser(usermail))
+        return dispatch(clearUser())
         
+    }, [])
+    
+    let userdetails = useSelector(state => state.user)
+    
+    console.log('el user del state es ', userdetails)
   
 
     return (
         <div className='Search-Filters'>
 
-        <div>
+        <div className='searchbar-test'>
+            {userdetails.name}
+            {userdetails.mail}
+            {userdetails.image}
+            {userdetails.username}
             SEARCHBAR
         </div>
 
         <div className='filters'>
             <div className="show-profile-settings">
-                <div>
-                    <img width={150} src={`${photos}`} alt='imagen de perfil'/>
-                </div>
-                <div className='settings'>
-                    <button onClick={handleClick} >probar consola</button>
-                   <span>{displayName}</span>
                     <span >  MI PERFIL  </span>  
 
                     <span > MY GAMES</span>
@@ -49,7 +56,6 @@ export function Profile () {
                    SETTINGS <br></br>
                 </div>
             </div>
-        </div>
    
     </div>
     )
