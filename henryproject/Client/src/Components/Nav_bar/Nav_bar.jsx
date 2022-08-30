@@ -36,13 +36,14 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
         dispatch(getAllGames(name))
     }
 
-
     return (
         <nav className="Nav_bar">
 
-            <Link id="icon" to='/'>
-                <img src={Icon} alt="Icon" />
-            </Link>
+            <div id="icon">
+                <Link to='/'>
+                    <img src={Icon} alt="Icon" />
+                </Link>
+            </div>
 
             <div>
                 <SearchBar
@@ -57,6 +58,7 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
             <div>
                 <Link to='/home/games'> <button> Search in our game list </button> </Link>
             </div>
+
             {/* <Link to='/home/create'><button>Create Videogame</button></Link>
 
                 <Link to='/profile'> <button> My Profile </button></Link>
