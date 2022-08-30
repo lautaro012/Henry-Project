@@ -7,9 +7,7 @@ export function Profile () {
 
     let dispatch = useDispatch()
 
-    let userdetails = useSelector(state => state.user)
-
-    console.log('el user del state es ', userdetails)
+    
     
     useEffect(() => {
         let usermail = JSON.parse(localStorage.getItem('user'))
@@ -22,14 +20,20 @@ export function Profile () {
         }
         dispatch(getUser(usermail))
     }, [])
-
-        
+    
+    let userdetails = useSelector(state => state.user)
+    
+    console.log('el user del state es ', userdetails)
   
 
     return (
         <div className='Search-Filters'>
 
-        <div>
+        <div className='searchbar-test'>
+            {userdetails.name}
+            {userdetails.mail}
+            {userdetails.image}
+            {userdetails.username}
             SEARCHBAR
         </div>
 

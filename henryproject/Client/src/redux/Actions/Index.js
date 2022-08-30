@@ -284,13 +284,13 @@ export function signin(payload) {
 
 export function getUser (payload) {
     return function (dispatch) {
-        axios.post(`/userLogged/?mail=${payload}`)
+        axios.get(`/userLogged/${payload}`)
         .then(resp => resp.data)
         .then(resp => {
-            console.log(resp)
+            // console.log('response del back', resp)
             dispatch({
                 type: GET_USER,
-                payload
+                payload: resp
             })
         })
         .catch(err => console.log(payload))
