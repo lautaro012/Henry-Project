@@ -2,7 +2,7 @@ import React from "react"
 import { useDispatch } from "react-redux"
 import './CreateVideogame.css'
  import { useEffect, useState } from 'react';
-import { getGenres, getPlatforms } from "../../redux/Actions/Index"
+import { getGenres, getPlatforms, postVideoGame } from "../../redux/Actions/Index"
 
 export default function CreateVideogame () {
     const dispatch= useDispatch()
@@ -132,6 +132,10 @@ export default function CreateVideogame () {
     }
     function onKeyUpVideo(e){
 
+    }
+    function onSubmitCreate(e){
+        e.preventDefault()
+        dispatch(postVideoGame(state))
     }
     function deleteGenre(e){
       if(!(state.genres.length-1)){
@@ -304,7 +308,8 @@ export default function CreateVideogame () {
                      )
                 }
         </div>
-       <button type="submit">Submit</button>
+    
+       <button type="submit" onClick={(e)=>onSubmitCreate(e)}>Submit</button>
 
         </form>
         {/* visualizar */}

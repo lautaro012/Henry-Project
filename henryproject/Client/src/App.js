@@ -34,6 +34,7 @@ const {
   REACT_APP_API
 } = process.env;
 
+
 function App() {
   let dispatch = useDispatch()
 
@@ -111,19 +112,17 @@ function App() {
         <Route path='/favorites' element={<Favoritos />} />
         <Route path='/edit' element={<EditVideogame></EditVideogame>} />
         <Route path='/register' element={<Register></Register>} />
-
+        {/* <Route path='/profile' element={<Profile/>} /> */}
+        <Route path='/admin/createvideogame' element={<CreateVideogame/>} />
         <Route path='/home/create' element={<CreateVideogame/>} />
         <Route path='/admin' element={<Admin/>} />
         <Route path='/profile' element={ userLogged ? <Profile/> : <UserSign isOpen={true}/>} />
         <Route path='/Loading' element={<LoadingScreen/>} />
         <Route path='/cart' element={<Cart/>} />
-
         <Route path='/edit' element={<EditVideogame></EditVideogame>}/>
         <Route path='/register' element={<Register></Register>}/>
         <Route path='/admin/editgames' element={<NewCard/>} />
-
         <Route path='/cart/formularioPago' element={<Elements stripe={stripePromise}><FormularioPago></FormularioPago></Elements>}/>
-
       </Routes>
       <Footer />
     </Router>

@@ -162,7 +162,7 @@ export default function GameDetails() {
                                 <img className="imagenJuego" src={game.image} alt="imagenJuego"></img>
                                 <p>{game.realeaseDate}</p>
                                 <div>
-                                    <h3>Plataformas</h3>
+                                    <h3>Platforms</h3>
                                     {
                                         game.platforms && game.platforms.map(plat => {
                                             return (
@@ -209,9 +209,9 @@ export default function GameDetails() {
 
                                 <h2>Price : ${game.price}</h2>
 
-                                <button>COMPRAR AHORA</button>
-                                <button onClick={() => addGameToCart()}>AÑADIR AL CARRITO</button>
-                                <button>AÑADIR A LA LISTA DE DESEOS</button>
+                                <button>Buy now ! 💰</button>
+                                <button onClick={() => addGameToCart()}>Add to cart 🛒</button>
+                                <button>Add to favorites 🤍</button>
                             </aside>
                         </div>
                     </div>

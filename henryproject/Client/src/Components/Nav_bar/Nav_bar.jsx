@@ -1,31 +1,41 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React from "react";
 import Icon from '../../Style/Imagenes/Icon.PNG'
 import Cart from '../../Style/Imagenes/cart.png'
 import Cora from '../../Style/Imagenes/Corazon.png'
 import { useSelector } from 'react-redux'
 import SignUserModal from './SignUserModal.jsx'
+import SearchBar from '../SearchBar/SearchBar'
 
-import UserPop from './UserPop.jsx'
+//import UserPop from './UserPop.jsx'
 
 import './Nav_bar.css'
 import { useState } from "react";
 import ProfileNav from "../ProfileNav/ProfileNav";
-const axios = require('axios')
+//const axios = require('axios')
+import { getAllGames } from '../../redux/Actions/Index';
+import { useDispatch } from 'react-redux';
 
 
-export default function Nav_bar({userLogged , setUserLogged}) {
+export default function Nav_bar({ userLogged, setUserLogged }) {
 
     const itemsCart = useSelector(state => state.cart)
     const itemsFavorites = useSelector(state => state.favorites)
-
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
 
     const [isOpen, setIsOpen] = useState(false);
 
     function toggleModal() {
-     setIsOpen(!isOpen);
+        setIsOpen(!isOpen);
     }
+
+    const onSearch = (name) => {
+        navigate("../home/games", { replace: true });
+        dispatch(getAllGames(name))
+    }
+
 
     return (
         <nav className="Nav_bar">
@@ -35,25 +45,30 @@ export default function Nav_bar({userLogged , setUserLogged}) {
             </Link>
 
             <div>
+                <SearchBar
+                    onSearch={onSearch}
+                ></SearchBar>
+            </div>
 
+            <div>
                 <Link to='/home'><button>Home</button></Link>
-                {/* <Link to='/home/create'><button>Create Videogame</button></Link>
+            </div>
+
+            <div>
+                <Link to='/home/games'> <button> Search in our game list </button> </Link>
+            </div>
+            {/* <Link to='/home/create'><button>Create Videogame</button></Link>
 
                 <Link to='/profile'> <button> My Profile </button></Link>
              */}
-             {userLogged ? <ProfileNav userLogged={userLogged} setUserLogged={setUserLogged} />: 
-             
-             <div>
-                <button onClick={toggleModal}>Loggin</button>
-                <SignUserModal toggleModal={toggleModal} isOpen={isOpen} />
-             </div>
-                
-             }
+            {userLogged ? <ProfileNav userLogged={userLogged} setUserLogged={setUserLogged} /> :
 
-                
-   
-            </div>
-           
+                <div>
+                    <button onClick={toggleModal}>Loggin</button>
+                    <SignUserModal toggleModal={toggleModal} isOpen={isOpen} setUserLogged={setUserLogged} />
+                </div>
+
+            }
 
             <div id="cart">
                 <Link to='/cart'>
@@ -68,7 +83,7 @@ export default function Nav_bar({userLogged , setUserLogged}) {
                 </Link>
                 <h3>{itemsFavorites && itemsFavorites.length ? itemsFavorites.length : 0}</h3>
             </div>
-            
+
         </nav>
     )
 }

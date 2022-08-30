@@ -4,11 +4,19 @@ import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 import { getAllGames } from '../../redux/Actions/Index'
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import ListVideogame from '../CreateVideogame/ListVideogame/ListVideogame'
 
 
 export default function Admin () {
     const dispatch= useDispatch()
     const [name,setName]= useState("")
+    const videogames=useSelector(state=>state.videogames);
+
+    useEffect(()=>{
+        dispatch(getAllGames());
+    },[dispatch])
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -17,7 +25,7 @@ export default function Admin () {
     function handleOnChange(e){
         e.preventDefault()
         setName(e.target.value)
-        dispatch(getAllGames(name))
+        //dispatch(getAllGames(name))
     }
     return (
         <div className='Search-Filters'>
@@ -27,11 +35,11 @@ export default function Admin () {
             id="search"
             className="search"
             type="text"
-            //value={name} 
+            value={name} 
             onChange= {(e) => handleOnChange(e)}
             placeholder="Buscar videojuego..."
           />
-          <button className ="bottom" type="submit" onClick= {(e) => handleSubmit(e)}> Buscar </button>   
+          <button className ="bottom" type="submit" onClick= {(e) => handleSubmit(e)}> Search </button>   
         </div>
 
         <div className='filters'>
@@ -40,8 +48,9 @@ export default function Admin () {
                     <img width={150} src='https://img2.thejournal.ie/inline/1881369/original/?width=630&version=1881369' alt='imagen de perfil'></img>
                 </div>
                 <div className='settings-admin'>
-                        
-                    <button><span >  CREAR VIDEOJUEGO  </span></button> 
+                      <Link to="/home/create">
+                    <button><span >  Create videogame  </span></button> 
+                    </Link> 
                    <Link to= "/admin/editgames"> 
                    <button className ="bottom" type="submit" onClick= {(e) => handleSubmit(e)} > EDIT GAMES</button> 
                    </Link>
@@ -51,12 +60,27 @@ export default function Admin () {
             </div>
 
             <div className='show-current-setting-admin'>
-                <div className='half'>
-                    <CreateVideogame></CreateVideogame>
+            {
+                    videogames?.map(c=>{
+                        return(
+                            <div key={c.id}>
+                            <ListVideogame
+                            id={c.id}
+                            tittle={c.name}
+                            image={c.image}
+                            price={c.price}
+                            genres={c.genres?.map(d=>d.name)}
+                            />
+                            </div>
+                        )
+                    }
+                    )
+                }
+                {/* <div className='half'>
                 </div>
                 <div className='half'>
                     <span> PREVIEW </span>
-                </div>
+                </div> */}
             </div>
         </div>
    

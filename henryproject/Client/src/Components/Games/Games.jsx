@@ -1,4 +1,4 @@
-import SearchBar from '../SearchBar/SearchBar'
+//import SearchBar from '../SearchBar/SearchBar'
 import './Games.css'
 import Cards from '../Cards/Cards.jsx'
 import { useEffect } from 'react';
@@ -15,7 +15,7 @@ import LoadingScreen from '../LoadingScreen/LoadingScreen';
 export default function Games() {
 
     let dispatch = useDispatch()
-    let allvideogames = useSelector(state => state.Allvideogames)
+  //  let allvideogames = useSelector(state => state.Allvideogames)
     let videogames = useSelector(state => state.videogames)
     let tags = useSelector(state => state.tags)
     let genres = useSelector(state => state.genres)
@@ -36,10 +36,10 @@ export default function Games() {
         }
     }, [])
 
-    function onSearch(name) {
-        dispatch(getAllGames(name))
-        setRender([...render, 'hola'])
-    }
+    // function onSearch(name) {
+    //     dispatch(getAllGames(name))
+    //     setRender([...render, 'hola'])
+    // }
 
     //paginado
     const [currentPage, setCurrentPage] = useState(1)
@@ -66,11 +66,8 @@ export default function Games() {
 
     return (
         <div className='Search-Filters'>
-            <SearchBar
-                onSearch={onSearch}
-            ></SearchBar>
             {
-                tags.length && videogames.length ?
+                tags.length > 0 && videogames.length > 0 ?
                 <div className='filters'>
                     <div className="show-filters">
 
