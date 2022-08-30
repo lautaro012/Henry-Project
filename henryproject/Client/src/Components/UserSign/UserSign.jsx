@@ -5,6 +5,9 @@ import Modal from "react-modal";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signin } from "../../redux/Actions/Index";
+const {
+  REACT_APP_API
+} = process.env;
 
 
 export default function UserSign({toggleModal, isOpen, setUserLogged }) {
@@ -19,7 +22,7 @@ export default function UserSign({toggleModal, isOpen, setUserLogged }) {
 
     function handleClick(e) {
         // e.preventDefault()
-        window.open("http://localhost:3001/auth/google", "_self")
+        window.open(`${REACT_APP_API}/auth/google`, "_self")
     }
 
     Modal.setAppElement("#root");
@@ -46,7 +49,7 @@ export default function UserSign({toggleModal, isOpen, setUserLogged }) {
         setUserLogged(true)
         console.log('logueado con', input)
         setRender(render, 'hola')
-        window.location.reload()
+        // window.location.reload()
     }
 
   return (

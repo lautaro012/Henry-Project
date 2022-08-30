@@ -5,7 +5,9 @@ import './formularioPago.css';
 import Cart from "../Cart/Cart";
 import { useState } from "react";
 import {useNavigate  } from "react-router-dom";
-
+const {
+  REACT_APP_API
+} = process.env;
 
 
 export const FormularioPago=()=>{
@@ -45,7 +47,7 @@ let history=useNavigate();
           if(!error){
             const {id}=paymentMethod
             try {
-                const data=await axios.post("http://localhost:3001/checkout",{
+                const data=await axios.post(`${REACT_APP_API}/checkout`,{
                   id,
                   amount: precioTotal,
                 })
