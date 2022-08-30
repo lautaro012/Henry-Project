@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import './Profile.css'
-import {getUser} from '../../redux/Actions/Index'
+import {getUser, clearUser} from '../../redux/Actions/Index'
 
 export function Profile () {
 
@@ -19,6 +19,8 @@ export function Profile () {
             usermail = usermail.user.emails[0].value
         }
         dispatch(getUser(usermail))
+        return dispatch(clearUser())
+        
     }, [])
     
     let userdetails = useSelector(state => state.user)

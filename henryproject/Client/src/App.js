@@ -42,22 +42,24 @@ function App() {
   const [userLogged, setUserLogged] = useState(false)
 
 
-  useEffect(() =>  {
+  useEffect(() => {
 
-      const getUser = async () => {
+    const getUser = async () => {
       fetch("http://localhost:3001/auth/success", {
         method: "GET",
-        // credentials: "include",
+        credentials: "include",
         headers: {
-        Accept: "application/json", 
-        "Content-Type": "application/json",
-       //  "Access-Control-Allow-Credentials": true
- 
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          //  "Access-Control-Allow-Credentials": true
+
         },
       }).then((response) => {
+
         if(response.status === 200) {
           // console.log('entra a response')
           return response.json()};
+
         throw new Error('authentication has been failed')
       }).then(resObject => {
         setUserLogged(true)
@@ -67,9 +69,11 @@ function App() {
         console.log(err)
       })
     }
-      getUser()
-    
+    getUser()
+
   }, [])
+
+
 
   console.log(`USUARIO: ${user}`)
 

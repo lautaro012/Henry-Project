@@ -21,6 +21,7 @@ export const ACTUALIZAR_CART = "ACTUALIZAR_CART"
 export const ACTUALIZAR_FAV = "ACTUALIZAR_FAV"
 export const POST_VIDEOGAME= "POST_VIDEOGAME"
 export const GET_USER = 'GET_USER'
+export const CLEAR_USER = 'CLEAR_USER'
 
 require('dotenv').config();
 const {
@@ -294,5 +295,12 @@ export function getUser (payload) {
             })
         })
         .catch(err => console.log(payload))
+    }
+}
+export function clearUser() {
+    return function (dispatch) {
+        dispatch({
+            type: CLEAR_USER
+        })
     }
 }

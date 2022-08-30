@@ -22,6 +22,7 @@ import {
     ACTUALIZAR_FAV,
     POST_VIDEOGAME,
     GET_USER,
+    CLEAR_USER,
 } from "../Actions/Index"
 
 const initialState = {
@@ -231,6 +232,11 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 user: action.payload
+            }
+        case CLEAR_USER:
+            return {
+                ...state,
+                user: []
             }
 
         default: return state
