@@ -20,6 +20,8 @@ export const ADD_TO_FAV = "ADD_TO_FAV"
 export const ACTUALIZAR_CART = "ACTUALIZAR_CART"
 export const ACTUALIZAR_FAV = "ACTUALIZAR_FAV"
 export const POST_VIDEOGAME= "POST_VIDEOGAME"
+export const GET_USER = 'GET_USER'
+export const CLEAR_USER = 'CLEAR_USER'
 
 require('dotenv').config();
 const {
@@ -151,32 +153,9 @@ export const createvideogame = function (payload, history) {
     console.log(payload)
     return function (dispatch) {
         try {
-            fetch(`${REACT_APP_API}/videogames`, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json, text/plain, */*',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-
-            })
-                .then(response => response.json())
-                .then(games => {
-
-                    let promises = payload.genres.map(genres => {
-                        return fetch(`${REACT_APP_API}/videogames/${games.id}/diet/${genres}`, {
-                            method: 'POST'
-                        })
-                    })
-
-                    Promise.all(promises).then(
-                        dispatch({
-                            type: CREATE_GAME,
-                            payload: games
-                        })
-                    )
-                    history.push("/videogame/" + games.id)
-                })
+            
+            
+            
 
         } catch (error) {
             console.log('error PORQUE:' + error)
@@ -221,7 +200,7 @@ export function vaciarGame() {
 
 export function postVideoGame(payload){
     return async function(dispatch){
-        await axios.post("/videoGame",payload)
+        await axios.post("/videogames",payload)
        return dispatch({type: POST_VIDEOGAME, payload})
      }
 }
@@ -301,5 +280,27 @@ export function signin(payload) {
                 localStorage.setItem('user', JSON.stringify(resp))
             })
             .catch(err => console.log(payload))
+    }
+}
+
+export function getUser (payload) {
+    return function (dispatch) {
+        axios.get(`/userLogged/${payload}`)
+        .then(resp => resp.data)
+        .then(resp => {
+            // console.log('response del back', resp)
+            dispatch({
+                type: GET_USER,
+                payload: resp
+            })
+        })
+        .catch(err => console.log(payload))
+    }
+}
+export function clearUser() {
+    return function (dispatch) {
+        dispatch({
+            type: CLEAR_USER
+        })
     }
 }

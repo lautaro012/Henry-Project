@@ -14,7 +14,7 @@ import GameDetail from './Components/Game_Details/GameDetails.jsx'
 import CreateVideogame from './Components/CreateVideogame/CreateVideogame';
 import Admin from './Components/Admin/Admin';
 import { Profile } from './Components/Profile/Profile';
-import UserSign from './Components/Nav_bar/SignUserModal';
+import UserSign from './Components/UserSign/UserSign';
 import LoadingScreen from './Components/LoadingScreen/LoadingScreen';
 import Cart from './Components/Cart/Cart.jsx';
 import Footer from './Components/Footer/Footer.jsx'
@@ -41,44 +41,48 @@ function App() {
   const [user, setUser] = useState(null)
   const [userLogged, setUserLogged] = useState(false)
 
+  
 
-  useEffect(() =>  {
+  useEffect(() => {
 
-    //   const getUser = async () => {
-    //   fetch("http://localhost:3001/auth/success", {
-    //     method: "GET",
-    //     // credentials: "include",
-    //     headers: {
-    //     Accept: "application/json", 
-    //     "Content-Type": "application/json",
-    //     "Access-Control-Allow-Credentials": true
-    //     },
-    //   }).then((response) => {
-    //     if(response.status === 200) {
-    //       console.log('entra a response')
-    //       return response.json()};
-    //     throw new Error('authentication has been failed')
-    //   }).then(resObject => {
-    //     setUserLogged(true)
-    //     localStorage.setItem('user', JSON.stringify(resObject))
-    //     setUser(resObject.user)
-    //   }).catch(err => {
-    //     console.log(err)
-    //   })
-    // }
-    //   getUser()
-    
+    const getUser = async () => {
+      fetch("http://localhost:3001/auth/success", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          //  "Access-Control-Allow-Credentials": true
+        },
+      }).then((response) => {
+
+        if(response.status === 200) {
+          // console.log('entra a response')
+          return response.json()};
+
+        throw new Error('authentication has been failed')
+      }).then(resObject => {
+        setUserLogged(true)
+        localStorage.setItem('user', JSON.stringify(resObject))
+        setUser(resObject.user)
+      }).catch(err => {
+        console.log(err)
+      })
+    }
+    getUser()
+
   }, [])
 
-  console.log(user)
+
+
+  console.log(`USUARIO: ${user}`)
 
 
 
   useEffect(() => {
     if(localStorage.getItem('user')) {
-      setUserLogged(true)} else {setUserLogged(false)}
+      setUserLogged(true)}
 
- 
     if (localStorage.length === 0) {
       localStorage.setItem("products", JSON.stringify([]));
       localStorage.setItem("favProducts", JSON.stringify([]));
@@ -101,6 +105,7 @@ function App() {
 
   return (
     <Router>
+
       <NavBar userLogged={userLogged} setUserLogged={setUserLogged} />
       <Routes>
         <Route exact path='/' element={<LandingPage />} />
@@ -115,7 +120,7 @@ function App() {
         <Route path='/admin/createvideogame' element={<CreateVideogame/>} />
         <Route path='/home/create' element={<CreateVideogame/>} />
         <Route path='/admin' element={<Admin/>} />
-        <Route path='/profile' element={ userLogged ? <Profile/> : <UserSign isOpen={true}/>} />
+        <Route path='/profile' element={ userLogged ? <Profile/> : <UserSign setUserLogged={setUserLogged} isOpen={true}/>} />
         <Route path='/Loading' element={<LoadingScreen/>} />
         <Route path='/cart' element={<Cart/>} />
         <Route path='/edit' element={<EditVideogame></EditVideogame>}/>

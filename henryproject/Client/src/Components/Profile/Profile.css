@@ -2,7 +2,9 @@
     margin-top: 10%;
     color: white;
 }
-
+.searchbar-test{
+    color:white
+}
 .show-profile-settings {
     display: flex;
     flex-direction: column;
