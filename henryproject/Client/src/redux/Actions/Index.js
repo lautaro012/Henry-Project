@@ -221,7 +221,7 @@ export function vaciarGame() {
 
 export function postVideoGame(payload){
     return async function(dispatch){
-        await axios.post("/videoGame",payload)
+        await axios.post("/videogames",payload)
        return dispatch({type: POST_VIDEOGAME, payload})
      }
 }

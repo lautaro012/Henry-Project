@@ -23,7 +23,7 @@ export default function CreateVideogame () {
          description: '',
          rating: 1 ,
          image: '',
-         videoTrailer: '' ,
+         video: '' ,
          platforms: [],
          genres: [],
          
@@ -35,7 +35,7 @@ export default function CreateVideogame () {
         description: true,
         rating: true ,
         image: false,
-        videoTrailer: false ,
+        video: false ,
         platforms: true,
         genres: true,
         
@@ -53,7 +53,7 @@ export default function CreateVideogame () {
         //         price:/^[0-9]{}$/,
         //         description: /^[a-zA-ZñÑ]{1,40}$/,
         //         image: /^[a-zA-Z0-9ñÑ ]{1,1000}$/,
-        //         videoTrailer: /^[a-zA-Z0-9ñÑ ]{1,1000}$/,
+        //         video: /^[a-zA-Z0-9ñÑ ]{1,1000}$/,
         //     }
     //function name
     function onChangeName(e){
@@ -154,23 +154,26 @@ export default function CreateVideogame () {
         setState({...state,platforms:state.platforms.filter(platform=>platform!=e.target.value)})
       
     }
-    function validar(e){
-        e.preventDefault()
-        for(var props in errors){
-            if(errors[props]){
-                alert ("debe corregir errores")
-                return
-            }
-        }
-        alert("todo bien")
-    }
+    // function validar(e){
+    //     e.preventDefault()
+    //     for(var props in errors){
+    //         if(errors[props]){
+    //             alert ("debe corregir errores")
+    //             return
+    //         }
+    //     }
+    //     alert("todo bien")
+    // }
     return(
         <div className="div">
-       <form className="videogame-form" onSubmit={e=>validar(e)}>
+       <form className="videogame-form" 
+    //    onSubmit={e=>validar(e)}
+        onSubmit={(e) => onSubmitCreate(e)}
+>
         {/* componente name */}
         <div>
          <label>Name</label>
-         <input type="text" onChange={(e)=>onChangeName(e)}name="name" value={state.name} onBlur={(e)=>onBlurName(e)} onKeyUp={(e)=>onKeyUp} placeholder="ingresar nombre"></input>
+         <input type="text" onChange={(e)=>onChangeName(e)} name="name" value={state.name} onBlur={(e)=>onBlurName(e)} onKeyUp={(e)=>onKeyUp} placeholder="ingresar nombre"></input>
          {
                      (errors.name && !validate.name ) && (
                         <p className="errorText">El nombre debe contener entre 1 y 15 caracteres</p>
@@ -180,7 +183,7 @@ export default function CreateVideogame () {
         </div>
         <div>
          <label>Price</label>
-         <input type="number" onChange={(e)=>onChangePrice(e)}name="price" value= {state.price} onBlur={(e)=>onBlurPrice(e)} onKeyUp={(e)=>onKeyUpPrice(e)} placeholder="ingresar precio"></input>
+         <input type="number" onChange={(e)=>onChangePrice(e)}  name="price" value= {state.price} onBlur={(e)=>onBlurPrice(e)} onKeyUp={(e)=>onKeyUpPrice(e)} placeholder="ingresar precio"></input>
          {
                      (errors.price && !validate.price )&& (
                         <p>precio incorrecto</p>
@@ -235,15 +238,15 @@ export default function CreateVideogame () {
                 }
         </div>
         <div>
-        <label>VideoTrailer</label>
-        <input type="video" onChange={(e)=>onChangeVideo(e)}name="videoTrailer" value= {state.videoTrailer} onBlur={(e)=>onBlurVideo(e)} onKeyUp={(e)=>onKeyUpVideo(e)} placeholder="ingresar video"></input>
+        <label>video</label>
+        <input type="video" onChange={(e)=>onChangeVideo(e)}name="video" value= {state.video} onBlur={(e)=>onBlurVideo(e)} onKeyUp={(e)=>onKeyUpVideo(e)} placeholder="ingresar video"></input>
          {
-                     (errors.videoTrailer && !validate.videoTrailer )&& (
-                        <p>{errors.videoTrailer}</p>
+                     (errors.video && !validate.video )&& (
+                        <p>{errors.video}</p>
                      )
                  }
                 {
-                     validate.videoTrailer && (
+                     validate.video && (
                          <p className="errorText" >Debe contener caracteres correctamente</p>
                      )
                 }
@@ -305,7 +308,9 @@ export default function CreateVideogame () {
                  }
 
     
-       <button type="submit" onClick={(e)=>onSubmitCreate(e)}>Submit</button>
+       <button type="submit" 
+    //    onClick={(e)=>onSubmitCreate(e)}
+       >Submit</button>
 
         </form>
         {/* visualizar */}
@@ -316,7 +321,7 @@ export default function CreateVideogame () {
          <p>{state.description}</p>
          <p>{state.price}</p>
          <p>{state.rating}</p>
-         <p>{state.videoTrailer}</p>
+         <p>{state.video}</p>
         </div>
         </div>
     )
