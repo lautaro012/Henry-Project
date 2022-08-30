@@ -70,14 +70,6 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 
 
 
-server.use(passport.initialize())
-server.use(passport.session())
-server.use(cors({
-  origin: {DB_HOST},
-  methods: "GET, POST, PUT, DELETE",
-   credentials: true
-}))
-
 server.use('/', routes);
 
 

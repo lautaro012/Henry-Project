@@ -68,7 +68,6 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
 
                 <div>
                     <button onClick={toggleModal}>Loggin</button>
-
                     <UserSign toggleModal={toggleModal} isOpen={isOpen} setUserLogged={e => setUserLogged(e)} />
                 </div>
 
