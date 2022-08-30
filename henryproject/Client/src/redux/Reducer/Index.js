@@ -21,6 +21,10 @@ import {
     ACTUALIZAR_CART,
     ACTUALIZAR_FAV,
     POST_VIDEOGAME,
+    CHANGE_NAME,
+    HIDE_VIDEOGAME,
+    
+    
 } from "../Actions/Index"
 
 const initialState = {
@@ -55,6 +59,8 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 videogames: action.payload,
             }
+
+            
         case ACTUALIZAR_CART:
             return {
                 ...state,
@@ -186,6 +192,14 @@ export default function rootReducer(state = initialState, action) {
         return{
           ...state
         }
+        case HIDE_VIDEOGAME:
+        return{
+          ...state
+        }
+        case CHANGE_NAME:
+            return{
+                ...state
+              } 
 
         case FILTER_GAMES:
             let { platformby, genreby } = action.payload
