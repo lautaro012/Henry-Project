@@ -2,6 +2,7 @@ const {Games, Genres, Platforms, Tags } = require('../db')
 
 const getVideoGamesDB = async () => {
     let gamesDB = await Games.findAll({
+      where: {disabled: false},
       include: [{
           model: Genres,
           attributes: [ 'name' ],
