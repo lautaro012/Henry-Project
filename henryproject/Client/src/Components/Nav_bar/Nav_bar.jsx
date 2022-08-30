@@ -4,7 +4,7 @@ import Icon from '../../Style/Imagenes/Icon.PNG'
 import Cart from '../../Style/Imagenes/cart.png'
 import Cora from '../../Style/Imagenes/Corazon.png'
 import { useSelector } from 'react-redux'
-import SignUserModal from './SignUserModal.jsx'
+import UserSign from '../UserSign/UserSign'
 import SearchBar from '../SearchBar/SearchBar'
 
 //import UserPop from './UserPop.jsx'
@@ -28,6 +28,7 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
     const [isOpen, setIsOpen] = useState(false);
 
     function toggleModal() {
+        
         setIsOpen(!isOpen);
     }
 
@@ -36,13 +37,14 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
         dispatch(getAllGames(name))
     }
 
-
     return (
         <nav className="Nav_bar">
 
-            <Link id="icon" to='/'>
-                <img src={Icon} alt="Icon" />
-            </Link>
+            <div id="icon">
+                <Link to='/'>
+                    <img src={Icon} alt="Icon" />
+                </Link>
+            </div>
 
             <div>
                 <SearchBar
@@ -57,6 +59,7 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
             <div>
                 <Link to='/home/games'> <button> Search in our game list </button> </Link>
             </div>
+
             {/* <Link to='/home/create'><button>Create Videogame</button></Link>
 
                 <Link to='/profile'> <button> My Profile </button></Link>
@@ -65,7 +68,7 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
 
                 <div>
                     <button onClick={toggleModal}>Loggin</button>
-                    <SignUserModal toggleModal={toggleModal} isOpen={isOpen} />
+                    <UserSign toggleModal={toggleModal} isOpen={isOpen} setUserLogged={e => setUserLogged(e)} />
                 </div>
 
             }

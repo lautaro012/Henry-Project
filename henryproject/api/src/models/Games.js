@@ -19,19 +19,18 @@ module.exports = (sequelize) => {
     price: {
       type: DataTypes.FLOAT,
       allowNull: false
-  }, 
+    }, 
     description: {
         type: DataTypes.TEXT,
-        allowNull: true
+        allowNull: false
+    },
+    image: {
+      type: DataTypes.TEXT,
+      allowNull:false
     },
     rating: {
         type: DataTypes.FLOAT,
         allowNull: true
-    },
-    image: {
-      type: DataTypes.TEXT,
-      defaultValue: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
-      allowNull:false
     },
     video: {
       type: DataTypes.ARRAY(DataTypes.STRING),
@@ -78,9 +77,18 @@ module.exports = (sequelize) => {
       type: DataTypes.ARRAY(DataTypes.JSONB),
       allowNull:true,
     },
+    disabled:{
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
     createdInDb:{
         type: DataTypes.BOOLEAN,
         defaultValue:true,
+    },
+    display:{
+      type: DataTypes.BOOLEAN,
+      defaultValue:true,
     }
 
   });

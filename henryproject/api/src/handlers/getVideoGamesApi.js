@@ -19,7 +19,7 @@ async function getVideogamesApi(){
     }
 
     const allGames= await Games.findAll();
-    
+    try{
     if(allGames.length == 0){
         console.log('cargo la base de datos')
         let page =[]
@@ -103,6 +103,9 @@ async function getVideogamesApi(){
     }else {
         return allGames
     }
+}catch(error){
+    console.log(error.message)
+}
 }  
 module.exports = {
     getVideogamesApi

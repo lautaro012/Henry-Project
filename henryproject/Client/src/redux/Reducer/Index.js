@@ -21,6 +21,15 @@ import {
     ACTUALIZAR_CART,
     ACTUALIZAR_FAV,
     POST_VIDEOGAME,
+
+    CHANGE_NAME,
+    HIDE_VIDEOGAME,
+    
+    
+
+    GET_USER,
+    CLEAR_USER,
+
 } from "../Actions/Index"
 
 const initialState = {
@@ -37,6 +46,7 @@ const initialState = {
     favorites: [],
     tags: [],
     Tagsinfilter: [],
+    user: []
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -55,6 +65,8 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 videogames: action.payload,
             }
+
+            
         case ACTUALIZAR_CART:
             return {
                 ...state,
@@ -186,6 +198,14 @@ export default function rootReducer(state = initialState, action) {
         return{
           ...state
         }
+        case HIDE_VIDEOGAME:
+        return{
+          ...state
+        }
+        case CHANGE_NAME:
+            return{
+                ...state
+              } 
 
         case FILTER_GAMES:
             let { platformby, genreby } = action.payload
@@ -225,6 +245,16 @@ export default function rootReducer(state = initialState, action) {
                 game: []
             }
 
+        case GET_USER:
+            return {
+                ...state,
+                user: action.payload
+            }
+        case CLEAR_USER:
+            return {
+                ...state,
+                user: []
+            }
 
         default: return state
     }

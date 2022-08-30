@@ -14,3 +14,23 @@
     align-items: center;
     padding: 1%;
 }
+
+.deleteButton {
+    margin: 10px;
+    width: 15px;
+    padding-left: 13px;
+    color: red;
+    background-color: white;
+    border-radius: 0;
+    padding-right: 21px;
+}
+
+.deleteButton:hover{
+    cursor: pointer;
+}
+
+.errorText {
+    color:rgb(177, 46, 46);
+    font-weight:bold;
+    font-size: 15px;
+}
