@@ -7,6 +7,9 @@ require('./passport')
 const passport = require('passport')
 const cors = require('cors')
 const cookieSession = require('cookie-session')
+const {
+  DB_USER, DB_PASSWORD, DB_HOST,API_KEY, DB_NAME,KEY_CHECK
+} = process.env;
 
 
 
@@ -27,8 +30,8 @@ server.use(cookieParser());
 server.use(morgan('dev'));
 
 server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
-  res.header('Access-Control-Allow-Origin', 'true'); // update to match the domain you will make the request from
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Credentials', 'true'); // update to match the domain you will make the request from
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   next();
@@ -57,7 +60,7 @@ server.use(cookieSession({
 server.use(passport.initialize())
 server.use(passport.session())
 server.use(cors({
-  origin: "http://localhost:3000",
+  origin: {DB_HOST},
   methods: "GET, POST, PUT, DELETE",
    credentials: true
 }))
