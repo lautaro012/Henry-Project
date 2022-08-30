@@ -16,14 +16,14 @@ passport.use(new GoogleStrategy({
   },
  async function verify(accessToken, refreshToken, profile, done) {
 
-    done(null, profile)
+   return done(null, profile)
 }
 ));
 
 passport.serializeUser((user, done) => {
-    done(null, user)
+    return done(null, user)
 })
 
 passport.deserializeUser((user, done) => {
-    done(null, user)
+    return done(null, user)
 })

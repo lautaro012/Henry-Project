@@ -28,6 +28,7 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
     const [isOpen, setIsOpen] = useState(false);
 
     function toggleModal() {
+        
         setIsOpen(!isOpen);
     }
 
@@ -67,7 +68,7 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
 
                 <div>
                     <button onClick={toggleModal}>Loggin</button>
-                    <UserSign toggleModal={toggleModal} isOpen={isOpen} setUserLogged={setUserLogged} />
+                    <UserSign toggleModal={toggleModal} isOpen={isOpen} setUserLogged={e => setUserLogged(e)} />
                 </div>
 
             }
