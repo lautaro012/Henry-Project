@@ -66,7 +66,7 @@ const singIn=async (req,res) => {
         const user = await Users.findOne({
             where: {mail : mail}
         }) 
-        console.log('usuario de base de datos', user.dataValues)
+        // console.log('usuario de base de datos', user.dataValues)
         if(!user){
             res.send(404).json({ msg: "Usuario con este correo no se encuentra" })
         }else{
