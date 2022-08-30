@@ -3,7 +3,7 @@ require('dotenv').config();
 const {API_KEY} =process.env;
 
 
-const { Games, Platforms, Genres, Tags }=require("../db.js");
+const {Tags }=require("../db.js");
 
 
 
