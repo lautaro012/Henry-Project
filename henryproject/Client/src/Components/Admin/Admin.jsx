@@ -2,7 +2,7 @@ import CreateVideogame from '../CreateVideogame/CreateVideogame'
 import './Admin.css'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
-import { getAllGames } from '../../redux/Actions/Index'
+import { changeName, getAllGames, getAllVideoGamesAdmin } from '../../redux/Actions/Index'
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
@@ -13,6 +13,8 @@ export default function Admin () {
     const dispatch= useDispatch()
     const [name,setName]= useState("")
     const videogames=useSelector(state=>state.videogames);
+   
+    
 
     useEffect(()=>{
         dispatch(getAllGames());
@@ -27,21 +29,12 @@ export default function Admin () {
         setName(e.target.value)
         //dispatch(getAllGames(name))
     }
+    //const videogamesAdmin= videogames.slice(0,8)
+
     return (
         <div className='Search-Filters'>
 
-        <div>
-        <input
-            id="search"
-            className="search"
-            type="text"
-            value={name} 
-            onChange= {(e) => handleOnChange(e)}
-            placeholder="Buscar videojuego..."
-          />
-          <button className ="bottom" type="submit" onClick= {(e) => handleSubmit(e)}> Search </button>   
-        </div>
-
+        
         <div className='filters'>
             <div className="show-profile-settings">
                 <div>
@@ -58,32 +51,44 @@ export default function Admin () {
                 </div>
 
             </div>
-
-            <div className='show-current-setting-admin'>
-            {
-                    videogames?.map(c=>{
-                        return(
-                            <div key={c.id}>
-                            <ListVideogame
-                            id={c.id}
-                            tittle={c.name}
-                            image={c.image}
-                            price={c.price}
-                            genres={c.genres?.map(d=>d.name)}
-                            />
-                            </div>
-                        )
-                    }
-                    )
-                }
-                {/* <div className='half'>
-                </div>
-                <div className='half'>
-                    <span> PREVIEW </span>
-                </div> */}
             </div>
+            <div className="conteinerCart">
+            <div>
+        
+        <input
+            id="search"
+            className="search"
+            type="text"
+            value={name} 
+            onChange= {(e) => handleOnChange(e)}
+            placeholder="Buscar videojuego..."
+          />
+          <button className ="bottom" type="submit" onClick= {(e) => handleSubmit(e)}> Search </button>   
         </div>
+
+            {
+                 videogames && videogames.length ?
+                    <div id="conteinerCart2">{
+                        videogames && videogames.map(item => {
+                            return (
+                                <div key={item.id} id="item">
+                                    <img src={item.image} alt={item.id}></img>
+                                    <h1>{item.name}</h1>
+                                    <h3>$ {item.price}</h3>
+                                    {/* <button onClick={() => deleteItem(item.id)}>Delete</button> */}
+                                </div>
+                            )
+                        })
+                    }
+                 </div>
+        :<div>
+            </div>
+                
+                }
+        </div>
+    
+    
    
     </div>
     )
-}
+            }
