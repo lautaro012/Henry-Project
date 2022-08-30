@@ -8,6 +8,7 @@ const tagsRoute = require('./routerTags')
 const authRoute = require('./routerAuth')
 const userRouter = require('./routerNewUser')
 const checkoutRouter=require("./routerCheckout");
+const userLogged = require("./routerGetUserLogged")
 const { singIn } = require('../handlers/authHandler');
 const router = Router();
 
@@ -22,6 +23,8 @@ router.use("/tags", tagsRoute);
 router.use("/newUser", userRouter)
 router.use('/checkout', checkoutRouter)
 router.use("/login", singIn)
+router.use('/userLogged', userLogged)
+
 
 
 

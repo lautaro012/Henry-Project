@@ -12,7 +12,7 @@ export function Profile () {
 
 
     let displayName = `Bienvenid@ ${profile.user.displayName || profile.user.userName}`
-    let photos = profile.user.photos[0].value
+    let photos = profile.user.photos[0].value || profile.user.image
        
     console.log(photos)
 

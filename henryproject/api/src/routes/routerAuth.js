@@ -24,6 +24,18 @@ router.get("/success", (req, res) => {
             user: req.user
             // cookies: req.cookies
         })
+        Users.findOrCreate({
+            where: {mail: req.user.emails[0].value},
+            
+            defaults: {name: req.user.displayName,
+            lastName: req.user.name.familyName,
+            mail: req.user.emails[0].value,
+            userName: req.user.name.givenName,
+            image: req.user.photos[0].value}
+        })
+        // console.log(req.user.name.givenName)
+        // console.log(req.user.id)
+
     }
 })
 

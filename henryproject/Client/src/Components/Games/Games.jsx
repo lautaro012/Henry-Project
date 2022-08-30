@@ -9,13 +9,10 @@ import Paginado from '../Paginado/Paginado';
 import Filter from '../Filter/Filter';
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
 
-
-
-
 export default function Games() {
 
     let dispatch = useDispatch()
-  //  let allvideogames = useSelector(state => state.Allvideogames)
+    //  let allvideogames = useSelector(state => state.Allvideogames)
     let videogames = useSelector(state => state.videogames)
     let tags = useSelector(state => state.tags)
     let genres = useSelector(state => state.genres)
@@ -63,63 +60,62 @@ export default function Games() {
     }
 
 
-
     return (
         <div className='Search-Filters'>
             {
                 tags.length > 0 && videogames.length > 0 ?
-                <div className='filters'>
-                    <div className="show-filters">
+                    <div className='filters'>
+                        <div className="show-filters">
 
-                        <Filter
-                            genres={genres}
-                            platforms={platforms}
-                            tags={tags}
-                            setRender={el => setRender(el + render)}
-                        />
-
-                    </div>
-                    <div className='Sorts-Games'>
-                        <div className='Sorts'>
-                            <h4 color='#ffffff'> Name/Rate </h4>
-                            <select className='SELECT-ORDER' id='orderBy' onChange={(e) => handleSort(e)} defaultValue='orderBy'>
-                                <option value='name'> Name </option>
-                                <option value='rating'> Rate </option>
-                            </select>
-                            <h4>In What Order ?</h4>
-                            <select className='SELECT-ORDER' id='orderType' onChange={(e) => handleSort(e)} defaultValue='orderType'>
-                                <option value='asc'> Ascendent </option>
-                                <option value='des'> Descendent </option>
-                            </select>
-
-                        </div>
-
-                        <div className='PAGINADO'>
-                            <Paginado
-                                VideogamesPerPage={videogamesPerPage}
-                                allVideogames={videogames.length}
-                                paginado={paginado}
-                                actual={currentPage}
+                            <Filter
+                                genres={genres}
+                                platforms={platforms}
+                                tags={tags}
+                                setRender={el => setRender(el + render)}
                             />
-                        </div>
-                        <div className='Games-Cards-Div'>
-                            {
-                                currentVideogame.length > 0 ?
 
-                                    currentVideogame?.map(card => {
-                                        return (<Cards
-                                            card={card}
-                                            key={card.id}
-                                        />)
-                                    })
-                                    :
-                                    <h1 className='h'> NO GAMES THAT MATCH YOUR REQUISITES </h1>
-                            }
+                        </div>
+                        <div className='Sorts-Games'>
+                            <div className='Sorts'>
+                                <h4 color='#ffffff'> Name/Rate </h4>
+                                <select className='SELECT-ORDER' id='orderBy' onChange={(e) => handleSort(e)} defaultValue='orderBy'>
+                                    <option value='name'> Name </option>
+                                    <option value='rating'> Rate </option>
+                                </select>
+                                <h4>In What Order ?</h4>
+                                <select className='SELECT-ORDER' id='orderType' onChange={(e) => handleSort(e)} defaultValue='orderType'>
+                                    <option value='asc'> Ascendent </option>
+                                    <option value='des'> Descendent </option>
+                                </select>
+
+                            </div>
+
+                            <div className='PAGINADO'>
+                                <Paginado
+                                    VideogamesPerPage={videogamesPerPage}
+                                    allVideogames={videogames.length}
+                                    paginado={paginado}
+                                    actual={currentPage}
+                                />
+                            </div>
+                            <div className='Games-Cards-Div'>
+                                {
+                                    currentVideogame.length > 0 ?
+
+                                        currentVideogame?.map(card => {
+                                            return (<Cards
+                                                card={card}
+                                                key={card.id}
+                                            />)
+                                        })
+                                        :
+                                        <h1 className='h'> NO GAMES THAT MATCH YOUR REQUISITES </h1>
+                                }
+                            </div>
                         </div>
                     </div>
-                </div>
-                :
-                <LoadingScreen></LoadingScreen>
+                    :
+                    <LoadingScreen></LoadingScreen>
             }
 
         </div>
