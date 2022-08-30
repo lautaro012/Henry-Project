@@ -14,7 +14,7 @@ import GameDetail from './Components/Game_Details/GameDetails.jsx'
 import CreateVideogame from './Components/CreateVideogame/CreateVideogame';
 import Admin from './Components/Admin/Admin';
 import { Profile } from './Components/Profile/Profile';
-import UserSign from './Components/Nav_bar/SignUserModal';
+import UserSign from './Components/UserSign/UserSign';
 import LoadingScreen from './Components/LoadingScreen/LoadingScreen';
 import Cart from './Components/Cart/Cart.jsx';
 import Footer from './Components/Footer/Footer.jsx'

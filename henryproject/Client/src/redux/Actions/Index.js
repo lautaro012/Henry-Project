@@ -151,32 +151,9 @@ export const createvideogame = function (payload, history) {
     console.log(payload)
     return function (dispatch) {
         try {
-            fetch(`${REACT_APP_API}/videogames`, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json, text/plain, */*',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-
-            })
-                .then(response => response.json())
-                .then(games => {
-
-                    let promises = payload.genres.map(genres => {
-                        return fetch(`${REACT_APP_API}/videogames/${games.id}/diet/${genres}`, {
-                            method: 'POST'
-                        })
-                    })
-
-                    Promise.all(promises).then(
-                        dispatch({
-                            type: CREATE_GAME,
-                            payload: games
-                        })
-                    )
-                    history.push("/videogame/" + games.id)
-                })
+            
+            
+            
 
         } catch (error) {
             console.log('error PORQUE:' + error)
