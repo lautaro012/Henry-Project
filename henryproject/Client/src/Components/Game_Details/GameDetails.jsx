@@ -1,20 +1,22 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getGameById, addToCart } from "../../redux/Actions/Index.js";
+import { getGameById, addToCart, addToFav  } from "../../redux/Actions/Index.js";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 
 import ReactPlayer from 'react-player'
 import ImagenPop from '../Game_Details/ImagenPop.jsx';
-import Loading from '../../Style/Imagenes/Loading.gif'
+// import Loading from '../../Style/Imagenes/Loading.gif'
 import LoadingScreen from "../LoadingScreen/LoadingScreen.jsx";
 import { Carousel } from 'react-responsive-carousel';
+import {useNavigate  } from "react-router-dom";
 
 import '../Game_Details/GameDetails.css'
 
 export default function GameDetails() {
 
+    const navigate = useNavigate();
     const dispatch = useDispatch()
     const game = useSelector(state => state.game)
     const { id } = useParams() // usa el parametro de la URL
@@ -69,6 +71,22 @@ export default function GameDetails() {
         alert(`${game.name} added to cart!`)
     }
 
+    function addGameToFav() {
+        let item = {
+            id: game.id,
+            name: game.name,
+            price: game.price,
+            image: game.image,
+        }
+        dispatch(addToFav(item))
+        alert(`${game.name} added to your favorites!`)
+    }
+
+    function  buy() {
+        addGameToCart();
+        navigate("/cart/formularioPago");
+    }
+
     console.log(game)
 
     return (
@@ -88,7 +106,6 @@ export default function GameDetails() {
 
                                 <Carousel
                                     showArrows={true}
-                                    id="video_detalle"
                                     infiniteLoop={true}
                                     showThumbs={false}
                                 >
@@ -209,9 +226,9 @@ export default function GameDetails() {
 
                                 <h2>Price : ${game.price}</h2>
 
-                                <button>Buy now ! 💰</button>
+                                <button onClick={() => buy()}>Buy now ! 💰</button>
                                 <button onClick={() => addGameToCart()}>Add to cart 🛒</button>
-                                <button>Add to favorites 🤍</button>
+                                <button onClick={() => addGameToFav()}>Add to favorites 🤍</button>
                             </aside>
                         </div>
                     </div>
