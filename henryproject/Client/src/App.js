@@ -41,6 +41,7 @@ function App() {
   const [user, setUser] = useState(null)
   const [userLogged, setUserLogged] = useState(false)
 
+  
 
   useEffect(() => {
 
@@ -52,7 +53,6 @@ function App() {
           Accept: "application/json",
           "Content-Type": "application/json",
           //  "Access-Control-Allow-Credentials": true
-
         },
       }).then((response) => {
 

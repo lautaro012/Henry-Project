@@ -46,6 +46,7 @@ export default function UserSign({toggleModal, isOpen, setUserLogged }) {
         setUserLogged(true)
         console.log('logueado con', input)
         setRender(render, 'hola')
+        window.location.reload()
     }
 
   return (
