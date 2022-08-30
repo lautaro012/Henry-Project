@@ -21,7 +21,8 @@ export default function ProfileNav ( {setUserLogged, userLogged}) {
    
           },
         }).then(() => {
-            localStorage.removeItem('user')
+            localStorage.clear()
+            // localStorage.removeItem('user')
             setUserLogged(false)
         }).catch(err => {
           console.log(err)

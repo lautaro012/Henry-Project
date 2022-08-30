@@ -20,7 +20,11 @@ const Register = () => {
     })
 
 
-  
+  function onClickCheckbox(e){
+    if(image !== "") {
+        setNewUser({...newUser, ["image"]: image})
+       }
+  }
 
     const uploadImage = async (e) => {
         const files = e.target.files
@@ -48,18 +52,16 @@ const Register = () => {
             let usuario = {...newUser}
             usuario[e.target.name] = e.target.value 
             setNewUser({...newUser, [e.target.name]: e.target.value})
-        } 
+        }
         else {
             return console.log('falta enviar datos')
         }
 
     }
 
+
     function handleSubmit(e) {
         e.preventDefault()
-            if(image !== "") {
-             setNewUser({...newUser, ["image"]: image})
-            }
             dispatch(postNewUser(newUser))
             alert('registrado bro')   
     }
@@ -69,6 +71,14 @@ const Register = () => {
   return (
     <div className='divFormRegister'>
         <form className='formRegister' onSubmit={(e) => handleSubmit(e)} >
+            <label>Profile Photo:</label>
+            <input  name="image" type="file" placeholder='Choose File' onChange={uploadImage} id="profile-photo" />
+            {loading ? (<p>Uploading your image...</p>) : 
+            <div>
+                <img src={image} style={{width: "300px"}} alt='asdf'/>
+                <label><input type="checkbox" onChange={(e) => onClickCheckbox(e)}/>
+                Confirmar imagen</label>
+            </div>}
             <label type="text" >UserName:</label>
             <input name="userName" onChange={(e) => handleChange(e)}></input>
             <label type="text" >Name:</label>
@@ -77,9 +87,6 @@ const Register = () => {
             <input name="lastName" onChange={(e) => handleChange(e)} ></input>
             <label type="text" >Mail:</label>
             <input name="mail" onChange={(e) => handleChange(e)} ></input>
-            <label>Profile Photo:</label>
-            <input  name="image" type="file" placeholder='Choose File' onChange={uploadImage} id="profile-photo" />
-            {loading ? (<p>Uploading your image...</p>) : <img src={image} style={{width: "300px"}} alt='asdf'></img>}
             <label>password:</label>
             <input name="password" type="text"  onChange={(e) => handleChange(e)}></input>
             <label>address:</label>
