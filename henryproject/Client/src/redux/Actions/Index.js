@@ -20,6 +20,7 @@ export const ADD_TO_FAV = "ADD_TO_FAV"
 export const ACTUALIZAR_CART = "ACTUALIZAR_CART"
 export const ACTUALIZAR_FAV = "ACTUALIZAR_FAV"
 export const POST_VIDEOGAME= "POST_VIDEOGAME"
+export const GET_USER = 'GET_USER'
 
 require('dotenv').config();
 const {
@@ -270,13 +271,27 @@ export function deleteItemFromFavs(id) {
 }
 
 export function signin(payload) {
-    return function () {
-        axios.post(`/login`, payload)
+    return function (dispatch) {
+        axios.post(`/userLogged`, payload)
             .then(resp => resp.data)
             .then(resp => {
                 console.log(resp)
-                localStorage.setItem('user', JSON.stringify(resp))
+                dispatch({
+                    type: GET_USER,
+                    payload
+                })
             })
             .catch(err => console.log(payload))
+    }
+}
+
+//TRAER USUARIO DESDE DB
+export function getUser(payload) {
+    return function () {
+        axios.get('/userlog', payload)
+        .then(resp => resp.data)
+        .then(resp => {
+
+        })
     }
 }

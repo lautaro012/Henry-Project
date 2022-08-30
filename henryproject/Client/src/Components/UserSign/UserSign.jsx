@@ -11,6 +11,7 @@ export default function UserSign({toggleModal, isOpen, setUserLogged }) {
 
 
     let dispatch = useDispatch()
+    const [render, setRender] = useState('')
     const [input, setInput] = useState({
         mail: '',
         password: ''
@@ -43,8 +44,9 @@ export default function UserSign({toggleModal, isOpen, setUserLogged }) {
         password: ''
         })
 
-        if(localStorage.getItem('user')){setUserLogged(true)}
+        setUserLogged(true)
         console.log('logueado con', input)
+        setRender(render, 'hola')
     }
 
   return (

@@ -21,6 +21,7 @@ import {
     ACTUALIZAR_CART,
     ACTUALIZAR_FAV,
     POST_VIDEOGAME,
+    GET_USER,
 } from "../Actions/Index"
 
 const initialState = {
@@ -37,6 +38,7 @@ const initialState = {
     favorites: [],
     tags: [],
     Tagsinfilter: [],
+    user: []
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -225,6 +227,11 @@ export default function rootReducer(state = initialState, action) {
                 game: []
             }
 
+        case GET_USER:
+            return {
+                ...state,
+                user: action.payload
+            }
 
         default: return state
     }
