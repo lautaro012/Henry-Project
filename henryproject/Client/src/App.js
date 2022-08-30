@@ -40,13 +40,13 @@ function App() {
 
   const [user, setUser] = useState(null)
   const [userLogged, setUserLogged] = useState(false)
-
+  console.log(`adsdasdasdasdsadsadsa ${REACT_APP_API}`)
   
 
   useEffect(() => {
 
     const getUser = async () => {
-      fetch("http://localhost:3001/auth/success", {
+      fetch(`http://localhost:3001/auth/success`, {
         method: "GET",
         credentials: "include",
         headers: {
