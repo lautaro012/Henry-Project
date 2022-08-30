@@ -19,15 +19,22 @@ module.exports = (sequelize) => {
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4
     },
     mail:  {
       type: DataTypes.STRING,
+      unique: true,
       allowNull: false
     },
     address:  {
       type: DataTypes.STRING,
       allowNull: true
+    },
+    admin: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
     },
     userName: {
       type: DataTypes.STRING,

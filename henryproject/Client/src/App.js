@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import { actualizarCart, actualizarFav } from './redux/Actions/Index';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // import { useDispatch } from 'react-redux';
-import { addToCart } from './redux/Actions/Index';
-import axios from 'axios'
+
+//import axios from 'axios'
 import LandingPage from './Components/Landing_Page/LandingPage.jsx'
 import About from './Components/About_Us/About.jsx'
 import Home from './Components/Home/Home.jsx'
@@ -14,7 +14,7 @@ import GameDetail from './Components/Game_Details/GameDetails.jsx'
 import CreateVideogame from './Components/CreateVideogame/CreateVideogame';
 import Admin from './Components/Admin/Admin';
 import { Profile } from './Components/Profile/Profile';
-import UserSign from './Components/Nav_bar/SignUserModal';
+import UserSign from './Components/UserSign/UserSign';
 import LoadingScreen from './Components/LoadingScreen/LoadingScreen';
 import Cart from './Components/Cart/Cart.jsx';
 import Footer from './Components/Footer/Footer.jsx'
@@ -55,10 +55,11 @@ function App() {
 
         },
       }).then((response) => {
-        if (response.status === 200) {
-          console.log('entra a response')
-          return response.json()
-        };
+
+        if(response.status === 200) {
+          // console.log('entra a response')
+          return response.json()};
+
         throw new Error('authentication has been failed')
       }).then(resObject => {
         setUserLogged(true)
@@ -72,10 +73,14 @@ function App() {
 
   }, [])
 
+
+  console.log(`USUARIO: ${user}`)
+
+
+
   useEffect(() => {
-    if (localStorage.getItem('user')) {
-      setUserLogged(true)
-    } else { setUserLogged(false) }
+    if(localStorage.getItem('user')) {
+      setUserLogged(true)}
 
 
     if (localStorage.length === 0) {
@@ -100,6 +105,7 @@ function App() {
 
   return (
     <Router>
+
       <NavBar userLogged={userLogged} setUserLogged={setUserLogged} />
       <Routes>
         <Route exact path='/' element={<LandingPage />} />

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './SignUserModal.css'
+import './UserSign.css'
 import User from '../../Style/Imagenes/User.jpg'
 import Modal from "react-modal";
 import { Link } from "react-router-dom";
@@ -42,9 +42,8 @@ export default function UserSign({toggleModal, isOpen, setUserLogged }) {
         mail: '',
         password: ''
         })
-        setUserLogged(true)
+        if(localStorage.getItem('user')){setUserLogged(true)}
         console.log('logueado con', input)
-        setUserLogged(true)
     }
 
   return (
