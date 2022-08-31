@@ -5,8 +5,11 @@ const {API_KEY} = process.env;
 const findGameById = async (req, res) => {
     const {gameId} = req.params;
    try {
-    let game = await Games.findOne({
+    let gameDetail = await Games.findOne({
+        
         where: {id: gameId},
+        
+
         include: [{
             model: Genres,
             attributes: [ 'name' ],
@@ -24,10 +27,10 @@ const findGameById = async (req, res) => {
           }
       ]
     })
-    if(!game){
+    if(!gameDetail){
         return res.json({err: `No se pudo encontrar el detalle del videojuego`})
     }else{
-        return res.send(game)  
+        return res.send(gameDetail)  
     }
    } catch (error) {
      console.log('error en requerir juegos por id',error)
