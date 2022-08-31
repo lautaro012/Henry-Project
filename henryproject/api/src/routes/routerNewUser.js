@@ -10,7 +10,7 @@ router.post('/', singUp)
 router.get("/",async(req,res)=>{
     return res.status(200).json(await getUsers());
 })
-router.put('/admin/:mail', async (req, res) => {
+router.put('/:mail', async (req, res) => {
         try {
             const {mail} = req.params
             const setAdmin = await Users.update(
@@ -32,7 +32,7 @@ router.put('/admin/:mail', async (req, res) => {
     
 })
 
-router.put('/noAdmin/:mail', async (req, res) => {
+router.put('/:mail', async (req, res) => {
     try {
         const {mail} = req.params
         const disableAdmin = await Users.update(
