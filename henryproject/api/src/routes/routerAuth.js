@@ -18,7 +18,7 @@ router.get("/failed", (req, res) => {
 })
 router.get("/success", (req, res) => {
     if(req.user) {
-            return res.status(200).json({
+            res.status(200).json({
             success: true,
             message: 'success',
             user: req.user

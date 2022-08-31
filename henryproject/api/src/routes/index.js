@@ -11,6 +11,8 @@ const checkoutRouter=require("./routerCheckout");
 const userLogged = require("./routerGetUserLogged")
 const gameDisabled = require ("./routerDisableGame")
 const gameAbled = require("./routerAbleGame")
+const banUser = require('./routerBanUser')
+const noBanUser = require('./routerNoBanUser')
 const { singIn } = require('../handlers/authHandler');
 const router = Router();
 
@@ -28,6 +30,8 @@ router.use("/login", singIn)
 router.use('/userLogged', userLogged)
 router.use('/disabled', gameDisabled)
 router.use('/abled', gameAbled )
+router.use('/banned', banUser)
+router.use('/noBanned', noBanUser)
 
 
 
