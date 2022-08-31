@@ -212,14 +212,14 @@ export function postVideoGame(payload){
 
 export function hideVideoGame(payload){
     return async function(dispatch){
-        await axios.put("/hide/:gameId",payload)
+        await axios.get("/hide/:gameId",payload)
         return dispatch({type:HIDE_VIDEOGAME,payload})
     }
 }
 
 export function changeName(payload){
     return async function(dispatch){
-        await axios.put("/changename/:gameId?",payload)
+        await axios.get("/changename/:gameId?",payload)
         return dispatch({type:CHANGE_NAME,payload})
     }
 }

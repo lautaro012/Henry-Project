@@ -35,13 +35,13 @@ router.get("/", async(req,res)=>{
 })
 router.get("/:gameId", findGameById)
 router.post("/", createNewGame)
-router.put("/hide/:gameId",async(req,res,next)=>{
+router.get("/hide/:gameId",async(req,res,next)=>{
     const{gameId}=req.params
     await Games.update({display:false},{where:{id:gameId}})
     console.log(await Games.findByPk(gameId))
-    res.send()
+    res.send("juego escondido")
 })
-router.put("/changename/:gameId?",async(req,res,next)=>{
+router.get("/changename/:gameId?",async(req,res,next)=>{
     const{gameId}=req.query
     await Games.update({name:newName},{where:{id:gameId}})
     console.log(await Games.findByPk(gameId))
