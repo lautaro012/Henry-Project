@@ -1,11 +1,29 @@
 const axios = require("axios");
-const { Games } = require("../db");
+const { Games, Genres, Platforms, Tags } = require("../db");
 const {API_KEY} = process.env;
 
 const findGameById = async (req, res) => {
     const {gameId} = req.params;
    try {
-    const game = await Games.findByPk(gameId)
+    let game = await Games.findOne({
+        where: {id: gameId},
+        include: [{
+            model: Genres,
+            attributes: [ 'name' ],
+            through: { attributes: [] }
+          },
+          {
+            model: Platforms,
+            attributes: [ 'name' ],
+            through: { attributes: [] }
+          },
+          {
+            model: Tags,
+            attributes: [ 'name' ],
+            through: { attributes: [] }
+          }
+      ]
+    })
     if(!game){
         return res.json({err: `No se pudo encontrar el detalle del videojuego`})
     }else{
