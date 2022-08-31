@@ -29,6 +29,7 @@ import {
 
     GET_USER,
     CLEAR_USER,
+    hideVideoGame,
 
 } from "../Actions/Index"
 
@@ -46,7 +47,8 @@ const initialState = {
     favorites: [],
     tags: [],
     Tagsinfilter: [],
-    user: []
+    user: [],
+    hidenVideoGame:[]
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -200,7 +202,8 @@ export default function rootReducer(state = initialState, action) {
         }
         case HIDE_VIDEOGAME:
         return{
-          ...state
+          ...state,
+          hidenVideoGame:action.payload
         }
         case CHANGE_NAME:
             return{
