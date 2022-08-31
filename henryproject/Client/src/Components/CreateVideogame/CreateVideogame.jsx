@@ -186,7 +186,7 @@ export default function CreateVideogame () {
          <input type="number" onChange={(e)=>onChangePrice(e)}  name="price" value= {state.price} onBlur={(e)=>onBlurPrice(e)} onKeyUp={(e)=>onKeyUpPrice(e)} placeholder="ingresar precio"></input>
          {
                      (errors.price && !validate.price )&& (
-                        <p>precio incorrecto</p>
+                        <p className="errorText">El precio debe tener un valor diferente a 0</p>
                      )
                  }
                 {
@@ -200,7 +200,7 @@ export default function CreateVideogame () {
          <textarea type="text" onChange={(e)=>onChangeDescription(e)}name="description" value= {state.description} onBlur={(e)=>onBlurDescription(e)} onKeyUp={(e)=>onKeyUpDescription(e)} placeholder="ingresar description"></textarea>
          {
                      (errors.description && !validate.description )&& (
-                        <p>Descripcion incorrecta</p>
+                        <p className="errorText">Debe contener mas de 10 caracteres</p>
                      )
                  }
                 {
@@ -214,7 +214,7 @@ export default function CreateVideogame () {
          <input type="text" onChange={(e)=>onChangeRating(e)}name="rating" value= {state.rating} onBlur={(e)=>onBlurRating(e)} onKeyUp={(e)=>onKeyUpRating(e)} placeholder="ingresar rating"></input>
          {
                      (errors.rating && !validate.rating )&& (
-                        <p>Rating incorrecto</p>
+                        <p className="errorText">Debe ser un numero entre 1 y 9</p>
                      )
                  }
                 {
