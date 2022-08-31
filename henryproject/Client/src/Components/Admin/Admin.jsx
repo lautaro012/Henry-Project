@@ -2,15 +2,18 @@ import CreateVideogame from '../CreateVideogame/CreateVideogame'
 import './Admin.css'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
-import { changeName, getAllGames, getAllVideoGamesAdmin } from '../../redux/Actions/Index'
+import { changeName, getAllGames, getAllVideoGamesAdmin,hideVideoGame,getGameById } from '../../redux/Actions/Index'
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import ListVideogame from '../CreateVideogame/ListVideogame/ListVideogame'
+import { useParams } from 'react-router-dom'
+
 
 
 export default function Admin () {
     const dispatch= useDispatch()
+    const {id}= useParams()
     const [name,setName]= useState("")
     const videogames=useSelector(state=>state.videogames);
    
@@ -27,10 +30,24 @@ export default function Admin () {
     function handleOnChange(e){
         e.preventDefault()
         setName(e.target.value)
-        //dispatch(getAllGames(name))
+        dispatch(getAllGames(name))
     }
     //const videogamesAdmin= videogames.slice(0,8)
+    //useEffect(()=>{
+       // dispatch(getGameById(id))
+       // },[dispatch,id])
 
+    //function handleHide(e){
+      //  e.preventDefault()
+      //  dispatch(getGameById(id))
+       
+     // }
+      //function handleChangeName(e){
+       // e.preventDefault()
+        //dispatch(changeName())
+     // }
+     
+    
     return (
         <div className='Search-Filters'>
 
@@ -75,6 +92,12 @@ export default function Admin () {
                                     <img src={item.image} alt={item.id}></img>
                                     <h1>{item.name}</h1>
                                     <h3>$ {item.price}</h3>
+                                     <Link to= {`/admin/editgame/${item.id}`}> 
+                                    <button type="button" >Editar </button>
+                                     </Link>
+                                      {/* <Link to= {`/admin/${item.id}`}> */}
+                                    <button type="button">Ocultar </button>
+                                      {/* </Link> */}
                                     {/* <button onClick={() => deleteItem(item.id)}>Delete</button> */}
                                 </div>
                             )
