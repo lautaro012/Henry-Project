@@ -50,7 +50,7 @@ carrito {
 
 #conteinerSide_detalles button {
     border-radius: 5px;
-    max-height: 10%;
+    max-height: 100%;
     min-width: 100%;
 }
 
