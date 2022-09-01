@@ -37,11 +37,11 @@ export default function Admin () {
        // dispatch(getGameById(id))
        // },[dispatch,id])
 
-    //function handleHide(e){
-      //  e.preventDefault()
-      //  dispatch(getGameById(id))
+     function handleHide(e){
+         e.preventDefault()
+         dispatch(hideVideoGame())
        
-     // }
+       }
       //function handleChangeName(e){
        // e.preventDefault()
         //dispatch(changeName())
@@ -96,7 +96,7 @@ export default function Admin () {
                                     <button type="button" >Editar </button>
                                      </Link>
                                       {/* <Link to= {`/admin/${item.id}`}> */}
-                                    <button type="button">Ocultar </button>
+                                    <button type="button" onClick={(e)=>handleHide(e)}>Ocultar </button>
                                       {/* </Link> */}
                                     {/* <button onClick={() => deleteItem(item.id)}>Delete</button> */}
                                 </div>
