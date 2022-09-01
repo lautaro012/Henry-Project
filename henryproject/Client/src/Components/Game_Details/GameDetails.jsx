@@ -197,7 +197,7 @@ export default function GameDetails() {
                                     {
                                         game.platforms && game.platforms.map(plat => {
                                             return (
-                                                <p key={plat.platform.name}>{plat.platform.name}</p>
+                                                <p key={plat.name}>{plat.name}</p>
                                             )
                                         })
 
@@ -209,6 +209,17 @@ export default function GameDetails() {
                                         game.developers && game.developers.map(dev => {
                                             return (
                                                 <p key={dev}>{dev}</p>
+                                            )
+                                        })
+
+                                    }
+                                </div>
+                                <div>
+                                    <h3>Genres</h3>
+                                    {
+                                        game.genres && game.genres.map(gen => {
+                                            return (
+                                                <p key={gen.name}>{gen.name}</p>
                                             )
                                         })
 
