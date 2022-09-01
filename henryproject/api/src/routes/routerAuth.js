@@ -8,13 +8,8 @@ const {
 
 router.get("/google", passport.authenticate("google", {scope:["profile", "email"]}))
 router.get("/google/callback", passport.authenticate("google", {
-<<<<<<< HEAD
-    successRedirect: "/profile",
-    failureRedirect: "/"
-=======
     successRedirect: `${URL_VERCEL}/profile`,
     failureRedirect: `${URL_VERCEL}`
->>>>>>> cdf12dca4f63b557c0818bf25b091e11b5ec9721
 }))
 
 router.get("/failed", (req, res) => {
