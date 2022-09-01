@@ -20,17 +20,15 @@ export default function Home () {
     let videogames = useSelector(state => state.videogames)
     let videogamesBygenre = useSelector(state => state.videogamesBygenre)
 
-    useEffect(() => {    
-
-        dispatch(getAllGames())   
-        dispatch(Getbygenre('Indie'))
+    useEffect(() => {
+        if(Allvideogames.length === 0) {
+            dispatch(Getbygenre('Indie'))
+            dispatch(getAllGames())   
+        }
         dispatch(vaciarGame()) // para vaciar estado global del juegodetail
-    }, [dispatch, Allvideogames.length])
+    }, [])
     
-    // const onSearch = (name) => {
-    //     navigate("../home/games", { replace: true });
-    //     dispatch(getAllGames(name))
-    // }
+
     let populars = Allvideogames?.filter(games => games.rating > 4.5).slice(0,5)
     const GameofTheWeek = videogames[0]   
 

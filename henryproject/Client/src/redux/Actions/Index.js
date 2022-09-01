@@ -51,7 +51,6 @@ export function getAllGames(name) {
         return async function (dispatch) {
             let response = await axios(`/videogames`)
             dispatch({
-
                 type: GET_ALL_GAMES,
                 payload: response.data
             })
