@@ -46,14 +46,14 @@ function App() {
   useEffect(() => {
       const getUser = async () => {
       fetch(`${REACT_APP_API}/auth/success`, {
-        mode: 'cors',
-        method: "GET",
-        // credentials: "include",
-        headers: {
-        Accept: "application/json", 
-        "Content-Type": "application/json",
-        // "Access-Control-Allow-Credentials": true
-        },
+        mode: 'no-cors',
+        // method: "GET",
+        // // credentials: "include",
+        // headers: {
+        // Accept: "application/json", 
+        // "Content-Type": "application/json",
+        // // "Access-Control-Allow-Credentials": true
+        // },
       }).then((response) => {
         if(response.status !== 404) {
           console.log('entra a response')
