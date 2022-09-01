@@ -5,6 +5,11 @@
     min-height: 100%;
 }
 
+#contenedor_miniCards{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 #boton_juego {
     padding: 1%;
 }
@@ -31,6 +36,10 @@ carrito {
     display: block;
 }
 
+#conteinerData_detalles2 {
+    width: 80%;
+}
+
 #conteinerSide_detalles {
     border-radius: 10px;
     border: 1px;
@@ -39,12 +48,10 @@ carrito {
 
     background-color: rgba(0, 0, 0, 0.473);
     padding: 10%;
-    position: sticky;
-    display: table-caption;
 }
 
 #conteinerSide_detalles a {
-
+    word-break:break-all;
     text-decoration: none;
 }
 
