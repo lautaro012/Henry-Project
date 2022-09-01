@@ -43,11 +43,7 @@ router.get("/success", (req, res) => {
 
 router.get("/logout", (req, res) => {
     req.logout();
-<<<<<<< HEAD
-    res.redirect("/")
-=======
     res.redirect(`${URL_VERCEL}`)
->>>>>>> cdf12dca4f63b557c0818bf25b091e11b5ec9721
 })
 
 
