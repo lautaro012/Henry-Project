@@ -5,8 +5,13 @@ import './formularioPago.css';
 import Cart from "../Cart/Cart";
 import { useState } from "react";
 import {useNavigate  } from "react-router-dom";
+
 import { useDispatch } from "react-redux";
 import { deleteItemFromCart } from "../../redux/Actions/Index";
+
+const {
+  REACT_APP_API
+} = process.env;
 
 
 
@@ -58,7 +63,9 @@ let history=useNavigate();
           if(!error){
             const {id}=paymentMethod
             try {
-                const {data}=await axios.post("http://localhost:3001/checkout",{
+
+                const {data}=await axios.post(`${REACT_APP_API}/checkout`,{
+
                   id,
                   amount: precioTotal,
                   games: items,

@@ -108,7 +108,8 @@ export default function GameDetails() {
                                 <Carousel
                                     showArrows={true}
                                     infiniteLoop={true}
-                                    showThumbs={false}
+                                    centerMode={true}
+                                    renderIndicator={false}
                                 >
                                     {
                                         typeof game.video === "object" ?
@@ -119,9 +120,6 @@ export default function GameDetails() {
                                                             id="game_video"
                                                             url={video}
                                                             controls
-                                                            playing
-                                                            loop
-                                                            muted
                                                         />
                                                     )
                                                 })

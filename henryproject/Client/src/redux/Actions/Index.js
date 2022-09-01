@@ -303,12 +303,14 @@ export function deleteItemFromFavs(id) {
 }
 
 export function signin(payload) {
+    console.log(payload)
     return function () {
         axios.post(`/login`, payload)
             .then(resp => resp.data)
             .then(resp => {
-                console.log(resp)
+                console.log('RESP DEL SIGN IN', resp)
                 localStorage.setItem('user', JSON.stringify(resp))
+                window.location.reload()
             })
             .catch(err => console.log(payload))
     }
