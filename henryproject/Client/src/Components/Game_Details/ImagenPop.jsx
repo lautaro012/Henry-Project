@@ -6,7 +6,7 @@ import { Modal } from 'reactstrap'
 export default function imagenPop({ show, imgPop, img }) {
     
     return (
-        <Modal id="modalDetail" isOpen={imgPop} presentationStyle='fullScreen' autoFocus="true">
+        <Modal id="modalDetail" isOpen={imgPop}>
             <img src={img} alt="ImagenPOP"></img>
             <button onClick={() => show()}>X</button>
         </Modal>

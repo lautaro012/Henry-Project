@@ -20,6 +20,9 @@ export const ADD_TO_FAV = "ADD_TO_FAV"
 export const ACTUALIZAR_CART = "ACTUALIZAR_CART"
 export const ACTUALIZAR_FAV = "ACTUALIZAR_FAV"
 export const POST_VIDEOGAME= "POST_VIDEOGAME"
+
+export const HIDE_VIDEOGAME= "HIDE_VIDEOGAME"
+export const CHANGE_NAME= "CHANGE_NAME"
 export const GET_USER = 'GET_USER'
 export const CLEAR_USER = 'CLEAR_USER'
 
@@ -58,6 +61,8 @@ export function getAllGames(name) {
         }
     }
 }
+
+
 
 export function getGameById(id) {
     return async function (dispatch) {
@@ -203,6 +208,20 @@ export function postVideoGame(payload){
         await axios.post("/videogames",payload)
        return dispatch({type: POST_VIDEOGAME, payload})
      }
+}
+
+export function hideVideoGame(payload){
+    return async function(dispatch){
+        await axios.get("/hide/:gameId",payload)
+        return dispatch({type:HIDE_VIDEOGAME,payload})
+    }
+}
+
+export function changeName(payload){
+    return async function(dispatch){
+        await axios.get("/changename/:gameId?",payload)
+        return dispatch({type:CHANGE_NAME,payload})
+    }
 }
 
 
