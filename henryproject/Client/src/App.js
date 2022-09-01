@@ -40,7 +40,7 @@ function App() {
 
   const [user, setUser] = useState(null)
   const [userLogged, setUserLogged] = useState(false)
-  console.log(`adsdasdasdasdsadsadsa ${REACT_APP_API}`)
+  console.log(`Variable de entorno es ${REACT_APP_API}`)
   
 
   useEffect(() => {

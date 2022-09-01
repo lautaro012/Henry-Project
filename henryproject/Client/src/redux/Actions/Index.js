@@ -20,7 +20,7 @@ export const ADD_TO_FAV = "ADD_TO_FAV"
 export const ACTUALIZAR_CART = "ACTUALIZAR_CART"
 export const ACTUALIZAR_FAV = "ACTUALIZAR_FAV"
 export const POST_VIDEOGAME= "POST_VIDEOGAME"
-
+export const SHOW_VIDEOGAME= "SHOW_VIDEOGAME"
 export const HIDE_VIDEOGAME= "HIDE_VIDEOGAME"
 export const CHANGE_NAME= "CHANGE_NAME"
 export const GET_USER = 'GET_USER'
@@ -72,6 +72,24 @@ export function getGameById(id) {
             type: GET_GAME_BY_ID,
             payload: response.data
         })
+    }
+}
+
+
+export function hideVideoGame(id){
+    return async function(dispatch){
+        let resp = await axios.put(`/disabled/${id}`)
+        console.log(resp.data)
+
+        dispatch({type:HIDE_VIDEOGAME, payload: resp.data})
+    }
+}
+
+export function showVideoGame(id) {
+    return async function (dispatch) {
+        let resp = await axios.put(`/abled/${id}`)
+        console.log(resp.data)
+        dispatch({type: SHOW_VIDEOGAME, payload: resp.data})
     }
 }
 
@@ -210,12 +228,6 @@ export function postVideoGame(payload){
      }
 }
 
-export function hideVideoGame(payload){
-    return async function(dispatch){
-        await axios.get("/hide/:gameId",payload)
-        return dispatch({type:HIDE_VIDEOGAME,payload})
-    }
-}
 
 export function changeName(payload){
     return async function(dispatch){
