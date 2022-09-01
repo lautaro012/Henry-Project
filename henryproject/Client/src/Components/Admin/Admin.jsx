@@ -2,7 +2,7 @@ import CreateVideogame from '../CreateVideogame/CreateVideogame'
 import './Admin.css'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
-import { changeName, getAllGames, getAllVideoGamesAdmin,hideVideoGame,getGameById } from '../../redux/Actions/Index'
+import { changeName, getAllGames, getAllVideoGamesAdmin,hideVideoGame,getGameById, showVideoGame } from '../../redux/Actions/Index'
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
@@ -39,9 +39,17 @@ export default function Admin () {
 
      function handleHide(e){
          e.preventDefault()
-         dispatch(hideVideoGame())
-       
+         console.log(e.target.value)
+         dispatch(hideVideoGame(e.target.value))
        }
+    function showGame(e) {
+        e.preventDefault()
+        dispatch(showVideoGame(e.target.value))
+
+    }
+
+       // /disabled/:id
+
       //function handleChangeName(e){
        // e.preventDefault()
         //dispatch(changeName())
@@ -96,8 +104,9 @@ export default function Admin () {
                                     <button type="button" >Editar </button>
                                      </Link>
                                       {/* <Link to= {`/admin/${item.id}`}> */}
-                                    <button type="button" onClick={(e)=>handleHide(e)}>Ocultar </button>
-                                      {/* </Link> */}
+                                    <button type="button" onClick={(e)=>handleHide(e)} value={item.id}> Deshabilitar </button>
+                                    <button type="button" onClick={(e)=>showGame(e)} value={item.id}> Habilitar </button>
+                                    {/* </Link> */}
                                     {/* <button onClick={() => deleteItem(item.id)}>Delete</button> */}
                                 </div>
                             )

@@ -33,6 +33,10 @@ export default function Games() {
         }
     }, [])
 
+    useEffect(() => {
+        dispatch(getAllGames())
+    }, [videogames])
+
     // function onSearch(name) {
     //     dispatch(getAllGames(name))
     //     setRender([...render, 'hola'])
