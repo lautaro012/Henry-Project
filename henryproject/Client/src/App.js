@@ -47,15 +47,15 @@ function App() {
       const getUser = async () => {
       fetch(`${REACT_APP_API}/auth/success`, {
         mode: 'cors',
-        // method: "GET",
-        // // credentials: "include",
-        // headers: {
-        // Accept: "application/json", 
-        // "Content-Type": "application/json",
-        // // "Access-Control-Allow-Credentials": true
-        // },
+        method: "GET",
+        // credentials: "include",
+        headers: {
+        Accept: "application/json", 
+        "Content-Type": "application/json",
+        // "Access-Control-Allow-Credentials": true
+        },
       }).then((response) => {
-        if(response.status === 200) {
+        if(response.status !== 404) {
           console.log('entra a response')
           return response.json()};
         throw new Error('authentication has been failed')
