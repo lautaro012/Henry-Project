@@ -5,22 +5,37 @@ import './formularioPago.css';
 import Cart from "../Cart/Cart";
 import { useState } from "react";
 import {useNavigate  } from "react-router-dom";
+
+import { useDispatch } from "react-redux";
+import { deleteItemFromCart } from "../../redux/Actions/Index";
+
 const {
   REACT_APP_API
 } = process.env;
 
 
+
 export const FormularioPago=()=>{
     // const elements=useElements();
+    // const dispatch = useDispatch()
     const stripe=useStripe();
     const elements=useElements();
-    // const [state,setState]=useState({
-    //   card:false,
-    //   // name:""
-    // });
+     const [loading,setLoading]=useState(false)
 
   
-    const precioTotal = JSON.parse(localStorage.getItem("precioTotal"));
+  const precioTotal = JSON.parse(localStorage.getItem("precioTotal"));
+  const items = JSON.parse(localStorage.getItem("products"))
+  const user = JSON.parse(localStorage.getItem("user"))
+  const mail = user.user.emails[0].value
+
+// console.log(user.user.emails[0].value)
+
+  // function eliminarDelCart(e) {
+  //   console.log(e.target.value)
+
+  //   dispatch(deleteItemFromCart(e.target.value))
+  // }
+
 // console.log(precioTotal);
 let history=useNavigate();
   const handleRegresar=()=>{
@@ -42,14 +57,19 @@ let history=useNavigate();
             type:"card",  //type de pago: metodo de tarjeta
             card: elements.getElement(CardElement) //Selecciona el input element de la tarjeta
           });
+          setLoading(true)
           console.log(paymentMethod);
 
           if(!error){
             const {id}=paymentMethod
             try {
-                const data=await axios.post(`${REACT_APP_API}/checkout`,{
+
+                const {data}=await axios.post(`${REACT_APP_API}/checkout`,{
+
                   id,
                   amount: precioTotal,
+                  games: items,
+                  mail: mail
                 })
                 console.log(data);
                 alert(`You have pay $ ${precioTotal} successfully`)
@@ -59,6 +79,7 @@ let history=useNavigate();
             } catch (error) {
               alert(error.raw.message)
             }
+            setLoading(false)
           }
         
 
@@ -66,6 +87,19 @@ let history=useNavigate();
 
     return(
         <div className="container">
+            
+            <div>
+              {items && items.length ? items.map(game => {
+                return (
+                  <div key={game.id}>
+                    <h3 style={{color: "white"}}>{game.name}</h3>
+                    <img src={game.image} alt="imagen del juego" width="250" />
+                    {/* <button onClick={(e) => eliminarDelCart(e)} value={game.id}>X</button> */}
+                  </div>
+                )
+              }): <div>no tiene elementos seleccionados</div>}
+            </div>
+            <hr/>
             <h2 className="tituloTarjeta">Metodo de Pago : Tarjeta de Crédito o Débito</h2>
             <p className="pTarjeta">Monto Total a Pagar: ${precioTotal}</p>
             <div className="cardTarjeta">
@@ -73,8 +107,9 @@ let history=useNavigate();
             </div>
             <div className="subcontainerPagar">
               <button onClick={(e)=>handleRegresar(e)} className="ButtonPagar">Regresar</button>
-
-                <button onClick={(e)=>handleSubmit(e)} className="ButtonPagar">PAGAR</button>
+              <button onClick={(e)=>handleSubmit(e)} className="ButtonPagar" disabled={loading ? true : false}>
+                {loading ? <p>CARGANDO</p> : <p>PAGAR</p>}
+              </button>
             </div>
         </div>
     )
