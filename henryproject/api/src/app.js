@@ -28,7 +28,7 @@ server.name = 'API';
 // server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 // server.use(bodyParser.json({ limit: '50mb' }));
 server.use(express.json())
-server.use(cors())
+server.use(cors({ origin: `${URL_VERCEL}` }))
 server.use(cookieParser());
 server.use(morgan('dev'));
 
