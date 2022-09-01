@@ -5,6 +5,7 @@
     max-width: 10%;
     max-height: 10%;
     overflow-x: hidden;
+    margin: 30px;
 }
 
 .carrousel_card h1{
@@ -36,3 +37,11 @@
         transform: translate3d(-800%, 0, 0);
     }
 }
+
+
+/* menor a 700px */
+/* @media (max-width: 700px) {
+    .carrousel_card{
+        margin: 60px;
+    }
+} */

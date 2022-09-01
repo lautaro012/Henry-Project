@@ -7,14 +7,14 @@ import { hideVideoGame,changeName } from "../../../redux/Actions/Index";
 export default function ListVideogame(props){
   const dispatch=useDispatch()
 
-  function handleHide(e){
-    e.preventDefault()
-    dispatch(hideVideoGame(props.id))
-  }
-  function handleChangeName(e){
-    e.preventDefault()
-    dispatch(changeName())
-  }
+  // function handleHide(e){
+  //   e.preventDefault()
+  //   dispatch(hideVideoGame(props.id))
+  // }
+  // function handleChangeName(e){
+  //   e.preventDefault()
+  //   dispatch(changeName())
+  // }
   return(
     <div key={props.id} className="containerVideogame">
       <div className="subcontainer1">
@@ -24,8 +24,8 @@ export default function ListVideogame(props){
       <p>{props.genres}</p>
       </div>
       <div  className="subcontainer2">
-          <button type="button" onClick={e=>handleChangeName(e)}placeholder="editar..." >Editar </button>
-          <button type="button" onClick={e=>handleHide(e)}placeholder="ocultar...">Ocultar </button>
+          {/* <button type="button" onClick={e=>handleChangeName(e)}placeholder="editar..." >Editar </button>
+          <button type="button" onClick={e=>handleHide(e)}placeholder="ocultar...">Ocultar </button> */}
           
       </div>
       </div>
