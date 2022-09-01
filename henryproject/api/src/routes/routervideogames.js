@@ -47,5 +47,11 @@ router.get("/changename/:gameId?",async(req,res,next)=>{
     console.log(await Games.findByPk(gameId))
     res.send()
 })
+router.put("/updategame/:gameId",async(req,res,next)=>{
+    const{gameId}=req.params
+    const{name,price,description,rating,video,image,screenshoots,store,developers,publishers,website,releaseDate,metacritic,esrb_rating,createdInDb}=req.body
+    await Games.update({name:name,price:price,description:description,rating:rating,video:video,image,image,screenshoots:screenshoots,store:store,developers:developers,publishers:publishers,website:website,releaseDate:releaseDate,metacritic:metacritic,esrb_rating:esrb_rating,createdInDb:createdInDb})
+    res.send()
+})
 
 module.exports = router
