@@ -60,11 +60,7 @@ server.use(cookieSession({
 
 server.use(passport.initialize())
 server.use(passport.session())
-server.use(cors({
-  origin: `*`,
-  methods: "GET, POST, PUT, DELETE",
-  credentials: true
-}))
+
 
 
 
