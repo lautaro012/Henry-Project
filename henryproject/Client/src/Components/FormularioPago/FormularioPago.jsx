@@ -57,7 +57,7 @@ let history=useNavigate();
                 history("/")
               
             } catch (error) {
-              alert("Error in payment")
+              alert(error.raw.message)
             }
           }
         
