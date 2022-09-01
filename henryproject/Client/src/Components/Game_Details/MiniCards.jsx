@@ -10,8 +10,8 @@ export default function MiniCard(data) {
             <div className="mini_image-card" style={{ backgroundImage: `url(${image})` }}>
             </div>
             <div className="mini_card-data">
-                <span> {name}</span>
-                <span> {released} </span>
+                <h3>{name}</h3>
+                <p>{released}</p>
             </div>
         </div>
     )

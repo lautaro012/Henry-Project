@@ -8,10 +8,9 @@ import { getAllGames } from '../../redux/Actions/Index'
 
 import '../Landing_Page/LandingPage.css'
 
-// import Example from "./Carrousel";
-// import Footer from "../Footer/Footer";
 import Carrousel2 from "./Carrousel2";
 import LoadingScreen from "../LoadingScreen/LoadingScreen.jsx"
+import { Link } from "react-router-dom";
 
 export default function LandingPage() {
 
@@ -27,36 +26,42 @@ export default function LandingPage() {
     return (
         <div className="body_landing">
 
-            {
+            {/* {
                 populars.length > 0 ?
                 <Carrousel2 games={populars}/>
                 :
                 <LoadingScreen/>
-            }
-            {/* <Carousel
-                showArrows={true}
-                animationHandler={'fade'}
-                autoPlay={true}
-                interval={5000}
-                infiniteLoop={true}
-                stopOnHover={true}
-                showThumbs={false}
-                width="100%"
-                >
-                {
-                    populars ? populars.map((game) => {
-                        return (
-                            <div key={game.id}>
-                                <img src={game.image} alt={game.name}/>
-                            </div>
-                        )
-                    })
+            } */}
+            {
+                populars.length > 0 ?
+                    <Carousel
+                        showArrows={true}
+                        autoPlay={true}
+                        interval={3000}
+                        infiniteLoop={true}
+                        stopOnHover={true}
+                        showThumbs={false}
+                        centerSlidePercentage={40}
+                        centerMode={true}
+                        showStatus={false}
+                        emulateTouch={true}
+                        useKeyboardArrows={true}
+                        transitionTime={3000}
+                    >
+                        {
+                            populars && populars.map((game) => {
+                                return (
+                                    <div key={game.id} id="contenedor_landing_img">
+                                        <img src={game.image} alt={game.id} />
+                                        <Link to={'/home/games/' + game.id} key={game.id}><p className="legend">{game.name}</p></Link>
+                                    </div>
+                                )
+                            })
+                        }
+                    </Carousel>
                     :
-                    null
-                }
-            </Carousel> */}
-
-
+                    <LoadingScreen />
+            }
         </div>
     )
 }
