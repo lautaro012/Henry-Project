@@ -8,6 +8,10 @@
     margin: 30px;
 }
 
+#contenedor_landing_img{
+    position: relative;
+}
+
 .carrousel_card h1{
     color: red;
 }

@@ -9,8 +9,6 @@ import {
     GET_TAGS,
     GET_GAMES_BY_GENRE,
     CREATE_GAME,
-    FILTER_GAMES_BY_GENRES,
-    FILTER_GAMES_BY_PLATFORM,
     FILTER_GAMES_BY_TAGS,
     FILTER_GAMES,
     EMPTY_GAME_STATE,
@@ -21,7 +19,7 @@ import {
     ACTUALIZAR_CART,
     ACTUALIZAR_FAV,
     POST_VIDEOGAME,
-
+    SHOW_VIDEOGAME,
     CHANGE_NAME,
     HIDE_VIDEOGAME,
     
@@ -48,7 +46,8 @@ const initialState = {
     tags: [],
     Tagsinfilter: [],
     user: [],
-    hidenVideoGame:[]
+    hidenVideoGame:[],
+    showVideoGame: []
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -204,6 +203,11 @@ export default function rootReducer(state = initialState, action) {
         return{
           ...state,
           hidenVideoGame:action.payload
+        }
+        case SHOW_VIDEOGAME: 
+        return {
+            ...state,
+            showVideoGame: action.payload
         }
         case CHANGE_NAME:
             return{

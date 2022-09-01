@@ -27,8 +27,6 @@ export default function LandingPage() {
     return (
         <div className="body_landing">
 
-            {/* <Example /> */}
-
             {
                 populars.length > 0 ?
                 <Carrousel2 games={populars}/>

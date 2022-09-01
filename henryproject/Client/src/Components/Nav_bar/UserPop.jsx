@@ -2,15 +2,17 @@ import React from "react";
 import User from '../../Style/Imagenes/User.jpg'
 import './UserPop.css'
 import { Link } from "react-router-dom";
-
-
 import { Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input, Label } from 'reactstrap'
+const {
+    REACT_APP_API
+  } = process.env;
+
 
 export default function Pop({ modal, setModal }) {
 
     function handleClick(e) {
         // e.preventDefault()
-        window.open("http://localhost:3001/auth/google", "_self")
+        window.open(`${REACT_APP_API}/auth/google`, "_self")
 
     }
 
