@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { addToCart, addToFav } from "../../redux/Actions/Index.js";
 
 import './Cards.css';
+import CardHover from "../NewCard/CardHover.jsx";
 
 export default function Card(card) {
 
@@ -33,12 +34,11 @@ export default function Card(card) {
     }
 
     return (
-        <div className="card-videogame">
+        <div >
             <Link to={`/home/games/${id}`} className='Link'>
-                <div className="image-card" style={{ backgroundImage: `url(${image})` }}>
-                </div>
+                <CardHover image={image} name={name}/>
+                {/* <div className="image-card" style={{ backgroundImage: `url(${image})` }}></div> */}
                 <div className="card-data">
-                    <span className="h">{name}</span>
                     <span className="h">${price}</span>
                     <span> {rating} </span>
                 </div>

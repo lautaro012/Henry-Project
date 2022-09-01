@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
 import { getAllGames, Getbygenre, vaciarGame } from '../../redux/Actions/Index'
 import Card from '../Cards/Cards';
+import CardDescription from '../NewCard/CardDescription';
 
 
 
@@ -102,9 +103,9 @@ export default function Home () {
                         {
                             <div className='carrusel-triple'>
                                 {
-                                news.slice(0,5).map((game) => {
+                                news.slice(0,4).map((game) => {
                                     return (
-                                            <Card
+                                            <CardDescription
                                             card={game}
                                             />
                                     )
@@ -115,9 +116,9 @@ export default function Home () {
                         {
                             <div className='carrusel-triple'>
                                 {
-                            news.slice(5,10).map((game) => {
+                            news.slice(4,8).map((game) => {
                                 return (
-                                    <Card
+                                    <CardDescription
                                     card={game}
                                     />
                                 )
@@ -128,9 +129,9 @@ export default function Home () {
                         {
                             <div className='carrusel-triple'>
                                 {   
-                            news.slice(10,15).map((game) => {
+                            news.slice(8,12).map((game) => {
                                 return (
-                                    <Card
+                                    <CardDescription
                                     card={game}
                                     />
                                 )
@@ -141,9 +142,9 @@ export default function Home () {
                         {
                             <div className='carrusel-triple'>
                                 {
-                                    news.slice(15,20).map((game) => {
+                                    news.slice(12,16).map((game) => {
                                      return (
-                                        <Card
+                                        <CardDescription
                                         card={game}
                                         />
                                      )

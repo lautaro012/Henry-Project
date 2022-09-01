@@ -22,11 +22,12 @@ import Favoritos from './Components/Favoritos/Favoritos.jsx'
 import EditVideogame from './Components/CreateVideogame/EditVideogame/EditVideogame';
 import { useEffect, useState } from 'react';
 import Register from './Components/Register/Register';
-import NewCard from './Components/Admin/newCard';
 import { FormularioPago } from './Components/FormularioPago/FormularioPago';
 
 import {Elements} from "@stripe/react-stripe-js";
 import {loadStripe} from "@stripe/stripe-js"
+import CardHover from './Components/NewCard/CardHover';
+import CardDescription from './Components/NewCard/CardDescription';
 const stripePromise=loadStripe("pk_test_51LaZvGBnw8Rgt2NjQI3zwuWRhuXnnGKWZNCgHwz0UPBxh6t0l0SlRlMVMwTWvQUGfgyh9e4D0b7MD8sGiArVOQMg00JrfIx5p5")
 
 require('dotenv').config();
@@ -110,19 +111,20 @@ function App() {
       <Routes>
         <Route exact path='/' element={<LandingPage />} />
         <Route path='/about' element={<About />} />
+        <Route path='/register' element={<Register></Register>} />
         <Route path='/home' element={<Home />} />
         <Route path='/home/games' element={<Games />} />
         <Route path='/home/games/:id' element={<GameDetail />} />
         <Route path='/favorites' element={<Favoritos />} />
-        <Route path='/admin/editgame/:id' element={<EditVideogame></EditVideogame>} />
-        <Route path='/register' element={<Register></Register>} />
-        {/* <Route path='/profile' element={<Profile/>} /> */}
-        <Route path='/admin/createvideogame' element={<CreateVideogame/>} />
         <Route path='/home/create' element={<CreateVideogame/>} />
+        <Route path='/admin/editgame/:id' element={<EditVideogame></EditVideogame>} />
+        <Route path='/admin/createvideogame' element={<CreateVideogame/>} />
         <Route path='/admin' element={<Admin/>} />
         <Route path='/profile' element={ userLogged ? <Profile/> : <UserSign setUserLogged={setUserLogged} isOpen={true}/>} />
+        {/* <Route path='/profile' element={<Profile/>} /> */}
         <Route path='/Loading' element={<LoadingScreen/>} />
         <Route path='/cart' element={<Cart/>} />
+        <Route path='/test' element={<CardDescription/>} />
         <Route path='/register' element={<Register></Register>}/>
         <Route path='/cart/formularioPago' element={<Elements stripe={stripePromise}><FormularioPago></FormularioPago></Elements>}/>
       </Routes>
