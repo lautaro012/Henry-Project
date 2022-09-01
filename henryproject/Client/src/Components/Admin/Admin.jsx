@@ -39,7 +39,7 @@ export default function Admin () {
 
      function handleHide(e){
          e.preventDefault()
-         console.log(e.target.value)
+        //  console.log(e.target.value)
          dispatch(hideVideoGame(e.target.value))
        }
     function showGame(e) {
