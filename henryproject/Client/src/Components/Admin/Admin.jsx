@@ -2,17 +2,22 @@ import CreateVideogame from '../CreateVideogame/CreateVideogame'
 import './Admin.css'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
-import { getAllGames } from '../../redux/Actions/Index'
+import { changeName, getAllGames, getAllVideoGamesAdmin,hideVideoGame,getGameById } from '../../redux/Actions/Index'
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import ListVideogame from '../CreateVideogame/ListVideogame/ListVideogame'
+import { useParams } from 'react-router-dom'
+
 
 
 export default function Admin () {
     const dispatch= useDispatch()
+    const {id}= useParams()
     const [name,setName]= useState("")
     const videogames=useSelector(state=>state.videogames);
+   
+    
 
     useEffect(()=>{
         dispatch(getAllGames());
@@ -25,23 +30,28 @@ export default function Admin () {
     function handleOnChange(e){
         e.preventDefault()
         setName(e.target.value)
-        //dispatch(getAllGames(name))
+        dispatch(getAllGames(name))
     }
+    //const videogamesAdmin= videogames.slice(0,8)
+    //useEffect(()=>{
+       // dispatch(getGameById(id))
+       // },[dispatch,id])
+
+     function handleHide(e){
+         e.preventDefault()
+         dispatch(hideVideoGame())
+       
+       }
+      //function handleChangeName(e){
+       // e.preventDefault()
+        //dispatch(changeName())
+     // }
+     
+    
     return (
         <div className='Search-Filters'>
 
-        <div>
-        <input
-            id="search"
-            className="search"
-            type="text"
-            value={name} 
-            onChange= {(e) => handleOnChange(e)}
-            placeholder="Buscar videojuego..."
-          />
-          <button className ="bottom" type="submit" onClick= {(e) => handleSubmit(e)}> Search </button>   
-        </div>
-
+        
         <div className='filters'>
             <div className="show-profile-settings">
                 <div>
@@ -58,32 +68,50 @@ export default function Admin () {
                 </div>
 
             </div>
-
-            <div className='show-current-setting-admin'>
-            {
-                    videogames?.map(c=>{
-                        return(
-                            <div key={c.id}>
-                            <ListVideogame
-                            id={c.id}
-                            tittle={c.name}
-                            image={c.image}
-                            price={c.price}
-                            genres={c.genres?.map(d=>d.name)}
-                            />
-                            </div>
-                        )
-                    }
-                    )
-                }
-                {/* <div className='half'>
-                </div>
-                <div className='half'>
-                    <span> PREVIEW </span>
-                </div> */}
             </div>
+            <div className="conteinerCart">
+            <div>
+        
+        <input
+            id="search"
+            className="search"
+            type="text"
+            value={name} 
+            onChange= {(e) => handleOnChange(e)}
+            placeholder="Buscar videojuego..."
+          />
+          <button className ="bottom" type="submit" onClick= {(e) => handleSubmit(e)}> Search </button>   
         </div>
+
+            {
+                 videogames && videogames.length ?
+                    <div id="conteinerCart2">{
+                        videogames && videogames.map(item => {
+                            return (
+                                <div key={item.id} id="item">
+                                    <img src={item.image} alt={item.id}></img>
+                                    <h1>{item.name}</h1>
+                                    <h3>$ {item.price}</h3>
+                                     <Link to= {`/admin/editgame/${item.id}`}> 
+                                    <button type="button" >Editar </button>
+                                     </Link>
+                                      {/* <Link to= {`/admin/${item.id}`}> */}
+                                    <button type="button" onClick={(e)=>handleHide(e)}>Ocultar </button>
+                                      {/* </Link> */}
+                                    {/* <button onClick={() => deleteItem(item.id)}>Delete</button> */}
+                                </div>
+                            )
+                        })
+                    }
+                 </div>
+        :<div>
+            </div>
+                
+                }
+        </div>
+    
+    
    
     </div>
     )
-}
+            }

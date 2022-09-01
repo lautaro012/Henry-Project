@@ -1,16 +1,17 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getGameById, addToCart, addToFav  } from "../../redux/Actions/Index.js";
+import { getGameById, addToCart, addToFav } from "../../redux/Actions/Index.js";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import MiniCard from "./MiniCards.jsx";
 
 import ReactPlayer from 'react-player'
 import ImagenPop from '../Game_Details/ImagenPop.jsx';
 // import Loading from '../../Style/Imagenes/Loading.gif'
 import LoadingScreen from "../LoadingScreen/LoadingScreen.jsx";
 import { Carousel } from 'react-responsive-carousel';
-import {useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import '../Game_Details/GameDetails.css'
 
@@ -82,7 +83,7 @@ export default function GameDetails() {
         alert(`${game.name} added to your favorites!`)
     }
 
-    function  buy() {
+    function buy() {
         addGameToCart();
         navigate("/cart/formularioPago");
     }
@@ -107,7 +108,8 @@ export default function GameDetails() {
                                 <Carousel
                                     showArrows={true}
                                     infiniteLoop={true}
-                                    showThumbs={false}
+                                    centerMode={true}
+                                    renderIndicator={false}
                                 >
                                     {
                                         typeof game.video === "object" ?
@@ -118,9 +120,6 @@ export default function GameDetails() {
                                                             id="game_video"
                                                             url={video}
                                                             controls
-                                                            playing
-                                                            loop
-                                                            muted
                                                         />
                                                     )
                                                 })
@@ -170,6 +169,19 @@ export default function GameDetails() {
                                 </div>
                                 <hr />
                                 <p dangerouslySetInnerHTML={{ __html: game.description }} />
+                                <hr />
+                                <h3>Related games</h3>
+                                <div id="contenedor_miniCards">
+                                    {
+                                        game.series && game.series.map((card, index) => {
+                                            return (
+                                                    <MiniCard
+                                                        data={card} />
+                                            )
+                                        })
+                                    }
+                                </div>
+
                             </div>
                         </div>
                         <div id="conteinerSide_detalles2">
@@ -183,7 +195,7 @@ export default function GameDetails() {
                                     {
                                         game.platforms && game.platforms.map(plat => {
                                             return (
-                                                <p key={plat.platform.name}>{plat.platform.name}</p>
+                                                <p key={plat.name}>{plat.name}</p>
                                             )
                                         })
 
@@ -195,6 +207,17 @@ export default function GameDetails() {
                                         game.developers && game.developers.map(dev => {
                                             return (
                                                 <p key={dev}>{dev}</p>
+                                            )
+                                        })
+
+                                    }
+                                </div>
+                                <div>
+                                    <h3>Genres</h3>
+                                    {
+                                        game.genres && game.genres.map(gen => {
+                                            return (
+                                                <p key={gen.name}>{gen.name}</p>
                                             )
                                         })
 
