@@ -46,6 +46,7 @@ function App() {
   useEffect(() => {
       const getUser = async () => {
       fetch(`${REACT_APP_API}/auth/success`, {
+        mode: 'cors',
         // method: "GET",
         // // credentials: "include",
         // headers: {
