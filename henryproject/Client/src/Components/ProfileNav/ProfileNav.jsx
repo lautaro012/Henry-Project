@@ -1,7 +1,10 @@
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 // import Cora from '../../Style/Imagenes/Corazon.png'
-
+require('dotenv').config();
+const {
+  REACT_APP_API
+} = process.env;
 
 export default function ProfileNav ( {setUserLogged, userLogged}) {
    
@@ -9,7 +12,7 @@ export default function ProfileNav ( {setUserLogged, userLogged}) {
    
     async function logOutClick() {
 
-        fetch("http://localhost:3001/auth/logout", {
+        fetch(`${REACT_APP_API}/auth/logout`, {
           method: "GET",
           credentials: "include",
           mode: "no-cors",

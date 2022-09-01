@@ -6,8 +6,8 @@ const { Users } = require('../db')
 
 router.get("/google", passport.authenticate("google", {scope:["profile", "email"]}))
 router.get("/google/callback", passport.authenticate("google", {
-    successRedirect: "http://localhost:3000/profile",
-    failureRedirect: "http://localhost:3000/"
+    successRedirect: "/profile",
+    failureRedirect: "/"
 }))
 
 router.get("/failed", (req, res) => {
@@ -29,7 +29,7 @@ router.get("/success", (req, res) => {
 
 router.get("/logout", (req, res) => {
     req.logout();
-    res.redirect("http://localhost:3000")
+    res.redirect("/")
 })
 
 
