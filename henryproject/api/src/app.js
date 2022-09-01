@@ -15,8 +15,8 @@ const {
 require('./db.js');
 
 /* npm i passport cors cookie-session
-en el json cambiar la versión de passport por la 0.5.0
-npm install passport-google-oauth
+    en el json cambiar la versión de passport por la 0.5.0
+    npm install passport-google-oauth
 */
 
 const server = express();
@@ -60,6 +60,11 @@ server.use(cookieSession({
 
 server.use(passport.initialize())
 server.use(passport.session())
+server.use(cors({
+  origin: `*`,
+  methods: "GET, POST, PUT, DELETE",
+  credentials: true
+}))
 
 
 
@@ -67,7 +72,3 @@ server.use('/', routes);
 
 
 module.exports = server;
-
-
-
-

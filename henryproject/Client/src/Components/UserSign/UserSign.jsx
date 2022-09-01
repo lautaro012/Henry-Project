@@ -1,16 +1,20 @@
 import React, { useState } from "react";
-import './SignUserModal.css'
+import './UserSign.css'
 import User from '../../Style/Imagenes/User.jpg'
 import Modal from "react-modal";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signin } from "../../redux/Actions/Index";
+const {
+  REACT_APP_API
+} = process.env;
 
 
 export default function UserSign({toggleModal, isOpen, setUserLogged }) {
 
 
     let dispatch = useDispatch()
+    const [render, setRender] = useState('')
     const [input, setInput] = useState({
         mail: '',
         password: ''
@@ -18,7 +22,7 @@ export default function UserSign({toggleModal, isOpen, setUserLogged }) {
 
     function handleClick(e) {
         // e.preventDefault()
-        window.open("http://localhost:3001/auth/google", "_self")
+        window.open(`${REACT_APP_API}/auth/google`, "_self")
     }
 
     Modal.setAppElement("#root");
@@ -42,7 +46,10 @@ export default function UserSign({toggleModal, isOpen, setUserLogged }) {
         mail: '',
         password: ''
         })
+        setUserLogged(true)
         console.log('logueado con', input)
+        setRender(render, 'hola')
+        // window.location.reload()
     }
 
   return (

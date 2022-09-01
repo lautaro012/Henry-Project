@@ -1,7 +1,6 @@
 .ImagenPop {
     position: absolute;
-    height: 100%;
-    width: 100%;
+    height: 50%;
     pointer-events: auto;
     background-color: #00000075;
     background-clip: padding-box;
@@ -11,7 +10,7 @@
 }
 
 .ImagenPop img {
-    max-width: 100%;
+    max-width: 50%;
 }
 
 #modalDetail {
