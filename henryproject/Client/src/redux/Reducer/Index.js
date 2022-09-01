@@ -21,7 +21,7 @@ import {
     ACTUALIZAR_CART,
     ACTUALIZAR_FAV,
     POST_VIDEOGAME,
-
+    SHOW_VIDEOGAME,
     CHANGE_NAME,
     HIDE_VIDEOGAME,
     
@@ -48,7 +48,8 @@ const initialState = {
     tags: [],
     Tagsinfilter: [],
     user: [],
-    hidenVideoGame:[]
+    hidenVideoGame:[],
+    showVideoGame: []
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -204,6 +205,11 @@ export default function rootReducer(state = initialState, action) {
         return{
           ...state,
           hidenVideoGame:action.payload
+        }
+        case SHOW_VIDEOGAME: 
+        return {
+            ...state,
+            showVideoGame: action.payload
         }
         case CHANGE_NAME:
             return{
