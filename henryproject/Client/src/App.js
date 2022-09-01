@@ -44,29 +44,29 @@ function App() {
   
 
   useEffect(() => {
-    //   const getUser = async () => {
-    //   fetch(`${REACT_APP_API}/auth/success`, {
-    //     method: "GET",
-    //     // credentials: "include",
-    //     headers: {
-    //     Accept: "application/json", 
-    //     "Content-Type": "application/json",
-    //     "Access-Control-Allow-Credentials": true
-    //     },
-    //   }).then((response) => {
-    //     if(response.status === 200) {
-    //       console.log('entra a response')
-    //       return response.json()};
-    //     throw new Error('authentication has been failed')
-    //   }).then(resObject => {
-    //     setUserLogged(true)
-    //     localStorage.setItem('user', JSON.stringify(resObject))
-    //     setUser(resObject.user)
-    //   }).catch(err => {
-    //     console.log(err)
-    //   })
-    // }
-    //   getUser()
+      const getUser = async () => {
+      fetch(`${REACT_APP_API}/auth/success`, {
+        method: "GET",
+        // credentials: "include",
+        headers: {
+        Accept: "application/json", 
+        "Content-Type": "application/json",
+        // "Access-Control-Allow-Credentials": true
+        },
+      }).then((response) => {
+        if(response.status === 200) {
+          console.log('entra a response')
+          return response.json()};
+        throw new Error('authentication has been failed')
+      }).then(resObject => {
+        setUserLogged(true)
+        localStorage.setItem('user', JSON.stringify(resObject))
+        setUser(resObject.user)
+      }).catch(err => {
+        console.log(err)
+      })
+    }
+      getUser()
   }, [])
 
 
