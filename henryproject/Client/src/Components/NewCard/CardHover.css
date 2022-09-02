@@ -50,10 +50,7 @@ h2 strong,
 h2 span {
   vertical-align: middle;
 }
-body {
-  background: #24282f;
-  font-family: 'Alegreya Sans';
-}
+
 .wrapper {
   padding: 15px;
 }

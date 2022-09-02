@@ -99,6 +99,7 @@ export default function Home () {
                         stopOnHover={true} 
                         showThumbs={false}
                         width={1600}
+                        dynamicHeight={true}
                         >
                         {
                             <div className='carrusel-triple'>
