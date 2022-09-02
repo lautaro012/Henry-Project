@@ -7,7 +7,7 @@ export default function CardDescription ({card}) {
     
             <figure class="article">
     
-                <img width={400} src={`${image}`}  alt='imagen'/>
+                <img src={`${image}`}  alt='imagen'/>
     
                 <figcaption>
     

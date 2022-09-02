@@ -26,7 +26,7 @@ export const FormularioPago=()=>{
   const precioTotal = JSON.parse(localStorage.getItem("precioTotal"));
   const items = JSON.parse(localStorage.getItem("products"))
   const user = JSON.parse(localStorage.getItem("user"))
-  const mail = user.user.emails[0].value
+  const mail = user.user.mail
 
 // console.log(user.user.emails[0].value)
 
@@ -63,8 +63,7 @@ let history=useNavigate();
           if(!error){
             const {id}=paymentMethod
             try {
-
-                const {data}=await axios.post(`${REACT_APP_API}/checkout`,{
+                const {data}=await axios.post('/checkout',{
 
                   id,
                   amount: precioTotal,
@@ -77,7 +76,7 @@ let history=useNavigate();
                 history("/")
               
             } catch (error) {
-              alert(error.raw.message)
+              alert(error.response.data)
             }
             setLoading(false)
           }

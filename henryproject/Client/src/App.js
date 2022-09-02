@@ -40,6 +40,7 @@ function App() {
   let dispatch = useDispatch()
 
   const [user, setUser] = useState(null)
+  
   const [userLogged, setUserLogged] = useState(false)
   console.log(`Variable de entorno es ${REACT_APP_API}`)
   
@@ -89,12 +90,11 @@ function App() {
       localStorage.setItem("favProducts", JSON.stringify([]));
       
     }
-  }, [user]);
+  }, [userLogged]);
 
   const videogamesLS = JSON.parse(localStorage.getItem("products"));
 
   useEffect(() => {
-    console.log()
     dispatch(actualizarCart(videogamesLS));
   }, [dispatch, videogamesLS]);
 

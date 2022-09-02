@@ -16,17 +16,17 @@ router.post("/", async(req,res)=>{
         //       })
         //   console.log(`NEW ORDER: ${newOrder}`)
         const payment = await stripe.paymentIntents.create({
-            amount,
+            amount: amount,
             currency: "USD", //la moneda
             description: "Videogames", //descripcion de producto
             payment_method: id, //id del fronted
             confirm: true, //confirm the payment at the same time
           });
-          console.log(`PAYMENT: ${payment}`);
+          console.log(payment)
          
          return res.status(200).json({message: "Successful Payment"});
     } catch (error) {
-        return res.status(404).json({ message: error.raw.message });
+        return res.status(404).json(error.raw.message);
     }
 });
 
