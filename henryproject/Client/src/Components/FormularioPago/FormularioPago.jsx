@@ -27,8 +27,8 @@ export const FormularioPago = () => {
 
   const precioTotal = JSON.parse(localStorage.getItem("precioTotal"));
   const items = JSON.parse(localStorage.getItem("products"))
-  const user = JSON.parse(localStorage.getItem("user"))
-  const mail = user.user.emails[0].value
+  // const user = JSON.parse(localStorage.getItem("user"))
+  // const mail = user.user.emails[0].value
 
   // console.log(user.user.emails[0].value)
 
@@ -68,12 +68,11 @@ export const FormularioPago = () => {
       const { id } = paymentMethod
       try {
 
-        const { data } = await axios.post(`${REACT_APP_API}/checkout`, {
+        const { data } = await axios.post(`/checkout`, {
 
           id,
           amount: precioTotal,
-          games: items,
-          mail: mail
+
         })
         console.log(data);
         alert(`You have pay $ ${precioTotal} successfully`)
@@ -81,7 +80,7 @@ export const FormularioPago = () => {
         history("/")
 
       } catch (error) {
-        alert(error.raw.message)
+        alert(error)
       }
       setLoading(false)
     }
