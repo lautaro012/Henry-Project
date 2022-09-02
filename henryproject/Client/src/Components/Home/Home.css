@@ -1,5 +1,8 @@
 .h{
     color: ghostwhite;
+    margin-left: 5%;
+    text-align: none;
+    font-weight: 200;
 }
 
 .home-primary-videogames {
@@ -52,8 +55,9 @@
     height: 700px;
 }
 
-.carruseles{
-    margin:5%
+.main-carrousel{
+    background-color: rgba(6,18,53,0.6);
+    padding-top: 3%;
 }
 
 .carrusel-triple{
@@ -62,5 +66,57 @@
 }
 
 .home-list {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
     color: white;
+    width: 85%;
+}
+
+.individual-home-list {
+    border-right: 0.5px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 3%;
+    padding-right: 3%;
+    transition: 0.2s;
+    background-color: #ffffff7f;
+    backdrop-filter: blur(2px);
+}
+
+.home-game-list {
+    display: flex;
+    align-items: center;
+    transition: 0.5s;
+    padding: 2%;
+}
+
+.home-game-list:hover{
+    backdrop-filter: blur(1px);
+    border-radius: 29px;
+    margin: 2%;
+    background-color: #ffffff7f;
+}
+
+.unordered-list-home{
+    padding-left: 2%;
+    padding-right: 2%;
+    border-left: 0.5px solid;
+}
+
+.unordered-list-home-first{
+
+    padding-right: 2%;
+}
+
+.main-title-home {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+}
+
+.carruseles{
+    margin-bottom: 10%
 }

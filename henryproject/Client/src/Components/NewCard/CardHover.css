@@ -129,6 +129,7 @@ h2:after {
   transition: 0.3s;
 }
 
+
 .cards .card:after,
 .news .card:after {
   content: '';
@@ -175,9 +176,8 @@ h2:after {
 
 .news .article {
   overflow: hidden;
-  width: 500px;
-  height: 500px;
-  margin: 20px;
+  width: 454px;
+  height: 400px;
 }
 
 .news .article img {
@@ -197,11 +197,15 @@ h2:after {
   padding: 30px;
   box-shadow: 0 0 2px rgb(0 0 0 / 20%);
   background: rgba(6,18,53,0.6);
-
   opacity: 0;
   transform: scale(1.15);
   transition: 0.2s;
-  overflow-x: auto;
+  overflow-x: scroll;
+}
+
+
+.article figcaption::-webkit-scrollbar {
+  display: none;
 }
 
 .news .article figcaption h3 {
@@ -223,4 +227,14 @@ h2:after {
 .news .article:active figcaption {
   opacity: 1;
   transform: none;
+  animation: slide 20s linear infinite;
+}
+
+@keyframes slide {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, -1500px, 0); /* The image width */
+  }
 }
