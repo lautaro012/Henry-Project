@@ -6,8 +6,8 @@ import Cart from "../Cart/Cart";
 import { useState } from "react";
 import {useNavigate  } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
-import { deleteItemFromCart } from "../../redux/Actions/Index";
+// import { useDispatch } from "react-redux";
+// import { deleteItemFromCart } from "../../redux/Actions/Index";
 
 const {
   REACT_APP_API
@@ -26,15 +26,13 @@ export const FormularioPago=()=>{
   const precioTotal = JSON.parse(localStorage.getItem("precioTotal"));
   const items = JSON.parse(localStorage.getItem("products"))
   const user = JSON.parse(localStorage.getItem("user"))
-  const mail = user.user.emails[0].value
 
-// console.log(user.user.emails[0].value)
 
-  // function eliminarDelCart(e) {
-  //   console.log(e.target.value)
+  //  function eliminarDelCart(e) {
+  //    console.log(e.target.value)
 
-  //   dispatch(deleteItemFromCart(e.target.value))
-  // }
+  //    dispatch(deleteItemFromCart(e.target.value))
+  //  }
 
 // console.log(precioTotal);
 let history=useNavigate();
@@ -48,6 +46,11 @@ let history=useNavigate();
   // // console.log(state.name);
     
   // }
+function handleLog(e){
+  e.preventDefault()
+
+}
+
 
     //AGREGAMOS LA FUNCION
     async function handleSubmit (e){
@@ -64,16 +67,17 @@ let history=useNavigate();
             const {id}=paymentMethod
             try {
 
-                const {data}=await axios.post(`${REACT_APP_API}/checkout`,{
+                const {data}=await axios.post(`/checkout`,{
 
                   id,
                   amount: precioTotal,
-                  games: items,
-                  mail: mail
                 })
                 console.log(data);
                 alert(`You have pay $ ${precioTotal} successfully`)
                 // localStorage.setItem("precioTotal", JSON.stringify(precios));
+
+                // dispatch(deleteItemFromCart('All'))
+
                 history("/")
               
             } catch (error) {
@@ -107,9 +111,12 @@ let history=useNavigate();
             </div>
             <div className="subcontainerPagar">
               <button onClick={(e)=>handleRegresar(e)} className="ButtonPagar">Regresar</button>
+            
               <button onClick={(e)=>handleSubmit(e)} className="ButtonPagar" disabled={loading ? true : false}>
                 {loading ? <p>CARGANDO</p> : <p>PAGAR</p>}
-              </button>
+              </button> :
+              
+              
             </div>
         </div>
     )
