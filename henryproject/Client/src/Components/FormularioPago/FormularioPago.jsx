@@ -30,16 +30,11 @@ export const FormularioPago = () => {
   const user = JSON.parse(localStorage.getItem("user"))
   const mail = user.user.mail
 
+  // const arr = [items.map(e => e.name)]
 
-  // console.log(user.user.emails[0].value)
+  // console.log(arr[0])
 
-  // function eliminarDelCart(e) {
-  //   console.log(e.target.value)
 
-  //   dispatch(deleteItemFromCart(e.target.value))
-  // }
-
-  // console.log(precioTotal);
   let history = useNavigate();
   const handleRegresar = () => {
 
@@ -70,7 +65,8 @@ export const FormularioPago = () => {
         const { data } = await axios.post(`/checkout`, {
 
           id,
-          amount: precioTotal,
+          amount: precioTotal*100,
+          mail
 
         })
         console.log(data);
