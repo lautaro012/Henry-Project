@@ -114,16 +114,14 @@ function App() {
         <Route path='/home/games' element={<Games />} />
         <Route path='/home/games/:id' element={<GameDetail />} />
         <Route path='/favorites' element={<Favoritos />} />
-        <Route path='/admin/editgame/:id' element={<EditVideogame></EditVideogame>} />
-        <Route path='/register' element={<Register></Register>} />
-        {/* <Route path='/profile' element={<Profile/>} /> */}
-        <Route path='/admin/createvideogame' element={<CreateVideogame/>} />
-        <Route path='/home/create' element={<CreateVideogame/>} />
+        <Route path='/register' element={<Register/>} />
+        <Route path='/admin/editgame/:id' element={<EditVideogame/>} />
+        <Route path='/admin/createvideogame' element={<CreateVideogame/>}/>
         <Route path='/admin' element={<Admin/>} />
         <Route path='/profile' element={ userLogged ? <Profile/> : <UserSign setUserLogged={setUserLogged} isOpen={true}/>} />
         <Route path='/Loading' element={<LoadingScreen/>} />
         <Route path='/cart' element={<Cart/>} />
-        <Route path='/register' element={<Register></Register>}/>
+        <Route path='/register' element={<Register/>}/>
         <Route path='/cart/formularioPago' element={<Elements stripe={stripePromise}><FormularioPago></FormularioPago></Elements>}/>
       </Routes>
       <Footer />

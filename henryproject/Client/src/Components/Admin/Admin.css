@@ -38,18 +38,13 @@
     margin-top: 20%;
 }
 
-.conteinerCart {
+.conteinerCart_admin {
     color: white;
     margin-top: 10%;
     display: flex;
     align-items: center;
     flex-direction: column;
     width: 1000px;
-}
-
-#conteinerCart2 {
-    display: contents;
-    
 }
 
 .show-profile-settings{
