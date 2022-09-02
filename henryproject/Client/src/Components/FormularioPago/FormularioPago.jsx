@@ -28,18 +28,13 @@ export const FormularioPago = () => {
   const precioTotal = JSON.parse(localStorage.getItem("precioTotal"));
   const items = JSON.parse(localStorage.getItem("products"))
   const user = JSON.parse(localStorage.getItem("user"))
-  // const mail = user.user.mail
+  const mail = user.user.mail
+
+  // const arr = [items.map(e => e.name)]
+
+  // console.log(arr[0])
 
 
-  // console.log(user.user.emails[0].value)
-
-  // function eliminarDelCart(e) {
-  //   console.log(e.target.value)
-
-  //   dispatch(deleteItemFromCart(e.target.value))
-  // }
-
-  // console.log(precioTotal);
   let history = useNavigate();
   const handleRegresar = () => {
 
@@ -71,6 +66,7 @@ export const FormularioPago = () => {
 
           id,
           amount: precioTotal*100,
+          mail
 
         })
         console.log(data);
