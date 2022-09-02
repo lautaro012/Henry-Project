@@ -54,6 +54,16 @@ export default function Home () {
                     }
                     return 0
                 }).slice(0,20)
+
+    const oldies = Allvideogames.sort((a, b) => {
+        if (a.realeaseDate > b.realeaseDate) {
+            return 1
+        }
+        if (a.realeaseDate < b.realeaseDate) {
+            return -1
+        }
+        return 0
+    }).slice(0,20)
    
 
     return (
@@ -160,6 +170,45 @@ export default function Home () {
 
                 <hr></hr>
 
+                <div>
+                    <div> 
+                        <h3> Discounts of the Month ! </h3>
+                            <ul>
+                                {
+                                    cheaps?.map(game => {
+                                        return (
+                                            <li>{game.name}</li>
+                                        )
+                                    })
+                                }
+                            </ul>
+                    </div>
+                    <div>
+                        <h3> Our Indie Section </h3>   
+                            <ul>
+                                {
+                                    videogamesBygenre?.slice(0.8).map(game =>{
+                                        return(
+                                            <li>{game.name}</li>
+                                        )
+                                    })
+                                }
+                            </ul>
+                    </div>
+                    <div>
+                        <h3> Oldies </h3>
+                            <ul>
+                                {
+                                    oldies?.map(game => {
+                                        return(
+                                            <li>{game.name}</li>
+                                        )
+                                    })
+                                }
+                            </ul>
+                    </div> 
+                </div>
+
 
                     <div className='carruseles'>
                     <Carousel 
@@ -184,7 +233,10 @@ export default function Home () {
                         }
                     </Carousel>
                 </div >
+
                     <hr></hr>
+
+
                 <div className='carruseles' >
                     <h1 className='h'> DISCOUNTS OF THE WEEK ! </h1>
                     <Carousel 
@@ -220,10 +272,6 @@ export default function Home () {
                     }
                     </Carousel>
                 </div>
-            
-
-                <hr></hr>
-            
                 <div className='carruseles' >
                     <h1 className='h'> OUR INDIE SECTION ! </h1>
                     <Carousel 
