@@ -53,5 +53,10 @@
     width: auto;
     height: 50px;
     text-align: center;
-    
+}
+
+.ButtonPagar:disabled {
+cursor: not-allowed;
+opacity: 0.6;
+border: 2px solid red;
 }
