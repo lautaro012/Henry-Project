@@ -36,12 +36,12 @@ export default function Admin() {
     //useEffect(()=>{
     // dispatch(getGameById(id))
     // },[dispatch,id])
-
     function handleHide(e) {
         e.preventDefault()
-        console.log(e.target.value)
+        //  console.log(e.target.value)
         dispatch(hideVideoGame(e.target.value))
     }
+
     function showGame(e) {
         e.preventDefault()
         dispatch(showVideoGame(e.target.value))

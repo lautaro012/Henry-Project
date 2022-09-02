@@ -1,52 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addToCart, addToFav } from "../../redux/Actions/Index.js";
+import { addToCart, addToFav, deleteItemFromFavs } from "../../redux/Actions/Index.js";
+import Heart from '../../Style/Imagenes/Hearth'
 
 import './Cards.css';
+import CardHover from "../NewCard/CardHover.jsx";
 
-export default function Card(card) {
+export default function Card({card, favorites}) {
 
-    let { name, image, price, rating, id } = card.card
+    let { name, image, price, rating, id } = card
     const dispatch = useDispatch()
-
-    function addGameToCart() {
+    const [render, setRender] = useState('')
+    function handleFavourite(e) {
         let item = {
             id: id,
             name: name,
             price: price,
             image: image,
         }
-        dispatch(addToCart(item))
-        alert(`${name} added to cart!`)
-    }
+        if(e.target.checked) {
+            dispatch(addToFav(item))
+            alert(`${name} added to your favorites!`)
+            setRender(render,'hola')
+        } else {
+            dispatch(deleteItemFromFavs(item.id))
+            alert(`${name} remove from your favorites!`)
+            setRender(render,'hola')
 
-    function addGameToFav() {
-        let item = {
-            id: id,
-            name: name,
-            price: price,
-            image: image,
         }
-        dispatch(addToFav(item))
-        alert(`${name} added to your favorites!`)
+       
     }
 
     return (
-        <div className="card-videogame">
+        <div >
             <Link to={`/home/games/${id}`} className='Link'>
-                <div className="image-card" style={{ backgroundImage: `url(${image})` }}>
-                </div>
+                <CardHover image={image} name={name}/>
+                {/* <div className="image-card" style={{ backgroundImage: `url(${image})` }}></div> */}
                 <div className="card-data">
-                    <span className="h">{name}</span>
                     <span className="h">${price}</span>
                     <span> {rating} </span>
                 </div>
             </Link>
-            <div id="button_card">
-                <button onClick={() => addGameToFav()}>Add to favorites</button>
-                <button onClick={() => addGameToCart()}>Add to cart</button>
+
+            { favorites?.includes(card) ?
+            <div className="card-favourite">
+                <input id={`hearth-${id}`} type="checkbox" value={name} onClick={(e) =>handleFavourite(e)} checked={true} className="favourite-checkbox"/>
+                <label className="favourite-label" htmlFor={`hearth-${id}`}>❤</label>
             </div>
+                :
+             <div className="card-favourite">
+                <input id={`hearth-${id}`} type="checkbox" value={name} onClick={(e) =>handleFavourite(e)} className="favourite-checkbox"/>
+                <label className="favourite-label" htmlFor={`hearth-${id}`}>❤</label>
+            </div>}
+
         </div>
     )
 }
