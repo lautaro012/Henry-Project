@@ -81,10 +81,10 @@ export default function Home () {
                         width={'100%'}     
                         infiniteLoop={true} 
                         stopOnHover={true} 
-                        showThumbs={false}
                         autoFocus={true}
                         emulateTouch={true}
                         swipeable={true}
+                        showThumbs={false}
                         renderIndicator={false}
                         >
                             {
@@ -117,6 +117,7 @@ export default function Home () {
                         showThumbs={false}
                         width={1600}
                         dynamicHeight={true}
+                        renderIndicator={false}
                         >
                         {
                             <div className='carrusel-triple'>
@@ -261,6 +262,7 @@ export default function Home () {
                         showThumbs={false}
                         width={1600}
                         dynamicHeight={true}
+                        renderIndicator={false}
                         >
                         {
                             <div className='carrusel-triple'>

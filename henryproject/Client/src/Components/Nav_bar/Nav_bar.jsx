@@ -15,6 +15,7 @@ import ProfileNav from "../ProfileNav/ProfileNav";
 //const axios = require('axios')
 import { getAllGames } from '../../redux/Actions/Index';
 import { useDispatch } from 'react-redux';
+import Useregister from "../UserRegister/UserRegister";
 
 
 export default function Nav_bar({ userLogged, setUserLogged }) {
@@ -26,10 +27,13 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
 
 
     const [isOpen, setIsOpen] = useState(false);
-
+    const [registerisOpen, setRegisterIsOpen] = useState(false)
     function toggleModal() {
-        
         setIsOpen(!isOpen);
+    }
+    function changeModal() {
+        setIsOpen(false)
+        setRegisterIsOpen(true)
     }
 
     const onSearch = (name) => {
@@ -68,7 +72,8 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
 
                 <div>
                     <button onClick={toggleModal}>Loggin</button>
-                    <UserSign toggleModal={toggleModal} isOpen={isOpen} setUserLogged={e => setUserLogged(e)} />
+                    <UserSign changeModal={changeModal} setRegisterIsOpen={setRegisterIsOpen} toggleModal={toggleModal} isOpen={isOpen} setUserLogged={e => setUserLogged(e)} />
+                    <Useregister registerisOpen={registerisOpen} registersetIsOpen={setRegisterIsOpen} ></Useregister>
                 </div>
 
             }
