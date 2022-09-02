@@ -20,7 +20,6 @@ export function Profile () {
         }
         dispatch(getUser(usermail))
         return dispatch(clearUser())
-        
     }, [])
     
     let userdetails = useSelector(state => state.user)
@@ -31,7 +30,6 @@ export function Profile () {
     //}
     
     console.log('el user del state es ', userdetails)
-  
 
     return (
         <div className='Search-Filters'>
