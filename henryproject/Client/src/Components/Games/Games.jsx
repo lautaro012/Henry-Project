@@ -17,6 +17,7 @@ export default function Games() {
     let tags = useSelector(state => state.tags)
     let genres = useSelector(state => state.genres)
     let platforms = useSelector(state => state.platforms)
+    let favorites = useSelector(state => state.favorites)
     const [render, setRender] = useState('')
 
 
@@ -33,12 +34,6 @@ export default function Games() {
         }
     }, [])
 
-
-
-    // function onSearch(name) {
-    //     dispatch(getAllGames(name))
-    //     setRender([...render, 'hola'])
-    // }
 
     //paginado
     const [currentPage, setCurrentPage] = useState(1)
@@ -106,6 +101,7 @@ export default function Games() {
 
                                         currentVideogame?.map(card => {
                                             return (<Cards
+                                                favorites={favorites}
                                                 card={card}
                                                 key={card.id}
                                             />)
