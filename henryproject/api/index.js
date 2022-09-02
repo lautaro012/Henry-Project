@@ -19,7 +19,7 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // const { getAllGames } = require('../Client/src/redux/Actions/Index.js');
 const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
+const { conn, Users } = require('./src/db.js');
 const { getVideogamesByPlatforms } = require('./src/handlers/getAllVideoGames.js');
 const { getVideoGamesDB } = require('./src/handlers/getGamesDB.js');
 const getGenres = require('./src/handlers/getGenres.js');
@@ -36,7 +36,6 @@ const {
 
 conn.sync({ force: false}).then(() => {
   server.listen(PORT, async() => {
-
     await getVideogamesApi()
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
