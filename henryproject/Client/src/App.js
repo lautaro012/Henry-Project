@@ -11,7 +11,7 @@ import Home from './Components/Home/Home.jsx'
 import Games from './Components/Games/Games';
 import NavBar from './Components/Nav_bar/Nav_bar';
 import GameDetail from './Components/Game_Details/GameDetails.jsx'
-import CreateVideogame from './Components/CreateVideogame/CreateVideogame';
+import CreateVideogame from './Components/CreateVideogame/CreateVideogames.jsx';
 import Admin from './Components/Admin/Admin';
 import { Profile } from './Components/Profile/Profile';
 import UserSign from './Components/UserSign/UserSign';
@@ -116,8 +116,8 @@ function App() {
         <Route path='/home/games/:id' element={<GameDetail />} />
         <Route path='/favorites' element={<Favoritos />} />
         <Route path='/admin' element={<Admin/>} />
-        <Route path='/admin/editgame/:id' element={<EditVideogame></EditVideogame>} />
-        <Route path='/admin/createvideogame' element={<CreateVideogame/>} />
+        <Route path='/admin/editvideogames/:id' element={<EditVideogame></EditVideogame>} />
+        <Route path='/admin/createvideogames' element={<CreateVideogame/>} />
         <Route path='/profile' element={ userLogged ? <Profile/> : <UserSign setUserLogged={setUserLogged} isOpen={true}/>} />
         <Route path='/Loading' element={<LoadingScreen/>} />
         <Route path='/cart' element={<Cart/>} />
