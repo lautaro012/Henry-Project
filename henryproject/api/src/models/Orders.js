@@ -5,12 +5,14 @@ module.exports=(sequelize)=>{
         id_Orders:{
             type:DataTypes.INTEGER,
             primaryKey:true,
-            allowNull:false,
+            defaultValue: DataTypes.INTEGER,
+            allowNull:false
 
         },
         date:{
             type:DataTypes.DATEONLY,
-            allowNull:false
+            allowNull:false,
+            defaultValue: new Date()
         },
         payment:{
             type:DataTypes.STRING,

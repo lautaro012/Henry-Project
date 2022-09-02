@@ -1,4 +1,37 @@
-.profile {
+.Profile {
+    display: flex;
+    margin-top: 15%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 2%;
+    min-height: 1060px;
+    
+}
+
+.User_options_conteiner {
+    width: 30%;
+    background-color: violet;
+}
+
+.User_data_conteiner {
+    width: 70%;
+    background-color: blue;
+}
+
+.User_options {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+/* .profile {
     margin-top: 10%;
     color: white;
 }
@@ -33,4 +66,4 @@
 .settings span {
     padding-bottom: 20%;
     padding-top: 20%;
-}
+} */

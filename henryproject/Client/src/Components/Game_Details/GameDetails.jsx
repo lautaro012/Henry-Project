@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getGameById, addToCart, addToFav } from "../../redux/Actions/Index.js";
+import { getGameById, addToCart, addToFav, getReviews } from "../../redux/Actions/Index.js";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import MiniCard from "./MiniCards.jsx";
@@ -20,6 +20,7 @@ export default function GameDetails() {
     const navigate = useNavigate();
     const dispatch = useDispatch()
     const game = useSelector(state => state.game)
+    const reviews = useSelector(state => state.reviews)
     const { id } = useParams() // usa el parametro de la URL
     const [imgPop, setImgPop] = useState(false)
 
@@ -27,6 +28,7 @@ export default function GameDetails() {
 
     useEffect(() => {
         dispatch(getGameById(id))
+        getReviews(id)
     }, [dispatch, id])
 
     function stars(number) {
@@ -88,7 +90,8 @@ export default function GameDetails() {
         navigate("/cart/formularioPago");
     }
 
-    console.log(game)
+    console.log("GAME", game)
+    console.log("REVIEWS", reviews)
 
     return (
         <div className="game_detail">
@@ -146,8 +149,9 @@ export default function GameDetails() {
 
                                 <div>
                                     <h1>{game.name}</h1>
-                                    <h3>{stars(game.rating)} {game.rating}</h3>
-
+                                    <hr />
+                                    <h3>Rating : {stars(game.rating)}</h3>
+                                    <hr />
                                     <div className='imagenesJuego' >
 
                                         {
@@ -175,13 +179,42 @@ export default function GameDetails() {
                                     {
                                         game.series && game.series.map((card, index) => {
                                             return (
-                                                    <MiniCard
-                                                        data={card} />
+                                                <MiniCard
+                                                    data={card} />
                                             )
                                         })
                                     }
                                 </div>
-
+                                <hr />
+                                <h3>Tags</h3>
+                                <div id="contenedor_tags">
+                                    {
+                                        game.tags && game.tags.map(tag => {
+                                            return (
+                                                <div id="tag_details" key={tag.name}>
+                                                    <p>{tag.name}</p>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                                {
+                                    reviews.length > 0 ?
+                                        <div>
+                                            <h3>Reviews</h3>
+                                            {
+                                                reviews.map(rev => {
+                                                    return (
+                                                        <div>
+                                                            <p>{rev}</p>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                        :
+                                        null
+                                }
                             </div>
                         </div>
                         <div id="conteinerSide_detalles2">
@@ -191,7 +224,7 @@ export default function GameDetails() {
                                 <img className="imagenJuego" src={game.image} alt="imagenJuego"></img>
                                 <p>{game.realeaseDate}</p>
                                 <div>
-                                    <h3>Platforms</h3>
+                                    <h2>Platforms</h2>
                                     {
                                         game.platforms && game.platforms.map(plat => {
                                             return (
@@ -202,7 +235,7 @@ export default function GameDetails() {
                                     }
                                 </div>
                                 <div>
-                                    <h3>Developers</h3>
+                                    <h2>Developers</h2>
                                     {
                                         game.developers && game.developers.map(dev => {
                                             return (
@@ -213,7 +246,7 @@ export default function GameDetails() {
                                     }
                                 </div>
                                 <div>
-                                    <h3>Genres</h3>
+                                    <h2>Genres</h2>
                                     {
                                         game.genres && game.genres.map(gen => {
                                             return (
@@ -224,19 +257,19 @@ export default function GameDetails() {
                                     }
                                 </div>
                                 <div>
-                                    <h3>ESRB</h3>
+                                    <h2>ESRB</h2>
                                     <p key={game.esrb_rating}>{game.esrb_rating}</p>
                                 </div>
                                 <div>
-                                    <h3>Metacritic</h3>
+                                    <h2>Metacritic</h2>
                                     <p>{game.metacritic}</p>
                                 </div>
                                 <div>
-                                    <h3>Publisher</h3>
+                                    <h2>Publisher</h2>
                                     <p>{game.publishers}</p>
                                 </div>
                                 <div>
-                                    <h3>Stores</h3>
+                                    <h2>Stores</h2>
                                     {
                                         game.store && game.store.map(sto => {
                                             return (
