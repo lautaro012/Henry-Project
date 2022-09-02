@@ -34,6 +34,7 @@ export default function Games() {
         }
     }, [])
 
+
     //paginado
     const [currentPage, setCurrentPage] = useState(1)
     const videogamesPerPage = 10

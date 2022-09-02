@@ -43,35 +43,35 @@ function App() {
   console.log(`Variable de entorno es ${REACT_APP_API}`)
   
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    // const getUser = async () => {
-    //   fetch(`${REACT_APP_API}/auth/success`, {
-    //     method: "GET",
-    //     credentials: "include",
-    //     headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "application/json",
-    //       //  "Access-Control-Allow-Credentials": true
-    //     },
-    //   }).then((response) => {
+  //    const getUser = async () => {
+  //      fetch(`http://localhost:3001/auth/success`, {
+  //        method: "GET",
+  //       //  credentials: "include",
+  //        headers: {
+  //          Accept: "application/json",
+  //          "Content-Type": "application/json",
+  //            "Access-Control-Allow-Credentials": true
+  //        },
+  //      }).then((response) => {
 
-    //     if(response.status === 200) {
-    //       // console.log('entra a response')
-    //       return response.json()};
+  //        if(response.status === 200) {
+  //           console.log('entra a response')
+  //          return response.json()};
 
-    //     throw new Error('authentication has been failed')
-    //   }).then(resObject => {
-    //     setUserLogged(true)
-    //     localStorage.setItem('user', JSON.stringify(resObject))
-    //     setUser(resObject.user)
-    //   }).catch(err => {
-    //     console.log(err)
-    //   })
-    // }
-    // getUser()
+  //        throw new Error('authentication has been failed')
+  //      }).then(resObject => {
+  //        setUserLogged(true)
+  //        localStorage.setItem('user', JSON.stringify(resObject))
+  //        setUser(resObject.user)
+  //      }).catch(err => {
+  //        console.log(err)
+  //      })
+  //    }
+  //    getUser()
 
-  }, [])
+  // }, [])
 
 
 
@@ -122,7 +122,7 @@ function App() {
         <Route path='/Loading' element={<LoadingScreen/>} />
         <Route path='/cart' element={<Cart/>} />
         <Route path='/test' element={<CardDescription/>} />
-        <Route path='/cart/formularioPago' element={<Elements stripe={stripePromise}><FormularioPago></FormularioPago></Elements>}/>
+        <Route path='/cart/formularioPago' element={userLogged ? <Elements stripe={stripePromise}><FormularioPago></FormularioPago></Elements> : <UserSign setUserLogged={setUserLogged} isOpen={true}/>}/>
       </Routes>
       <Footer />
     </Router>
