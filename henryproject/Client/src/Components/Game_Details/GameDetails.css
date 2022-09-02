@@ -5,9 +5,28 @@
     min-height: 100%;
 }
 
-#contenedor_miniCards{
+#contenedor_tags {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 500px;
+    align-content: space-between;
+}
+
+#tag_details {
+    border-style: solid;
+    border-radius: 5px;
+    margin: 1%;
+}
+
+#tag_details p {
+    padding: 5%;
+}
+
+#contenedor_miniCards {
     display: flex;
     flex-wrap: wrap;
+    text-align: center;
 }
 
 #boton_juego {
@@ -19,7 +38,7 @@
     margin-top: 15%;
 }
 
-#conteiner_detalles{
+#conteiner_detalles {
     display: flex;
 }
 
@@ -38,6 +57,7 @@ carrito {
 
 #conteinerData_detalles2 {
     width: 80%;
+    padding-right: 5%;
 }
 
 #conteinerSide_detalles {
@@ -51,7 +71,7 @@ carrito {
 }
 
 #conteinerSide_detalles a {
-    word-break:break-all;
+    word-break: break-all;
     text-decoration: none;
 }
 

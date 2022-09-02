@@ -22,7 +22,7 @@ export default function UserSign({toggleModal, isOpen, setUserLogged }) {
 
     function handleClick(e) {
         // e.preventDefault()
-        window.open(`${REACT_APP_API}/auth/google`, "_self")
+        window.open(`http://localhost:3001/auth/google`, "_self")
     }
 
     Modal.setAppElement("#root");

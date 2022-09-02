@@ -25,7 +25,7 @@ export default function Cart({props}) {
     useEffect(() => {
         localStorage.setItem("products", JSON.stringify(items));
         localStorage.setItem("precioTotal", JSON.stringify(precios));
-      }, [items][precios]);
+      }, [items, precios]);
 
     return (
         <div className="conteinerCart">
