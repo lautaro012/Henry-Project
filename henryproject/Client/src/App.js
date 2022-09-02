@@ -88,7 +88,7 @@ function App() {
       localStorage.setItem("favProducts", JSON.stringify([]));
       
     }
-  }, [user]);
+  }, [userLogged]);
 
   const videogamesLS = JSON.parse(localStorage.getItem("products"));
 
