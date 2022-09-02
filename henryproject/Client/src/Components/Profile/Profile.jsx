@@ -24,6 +24,11 @@ export function Profile () {
     }, [])
     
     let userdetails = useSelector(state => state.user)
+
+    //function handleCart(){
+       // e.preventDefault()
+        //dispatch()
+    //}
     
     console.log('el user del state es ', userdetails)
   
