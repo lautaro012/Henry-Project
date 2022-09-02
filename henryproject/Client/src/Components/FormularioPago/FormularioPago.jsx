@@ -27,8 +27,9 @@ export const FormularioPago = () => {
 
   const precioTotal = JSON.parse(localStorage.getItem("precioTotal"));
   const items = JSON.parse(localStorage.getItem("products"))
-  // const user = JSON.parse(localStorage.getItem("user"))
-  // const mail = user.user.emails[0].value
+  const user = JSON.parse(localStorage.getItem("user"))
+  const mail = user.user.mail
+
 
   // console.log(user.user.emails[0].value)
 
@@ -55,8 +56,6 @@ export const FormularioPago = () => {
   //AGREGAMOS LA FUNCION
   async function handleSubmit(e) {
     e.preventDefault();
-
-
     const { error, paymentMethod } = await stripe.createPaymentMethod({ //Tieme objetos que debe de completar
       type: "card",  //type de pago: metodo de tarjeta
       card: elements.getElement(CardElement) //Selecciona el input element de la tarjeta
