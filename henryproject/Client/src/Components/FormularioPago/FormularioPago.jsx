@@ -29,8 +29,9 @@ export const FormularioPago = () => {
   const items = JSON.parse(localStorage.getItem("products"))
   const user = JSON.parse(localStorage.getItem("user"))
   const mail = user.user.mail
+  const userIdName = user.user.id_name
 
-  // const arr = [items.map(e => e.name)]
+   const arr = [items.map(e => e.name)]
 
   // console.log(arr[0])
 
@@ -66,7 +67,9 @@ export const FormularioPago = () => {
 
           id,
           amount: precioTotal*100,
-          mail
+          mail,
+          arr,
+          userIdName
 
         })
         console.log(data);

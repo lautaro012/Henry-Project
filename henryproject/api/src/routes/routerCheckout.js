@@ -1,6 +1,6 @@
 const {Router} = require('express');
 const { default: Stripe } = require('stripe');
-const { Orders } = require('../db');
+const { Orders, Games } = require('../db');
 // const { Orders } = require('../db');
 const {KEY_CHECK}= process.env;
 
@@ -9,7 +9,7 @@ const stripe= new Stripe(KEY_CHECK);
 const router = Router();
 router.post("/", async(req,res)=>{
     try {
-        const {id,amount, mail}=req.body;
+        const {id,amount, mail, arr, userIdName}=req.body;
         
             const payment = await stripe.paymentIntents.create({
             amount: amount,
@@ -25,8 +25,14 @@ router.post("/", async(req,res)=>{
                 payment: 'card',
                 subTotal: amount/100,
                 paid: true,
-                userMail: mail
+                userMail: mail,
+                userIdName: userIdName
                 })
+                
+                let games = await Games.findAll({where: {name: (arr.flat())}})
+                await order.addGames(games);
+                // console.log(games);
+                console.log(order);
             } catch(err) {console.log(err)}
            
         
