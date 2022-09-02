@@ -28,7 +28,7 @@ export const FormularioPago = () => {
   const precioTotal = JSON.parse(localStorage.getItem("precioTotal"));
   const items = JSON.parse(localStorage.getItem("products"))
   const user = JSON.parse(localStorage.getItem("user"))
-  const mail = user.user.mail
+  // const mail = user.user.mail
 
 
   // console.log(user.user.emails[0].value)
@@ -70,7 +70,7 @@ export const FormularioPago = () => {
         const { data } = await axios.post(`/checkout`, {
 
           id,
-          amount: precioTotal,
+          amount: precioTotal*100,
 
         })
         console.log(data);
