@@ -1,4 +1,3 @@
-import { NavItem } from "reactstrap"
 import {
     GET_ALL_GAMES,
     GET_ALL_GAMES_BY_NAME,
@@ -22,9 +21,7 @@ import {
     SHOW_VIDEOGAME,
     CHANGE_NAME,
     HIDE_VIDEOGAME,
-    
-    
-
+    GET_REVIEWS_GAME,
     GET_USER,
     CLEAR_USER,
     hideVideoGame,
@@ -47,7 +44,8 @@ const initialState = {
     Tagsinfilter: [],
     user: [],
     hidenVideoGame:[],
-    showVideoGame: []
+    showVideoGame: [],
+    reviews: [],
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -156,7 +154,6 @@ export default function rootReducer(state = initialState, action) {
                 tags: action.payload
             }
         case GET_GAMES_BY_GENRE:
-            console.log(action.payload)
             return {
                 ...state,
                 videogamesBygenre: action.payload
@@ -261,6 +258,11 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 user: []
+            }
+        case GET_REVIEWS_GAME:
+            return {
+                ...state,
+                reviews: action.payload
             }
 
         default: return state
