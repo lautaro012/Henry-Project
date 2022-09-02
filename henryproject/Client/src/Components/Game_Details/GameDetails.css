@@ -8,6 +8,7 @@
 #contenedor_miniCards{
     display: flex;
     flex-wrap: wrap;
+    text-align: center;
 }
 
 #boton_juego {
