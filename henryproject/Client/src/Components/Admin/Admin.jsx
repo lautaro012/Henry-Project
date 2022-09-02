@@ -66,10 +66,10 @@ export default function Admin() {
                         <img width={150} src='https://img2.thejournal.ie/inline/1881369/original/?width=630&version=1881369' alt='imagen de perfil'></img>
                     </div>
                     <div className='settings-admin'>
-                        <Link to="/home/create">
+                        <Link to="/admin/createvideogames">
                             <button><span >  Create videogame  </span></button>
                         </Link>
-                        <Link to="/admin/editgames">
+                        <Link to="/admin/editvideogames">
                             <button className="bottom" type="submit" onClick={(e) => handleSubmit(e)} > EDIT GAMES</button>
                         </Link>
                         <button><span> SETTINGS </span></button>
