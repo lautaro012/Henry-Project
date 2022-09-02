@@ -12,7 +12,7 @@ const getAllVideoGames = async () => {
         let gen = await getGenres();
         let plat= await getPlatforms();
         let tag = await  getTags();
-        let allGames =   getVideogamesApi();
+        let allGames = await getVideogamesApi();
         return getVideoGamesDB()
     }
     return  dbGames;

@@ -25,6 +25,7 @@ export const HIDE_VIDEOGAME= "HIDE_VIDEOGAME"
 export const CHANGE_NAME= "CHANGE_NAME"
 export const GET_USER = 'GET_USER'
 export const CLEAR_USER = 'CLEAR_USER'
+export const GET_REVIEWS_GAME = "GET_REVIEWS_GAME"
 
 require('dotenv').config();
 const {
@@ -54,7 +55,6 @@ export function getAllGames(name) {
         return async function (dispatch) {
             let response = await axios(`/videogames`)
             dispatch({
-
                 type: GET_ALL_GAMES,
                 payload: response.data
             })
@@ -67,7 +67,6 @@ export function getAllGames(name) {
 export function getGameById(id) {
     return async function (dispatch) {
         let response = await axios(`/videogames/${id}`)
-        console.log("RESPONSE ID GAME", response.data)
         dispatch({
             type: GET_GAME_BY_ID,
             payload: response.data
@@ -79,8 +78,6 @@ export function getGameById(id) {
 export function hideVideoGame(id){
     return async function(dispatch){
         let resp = await axios.put(`/disabled/${id}`)
-        console.log(resp.data)
-
         dispatch({type:HIDE_VIDEOGAME, payload: resp.data})
     }
 }
@@ -88,7 +85,6 @@ export function hideVideoGame(id){
 export function showVideoGame(id) {
     return async function (dispatch) {
         let resp = await axios.put(`/abled/${id}`)
-        console.log(resp.data)
         dispatch({type: SHOW_VIDEOGAME, payload: resp.data})
     }
 }
@@ -166,22 +162,6 @@ export function postNewUser(user) {
             console.log(user)
         } catch (err) {
             console.log(err)
-        }
-    }
-}
-
-
-
-export const createvideogame = function (payload, history) {
-    console.log(payload)
-    return function (dispatch) {
-        try {
-            
-            
-            
-
-        } catch (error) {
-            console.log('error PORQUE:' + error)
         }
     }
 }
@@ -303,12 +283,10 @@ export function deleteItemFromFavs(id) {
 }
 
 export function signin(payload) {
-    console.log(payload)
     return function () {
         axios.post(`/login`, payload)
             .then(resp => resp.data)
             .then(resp => {
-                console.log('RESP DEL SIGN IN', resp)
                 localStorage.setItem('user', JSON.stringify(resp))
                 window.location.reload()
             })
@@ -321,7 +299,6 @@ export function getUser (payload) {
         axios.get(`/userLogged/${payload}`)
         .then(resp => resp.data)
         .then(resp => {
-            // console.log('response del back', resp)
             dispatch({
                 type: GET_USER,
                 payload: resp
@@ -334,6 +311,16 @@ export function clearUser() {
     return function (dispatch) {
         dispatch({
             type: CLEAR_USER
+        })
+    }
+}
+
+export function getReviews(gameId){
+    return async function(dispatch){
+        let response = await axios.get(`/reviews/${gameId}`)
+        return dispatch({
+            type: GET_REVIEWS_GAME,
+            payload: response.data
         })
     }
 }
