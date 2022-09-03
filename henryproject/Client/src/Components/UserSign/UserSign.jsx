@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import './UserSign.css'
 import Icon from '../../Style/Imagenes/Icon.PNG'
 import Modal from "react-modal";
-import { Link } from "react-router-dom";
+import axios from 'axios'
 import { useDispatch } from "react-redux";
-import { signin } from "../../redux/Actions/Index";
 const {
   REACT_APP_API
 } = process.env;
@@ -15,6 +14,7 @@ export default function UserSign({toggleModal, isOpen, setUserLogged, changeModa
 
     let dispatch = useDispatch()
     const [render, setRender] = useState('')
+    const[loading, setLoading] = useState(false)
     const [input, setInput] = useState({
         mail: '',
         password: ''
@@ -41,13 +41,26 @@ export default function UserSign({toggleModal, isOpen, setUserLogged, changeModa
 
     function handleSubmit(e) {
         e.preventDefault()
-        dispatch(signin(input));
-        setInput({
-        mail: '',
-        password: ''
-        })
-        setUserLogged(true)
-        console.log('logueado con', input)
+        setLoading(true)
+          axios.post(`/login`, input)
+          .then(resp => resp.data)
+          .then(resp => {
+              setUserLogged(true)
+              console.log('logueado con', input)
+              localStorage.setItem('user', JSON.stringify(resp))
+              window.location.reload()
+              setInput({
+              mail: '',
+              password: ''
+              })    
+              toggleModal()
+              setLoading(false)
+          })
+          .catch(error => {
+            alert(error.response.data.msg ? error.response.data.msg : error.response.data)
+            console.log('el error fue', error.response)
+            setLoading(false)
+          })
         setRender(render, 'hola')
         // window.location.reload()
     }
@@ -73,10 +86,11 @@ export default function UserSign({toggleModal, isOpen, setUserLogged, changeModa
                 <input onChange={handleChange} type="mail" id="mail" name='mail'></input>
                 <label>Password:</label>   
                 <input onChange={handleChange} type="password" id="password" name='password' autocomplete="off" ></input>
-                <button type="submit" onClick={toggleModal}> Loggin </button>
+                {loading ? <button type="submit" disabled={true} > Loading.. </button> : <button type="submit"> Loggin </button>}
+                {/* <button type="submit"> Loggin </button> */}
             </form>
         </div>
-   
+        
         <button onClick={(e) => handleClick(e)} className='login-with-google-btn' >Ingresar con cuenta de Google</button>
         Are you new ?  <button onClick={changeModal}>Register free now ! </button>
 
