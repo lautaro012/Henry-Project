@@ -17,6 +17,7 @@ const adminConfig = require('./routerSetAdmin')
 const removeAdmin = require('./routerRemoveAdmin')
 const { singIn } = require('../handlers/authHandler');
 const reviewsRouter = require('./routerReviews');
+const ordersRouter = require('../routes/routerOrders');
 const router = Router();
 
 
@@ -38,6 +39,7 @@ router.use('/noBanned', noBanUser)
 router.use('/admin', adminConfig)
 router.use('/noAdmin', removeAdmin)
 router.use('/reviews',reviewsRouter)
+router.use('/orders',ordersRouter);
 
 
 router.use("/auth", authRoute)

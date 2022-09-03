@@ -71,7 +71,7 @@ const {Users, Orders, Games, Genres, Platforms, Reviews, Tags} = sequelize.model
     //FALTA IMPORTAR USERS
         Users.belongsToMany(Games, {through: 'userGames'});
         Games.belongsToMany(Users, {through: 'userGames'});
-  
+        Orders.belongsTo(Users);
       //FALTA IMPORTAR ORDERS
         Orders.belongsToMany(Games, {through: 'orderGames'});
         Games.belongsToMany(Orders, {through: 'orderGames'});
