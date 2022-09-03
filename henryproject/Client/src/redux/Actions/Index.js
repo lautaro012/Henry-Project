@@ -289,17 +289,17 @@ export function deleteItemFromFavs(id) {
     }
 }
 
-export function signin(payload) {
-    return function () {
-        axios.post(`/login`, payload)
-            .then(resp => resp.data)
-            .then(resp => {
-                localStorage.setItem('user', JSON.stringify(resp))
-                window.location.reload()
-            })
-            .catch(err => console.log(payload))
-    }
-}
+// export function signin(payload) {
+//     return function () {
+//         axios.post(`/login`, payload)
+//             .then(resp => resp.data)
+//             .then(resp => {
+//                 localStorage.setItem('user', JSON.stringify(resp))
+//                 window.location.reload()
+//             })
+//             .catch(err => console.log(payload))
+//     }
+// }
 
 export function getUser (payload) {
     return function (dispatch) {
