@@ -68,7 +68,11 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
 
                 <Link to='/profile'> <button> My Profile </button></Link>
              */}
-            {userLogged ? <ProfileNav userLogged={userLogged} setUserLogged={setUserLogged} /> :
+            {userLogged ? 
+            
+            <ProfileNav userLogged={userLogged} setUserLogged={setUserLogged} /> 
+            
+            :
 
                 <div>
                     <button onClick={toggleModal}>Loggin</button>
