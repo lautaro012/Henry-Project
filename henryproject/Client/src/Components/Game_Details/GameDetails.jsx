@@ -80,8 +80,9 @@ export default function GameDetails() {
         alert(`${game.name} added to your favorites!`)
     }
 
-    function buy() {
-        addGameToCart();
+    async function buy() {
+        await addGameToCart();
+        await localStorage.setItem("precioTotal", JSON.stringify(game.price));
         navigate("/cart/formularioPago");
     }
 
