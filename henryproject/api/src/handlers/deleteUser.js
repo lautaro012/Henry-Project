@@ -5,7 +5,7 @@ const deleteUser = async (req, res) => {
     try {
         await Users.destroy({
             where: {
-                id
+                id_name : id_name
             }
         })
         return res.status(200).json("User deleted")

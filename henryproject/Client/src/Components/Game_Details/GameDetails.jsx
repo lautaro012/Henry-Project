@@ -1,14 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getGameById, addToCart, addToFav, getReviews } from "../../redux/Actions/Index.js";
+import { getGameById, addToCart, addToFav, getReviews, vaciarGame } from "../../redux/Actions/Index.js";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import MiniCard from "./MiniCards.jsx";
-
 import ReactPlayer from 'react-player'
 import ImagenPop from '../Game_Details/ImagenPop.jsx';
-// import Loading from '../../Style/Imagenes/Loading.gif'
 import LoadingScreen from "../LoadingScreen/LoadingScreen.jsx";
 import { Carousel } from 'react-responsive-carousel';
 import { useNavigate } from "react-router-dom";
@@ -21,6 +19,9 @@ export default function GameDetails() {
     const dispatch = useDispatch()
     const game = useSelector(state => state.game)
     const reviews = useSelector(state => state.reviews)
+    const items = useSelector(state => state.cart)
+    const favoritos = useSelector(state => state.favorites)
+
     const { id } = useParams() // usa el parametro de la URL
     const [imgPop, setImgPop] = useState(false)
 
@@ -28,7 +29,10 @@ export default function GameDetails() {
 
     useEffect(() => {
         dispatch(getGameById(id))
-        getReviews(id)
+        dispatch(getReviews(id))
+        return function limpiar () {
+            dispatch(vaciarGame())
+        }
     }, [dispatch, id])
 
     function stars(number) {
@@ -54,15 +58,6 @@ export default function GameDetails() {
         imgPop === false ? setImgPop(true) : setImgPop(false)
     }
 
-    // function getVideo() {
-    //     if (typeof game.video === "object") {
-    //         return game.video[0]
-    //     }
-    //     else {
-    //         return "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-    //     }
-    // }
-
     function addGameToCart() {
         let item = {
             id: game.id,
@@ -85,10 +80,17 @@ export default function GameDetails() {
         alert(`${game.name} added to your favorites!`)
     }
 
-    function buy() {
-        addGameToCart();
+    async function buy() {
+        await addGameToCart();
+        await localStorage.setItem("precioTotal", JSON.stringify(game.price));
         navigate("/cart/formularioPago");
     }
+
+    useEffect(() => {
+        localStorage.setItem("products", JSON.stringify(items));
+        localStorage.setItem("favProducts", JSON.stringify(favoritos));
+    }, [items, favoritos]);
+
 
     console.log("GAME", game)
     console.log("REVIEWS", reviews)

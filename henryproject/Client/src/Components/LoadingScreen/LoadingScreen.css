@@ -1,7 +1,7 @@
 #load {
-  position:absolute;
+  position: sticky;
   min-width:600px;
-  min-height: 100%;
+  min-height: 800px;
   height:36px;
   left:50%;
   top:40%;
@@ -15,7 +15,7 @@
 }
 
 #load div {
-  position:absolute;
+
   width:20px;
   height:36px;
   opacity:0;
