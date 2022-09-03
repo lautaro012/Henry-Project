@@ -1,7 +1,7 @@
 import './CardHover.css'
 
 
-export default function CardHover ({name, image}) {
+export default function CardHover ({name, image, price}) {
     return (
         <div class="wrapper">
 
@@ -10,7 +10,8 @@ export default function CardHover ({name, image}) {
 	<div class="cards">
 		<figure class="card">
 			<img src={`${image}`} alt='imagen'/>
-			<figcaption>{name}</figcaption>
+			<figcaption>{name} {price ? `$ ${price}` : null}</figcaption>
+		
 		</figure>
 
 	</div>
