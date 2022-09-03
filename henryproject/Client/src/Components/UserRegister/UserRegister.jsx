@@ -93,7 +93,7 @@ export default function Useregister ({registersetIsOpen, registerisOpen}) {
                                 <label type="text" ></label>
                                 <input className="input-register" name="name" placeholder="Name" required onChange={(e)  => handleChange(e)} ></input>
                             </div>
-                            {showError ? <span className='error'>{error.name}</span> : null}
+                            {error.name ? <span className='error'>{error.name}</span> : null}
                             <div className="input-div">
                                 <label type="text"></label>
                                 <input className="input-register" name="lastName" placeholder="Lastname" required onChange={(e) => handleChange(e)} ></input>
@@ -125,8 +125,8 @@ export default function Useregister ({registersetIsOpen, registerisOpen}) {
                             <input className="input-register" name="image" type="file" onChange={handleImageChange}/>
                         </div>
                         {!showError  ? null : <span className='error'>{error.image}</span>}
-
-                        {!Object.keys(error).length ? <button className='submit-btn' type="submit">REGISTER</button> : <button className='submit-btn' type="submit" disabled={true}>REGISTER</button>}
+                        <button className='submit-btn' type="submit">REGISTER</button>
+                        {/* {!Object.keys(error).length ? <button className='submit-btn' type="submit">REGISTER</button> : <button className='submit-btn' type="submit" disabled={true}>REGISTER</button>} */}
                     </form>
                 </div>
             </Modal>

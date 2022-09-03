@@ -1,14 +1,14 @@
-import './LoadingScreen.css'
+import './LoadingScreen.scss'
 export default function LoadingScreen () {
     return (
-        <div id="load">
-            <div>L</div>
-            <div>O</div>
-            <div>A</div>
-            <div>D</div>
-            <div>N</div>
-            <div>I</div>
-            <div>G</div>
+        <div className='body-loading' >
+            <div class="e-loadholder">
+                <div id="particleCanvas-Blue"></div>
+                    <div class="m-loader">
+                        <span class="e-text">Loading</span>
+                    </div>
+            <div id="particleCanvas-White"></div>
+            </div>
         </div>
     )
 }
