@@ -95,16 +95,20 @@ export default function Admin() {
                         <div id="conteinerCart2">{
                             videogames && videogames.map(item => {
                                 return (
-                                    <div key={item.id} id="item">
+                                    <div key={item.id} className="item">
+                                        <div className="props">
                                         <img src={item.image} alt={item.id}></img>
                                         <h1>{item.name}</h1>
                                         <h3>$ {item.price}</h3>
+                                        </div>
+                                        <div className="buttons">
                                         <Link to={`/admin/editgame/${item.id}`}>
                                             <button type="button" >Editar </button>
                                         </Link>
                                         {/* <Link to= {`/admin/${item.id}`}> */}
-                                        <button type="button" onClick={(e) => handleHide(e)} value={item.id}> Deshabilitar </button>
-                                        <button type="button" onClick={(e) => showGame(e)} value={item.id}> Habilitar </button>
+                                        <button type="button"  onClick={(e) => handleHide(e)} value={item.id}> Deshabilitar </button>
+                                        <button type="button"   onClick={(e) => showGame(e)} value={item.id}> Habilitar </button>
+                                        </div>
                                         {/* </Link> */}
                                         {/* <button onClick={() => deleteItem(item.id)}>Delete</button> */}
                                     </div>
