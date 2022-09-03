@@ -20,7 +20,7 @@ import Footer from './Components/Footer/Footer.jsx'
 import Favoritos from './Components/Favoritos/Favoritos.jsx'
 import EditVideogame from './Components/CreateVideogame/EditVideogame/EditVideogame';
 import { useEffect, useState } from 'react';
-import Register from './Components/Register/Register';
+// import Register from './Components/Register/Register';
 import { FormularioPago } from './Components/FormularioPago/FormularioPago';
 
 import {Elements} from "@stripe/react-stripe-js";
@@ -107,7 +107,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<LandingPage />} />
         <Route path='/about' element={<About />} />
-        <Route path='/register' element={<Register></Register>} />
+        {/* <Route path='/register' element={<Register></Register>} /> */}
         <Route path='/home' element={<Home />} />
         <Route path='/home/games' element={<Games />} />
         <Route path='/home/games/:id' element={<GameDetail />} />

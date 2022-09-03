@@ -77,8 +77,7 @@ export default function Useregister ({registersetIsOpen, registerisOpen}) {
             onRequestClose={toggleModal}
             contentlabel="My dialog"
             className="mymodalregister"
-            overlayClassName="myoverlay"
-            
+            overlayClassName="myoverlay" 
             >
                 <div>
                 <div className="modal-welcome">
@@ -91,12 +90,12 @@ export default function Useregister ({registersetIsOpen, registerisOpen}) {
                         <div className="name-and-lastname">
                             <div className="input-div">
                                 <label type="text" ></label>
-                                <input className="input-register" name="name" placeholder="Name" required onChange={(e)  => handleChange(e)} ></input>
+                                <input className="input-register-half" name="name" placeholder="Name" required onChange={(e)  => handleChange(e)} ></input>
                             </div>
                             {error.name ? <span className='error'>{error.name}</span> : null}
                             <div className="input-div">
                                 <label type="text"></label>
-                                <input className="input-register" name="lastName" placeholder="Lastname" required onChange={(e) => handleChange(e)} ></input>
+                                <input className="input-register-half" name="lastName" placeholder="Lastname" required onChange={(e) => handleChange(e)} ></input>
                             </div>
                             {!showError  ? null : <span className='error'>{error.lastName}</span>}
                         </div>

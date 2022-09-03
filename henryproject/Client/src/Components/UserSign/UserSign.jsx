@@ -72,7 +72,7 @@ export default function UserSign({toggleModal, isOpen, setUserLogged, changeModa
                 <label> E-Mail:</label>
                 <input onChange={handleChange} type="mail" id="mail" name='mail'></input>
                 <label>Password:</label>   
-                <input onChange={handleChange} type="password" id="password" name='password'></input>
+                <input onChange={handleChange} type="password" id="password" name='password' autocomplete="off" ></input>
                 <button type="submit" onClick={toggleModal}> Loggin </button>
             </form>
         </div>

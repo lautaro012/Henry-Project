@@ -15,12 +15,14 @@ function validateAttributes(name, lastName, userName, mail){
         return true;
     }
 }
+
+
 const singUp = async (req, res) =>    {
     if(req.body.password !== undefined)  
         {
         try {
        
-        
+        let admins = ['lautaro0121@gmail.com', 'Lautaro0121@gmail.com']
         let password = bcrypt.hashSync(req.body.password, 8);
         const { name, lastName, userName, mail, address, image} = req.body
         
@@ -37,7 +39,8 @@ const singUp = async (req, res) =>    {
               userName,
               address,
               password,
-              image
+              image,
+              admin: admins.includes(mail) ? true : false
             },
           })
           let token = jwt.sign({ user: newUser }, 'aaa', {
