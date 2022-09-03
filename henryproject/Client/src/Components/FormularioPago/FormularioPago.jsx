@@ -28,17 +28,14 @@ export const FormularioPago = () => {
   const precioTotal = JSON.parse(localStorage.getItem("precioTotal"));
   const items = JSON.parse(localStorage.getItem("products"))
   const user = JSON.parse(localStorage.getItem("user"))
-  const mail = user.user.emails[0].value
+  const mail = user.user.mail
+  const userIdName = user.user.id_name
 
-  // console.log(user.user.emails[0].value)
+   const arr = [items.map(e => e.name)]
 
-  // function eliminarDelCart(e) {
-  //   console.log(e.target.value)
+  // console.log(arr[0])
 
-  //   dispatch(deleteItemFromCart(e.target.value))
-  // }
 
-  // console.log(precioTotal);
   let history = useNavigate();
   const handleRegresar = () => {
 
@@ -55,8 +52,6 @@ export const FormularioPago = () => {
   //AGREGAMOS LA FUNCION
   async function handleSubmit(e) {
     e.preventDefault();
-
-
     const { error, paymentMethod } = await stripe.createPaymentMethod({ //Tieme objetos que debe de completar
       type: "card",  //type de pago: metodo de tarjeta
       card: elements.getElement(CardElement) //Selecciona el input element de la tarjeta
@@ -68,12 +63,14 @@ export const FormularioPago = () => {
       const { id } = paymentMethod
       try {
 
-        const { data } = await axios.post(`${REACT_APP_API}/checkout`, {
+        const { data } = await axios.post(`/checkout`, {
 
           id,
-          amount: precioTotal,
-          games: items,
-          mail: mail
+          amount: precioTotal*100,
+          mail,
+          arr,
+          userIdName
+
         })
         console.log(data);
         alert(`You have pay $ ${precioTotal} successfully`)
@@ -81,7 +78,7 @@ export const FormularioPago = () => {
         history("/")
 
       } catch (error) {
-        alert(error.raw.message)
+        alert(error)
       }
       setLoading(false)
     }

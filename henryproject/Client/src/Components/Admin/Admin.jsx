@@ -66,10 +66,10 @@ export default function Admin() {
                         <img width={150} src='https://img2.thejournal.ie/inline/1881369/original/?width=630&version=1881369' alt='imagen de perfil'></img>
                     </div>
                     <div className='settings-admin'>
-                        <Link to="/home/create">
+                        <Link to="/admin/createvideogames">
                             <button><span >  Create videogame  </span></button>
                         </Link>
-                        <Link to="/admin/editgames">
+                        <Link to="/admin/editvideogames">
                             <button className="bottom" type="submit" onClick={(e) => handleSubmit(e)} > EDIT GAMES</button>
                         </Link>
                         <button><span> SETTINGS </span></button>
@@ -95,16 +95,20 @@ export default function Admin() {
                         <div id="conteinerCart2">{
                             videogames && videogames.map(item => {
                                 return (
-                                    <div key={item.id} id="item">
+                                    <div key={item.id} className="item">
+                                        <div className="props">
                                         <img src={item.image} alt={item.id}></img>
                                         <h1>{item.name}</h1>
                                         <h3>$ {item.price}</h3>
+                                        </div>
+                                        <div className="buttons">
                                         <Link to={`/admin/editgame/${item.id}`}>
                                             <button type="button" >Editar </button>
                                         </Link>
                                         {/* <Link to= {`/admin/${item.id}`}> */}
-                                        <button type="button" onClick={(e) => handleHide(e)} value={item.id}> Deshabilitar </button>
-                                        <button type="button" onClick={(e) => showGame(e)} value={item.id}> Habilitar </button>
+                                        <button type="button"  onClick={(e) => handleHide(e)} value={item.id}> Deshabilitar </button>
+                                        <button type="button"   onClick={(e) => showGame(e)} value={item.id}> Habilitar </button>
+                                        </div>
                                         {/* </Link> */}
                                         {/* <button onClick={() => deleteItem(item.id)}>Delete</button> */}
                                     </div>

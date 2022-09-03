@@ -63,3 +63,32 @@
     display: flex;
 }
 
+.item{
+    display:flex;
+    flex-direction: column;
+    border-style: groove;
+    /* display: inline-flex; */
+    align-items: center;
+    justify-content: space-between;
+    max-width: 50%;
+    padding: 2%;
+}
+
+.item img {
+    max-width: 25%;
+}
+
+.props{
+    display:flex;
+    flex-direction: row;
+    font-size: 10px;
+    justify-content: space-between;
+    margin-bottom: 2%;
+}
+.buttons{
+    width:max-content;
+    display:flex;
+    flex-direction: row;
+}
+
+

@@ -30,7 +30,7 @@ export default function Favs() {
             {
                 items && items.length ?
                     <div id="conteinerFav2">{
-                        items && items.map(item => {
+                        items && items?.map(item => {
                             return (
                                 <div id="itemFav">
                                     <img src={item.image} alt={item.id}></img>

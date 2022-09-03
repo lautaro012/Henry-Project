@@ -35,7 +35,19 @@ export default function Card({card, favorites}) {
     return (
         <div >
             <Link to={`/home/games/${id}`} className='Link'>
-                <CardHover image={image} name={name}/>
+                <CardHover image={image} name={name}>
+                    { favorites?.includes(card) ?
+                    <div className="card-favourite">
+                        <input id={`hearth-${id}`} type="checkbox" value={name} onClick={(e) =>handleFavourite(e)} checked={true} className="favourite-checkbox"/>
+                        <label className="favourite-label" htmlFor={`hearth-${id}`}>❤</label>
+                    </div>
+                        :
+                    <div className="card-favourite">
+                        <input id={`hearth-${id}`} type="checkbox" value={name} onClick={(e) =>handleFavourite(e)} className="favourite-checkbox"/>
+                        <label className="favourite-label" htmlFor={`hearth-${id}`}>❤</label>
+                    </div>
+                    }
+                </CardHover>
                 {/* <div className="image-card" style={{ backgroundImage: `url(${image})` }}></div> */}
                 <div className="card-data">
                     <span className="h">${price}</span>
@@ -43,16 +55,6 @@ export default function Card({card, favorites}) {
                 </div>
             </Link>
 
-            { favorites?.includes(card) ?
-            <div className="card-favourite">
-                <input id={`hearth-${id}`} type="checkbox" value={name} onClick={(e) =>handleFavourite(e)} checked={true} className="favourite-checkbox"/>
-                <label className="favourite-label" htmlFor={`hearth-${id}`}>❤</label>
-            </div>
-                :
-             <div className="card-favourite">
-                <input id={`hearth-${id}`} type="checkbox" value={name} onClick={(e) =>handleFavourite(e)} className="favourite-checkbox"/>
-                <label className="favourite-label" htmlFor={`hearth-${id}`}>❤</label>
-            </div>}
 
         </div>
     )

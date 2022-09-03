@@ -1,4 +1,4 @@
-const {Games, Genres, Platforms, Tags } = require('../db')
+const {Games, Genres, Platforms, Tags, Reviews } = require('../db')
 
 const getVideoGamesDB = async () => {
     let gamesDB = await Games.findAll({
@@ -17,7 +17,8 @@ const getVideoGamesDB = async () => {
           model: Tags,
           attributes: [ 'name' ],
           through: { attributes: [] }
-        }
+        },
+       
     ]
   })
   return gamesDB;

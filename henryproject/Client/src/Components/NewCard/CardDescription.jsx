@@ -5,10 +5,10 @@ export default function CardDescription ({card}) {
     return (
         <div class="news">
     
-            <figure class="article">
+            <figure className="article">
     
-                <img width={400} src={`${image}`}  alt='imagen'/>
-    
+                <img src={`${image}`}  alt='imagen'/>
+        
                 <figcaption>
     
                     <h3>{name}</h3>

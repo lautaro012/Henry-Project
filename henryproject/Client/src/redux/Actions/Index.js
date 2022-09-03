@@ -26,6 +26,7 @@ export const CHANGE_NAME= "CHANGE_NAME"
 export const GET_USER = 'GET_USER'
 export const CLEAR_USER = 'CLEAR_USER'
 export const GET_REVIEWS_GAME = "GET_REVIEWS_GAME"
+export const GET_GAMES_BY_TAG = 'GET_GAME_BY_TAG'
 
 require('dotenv').config();
 const {
@@ -177,17 +178,23 @@ export const Getbygenre = function (genre) {
                 })
             })
             .catch(err => console.log(err))
-
-        // fetch(`${REACT_APP_API}/videogames?genres=${genre}`)
-        // .then(resp => resp.json())
-        // .then(resp => {
-        //     dispatch({
-        //         type: GET_GAMES_BY_GENRE,
-        //         payload: resp
-        //     })
-        // })
     }
 }
+
+export const Getbytag = function (tag) {
+    return function (dispatch) {
+        axios.get(`/videogames?tag=${tag}`)
+            .then(resp => resp.data)
+            .then(resp => {
+                dispatch({
+                    type: GET_GAMES_BY_TAG,
+                    payload: resp
+                })
+            })
+            .catch(err => console.log(err))
+    }
+}
+
 export const filterGamesByTags = function (payload) {
     return {
         type: FILTER_GAMES_BY_TAGS,

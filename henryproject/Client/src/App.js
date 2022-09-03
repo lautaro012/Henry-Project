@@ -11,7 +11,7 @@ import Home from './Components/Home/Home.jsx'
 import Games from './Components/Games/Games';
 import NavBar from './Components/Nav_bar/Nav_bar';
 import GameDetail from './Components/Game_Details/GameDetails.jsx'
-import CreateVideogame from './Components/CreateVideogame/CreateVideogame';
+import CreateVideogame from './Components/CreateVideogame/CreateVideogames.jsx';
 import Admin from './Components/Admin/Admin';
 import { Profile } from './Components/Profile/Profile';
 import UserSign from './Components/UserSign/UserSign';
@@ -26,8 +26,7 @@ import { FormularioPago } from './Components/FormularioPago/FormularioPago';
 
 import {Elements} from "@stripe/react-stripe-js";
 import {loadStripe} from "@stripe/stripe-js"
-import CardDescription from './Components/NewCard/CardDescription';
-const stripePromise=loadStripe("pk_test_51LaZvGBnw8Rgt2NjQI3zwuWRhuXnnGKWZNCgHwz0UPBxh6t0l0SlRlMVMwTWvQUGfgyh9e4D0b7MD8sGiArVOQMg00JrfIx5p5")
+const stripePromise=loadStripe("pk_test_51Lde2sJXnqrwcfODw8cWGGVzyavpCNgaUXMhWTAbkGIJ3txhY9PVGuUzy9QPzQ5riddbQZdRADa3QTHxqhrSeSZq00dWuMhBM2")
 
 require('dotenv').config();
 const {
@@ -39,39 +38,40 @@ function App() {
   let dispatch = useDispatch()
 
   const [user, setUser] = useState(null)
+  
   const [userLogged, setUserLogged] = useState(false)
   console.log(`Variable de entorno es ${REACT_APP_API}`)
   
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    // const getUser = async () => {
-    //   fetch(`${REACT_APP_API}/auth/success`, {
-    //     method: "GET",
-    //     credentials: "include",
-    //     headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "application/json",
-    //       //  "Access-Control-Allow-Credentials": true
-    //     },
-    //   }).then((response) => {
+  //    const getUser = async () => {
+  //      fetch(`http://localhost:3001/auth/success`, {
+  //        method: "GET",
+  //       //  credentials: "include",
+  //        headers: {
+  //          Accept: "application/json",
+  //          "Content-Type": "application/json",
+  //            "Access-Control-Allow-Credentials": true
+  //        },
+  //      }).then((response) => {
 
-    //     if(response.status === 200) {
-    //       // console.log('entra a response')
-    //       return response.json()};
+  //        if(response.status === 200) {
+  //           console.log('entra a response')
+  //          return response.json()};
 
-    //     throw new Error('authentication has been failed')
-    //   }).then(resObject => {
-    //     setUserLogged(true)
-    //     localStorage.setItem('user', JSON.stringify(resObject))
-    //     setUser(resObject.user)
-    //   }).catch(err => {
-    //     console.log(err)
-    //   })
-    // }
-    // getUser()
+  //        throw new Error('authentication has been failed')
+  //      }).then(resObject => {
+  //        setUserLogged(true)
+  //        localStorage.setItem('user', JSON.stringify(resObject))
+  //        setUser(resObject.user)
+  //      }).catch(err => {
+  //        console.log(err)
+  //      })
+  //    }
+  //    getUser()
 
-  }, [])
+  // }, [])
 
 
 
@@ -86,14 +86,12 @@ function App() {
     if (localStorage.length === 0) {
       localStorage.setItem("products", JSON.stringify([]));
       localStorage.setItem("favProducts", JSON.stringify([]));
-      
     }
   }, [userLogged]);
 
   const videogamesLS = JSON.parse(localStorage.getItem("products"));
 
   useEffect(() => {
-    console.log()
     dispatch(actualizarCart(videogamesLS));
   }, [dispatch, videogamesLS]);
 
@@ -121,8 +119,8 @@ function App() {
         <Route path='/profile' element={ userLogged ? <Profile setUserLogged={setUserLogged}/> : <UserSign setUserLogged={setUserLogged} isOpen={true}/>} />
         <Route path='/Loading' element={<LoadingScreen/>} />
         <Route path='/cart' element={<Cart/>} />
-        <Route path='/test' element={<CardDescription/>} />
-        <Route path='/cart/formularioPago' element={<Elements stripe={stripePromise}><FormularioPago></FormularioPago></Elements>}/>
+        {/* <Route path='/test' element={<UserRegister/>} /> */}
+        <Route path='/cart/formularioPago' element={userLogged ? <Elements stripe={stripePromise}><FormularioPago></FormularioPago></Elements> : <UserSign setUserLogged={setUserLogged} isOpen={true}/>}/>
       </Routes>
       <Footer />
     </Router>

@@ -25,21 +25,22 @@ import {
     GET_USER,
     CLEAR_USER,
     hideVideoGame,
-
+    GET_GAMES_BY_TAG,
 } from "../Actions/Index"
 
 const initialState = {
     Allvideogames: [],
     videogames: [],
     videogamesBygenre: [],
+    videogamesBytag:[],
     game: [],
     platforms: [],
     genres: [],
     genreby: 'all',
     platformby: 'all',
-    tagsFilter: [],
     cart: [],
     favorites: [],
+    tagsFilter: [],
     tags: [],
     Tagsinfilter: [],
     user: [],
@@ -159,6 +160,11 @@ export default function rootReducer(state = initialState, action) {
                 videogamesBygenre: action.payload
             }
 
+        case GET_GAMES_BY_TAG:
+            return {
+                ...state,
+                videogamesBytag: action.payload
+            }
         case ORDER:
             const orderType = action.payload.orderType
             const orderBy = action.payload.orderBy
