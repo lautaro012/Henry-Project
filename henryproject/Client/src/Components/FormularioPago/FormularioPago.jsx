@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteItemFromCart } from "../../redux/Actions/Index";
 import { useEffect } from "react";
+import CardHover from "../NewCard/CardHover";
 
 const {
   REACT_APP_API
@@ -91,32 +92,35 @@ export const FormularioPago = () => {
   }, [cart])
 
   return (
-    <div className="container">
+      <div className="container">
 
-      <div>
-        {items && items.length ? items.map(game => {
-          return (
-            <div key={game.id}>
-              <h3 style={{ color: "white" }}>{game.name}</h3>
-              <img src={game.image} alt="imagen del juego" width="250" />
-              {/* <button onClick={(e) => eliminarDelCart(e)} value={game.id}>X</button> */}
+        <div className="divElementsFromCartPayment">
+          {items && items.length ? items.map(game => {
+            return (
+              <CardHover image={game.image} price={game.price} name={game.name}></CardHover>
+
+            )
+          }) : <div>no tiene elementos seleccionados</div>}
+        </div>
+        <hr />
+        <span className="spanFormPayment">
+            <h2 className="tituloTarjeta">Metodo de Pago : Tarjeta de Crédito o Débito</h2>
+          <p className="pTarjeta">Monto Total a Pagar: ${precioTotal}</p>
+          <div className="divFormPayment">
+              <div className="cardTarjeta">
+              <CardElement className="cardElement" />
             </div>
-          )
-        }) : <div>no tiene elementos seleccionados</div>}
+            <div className="subcontainerPagar">
+              <button onClick={(e) => handleRegresar(e)} className="ButtonPagar">Regresar</button>
+              <button onClick={(e) => handleSubmit(e)} className="ButtonPagar" disabled={loading ? true : false}>
+                {loading ? "Cargando" : "Pagar"}
+              </button>
+            </div>
+          </div>
+        </span>
+        
+        
       </div>
-      <hr />
-      <h2 className="tituloTarjeta">Metodo de Pago : Tarjeta de Crédito o Débito</h2>
-      <p className="pTarjeta">Monto Total a Pagar: ${precioTotal}</p>
-      <div className="cardTarjeta">
-        <CardElement className="cardElement" />
-      </div>
-      <div className="subcontainerPagar">
-        <button onClick={(e) => handleRegresar(e)} className="ButtonPagar">Regresar</button>
-        <button onClick={(e) => handleSubmit(e)} className="ButtonPagar" disabled={loading ? true : false}>
-          {loading ? <p>CARGANDO</p> : <p>PAGAR</p>}
-        </button>
-      </div>
-    </div>
   )
 
 }
