@@ -7,6 +7,7 @@ import Favoritos from '../Favoritos/Favoritos'
 import Cart from '../Cart/Cart'
 import DatosPerfil from './DatosPerfil'
 import DatosJuegos from './DatosJuegos'
+import Orders from './Orders'
 
 export function Profile({setUserLogged}) {
 
@@ -39,7 +40,8 @@ export function Profile({setUserLogged}) {
                     <h1>Welcome {userdetails.userName}</h1>
                     <img src={userdetails.image} alt={userdetails.id_name}></img>
                     <button onClick={() => setRender("perfil")}>My profile</button>
-                    <button onClick={() => setRender("juegos")}>My game</button>
+                    <button onClick={() => setRender("juegos")}>My games</button>
+                    <button onClick={() => setRender("orders")}>My orders</button>
                     <button onClick={() => setRender("favoritos")}>Favorites</button>
                     <button onClick={() => setRender("cart")}>Cart</button>
                 </aside>
@@ -59,6 +61,9 @@ export function Profile({setUserLogged}) {
                         :
                         render === "cart" ?
                         <Cart></Cart>
+                        :
+                        render === "orders" ?
+                        <Orders></Orders>
                         :
                         null
                     }

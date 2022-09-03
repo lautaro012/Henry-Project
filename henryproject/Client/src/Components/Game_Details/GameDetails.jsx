@@ -19,6 +19,9 @@ export default function GameDetails() {
     const dispatch = useDispatch()
     const game = useSelector(state => state.game)
     const reviews = useSelector(state => state.reviews)
+    const items = useSelector(state => state.cart)
+    const favoritos = useSelector(state => state.favorites)
+
     const { id } = useParams() // usa el parametro de la URL
     const [imgPop, setImgPop] = useState(false)
 
@@ -81,6 +84,12 @@ export default function GameDetails() {
         addGameToCart();
         navigate("/cart/formularioPago");
     }
+
+    useEffect(() => {
+        localStorage.setItem("products", JSON.stringify(items));
+        localStorage.setItem("favProducts", JSON.stringify(favoritos));
+    }, [items, favoritos]);
+
 
     console.log("GAME", game)
     console.log("REVIEWS", reviews)

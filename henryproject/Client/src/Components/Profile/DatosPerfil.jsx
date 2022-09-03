@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { deleteUser, modificarUser } from '../../redux/Actions/Index'
 
-export default function DatosPerfil({setUserLogged, data}) {
+export default function DatosPerfil({ setUserLogged, data }) {
 
     console.log("DATA DE PERFIL", data)
     console.log("SET USER LOGGED", setUserLogged)
@@ -107,10 +107,37 @@ export default function DatosPerfil({setUserLogged, data}) {
     return (
         <div className="modificar_perfil">
             <h1>My profile</h1>
+            <h3>{mail}</h3>
             <img id="imagenPerfil" alt={name} src={image}></img>
 
             <form onSubmit={(event) => handleSubmit(event)} className="Form">
 
+                <div className="Label">
+                    <h3>User name</h3>
+                    <label>{userName}</label>
+                    <button onClick={(event) => abrirForm(event, "user name")}>Edit</button>
+                    {
+                        form && form === "user name" ?
+                            <div>
+                                <input
+                                    id="User"
+                                    type='text'
+                                    size="20"
+                                    value={input.userName}
+                                    name='userName'
+                                    placeholder="User..."
+                                    onChange={(event) => handleInput(event)}
+                                />
+                                {
+                                    !errors.userName ? null : <span>{errors.userName}</span>
+                                }
+                                <button onClick={(event) => abrirForm(event, "")}>X</button>
+                            </div>
+                            :
+                            null
+                    }
+
+                </div>
 
                 <div className="Label">
                     <h3>Name</h3>
@@ -166,34 +193,6 @@ export default function DatosPerfil({setUserLogged, data}) {
                     }
 
                 </div>
-
-                <div className="Label">
-                    <h3>User name</h3>
-                    <label>{userName}</label>
-                    <button onClick={(event) => abrirForm(event, "user name")}>Edit</button>
-                    {
-                        form && form === "user name" ?
-                            <div>
-                                <input
-                                    id="User"
-                                    type='text'
-                                    size="20"
-                                    value={input.userName}
-                                    name='userName'
-                                    placeholder="User..."
-                                    onChange={(event) => handleInput(event)}
-                                />
-                                {
-                                    !errors.userName ? null : <span>{errors.userName}</span>
-                                }
-                                <button onClick={(event) => abrirForm(event, "")}>X</button>
-                            </div>
-                            :
-                            null
-                    }
-
-                </div>
-
 
                 <div className="Label">
                     <h3>Address</h3>
