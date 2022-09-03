@@ -10,6 +10,8 @@ export default function Useregister ({registersetIsOpen, registerisOpen}) {
   
     const [error, setError] = useState({nuevo: true})
     const [showError, setShowError] = useState(false)
+    const [loading, setLoading] = useState(false)
+
     const dispatch = useDispatch()
     const [newUser, setNewUser] = useState({
         userName: "",
@@ -35,13 +37,32 @@ export default function Useregister ({registersetIsOpen, registerisOpen}) {
         
     }
 
-    function handleImageChange(e){
+   async function handleImageChange(e){
         if(e.target.files && e.target.files[0]) {
             console.log(e.target.files[0])
-            setNewUser({
-                ...newUser,
-                image: URL.createObjectURL(e.target.files[0])
-            })
+            setLoading(true)
+            const data = new FormData()
+            data.append("file", e.target.files[0])
+            data.append("upload_preset", "gamesAPI")
+            const resp =  fetch (
+                "https://api.cloudinary.com/v1_1/luubermudezz/image/upload", {
+                 method: "POST",
+                 body: data
+                 // mode: 'no-cors'
+                }
+            ) .then(resp => resp.json())
+                    .then(file => {
+                        if(file) {
+                        setNewUser({
+                        ...newUser,
+                        image: `${file.secure_url}`
+                        })
+                        setLoading(false)
+                    }
+                    })
+            // const file = await resp.json()
+            
+            
         }
     }
 
@@ -125,8 +146,8 @@ export default function Useregister ({registersetIsOpen, registerisOpen}) {
                             <input className="input-register" name="image" type="file" onChange={handleImageChange}/>
                         </div>
                         {!showError  ? null : <span className='error'>{error.image}</span>}
-                        <button className='submit-btn' type="submit">REGISTER</button>
-                        {/* {!Object.keys(error).length ? <button className='submit-btn' type="submit">REGISTER</button> : <button className='submit-btn' type="submit" disabled={true}>REGISTER</button>} */}
+                        {/* <button className='submit-btn' type="submit">REGISTER</button> */}
+                         {!loading && !Object.keys(error).length ? <button className='submit-btn' type="submit">REGISTER</button> : <button className='submit-btn' type="submit" disabled={true}>REGISTER</button>} 
                     </form>
                 </div>
             </Modal>
