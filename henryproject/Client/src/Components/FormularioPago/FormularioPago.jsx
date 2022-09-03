@@ -7,8 +7,9 @@ import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteItemFromCart } from "../../redux/Actions/Index";
+import { useEffect } from "react";
 
 const {
   REACT_APP_API
@@ -19,11 +20,11 @@ const {
 
 export const FormularioPago = () => {
   // const elements=useElements();
-  // const dispatch = useDispatch()
+   const dispatch = useDispatch()
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false)
-
+  const cart = useSelector(state => state.cart)
 
   const precioTotal = JSON.parse(localStorage.getItem("precioTotal"));
   const items = JSON.parse(localStorage.getItem("products"))
@@ -74,7 +75,8 @@ export const FormularioPago = () => {
         })
         console.log(data);
         alert(`You have pay $ ${precioTotal} successfully`)
-        // localStorage.setItem("precioTotal", JSON.stringify(precios));
+        
+        dispatch(deleteItemFromCart('All'))
         history("/")
 
       } catch (error) {
@@ -84,7 +86,9 @@ export const FormularioPago = () => {
     }
   }
 
-
+  useEffect(() => {
+    localStorage.setItem("products", JSON.stringify(cart))
+  }, [cart])
 
   return (
     <div className="container">

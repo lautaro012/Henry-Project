@@ -331,3 +331,18 @@ export function getReviews(gameId){
         })
     }
 }
+
+export function modificarUser(id_name,payload) {
+
+    console.log("SOY ACTION MODIFICAR", id_name, payload)
+    return function () {
+        axios.put(`/newUser/${id_name}`, payload)
+    }
+}
+
+export function deleteUser(id_name) {
+    console.log("SOY ACTION DELETEAR", id_name)
+    return function () {
+        axios.delete(`/newUser/${id_name}`)
+    }
+}
