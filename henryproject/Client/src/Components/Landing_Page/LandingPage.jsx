@@ -17,7 +17,7 @@ export default function LandingPage() {
 
     const dispatch = useDispatch()
     let Allvideogames = useSelector(state => state.Allvideogames)
-    let populars = Allvideogames?.filter(games => games.rating > 4.5)
+    let populars = Allvideogames?.filter(games => games.rating > 4.4)
 
     useEffect(() => {
         dispatch(getAllGames())
@@ -44,15 +44,17 @@ export default function LandingPage() {
                         centerSlidePercentage={40}
                         centerMode={true}
                         showStatus={false}
+                        swipeable={true}
                         emulateTouch={true}
                         useKeyboardArrows={true}
                         transitionTime={3000}
+                        renderIndicator={false}
                     >
                         {
                             populars && populars.map((game) => {
                                 return (
                                     <div key={game.id} id="contenedor_landing_img">
-                                        <img src={game.image} alt={game.id} />
+                                        <img src={game.image} alt={game.id}/>
                                         <Link to={'/home/games/' + game.id} key={game.id}><p className="legend">{game.name}</p></Link>
                                     </div>
                                 )

@@ -77,10 +77,10 @@ function App() {
     const user = JSON.parse(localStorage.getItem("user"));
     const favoritesLS = JSON.parse(localStorage.getItem("favProducts"));
     const videogamesLS = JSON.parse(localStorage.getItem("products"));
-    
+
     if(!user) {
       localStorage.setItem("user", JSON.stringify([]));
-    } 
+    }
     if(!favoritesLS) {
       localStorage.setItem("favProducts", JSON.stringify([]));
     }
