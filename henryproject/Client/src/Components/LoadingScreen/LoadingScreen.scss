@@ -106,7 +106,7 @@ $f-body:'Open Sans', sans-serif;
 		@include centre;
 		content:" ";
 		display:block;
-		background:#222;
+		background: #121212;
 		transform-origin:center;
 		z-index:0;
 	}
@@ -133,7 +133,7 @@ $f-body:'Open Sans', sans-serif;
 			@include centre;
 			content:" ";
 			display:block;
-			background:#222;
+			background: #121212;
 			transform-origin:center;
 			z-index:-1;
 		}
@@ -162,7 +162,7 @@ $f-body:'Open Sans', sans-serif;
 				@include centre;
 				content:" ";
 				display:block;
-				background:#222;
+				background: #121212;
 				transform-origin:center;
 				z-index:-1;
 			}

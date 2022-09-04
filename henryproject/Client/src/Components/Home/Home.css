@@ -56,8 +56,14 @@
 }
 
 .main-carrousel{
-    background-color: rgba(6,18,53,0.6);
+    background-color: #ffffffbd;
     padding-top: 3%;
+}
+
+.main-carrousel{
+-webkit-box-shadow: inset 1px 8px 104px -26px rgba(0,0,0,1);
+-moz-box-shadow: inset 1px 8px 104px -26px rgba(0,0,0,1);
+box-shadow: inset 1px 8px 104px -26px rgba(0,0,0,1);
 }
 
 .carrusel-triple{
