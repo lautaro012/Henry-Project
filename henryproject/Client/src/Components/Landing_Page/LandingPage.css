@@ -12,6 +12,6 @@
   display: flex;
 }
 
-#contenedor_landing_img {
-  position: absolute;
+#contenedor_landing_img img{
+  height: 500px;
 }
