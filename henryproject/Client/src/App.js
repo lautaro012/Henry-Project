@@ -86,6 +86,7 @@ function App() {
   
   
 
+  console.log("LOCAL STORAGE", localStorage)
   useEffect(() => {
     if(JSON.parse(localStorage.getItem("user")).user) {
       setUserLogged(true)}
