@@ -101,6 +101,8 @@ function App() {
     dispatch(actualizarFav(favoritesLS));
   }, [dispatch, favoritesLS]);
 
+  //asdfsdf
+
   return (
     <Router>
 
