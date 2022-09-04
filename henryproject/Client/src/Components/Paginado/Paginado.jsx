@@ -3,8 +3,10 @@ import './Paginado.scss'
 
 
 export default function Paginado ({ paginado, allVideogames, VideogamesPerPage, currentPage}) {
+    
 
-    const totalpages = Math.floor(allVideogames/VideogamesPerPage)
+
+    let totalpages = Math.floor(allVideogames/VideogamesPerPage)
    
     // for (let i = 0; i < Math.floor(allVideogames/VideogamesPerPage); i++) {
     //     pageNumber.push(i+1)        
@@ -37,7 +39,7 @@ export default function Paginado ({ paginado, allVideogames, VideogamesPerPage, 
                             <span className="paginado-span"> {`${currentPage}/`} {totalpages=== 0 ? 1 : totalpages}</span>  
                         </div>
                         
-                        {currentPage !== totalpages ? <button onClick={() => handlePaginado("next")} class="paginate right"><i></i><i></i></button> : <button onClick={() => handlePaginado("next")} class="paginate right disabled"><i></i><i></i></button>}
+                        {currentPage === totalpages ? <button onClick={() => handlePaginado("next")} class="paginate right disabled"><i></i><i></i></button> : <button onClick={() => handlePaginado("next")} class="paginate right"><i></i><i></i></button>}
                     </div>
         )
     

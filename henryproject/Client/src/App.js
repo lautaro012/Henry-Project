@@ -36,8 +36,8 @@ const {
 function App() {
   let dispatch = useDispatch()
 
-  const [user, setUser] = useState(null)
-  
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const [userLogged, setUserLogged] = useState(false)
   console.log(`Variable de entorno es ${REACT_APP_API}`)
   
@@ -74,7 +74,7 @@ function App() {
 
 
 
-  console.log(`USUARIO: ${user}`)
+  console.log(`USUARIO: ${(user.user.admin)}`)
 
 
 
@@ -115,7 +115,13 @@ function App() {
         <Route path='/admin' element={<Admin/>} />
         <Route path='/admin/editgame/:id' element={<EditVideogame></EditVideogame>} />
         <Route path='/admin/createvideogames' element={<CreateVideogame/>} />
-        <Route path='/profile' element={ userLogged ? <Profile setUserLogged={setUserLogged}/> : <UserSign setUserLogged={setUserLogged} isOpen={true}/>} />
+        {
+          user.user.admin ?
+          <Route path='/profile' element={ userLogged ? <Admin setUserLogged={setUserLogged}/> : <UserSign setUserLogged={setUserLogged} isOpen={true}/>} />
+          :
+          <Route path='/profile' element={ userLogged ? <Profile setUserLogged={setUserLogged}/> : <UserSign setUserLogged={setUserLogged} isOpen={true}/>} />
+        }
+        {/* <Route path='/profile' element={ userLogged ? <Profile setUserLogged={setUserLogged}/> : <UserSign setUserLogged={setUserLogged} isOpen={true}/>} /> */}
         <Route path='/Loading' element={<LoadingScreen/>} />
         <Route path='/cart' element={<Cart/>} />
         <Route path='/test' element={<LoadingScreen/>} />
