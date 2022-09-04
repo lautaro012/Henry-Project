@@ -9,6 +9,8 @@ export default function ProfileNav ( {setUserLogged}) {
    
     const itemsFavorites = useSelector(state => state.favorites)
    
+    const user = JSON.parse(localStorage.getItem("user"));
+
     async function logOutClick() {
 
         fetch(`${REACT_APP_API}/auth/logout`, {
@@ -23,8 +25,11 @@ export default function ProfileNav ( {setUserLogged}) {
    
           },
         }).then(() => {
-            localStorage.clear()
-            // localStorage.removeItem('user')
+             // localStorage.clear()
+             localStorage.removeItem('user')
+            //  localStorage.setItem("user", JSON.stringify([]));
+            //  localStorage.setItem("products", JSON.stringify([]));
+            //  localStorage.setItem("favProducts", JSON.stringify([]))
             setUserLogged(false)
         }).catch(err => {
           console.log(err)
@@ -34,7 +39,10 @@ export default function ProfileNav ( {setUserLogged}) {
 
     return (
         <div>
-            <Link to="/profile"><button>Profile</button></Link>
+            <div className="div-image-navbar">
+              <img width={50} src={user.user?.image} alt='IMAGEEN'></img>
+            </div>
+            <Link to="/profile"><button> Profile </button></Link>
             <button onClick={(e) => logOutClick(e)}>Logout</button> 
             {/* <div id="fav">
                 <Link to='/favorites'>

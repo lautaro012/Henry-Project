@@ -1,9 +1,10 @@
 import './App.css';
 import { useDispatch } from 'react-redux';
 import { actualizarCart, actualizarFav } from './redux/Actions/Index';
-import  { Routes, Route } from 'react-router-dom';
-import {BrowserRouter as Router} from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // import { useDispatch } from 'react-redux';
+import { addToCart } from './redux/Actions/Index';
+import axios from 'axios'
 import LandingPage from './Components/Landing_Page/LandingPage.jsx'
 import About from './Components/About_Us/About.jsx'
 import Home from './Components/Home/Home.jsx'
@@ -20,7 +21,7 @@ import Footer from './Components/Footer/Footer.jsx'
 import Favoritos from './Components/Favoritos/Favoritos.jsx'
 import EditVideogame from './Components/CreateVideogame/EditVideogame/EditVideogame';
 import { useEffect, useState } from 'react';
-// import Register from './Components/Register/Register';
+import Register from './Components/Register/Register';
 import { FormularioPago } from './Components/FormularioPago/FormularioPago';
 
 import {Elements} from "@stripe/react-stripe-js";
@@ -107,7 +108,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<LandingPage />} />
         <Route path='/about' element={<About />} />
-        {/* <Route path='/register' element={<Register></Register>} /> */}
+        <Route path='/register' element={<Register></Register>} />
         <Route path='/home' element={<Home />} />
         <Route path='/home/games' element={<Games />} />
         <Route path='/home/games/:id' element={<GameDetail />} />
@@ -118,7 +119,7 @@ function App() {
         <Route path='/profile' element={ userLogged ? <Profile setUserLogged={setUserLogged}/> : <UserSign setUserLogged={setUserLogged} isOpen={true}/>} />
         <Route path='/Loading' element={<LoadingScreen/>} />
         <Route path='/cart' element={<Cart/>} />
-        <Route path='/test' element={<LoadingScreen/>} />
+        {/* <Route path='/test' element={<UserRegister/>} /> */}
         <Route path='/cart/formularioPago' element={userLogged ? <Elements stripe={stripePromise}><FormularioPago></FormularioPago></Elements> : <UserSign setUserLogged={setUserLogged} isOpen={true}/>}/>
       </Routes>
       <Footer />

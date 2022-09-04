@@ -36,6 +36,13 @@ export default function Card({card, favorites}) {
         <div >
             <Link to={`/home/games/${id}`} className='Link'>
                 <CardHover image={image} name={name}>
+                </CardHover>
+                {/* <div className="image-card" style={{ backgroundImage: `url(${image})` }}></div> */}
+                <div className="card-data">
+                    <span className="h">${price}</span>
+                    <span> {rating} </span>
+                </div>
+            </Link>
                     { favorites?.includes(card) ?
                     <div className="card-favourite">
                         <input id={`hearth-${id}`} type="checkbox" value={name} onClick={(e) =>handleFavourite(e)} checked={true} className="favourite-checkbox"/>
@@ -47,13 +54,6 @@ export default function Card({card, favorites}) {
                         <label className="favourite-label" htmlFor={`hearth-${id}`}>❤</label>
                     </div>
                     }
-                </CardHover>
-                {/* <div className="image-card" style={{ backgroundImage: `url(${image})` }}></div> */}
-                <div className="card-data">
-                    <span className="h">${price}</span>
-                    <span> {rating} </span>
-                </div>
-            </Link>
 
 
         </div>
