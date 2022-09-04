@@ -80,7 +80,7 @@ export default function Admin() {
                     </div>
                     <div className='settings-admin'>
                         <Link to="/admin/createvideogames">
-                            <button><span >  Create videogame  </span></button>
+                            <button><span >  Create videogame   </span></button>
                         </Link>
                         <Link to="/admin/editvideogames">
                             <button className="bottom" type="submit" onClick={(e) => handleSubmit(e)} > EDIT GAMES</button>
