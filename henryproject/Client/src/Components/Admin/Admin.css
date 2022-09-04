@@ -1,94 +1,49 @@
-.Admin-general {
-    margin: 10%;
-    color: white;
+.Admin-show-settings{
+    width: 80%;
+    background: green;
+    height: 1200px;
 }
 
-.half {
+.Admin-settings{
+    width: 20%;
+    background: red;
+}
+
+.Admin-conteiner {
     display: flex;
-    width: 50%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100%;
+    flex-direction: row;
+    margin-top: 8%;
 }
 
-.show-current-setting-admin {
-    background-color: ghostwhite;
-    background-image: linear-gradient(225deg, #1f1d38 0%, rgb(37, 36, 36) 40%, #323232bd 70%, #4a49497f 100%);
-    color: white;
-    border-radius: 20px;
-    width: 1000px; 
+.Admin-games{
     display: flex;
     flex-wrap: wrap;
-    border-left: solid white 5px;
-    border-right: solid white 5px;
+    justify-content: center;
+    overflow-y: scroll;
+    height: 1150px;
+}
+.Admin-games::-webkit-scrollbar {
+    display: none;
 }
 
-.settings-admin {
-    display: flex;
-    flex-direction: column;
-    padding: 5%;
-    align-items: center;
-}
-
-
-.settings-admin button {
-    margin-bottom: 20%;
-    margin-top: 20%;
-}
-
-.conteinerCart_admin {
+.conteinerCart2{
     color: white;
     margin-top: 10%;
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 1000px;
+    min-height: 800px;
+    justify-content: space-around;
+    margin-bottom: 10%;
 }
 
-.show-profile-settings{
-    padding:none;
-    border:none;
-    min-width: 450px;
-}
-
- .filters{
-    min-width:500px;
-    justify-content: center;
-    
-} 
-
-.Search-Filters{
+.Admin-aside {
     display: flex;
-}
-
-.item{
-    display:flex;
     flex-direction: column;
-    border-style: groove;
-    /* display: inline-flex; */
     align-items: center;
-    justify-content: space-between;
-    max-width: 50%;
-    padding: 2%;
 }
 
-.item img {
-    max-width: 25%;
+.searchbar-admin{
+    display: flex;
+    justify-content: center;
 }
-
-.props{
-    display:flex;
-    flex-direction: row;
-    font-size: 10px;
-    justify-content: space-between;
-    margin-bottom: 2%;
-}
-.buttons{
-    width:max-content;
-    display:flex;
-    flex-direction: row;
-}
-
-

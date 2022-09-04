@@ -10,7 +10,9 @@ import Home from './Components/Home/Home.jsx'
 import Games from './Components/Games/Games';
 import NavBar from './Components/Nav_bar/Nav_bar';
 import GameDetail from './Components/Game_Details/GameDetails.jsx'
-import CreateVideogame from './Components/CreateVideogame/CreateVideogames.jsx';
+import CreateVideogame from './Components/CreateVideogame/CreateVideogame.jsx';
+// import CreateVideogame from './Components/CreateVideogame/CreateVideogames.jsx';
+
 import Admin from './Components/Admin/Admin';
 import { Profile } from './Components/Profile/Profile';
 import UserSign from './Components/UserSign/UserSign';
@@ -36,8 +38,7 @@ const {
 function App() {
   let dispatch = useDispatch()
 
-  const user = JSON.parse(localStorage.getItem("user"));
-
+  
   const [userLogged, setUserLogged] = useState(false)
   console.log(`Variable de entorno es ${REACT_APP_API}`)
   
@@ -49,22 +50,22 @@ function App() {
   //        method: "GET",
   //       //  credentials: "include",
   //        headers: {
-  //          Accept: "application/json",
-  //          "Content-Type": "application/json",
+    //          Accept: "application/json",
+    //          "Content-Type": "application/json",
   //            "Access-Control-Allow-Credentials": true
   //        },
   //      }).then((response) => {
-
+    
   //        if(response.status === 200) {
   //           console.log('entra a response')
   //          return response.json()};
 
   //        throw new Error('authentication has been failed')
   //      }).then(resObject => {
-  //        setUserLogged(true)
-  //        localStorage.setItem('user', JSON.stringify(resObject))
-  //        setUser(resObject.user)
-  //      }).catch(err => {
+    //        setUserLogged(true)
+    //        localStorage.setItem('user', JSON.stringify(resObject))
+    //        setUser(resObject.user)
+    //      }).catch(err => {
   //        console.log(err)
   //      })
   //    }
@@ -72,11 +73,18 @@ function App() {
 
   // }, [])
 
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
 
+    if(!user) {
+      localStorage.setItem("user", JSON.stringify([]));
+    }
+  }, [])
 
-  console.log(`USUARIO: ${(user.user.admin)}`)
-
-
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log(`USUARIO: ${(user?.user)}`)
+  
+  
 
   useEffect(() => {
     if(localStorage.getItem('user')) {
@@ -112,11 +120,17 @@ function App() {
         <Route path='/home/games' element={<Games />} />
         <Route path='/home/games/:id' element={<GameDetail />} />
         <Route path='/favorites' element={<Favoritos />} />
+
+
+
         <Route path='/admin' element={<Admin/>} />
+
         <Route path='/admin/editgame/:id' element={<EditVideogame></EditVideogame>} />
+
         <Route path='/admin/createvideogames' element={<CreateVideogame/>} />
+
         {
-          user.user.admin ?
+          user?.user?.admin ?
           <Route path='/profile' element={ userLogged ? <Admin setUserLogged={setUserLogged}/> : <UserSign setUserLogged={setUserLogged} isOpen={true}/>} />
           :
           <Route path='/profile' element={ userLogged ? <Profile setUserLogged={setUserLogged}/> : <UserSign setUserLogged={setUserLogged} isOpen={true}/>} />
@@ -124,7 +138,7 @@ function App() {
         {/* <Route path='/profile' element={ userLogged ? <Profile setUserLogged={setUserLogged}/> : <UserSign setUserLogged={setUserLogged} isOpen={true}/>} /> */}
         <Route path='/Loading' element={<LoadingScreen/>} />
         <Route path='/cart' element={<Cart/>} />
-        <Route path='/test' element={<LoadingScreen/>} />
+        <Route path='/test' element={<CreateVideogame/>} />
         <Route path='/cart/formularioPago' element={userLogged ? <Elements stripe={stripePromise}><FormularioPago></FormularioPago></Elements> : <UserSign setUserLogged={setUserLogged} isOpen={true}/>}/>
       </Routes>
       <Footer />

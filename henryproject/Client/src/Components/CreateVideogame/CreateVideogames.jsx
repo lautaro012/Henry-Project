@@ -1338,247 +1338,233 @@ let history=useNavigate();
     return(
         <div className='container-createVideogames'>
             <div className="subContainer-createVideogames">
-                <div className="subContainer01">
-                    <div>
-                        <img width={150} src='https://img2.thejournal.ie/inline/1881369/original/?width=630&version=1881369' alt='imagen de perfil'></img>
-                    </div>
-                    <div>
-                        <button><span >CREATE VIDEOGAME</span></button> 
-                        <button><span >EDIT VIDEOGAME</span></button> 
-                        <button><span> SETTINGS </span></button>
-                    </div>
-                </div>
-                <div className="subContainer02">
-                    <div className="divcontainer01">
-                        {/* Formulario de Crear Videogames */}
-                        <h2 className="h2">Create Videogame</h2>
-                        {/*Name*/}
-                        <form  onSubmit={(e) => onClickSubmit(e)} >
-                            {/* NAME */}
-                            <div className="create-name">
-                                <label type="text">Name: </label>
-                                <input type="text" onChange={(ev)=>handleChange(ev)} name="name" required placeholder="Enter the name of the game" onBlur={(ev)=>{handleChange(ev)}} onKeyUp={(ev)=>handleChange(ev)}/>
-                                <div>
-                                {showError ? <span>{error.name}</span> || <span>{validate.name}</span> : <span>{error.name}</span>|| <span>{validate.name}</span>}
-                                </div>
+                <div className="divcontainer01">
+                    {/* Formulario de Crear Videogames */}
+                    <h2 className="h2">Create Videogame</h2>
+                    {/*Name*/}
+                    <form  onSubmit={(e) => onClickSubmit(e)} >
+                        {/* NAME */}
+                        <div className="create-name">
+                            <label type="text">Name: </label>
+                            <input type="text" onChange={(ev)=>handleChange(ev)} name="name" required placeholder="Enter the name of the game" onBlur={(ev)=>{handleChange(ev)}} onKeyUp={(ev)=>handleChange(ev)}/>
+                            <div>
+                            {showError ? <span>{error.name}</span> || <span>{validate.name}</span> : <span>{error.name}</span>|| <span>{validate.name}</span>}
                             </div>
-                            {/* PRICE */}
-                            <div className="create-price">
-                                <label type="text">Price: </label>
-                                <input type="text" onChange={(ev)=>handleChange(ev)} name="price" required placeholder="$/. " onBlur={(ev)=>{handleChange(ev)}} onKeyUp={(ev)=>handleChange(ev)}/>
-                                <div>
-                                {showError ? <span>{error.price}</span> || <span>{validate.price}</span> : <span>{error.price}</span>|| <span>{validate.price}</span>}
-                                </div>
+                        </div>
+                        {/* PRICE */}
+                        <div className="create-price">
+                            <label type="text">Price: </label>
+                            <input type="text" onChange={(ev)=>handleChange(ev)} name="price" required placeholder="$/. " onBlur={(ev)=>{handleChange(ev)}} onKeyUp={(ev)=>handleChange(ev)}/>
+                            <div>
+                            {showError ? <span>{error.price}</span> || <span>{validate.price}</span> : <span>{error.price}</span>|| <span>{validate.price}</span>}
                             </div>
-                            {/* DESCRIPTION */}
-                            <div className="create-description">
-                                <label type="text">Price: </label>
-                                <textarea cols="50" rows="7" placeholder="Write some description..." onChange={(ev)=>handleChange(ev)} name="description" required onBlur={(ev)=>handleChange(ev)} onKeyUp={(ev)=>handleChange(ev)}></textarea>
-                                <div>
-                                {showError ? <span>{error.description}</span> || <span>{validate.description}</span> : <span>{error.description}</span>|| <span>{validate.description}</span>}
-                                </div>
+                        </div>
+                        {/* DESCRIPTION */}
+                        <div className="create-description">
+                            <label type="text">Price: </label>
+                            <textarea cols="50" rows="7" placeholder="Write some description..." onChange={(ev)=>handleChange(ev)} name="description" required onBlur={(ev)=>handleChange(ev)} onKeyUp={(ev)=>handleChange(ev)}></textarea>
+                            <div>
+                            {showError ? <span>{error.description}</span> || <span>{validate.description}</span> : <span>{error.description}</span>|| <span>{validate.description}</span>}
                             </div>
-                            {/* RATING */}
-                            <div className="create-rating">
-                                <label type="text">Rating: </label>
-                                <input type="text" onChange={(ev)=>handleChange(ev)} name="rating" required placeholder="rating... " onBlur={(ev)=>{handleChange(ev)}} onKeyUp={(ev)=>handleChange(ev)}/>
-                                <div>
-                                {showError ? <span>{error.rating}</span> || <span>{validate.rating}</span> : <span>{error.rating}</span>|| <span>{validate.rating}</span>}
-                                </div>
+                        </div>
+                        {/* RATING */}
+                        <div className="create-rating">
+                            <label type="text">Rating: </label>
+                            <input type="text" onChange={(ev)=>handleChange(ev)} name="rating" required placeholder="rating... " onBlur={(ev)=>{handleChange(ev)}} onKeyUp={(ev)=>handleChange(ev)}/>
+                            <div>
+                            {showError ? <span>{error.rating}</span> || <span>{validate.rating}</span> : <span>{error.rating}</span>|| <span>{validate.rating}</span>}
                             </div>
-                            {/* VIDEO */}
-                            <div className="create-video">
-                                <label type="text">Video: </label>
-                                <input type="text" onChange={(ev)=>onChangeMovieVideogame(ev)} name="video" required placeholder="video... " onBlur={(ev)=>{handleChange(ev)}} onKeyUp={(ev)=>handleChange(ev)} value={movie.name}/>
-                                <input type="submit" value="+" onClick={()=>onClickAgregarMovie()}/>
-                                <div>
-                                {
-                                    state.video?.map((video)=>{
-                                        return(
-                                            <div key={video} className="ccvideo">
-                                                <p>{video}</p>
-                                                <input type="submit" onClick={()=>onClickDeleteVideo(video)} value="X"/>
-                                            </div>
-                                            )
-                                    })
-                                }
-                                {showError ? <span>{error.rating}</span> || <span>{validate.rating}</span> : <span>{error.rating}</span>|| <span>{validate.rating}</span>}
-                                </div>
-                            </div>
-                            {/* IMAGEN  */}
-                        </form>  
-                    </div>
-                    {/* Visualizar componentes */}
-                    <div className="divcontainer02">
-                                {
-                                    (stateVisual.visual==true)?(stateVisual.visual && (
-                                        <div className="container-preview">
-                                            <p className="preview">Preview</p>
+                        </div>
+                        {/* VIDEO */}
+                        <div className="create-video">
+                            <label type="text">Video: </label>
+                            <input type="text" onChange={(ev)=>onChangeMovieVideogame(ev)} name="video" required placeholder="video... " onBlur={(ev)=>{handleChange(ev)}} onKeyUp={(ev)=>handleChange(ev)} value={movie.name}/>
+                            <input type="submit" value="+" onClick={()=>onClickAgregarMovie()}/>
+                            <div>
+                            {
+                                state.video?.map((video)=>{
+                                    return(
+                                        <div key={video} className="ccvideo">
+                                            <p>{video}</p>
+                                            <input type="submit" onClick={()=>onClickDeleteVideo(video)} value="X"/>
                                         </div>
-                                    )):(<div className="container-visual">
-                                        {
-                                            (stateVisual.name)&&(
-                                                <h2 className="containers-name">{state.name}</h2>
-                                            )
-                                        }
-                                        {
-                                           (stateVisual.price)&&(
-                                            <p className="containers-price">Price: $/.{state.price}</p>
-                                            ) 
-                                        }
-                                        {
-                                            (stateVisual.description)&&(
-                                            <p className="containers-description">{state.description}</p>
-                                            )
-                                        }
-                                        {
-                                            (stateVisual.rating)&&(
-                                            <p className="containers-rating">{stars(state.rating)} {state.rating}</p>
-                                            )
-                                        }
-                                        {
-                                            (stateVisual.video)&&
-                                                (
-                                                    <>
-                                                    
-                                                    < ReactPlayer
-                                                        className="containers-video"
-                                                        url={state.video}
-                                                        width="100%"
-                                                        height="250px"
-                                                        controls
-                                                        playing
-                                                        loop
-                                                        muted
-                                                    /></>
-                                                )  
-                                        }
-                                        {
-                                            (stateVisual.image)&&(
-                                                <div className="containers-img">
-                                                    <img src={state.image} alt="NOT FOUND" />
-                                                </div>
-                                            )
-                                        }
-                                        {
-                                            (stateVisual.screenshots)&&(
-                                                <div className="container-screenshot">
-                                                <div className="subcontain1">
-                                                {state.screenshots?.map(ev=>{
-                                                    return(
-                                                        <div key={ev} className="screenshot-img">
-                                                            <img src={ev} alt="NOT FOUND" />
-                                                        </div>
-                                                    );
-                                                })}
-                                            </div>
-                                        </div>
-                                            )
-                                        }
-                                        {
-                                            (stateVisual.store) && (
-                                                <>
-                                                    <p>STORES: </p>
-                                                    <div className="container-store">
-                                                        <p>{state.store?.join(", ")}</p>
-                                                    </div>
-                                                </>
-                                            )
-                                        }
-                                        {
-                                            (stateVisual.developers) &&(
-                                                <>
-                                                    <p>DEVELOPERS: </p>
-                                                    <div className="container-developers">
-                                                    <p>{state.developers?.join(", ")}</p>
-                                                    </div>
-                                                </>
-                                            )
-                                        }
-                                        {
-                                            (stateVisual.publishers)&&(
-                                                <>
-                                                <p>PUBLISHERS: </p>
-                                                <div className="container-publishers">
-                                                    <p>{state.publishers?.join(", ")}</p>
-                                                </div>
-                                                </>
-                                            )
-                                        }
-                                        {
-                                            (stateVisual.website)&&(
-                                                <>
-                                                <p>WEBSITE: </p>
-                                                <p>{state.website}</p>
-                                                </>
-                                            )
-                                        }
-                                        {
-                                            (stateVisual.releaseDate)&&(
-                                                <>
-                                                <p>RELEASEDATE: </p>
-                                                <p>{state.releaseDate}</p>
-                                                </>
-                                            )
-                                        }
-                                        {
-                                             (stateVisual.metacritic)&&(
-                                                <>
-                                                <p>METACRITIC: </p>
-                                                <p>{state.metacritic}</p>
-                                                </>
-                                            )
-                                        }
-                                        {
-                                            (stateVisual.esrb_rating)&&(
-                                                <>
-                                                <p>ESRB_RATNG:</p>
-                                                <p>{state.esrb_rating}</p>
-                                                </>
-                                            )
-                                        }
-                                        {
-                                            (stateVisual.platforms)&&(
-                                                <>
-                                                <p>PLATFORMS: </p>
-                                                <div className="container-platforms">
-                                                <p>{state.platforms?.join(", ")}</p>
-                                                </div>
-                                                </>
-                                            )
-                                        }
-                                        {
-                                            (stateVisual.tags)&&(
-                                                <>
-                                                <p>TAGS: </p>
-                                                <div className="container-tags">
-                                                <p>{state.ntags?.join(", ")}</p>
-                                                </div>
-                                                </>
-                                            )
-                                        }
-                                        {
-                                            (stateVisual.genres)&&(
-                                                <>
-                                                <p>GENRES: </p>
-                                                <div className="container-genres">
-                                                <p>{state.genres?.join(", ")}</p>
-                                                </div>
-                                                </>
-                                            )
-                                        }
-                                    </div>)
-                                }
-
-                
-                        
-                                
-
-                    </div>
+                                        )
+                                })
+                            }
+                            {showError ? <span>{error.rating}</span> || <span>{validate.rating}</span> : <span>{error.rating}</span>|| <span>{validate.rating}</span>}
+                            </div>
+                        </div>
+                        {/* IMAGEN  */}
+                    </form>  
                 </div>
-                
-            </div>
-       
+                {/* Visualizar componentes */}
+                <div className="divcontainer02">
+                            {
+                                (stateVisual.visual==true)?(stateVisual.visual && (
+                                    <div className="container-preview">
+                                        <p className="preview">Preview</p>
+                                    </div>
+                                )):(<div className="container-visual">
+                                    {
+                                        (stateVisual.name)&&(
+                                            <h2 className="containers-name">{state.name}</h2>
+                                        )
+                                    }
+                                    {
+                                        (stateVisual.price)&&(
+                                        <p className="containers-price">Price: $/.{state.price}</p>
+                                        ) 
+                                    }
+                                    {
+                                        (stateVisual.description)&&(
+                                        <p className="containers-description">{state.description}</p>
+                                        )
+                                    }
+                                    {
+                                        (stateVisual.rating)&&(
+                                        <p className="containers-rating">{stars(state.rating)} {state.rating}</p>
+                                        )
+                                    }
+                                    {
+                                        (stateVisual.video)&&
+                                            (
+                                                <>
+                                                
+                                                < ReactPlayer
+                                                    className="containers-video"
+                                                    url={state.video}
+                                                    width="100%"
+                                                    height="250px"
+                                                    controls
+                                                    playing
+                                                    loop
+                                                    muted
+                                                /></>
+                                            )  
+                                    }
+                                    {
+                                        (stateVisual.image)&&(
+                                            <div className="containers-img">
+                                                <img src={state.image} alt="NOT FOUND" />
+                                            </div>
+                                        )
+                                    }
+                                    {
+                                        (stateVisual.screenshots)&&(
+                                            <div className="container-screenshot">
+                                            <div className="subcontain1">
+                                            {state.screenshots?.map(ev=>{
+                                                return(
+                                                    <div key={ev} className="screenshot-img">
+                                                        <img src={ev} alt="NOT FOUND" />
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    </div>
+                                        )
+                                    }
+                                    {
+                                        (stateVisual.store) && (
+                                            <>
+                                                <p>STORES: </p>
+                                                <div className="container-store">
+                                                    <p>{state.store?.join(", ")}</p>
+                                                </div>
+                                            </>
+                                        )
+                                    }
+                                    {
+                                        (stateVisual.developers) &&(
+                                            <>
+                                                <p>DEVELOPERS: </p>
+                                                <div className="container-developers">
+                                                <p>{state.developers?.join(", ")}</p>
+                                                </div>
+                                            </>
+                                        )
+                                    }
+                                    {
+                                        (stateVisual.publishers)&&(
+                                            <>
+                                            <p>PUBLISHERS: </p>
+                                            <div className="container-publishers">
+                                                <p>{state.publishers?.join(", ")}</p>
+                                            </div>
+                                            </>
+                                        )
+                                    }
+                                    {
+                                        (stateVisual.website)&&(
+                                            <>
+                                            <p>WEBSITE: </p>
+                                            <p>{state.website}</p>
+                                            </>
+                                        )
+                                    }
+                                    {
+                                        (stateVisual.releaseDate)&&(
+                                            <>
+                                            <p>RELEASEDATE: </p>
+                                            <p>{state.releaseDate}</p>
+                                            </>
+                                        )
+                                    }
+                                    {
+                                            (stateVisual.metacritic)&&(
+                                            <>
+                                            <p>METACRITIC: </p>
+                                            <p>{state.metacritic}</p>
+                                            </>
+                                        )
+                                    }
+                                    {
+                                        (stateVisual.esrb_rating)&&(
+                                            <>
+                                            <p>ESRB_RATNG:</p>
+                                            <p>{state.esrb_rating}</p>
+                                            </>
+                                        )
+                                    }
+                                    {
+                                        (stateVisual.platforms)&&(
+                                            <>
+                                            <p>PLATFORMS: </p>
+                                            <div className="container-platforms">
+                                            <p>{state.platforms?.join(", ")}</p>
+                                            </div>
+                                            </>
+                                        )
+                                    }
+                                    {
+                                        (stateVisual.tags)&&(
+                                            <>
+                                            <p>TAGS: </p>
+                                            <div className="container-tags">
+                                            <p>{state.ntags?.join(", ")}</p>
+                                            </div>
+                                            </>
+                                        )
+                                    }
+                                    {
+                                        (stateVisual.genres)&&(
+                                            <>
+                                            <p>GENRES: </p>
+                                            <div className="container-genres">
+                                            <p>{state.genres?.join(", ")}</p>
+                                            </div>
+                                            </>
+                                        )
+                                    }
+                                </div>)
+                            }
+
+            
+                    
+                            
+
+                </div>        
+            </div>       
     </div>
     )
 }
