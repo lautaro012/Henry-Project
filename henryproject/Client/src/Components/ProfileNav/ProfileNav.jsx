@@ -1,6 +1,8 @@
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 // import Cora from '../../Style/Imagenes/Corazon.png'
+import { useNavigate } from "react-router-dom";
+
 const {
     REACT_APP_API
   } = process.env;
@@ -8,6 +10,8 @@ const {
 export default function ProfileNav ( {setUserLogged}) {
    
     const itemsFavorites = useSelector(state => state.favorites)
+    const navigate = useNavigate();
+
    
     const user = JSON.parse(localStorage.getItem("user"));
 
@@ -25,8 +29,8 @@ export default function ProfileNav ( {setUserLogged}) {
    
           },
         }).then(() => {
-             // localStorage.clear()
-             localStorage.removeItem('user')
+            localStorage.clear()
+            navigate("/home/games");
             //  localStorage.setItem("user", JSON.stringify([]));
             //  localStorage.setItem("products", JSON.stringify([]));
             //  localStorage.setItem("favProducts", JSON.stringify([]))
