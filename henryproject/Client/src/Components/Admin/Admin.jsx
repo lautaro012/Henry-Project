@@ -2,7 +2,7 @@ import CreateVideogame from '../CreateVideogame/CreateVideogame'
 import './Admin.css'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
-import { changeName, getAllGames, getAllVideoGamesAdmin, hideVideoGame, getGameById, showVideoGame } from '../../redux/Actions/Index'
+import { changeName, getAllGames, getAllVideoGamesAdmin, hideVideoGame, getGameById, showVideoGame, getAllDisableVideogame } from '../../redux/Actions/Index'
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
@@ -15,12 +15,18 @@ export default function Admin() {
     const dispatch = useDispatch()
     const { id } = useParams()
     const [name, setName] = useState("")
-    const videogames = useSelector(state => state.videogames);
+    const videogames = useSelector(state => state.hidevideogames);
+    const disableVideogames=useSelector(state=>state.getAlldisableGame)
+    const [show,setShow]=useState({
+        disabled:false
+    });
+    // console.log(disableVideogames);
 
 
 
     useEffect(() => {
         dispatch(getAllGames());
+        dispatch(getAllDisableVideogame());
     }, [dispatch])
 
     function handleSubmit(e) {
@@ -36,18 +42,27 @@ export default function Admin() {
     //useEffect(()=>{
     // dispatch(getGameById(id))
     // },[dispatch,id])
-    function handleHide(e) {
-        e.preventDefault()
-        //  console.log(e.target.value)
-        dispatch(hideVideoGame(e.target.value))
+    function handleHide(ev) {
+        ev.preventDefault()
+        
+        dispatch(hideVideoGame(ev.target.value))
     }
 
     function showGame(e) {
         e.preventDefault()
+        console.log(e.target.value)
+        console.log(showVideoGame(e.target.value))
         dispatch(showVideoGame(e.target.value))
 
     }
-
+    function handleSubmitOcultados(){
+        setShow({...show,disabled:true})
+        dispatch(getAllDisableVideogame());
+    }
+    function handleRegresar(){
+        setShow({...show,disabled:false})
+        // dispatch(getAllDisableVideogame());
+    }
     // /disabled/:id
 
     //function handleChangeName(e){
@@ -67,7 +82,7 @@ export default function Admin() {
                     </div>
                     <div className='settings-admin'>
                         <Link to="/admin/createvideogames">
-                            <button><span >  Create videogame  </span></button>
+                            <button><span >  Create videogame   </span></button>
                         </Link>
                         <Link to="/admin/editvideogames">
                             <button className="bottom" type="submit" onClick={(e) => handleSubmit(e)} > EDIT GAMES</button>
@@ -88,12 +103,19 @@ export default function Admin() {
                         placeholder="Buscar videojuego..."
                     />
                     <button className="bottom" type="submit" onClick={(e) => handleSubmit(e)}> Search </button>
+                    {
+                    (!show.disabled) && (<button onClick={()=>handleSubmitOcultados()}>VER VIDEOJUEGOS OCULTADOS</button>)
+                    }
+                    {
+                    (show.disabled) && (<button onClick={()=>handleRegresar()}>REGRESAR</button>)
+                    }
+
                 </div>
 
                 {
-                    videogames && videogames.length ?
-                        <div id="conteinerCart2">{
-                            videogames && videogames.map(item => {
+                    // videogames && videogames.length ?
+                        <div id="conteinerCart2">
+                        { (!show.disabled) &&( videogames?.map(item => {
                                 return (
                                     <div key={item.id} className="item">
                                         <div className="props">
@@ -106,7 +128,7 @@ export default function Admin() {
                                             <button type="button" >Editar </button>
                                         </Link>
                                         {/* <Link to= {`/admin/${item.id}`}> */}
-                                        <button type="button"  onClick={(e) => handleHide(e)} value={item.id}> Deshabilitar </button>
+                                        <button type="button"  onClick={(ev) => handleHide(ev)} value={item.id}> Deshabilitar </button>
                                         <button type="button"   onClick={(e) => showGame(e)} value={item.id}> Habilitar </button>
                                         </div>
                                         {/* </Link> */}
@@ -114,10 +136,56 @@ export default function Admin() {
                                     </div>
                                 )
                             })
-                        }
+                            )?(!show.disabled) &&( videogames?.map(item => {
+                                return (
+                                    <div key={item.id} className="item">
+                                        <div className="props">
+                                        <img src={item.image} alt={item.id}></img>
+                                        <h1>{item.name}</h1>
+                                        <h3>$ {item.price}</h3>
+                                        </div>
+                                        <div className="buttons">
+                                        <Link to={`/admin/editgame/${item.id}`}>
+                                            <button type="button" >Editar </button>
+                                        </Link>
+                                        {/* <Link to= {`/admin/${item.id}`}> */}
+                                        <button type="button"  onClick={(ev) => handleHide(ev)} value={item.id}> Deshabilitar </button>
+                                        {/* <button type="button"   onClick={(e) => showGame(e)} value={item.id}> Habilitar </button> */}
+                                        </div>
+                                        {/* </Link> */}
+                                        {/* <button onClick={() => deleteItem(item.id)}>Delete</button> */}
+                                    </div>
+                                )
+                            })
+                            ):(show.disabled) &&( disableVideogames?.map(item => {
+                                return (
+                                    <div key={item.id} className="item">
+                                        <div className="props">
+                                        <img src={item.image} alt={item.id}></img>
+                                        <h1>{item.name}</h1>
+                                        <h3>$ {item.price}</h3>
+                                        </div>
+                                        <div className="buttons">
+                                        <Link to={`/admin/editgame/${item.id}`}>
+                                            <button type="button" >Editar </button>
+                                        </Link>
+                                        {/* <Link to= {`/admin/${item.id}`}> */}
+                                        {/* <button type="button"  onClick={(ev) => handleHide(ev)} value={item.id}> Deshabilitar </button> */}
+                                        <button type="button"   onClick={(e) => showGame(e)} value={item.id}> Habilitar </button>
+                                        </div>
+                                        {/* </Link> */}
+                                        {/* <button onClick={() => deleteItem(item.id)}>Delete</button> */}
+                                    </div>
+                                )
+                            })
+                            )
+                            }
+
+                            
+                        
                         </div>
-                        : <div>
-                        </div>
+                        // :<div>
+                        // </div>
 
                 }
             </div>

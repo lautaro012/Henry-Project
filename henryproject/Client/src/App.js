@@ -114,7 +114,7 @@ function App() {
         <Route path='/favorites' element={<Favoritos />} />
         <Route path='/admin' element={<Admin/>} />
         <Route path='/admin/editgame/:id' element={<EditVideogame></EditVideogame>} />
-        <Route path='/admin/createvideogame' element={<CreateVideogame/>} />
+        <Route path='/admin/createvideogames' element={<CreateVideogame/>} />
         <Route path='/profile' element={ userLogged ? <Profile setUserLogged={setUserLogged}/> : <UserSign setUserLogged={setUserLogged} isOpen={true}/>} />
         <Route path='/Loading' element={<LoadingScreen/>} />
         <Route path='/cart' element={<Cart/>} />

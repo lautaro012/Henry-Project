@@ -13,6 +13,7 @@ router.post("/", async(req,res)=>{
         
             const payment = await stripe.paymentIntents.create({
             amount: amount,
+            receipt_email: mail,
             currency: "USD", //la moneda
             description: "Videogames", //descripcion de producto
             payment_method: id, //id del fronted

@@ -27,6 +27,7 @@ export const GET_USER = 'GET_USER'
 export const CLEAR_USER = 'CLEAR_USER'
 export const GET_REVIEWS_GAME = "GET_REVIEWS_GAME"
 export const GET_GAMES_BY_TAG = 'GET_GAME_BY_TAG'
+export const GET_ALL_DISABLE_VIDEOGAME='GET_ALL_DISABLE_VIDEOGAME'
 
 require('dotenv').config();
 const {
@@ -78,17 +79,35 @@ export function getGameById(id) {
 
 export function hideVideoGame(id){
     return async function(dispatch){
-        let resp = await axios.put(`/disabled/${id}`)
-        dispatch({type:HIDE_VIDEOGAME, payload: resp.data})
+        await axios.put(`/disabled/${id}`)
+        dispatch({type:HIDE_VIDEOGAME, payload: id})
     }
 }
 
 export function showVideoGame(id) {
     return async function (dispatch) {
-        let resp = await axios.put(`/abled/${id}`)
-        dispatch({type: SHOW_VIDEOGAME, payload: resp.data})
+        await axios.put(`/abled/${id}`)
+        dispatch({type: SHOW_VIDEOGAME, payload: id})
     }
 }
+
+export function getAllDisableVideogame(){
+    return async(dispatch)=>{
+        const json=await axios.get("/disabled");
+            return dispatch({
+                type:GET_ALL_DISABLE_VIDEOGAME,
+                payload:json.data
+            })
+    }
+}
+// export const getOcultar=(id)=>{
+//     // console.log(id)
+//     return async function(dispatch){
+//         await axios.put(`/disabled/${id}`)
+//         // console.log(ss.data);
+//         dispatch({type:GET_OCULTAR, payload:id})
+//     }
+
 
 export const clear = function () {
     return {

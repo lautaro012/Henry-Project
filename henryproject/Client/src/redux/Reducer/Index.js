@@ -26,6 +26,7 @@ import {
     CLEAR_USER,
     hideVideoGame,
     GET_GAMES_BY_TAG,
+    GET_ALL_DISABLE_VIDEOGAME,
 } from "../Actions/Index"
 
 const initialState = {
@@ -47,6 +48,8 @@ const initialState = {
     hidenVideoGame:[],
     showVideoGame: [],
     reviews: [],
+    hidevideogames:[],
+    getAlldisableGame:[]
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -57,6 +60,7 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 videogames: action.payload,
                 Allvideogames: action.payload,
+                hidevideogames:action.payload,
                 tagsFilter: action.payload
             }
 
@@ -203,13 +207,43 @@ export default function rootReducer(state = initialState, action) {
           ...state
         }
         case HIDE_VIDEOGAME:
-        return{
-          ...state,
-          hidenVideoGame:action.payload
-        }
+            var getAllgameshide=state.hidevideogames;
+            var newArreglo=[];
+            getAllgameshide.filter(a=>{
+                if(a.id!==action.payload){
+                    return newArreglo.push(a); 
+                }
+            });
+            return{
+                ...state,
+                hidevideogames:newArreglo,
+                hidenVideoGame:action.payload
+              }
+        
+        case GET_ALL_DISABLE_VIDEOGAME:
+            
+            return{
+                ...state,
+                getAlldisableGame:action.payload
+              }
+            
+
+
+        
         case SHOW_VIDEOGAME: 
+        var getAllgameshide=state.getAlldisableGame;
+        // console.log(state.getAlldisableGame);
+            var newArreglo=[];
+            getAllgameshide.filter(a=>{
+                if(a.id!=action.payload){
+                    return newArreglo.push(a); 
+                }
+            });
+            console.log(getAllgameshide);
+            console.log(newArreglo);
         return {
             ...state,
+            getAlldisableGame:newArreglo,
             showVideoGame: action.payload
         }
         case CHANGE_NAME:
