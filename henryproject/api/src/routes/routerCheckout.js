@@ -17,7 +17,8 @@ router.post("/", async(req,res)=>{
             currency: "USD", //la moneda
             description: "Videogames", //descripcion de producto
             payment_method: id, //id del fronted
-            confirm: true //confirm the payment at the same time
+            confirm: true, //confirm the payment at the same time
+            receipt_email:'lautaro0121@gmail.com'
             });
             console.log(payment)
             try {

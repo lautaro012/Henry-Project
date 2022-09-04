@@ -127,7 +127,15 @@
     border-left: 0;
     border-right: 0;
     background-color: ghostwhite;
-    width: 100%;;
+    width: 100%;
+  }
+  .input-register-half{
+    padding: 10%;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    background-color: ghostwhite;
+    width: 100%;
   }
 
   .name-and-lastname{
