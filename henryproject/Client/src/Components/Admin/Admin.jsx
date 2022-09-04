@@ -1,4 +1,4 @@
-import CreateVideogame from '../CreateVideogame/CreateVideogame'
+import CreateVideogame from '../CreateVideogame/CreateVideogames'
 import './Admin.css'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
@@ -8,6 +8,7 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import ListVideogame from '../CreateVideogame/ListVideogame/ListVideogame'
 import { useParams } from 'react-router-dom'
+import CardHover from '../NewCard/CardHover'
 
 
 
@@ -22,7 +23,9 @@ export default function Admin() {
     });
     // console.log(disableVideogames);
 
+    const user = JSON.parse(localStorage.getItem("user"));
 
+    const[render , setRender] = useState('admin')
 
     useEffect(() => {
         dispatch(getAllGames());
@@ -42,9 +45,9 @@ export default function Admin() {
     //useEffect(()=>{
     // dispatch(getGameById(id))
     // },[dispatch,id])
+
     function handleHide(ev) {
         ev.preventDefault()
-        
         dispatch(hideVideoGame(ev.target.value))
     }
 
@@ -72,126 +75,45 @@ export default function Admin() {
 
 
     return (
-        <div className='Search-Filters'>
-
-
-            <div className='filters'>
-                <div className="show-profile-settings">
-                    <div>
-                        <img width={150} src='https://img2.thejournal.ie/inline/1881369/original/?width=630&version=1881369' alt='imagen de perfil'></img>
-                    </div>
-                    <div className='settings-admin'>
-                        <Link to="/admin/createvideogames">
-                            <button><span >  Create videogame   </span></button>
-                        </Link>
-                        <Link to="/admin/editvideogames">
-                            <button className="bottom" type="submit" onClick={(e) => handleSubmit(e)} > EDIT GAMES</button>
-                        </Link>
-                        <button><span> SETTINGS </span></button>
-                    </div>
-
-                </div>
+        <div className='Admin-conteiner'>
+            <div className='Admin-settings'>
+                <aside className='Admin-aside'> 
+                    <h1>Welcome {user.user.userName}</h1>
+                    <img width={200} src={user.user.image} alt={user.user.id_name}></img>
+                    <button onClick={() => setRender("admin")}> Create New Game </button>
+                    <button onClick={() => setRender("edit")}> Edit Game </button>
+                    <button onClick={() => setRender("users")}>Edit Users</button>
+                </aside>
             </div>
-            <div className="conteinerCart_admin">
-                <div>
-                    <input
-                        id="search"
-                        className="search"
-                        type="text"
-                        value={name}
-                        onChange={(e) => handleOnChange(e)}
-                        placeholder="Buscar videojuego..."
-                    />
-                    <button className="bottom" type="submit" onClick={(e) => handleSubmit(e)}> Search </button>
+            <div className="Admin-show-settings">
                     {
-                    (!show.disabled) && (<button onClick={()=>handleSubmitOcultados()}>VER VIDEOJUEGOS OCULTADOS</button>)
+                        render && render === "admin" ?
+                        // <DatosPerfil setUserLogged={setUserLogged} data={userdetails}></DatosPerfil>
+                        <CreateVideogame></CreateVideogame>
+                        :
+                        render === "edit" ?
+                        //pasar el boton de hacer esconder
+                        <ListVideogame
+                            handleOnChange={handleOnChange}
+                            disableVideogames={disableVideogames}
+                            handleSubmit={handleSubmit}
+                            handleRegresar={handleRegresar} 
+                            handleSubmitOcultados={handleSubmitOcultados} 
+                            show={show}
+                            videogames={videogames} 
+                            name={name}
+                            showGame={showGame}
+                            handleHide={handleHide}
+                        ></ListVideogame>
+                        :
+                        render === "users" ?
+                        //falta el editar usuarios
+                        null
+                        :
+                        null
                     }
-                    {
-                    (show.disabled) && (<button onClick={()=>handleRegresar()}>REGRESAR</button>)
-                    }
 
-                </div>
-
-                {
-                    // videogames && videogames.length ?
-                        <div id="conteinerCart2">
-                        { (!show.disabled) &&( videogames?.map(item => {
-                                return (
-                                    <div key={item.id} className="item">
-                                        <div className="props">
-                                        <img src={item.image} alt={item.id}></img>
-                                        <h1>{item.name}</h1>
-                                        <h3>$ {item.price}</h3>
-                                        </div>
-                                        <div className="buttons">
-                                        <Link to={`/admin/editgame/${item.id}`}>
-                                            <button type="button" >Editar </button>
-                                        </Link>
-                                        {/* <Link to= {`/admin/${item.id}`}> */}
-                                        <button type="button"  onClick={(ev) => handleHide(ev)} value={item.id}> Deshabilitar </button>
-                                        <button type="button"   onClick={(e) => showGame(e)} value={item.id}> Habilitar </button>
-                                        </div>
-                                        {/* </Link> */}
-                                        {/* <button onClick={() => deleteItem(item.id)}>Delete</button> */}
-                                    </div>
-                                )
-                            })
-                            )?(!show.disabled) &&( videogames?.map(item => {
-                                return (
-                                    <div key={item.id} className="item">
-                                        <div className="props">
-                                        <img src={item.image} alt={item.id}></img>
-                                        <h1>{item.name}</h1>
-                                        <h3>$ {item.price}</h3>
-                                        </div>
-                                        <div className="buttons">
-                                        <Link to={`/admin/editgame/${item.id}`}>
-                                            <button type="button" >Editar </button>
-                                        </Link>
-                                        {/* <Link to= {`/admin/${item.id}`}> */}
-                                        <button type="button"  onClick={(ev) => handleHide(ev)} value={item.id}> Deshabilitar </button>
-                                        {/* <button type="button"   onClick={(e) => showGame(e)} value={item.id}> Habilitar </button> */}
-                                        </div>
-                                        {/* </Link> */}
-                                        {/* <button onClick={() => deleteItem(item.id)}>Delete</button> */}
-                                    </div>
-                                )
-                            })
-                            ):(show.disabled) &&( disableVideogames?.map(item => {
-                                return (
-                                    <div key={item.id} className="item">
-                                        <div className="props">
-                                        <img src={item.image} alt={item.id}></img>
-                                        <h1>{item.name}</h1>
-                                        <h3>$ {item.price}</h3>
-                                        </div>
-                                        <div className="buttons">
-                                        <Link to={`/admin/editgame/${item.id}`}>
-                                            <button type="button" >Editar </button>
-                                        </Link>
-                                        {/* <Link to= {`/admin/${item.id}`}> */}
-                                        {/* <button type="button"  onClick={(ev) => handleHide(ev)} value={item.id}> Deshabilitar </button> */}
-                                        <button type="button"   onClick={(e) => showGame(e)} value={item.id}> Habilitar </button>
-                                        </div>
-                                        {/* </Link> */}
-                                        {/* <button onClick={() => deleteItem(item.id)}>Delete</button> */}
-                                    </div>
-                                )
-                            })
-                            )
-                            }
-
-                            
-                        
-                        </div>
-                        // :<div>
-                        // </div>
-
-                }
-            </div>
-
-
-
+        </div>
         </div>
     )
 }

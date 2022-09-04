@@ -1,5 +1,5 @@
 .Nav_bar img {
-    width: 50%;
+    width: 50px;
     border-radius: 100%;
 }
 
@@ -49,7 +49,7 @@
     top: 2%;
     right: 2%;
     left: 2%;
-    border-radius: 40px;
+    border-radius: 20px;
     backdrop-filter: blur(10px);
     justify-content: space-between;
     max-height: 8%;
