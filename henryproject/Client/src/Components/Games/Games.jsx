@@ -53,7 +53,7 @@ export default function Games() {
         let orderType = document.getElementById('orderType').value
         dispatch(order({ orderBy: orderBy, orderType: orderType }));
         setCurrentPage(1);
-        setRender(`${render} renderizado`);
+        setRender(...render, 'hola');
     }
 
 
@@ -61,7 +61,7 @@ export default function Games() {
         <div className='Search-Filters'>
             {
                 tags.length > 0 && videogames.length > 0 ?
-                    <div className='filters'>
+                    <div className='filters-games'>
                         <div className="show-filters">
 
                             <Filter
@@ -92,7 +92,7 @@ export default function Games() {
                                     VideogamesPerPage={videogamesPerPage}
                                     allVideogames={videogames.length}
                                     paginado={paginado}
-                                    actual={currentPage}
+                                    currentPage={currentPage}
                                 />
                             </div>
                             <div className='Games-Cards-Div'>

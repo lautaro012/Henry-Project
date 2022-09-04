@@ -1,6 +1,6 @@
-.filters {
+.filters-games {
     display: flex;
-   
+    min-width: 100%;
 }
 
 .show-filters{
