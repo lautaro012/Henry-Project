@@ -1,6 +1,9 @@
 .Paginado-conteiner {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 2%;
 }
 
 
@@ -20,7 +23,7 @@
     background: rgb(49, 49, 49);
     border: none;
     color: white;
-
+    
     box-shadow: 1px 1px 10px -5px #000000;
   }
   
@@ -28,3 +31,10 @@
     box-shadow: 5px 5px 20px #000000;
     transform: translateY(5px) translateX(5px);
   }
+
+.paginado-span {
+    color: ghostwhite;
+    font-size: x-large;
+    font-style: oblique;
+    font-family: inherit;
+}
