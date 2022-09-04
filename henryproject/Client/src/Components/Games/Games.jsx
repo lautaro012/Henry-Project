@@ -21,6 +21,8 @@ export default function Games() {
     const [render, setRender] = useState('')
 
 
+
+
     useEffect(() => {
         dispatch(getGenres())
         dispatch(getPlatforms())

@@ -226,7 +226,7 @@ h2:after {
 .news .article:active figcaption {
   opacity: 1;
   transform: none;
-  animation: slide 20s linear infinite;
+  animation: slide 25s linear infinite;
 }
 
 @keyframes slide {
