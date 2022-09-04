@@ -1,6 +1,7 @@
 .card-videogame{
     display: flex;
     flex-direction: column;
+    position: absolute;
     align-items: center;
     border-radius: 15px;
     margin: 2rem;   
@@ -8,7 +9,9 @@
   background-image: linear-gradient(225deg, #05003a 0%, #000000ff 40%, #000000bd 70%, #0000007f 100%);
      height: 250px;
 }
-
+.fav-game-list{
+  
+}
 .card-videogame:hover{
 
 }
