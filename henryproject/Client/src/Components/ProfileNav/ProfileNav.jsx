@@ -29,11 +29,11 @@ export default function ProfileNav ( {setUserLogged}) {
    
           },
         }).then(() => {
-            localStorage.clear()
             navigate("/home/games");
-            //  localStorage.setItem("user", JSON.stringify([]));
-            //  localStorage.setItem("products", JSON.stringify([]));
-            //  localStorage.setItem("favProducts", JSON.stringify([]))
+            localStorage.clear()
+            // localStorage.setItem("user", JSON.stringify([]));
+            // localStorage.setItem("products", JSON.stringify([]));
+            // localStorage.setItem("favProducts", JSON.stringify([]))
             setUserLogged(false)
         }).catch(err => {
           console.log(err)
