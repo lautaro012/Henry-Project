@@ -17,7 +17,7 @@ export default function LandingPage() {
 
     const dispatch = useDispatch()
     let Allvideogames = useSelector(state => state.Allvideogames)
-    let populars = Allvideogames?.filter(games => games.rating > 4.5)
+    let populars = Allvideogames?.filter(games => games.rating > 4.4)
 
     useEffect(() => {
         dispatch(getAllGames())

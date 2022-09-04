@@ -26,13 +26,38 @@
     justify-content: space-around;
 }
 
+.User_options img {
+    max-width: 50%;
+    border-radius: 100%;
+}
+
+.User_options div {
+    text-align: center;
+}
+
 .User_data {
     padding: 10%;
     max-width: 100%;
     max-height: 100%;
 }
 
+.modificar_perfil img {
+    max-width: 50%;
+    border-radius: 100%;
+}
 
+.Form button {
+    margin-left: 5%;
+}
+
+#submit {
+    margin-top: 5%;
+}
+
+#delete_user {
+    margin-top: 5%;
+    margin-left: 5%;
+}
 
 
 
