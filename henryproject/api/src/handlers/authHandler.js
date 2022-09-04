@@ -1,6 +1,7 @@
 const {Users} = require('../db');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { transporter } = require("../config/mailer")
 
 function validateAttributes(name, lastName, userName, mail){
     if (!name || (typeof name !== "string") || (name.length < 0) ){
@@ -47,11 +48,28 @@ const singUp = async (req, res) =>    {
             expiresIn: Math.floor(Date.now() / 1000) + (60 * 60)
         });
 
+
          if (!created ) res.status(201).send('There is already a user with that mail') 
          else {
           res.json({newUser,token})
          }
-  
+        
+         await transporter.sendMail({
+            from: '"Thanks For Register In Games Store 👻" <henry.games.store@gmail.com>', // sender address
+            to: mail, // list of receivers
+            subject: "Hello ✔", // Subject line
+            html: `
+                <h1>User Information 📓</h1>
+                <h2>Thanks For Register In Games Store 👻</h2>
+                <h2>This is your information:</h2>
+                <ul>
+                    <li>${name}</li>
+                    <li>${userName}</li>
+                    <li>${address}</li>
+                </ul>
+            `, // html body
+          });
+
         } else {
           return res.status(404).send(validation)
         }
