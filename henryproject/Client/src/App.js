@@ -87,7 +87,7 @@ function App() {
   
 
   useEffect(() => {
-    if(localStorage.getItem('user')) {
+    if(JSON.parse(localStorage.getItem("user")).user) {
       setUserLogged(true)}
 
     if (localStorage.length === 0) {
