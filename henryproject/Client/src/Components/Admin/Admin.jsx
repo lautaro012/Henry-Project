@@ -44,6 +44,8 @@ export default function Admin() {
 
     function showGame(e) {
         e.preventDefault()
+        console.log(e.target.value)
+        console.log(showVideoGame(e.target.value))
         dispatch(showVideoGame(e.target.value))
 
     }
