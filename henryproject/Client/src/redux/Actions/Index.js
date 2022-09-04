@@ -27,6 +27,7 @@ export const GET_USER = 'GET_USER'
 export const CLEAR_USER = 'CLEAR_USER'
 export const GET_REVIEWS_GAME = "GET_REVIEWS_GAME"
 export const GET_GAMES_BY_TAG = 'GET_GAME_BY_TAG'
+export const GET_ALL_DISABLE_VIDEOGAME='GET_ALL_DISABLE_VIDEOGAME'
 
 require('dotenv').config();
 const {
@@ -78,17 +79,35 @@ export function getGameById(id) {
 
 export function hideVideoGame(id){
     return async function(dispatch){
-        let resp = await axios.put(`/disabled/${id}`)
-        dispatch({type:HIDE_VIDEOGAME, payload: resp.data})
+        await axios.put(`/disabled/${id}`)
+        dispatch({type:HIDE_VIDEOGAME, payload: id})
     }
 }
 
 export function showVideoGame(id) {
     return async function (dispatch) {
-        let resp = await axios.put(`/abled/${id}`)
-        dispatch({type: SHOW_VIDEOGAME, payload: resp.data})
+        await axios.put(`/abled/${id}`)
+        dispatch({type: SHOW_VIDEOGAME, payload: id})
     }
 }
+
+export function getAllDisableVideogame(){
+    return async(dispatch)=>{
+        const json=await axios.get("/disabled");
+            return dispatch({
+                type:GET_ALL_DISABLE_VIDEOGAME,
+                payload:json.data
+            })
+    }
+}
+// export const getOcultar=(id)=>{
+//     // console.log(id)
+//     return async function(dispatch){
+//         await axios.put(`/disabled/${id}`)
+//         // console.log(ss.data);
+//         dispatch({type:GET_OCULTAR, payload:id})
+//     }
+
 
 export const clear = function () {
     return {
@@ -289,17 +308,17 @@ export function deleteItemFromFavs(id) {
     }
 }
 
-export function signin(payload) {
-    return function () {
-        axios.post(`/login`, payload)
-            .then(resp => resp.data)
-            .then(resp => {
-                localStorage.setItem('user', JSON.stringify(resp))
-                window.location.reload()
-            })
-            .catch(err => console.log(payload))
-    }
-}
+// export function signin(payload) {
+//     return function () {
+//         axios.post(`/login`, payload)
+//             .then(resp => resp.data)
+//             .then(resp => {
+//                 localStorage.setItem('user', JSON.stringify(resp))
+//                 window.location.reload()
+//             })
+//             .catch(err => console.log(payload))
+//     }
+// }
 
 export function getUser (payload) {
     return function (dispatch) {
@@ -329,5 +348,20 @@ export function getReviews(gameId){
             type: GET_REVIEWS_GAME,
             payload: response.data
         })
+    }
+}
+
+export function modificarUser(id_name,payload) {
+
+    console.log("SOY ACTION MODIFICAR", id_name, payload)
+    return function () {
+        axios.put(`/newUser/${id_name}`, payload)
+    }
+}
+
+export function deleteUser(id_name) {
+    console.log("SOY ACTION DELETEAR", id_name)
+    return function () {
+        axios.delete(`/newUser/${id_name}`)
     }
 }

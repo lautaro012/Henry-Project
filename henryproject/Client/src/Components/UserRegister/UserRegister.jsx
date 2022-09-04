@@ -10,6 +10,8 @@ export default function Useregister ({registersetIsOpen, registerisOpen}) {
   
     const [error, setError] = useState({nuevo: true})
     const [showError, setShowError] = useState(false)
+    const [loading, setLoading] = useState(false)
+
     const dispatch = useDispatch()
     const [newUser, setNewUser] = useState({
         userName: "",
@@ -35,13 +37,32 @@ export default function Useregister ({registersetIsOpen, registerisOpen}) {
         
     }
 
-    function handleImageChange(e){
+   async function handleImageChange(e){
         if(e.target.files && e.target.files[0]) {
             console.log(e.target.files[0])
-            setNewUser({
-                ...newUser,
-                image: URL.createObjectURL(e.target.files[0])
-            })
+            setLoading(true)
+            const data = new FormData()
+            data.append("file", e.target.files[0])
+            data.append("upload_preset", "gamesAPI")
+            const resp =  fetch (
+                "https://api.cloudinary.com/v1_1/luubermudezz/image/upload", {
+                 method: "POST",
+                 body: data
+                 // mode: 'no-cors'
+                }
+            ) .then(resp => resp.json())
+                    .then(file => {
+                        if(file) {
+                        setNewUser({
+                        ...newUser,
+                        image: `${file.secure_url}`
+                        })
+                        setLoading(false)
+                    }
+                    })
+            // const file = await resp.json()
+            
+            
         }
     }
 
@@ -77,8 +98,7 @@ export default function Useregister ({registersetIsOpen, registerisOpen}) {
             onRequestClose={toggleModal}
             contentlabel="My dialog"
             className="mymodalregister"
-            overlayClassName="myoverlay"
-            
+            overlayClassName="myoverlay" 
             >
                 <div>
                 <div className="modal-welcome">
@@ -91,12 +111,12 @@ export default function Useregister ({registersetIsOpen, registerisOpen}) {
                         <div className="name-and-lastname">
                             <div className="input-div">
                                 <label type="text" ></label>
-                                <input className="input-register" name="name" placeholder="Name" required onChange={(e)  => handleChange(e)} ></input>
+                                <input className="input-register-half" name="name" placeholder="Name" required onChange={(e)  => handleChange(e)} ></input>
                             </div>
-                            {showError ? <span className='error'>{error.name}</span> : null}
+                            {error.name ? <span className='error'>{error.name}</span> : null}
                             <div className="input-div">
                                 <label type="text"></label>
-                                <input className="input-register" name="lastName" placeholder="Lastname" required onChange={(e) => handleChange(e)} ></input>
+                                <input className="input-register-half" name="lastName" placeholder="Lastname" required onChange={(e) => handleChange(e)} ></input>
                             </div>
                             {!showError  ? null : <span className='error'>{error.lastName}</span>}
                         </div>
@@ -125,8 +145,8 @@ export default function Useregister ({registersetIsOpen, registerisOpen}) {
                             <input className="input-register" name="image" type="file" onChange={handleImageChange}/>
                         </div>
                         {!showError  ? null : <span className='error'>{error.image}</span>}
-
-                        {!Object.keys(error).length ? <button className='submit-btn' type="submit">REGISTER</button> : <button className='submit-btn' type="submit" disabled={true}>REGISTER</button>}
+                        {/* <button className='submit-btn' type="submit">REGISTER</button> */}
+                         {!loading && !Object.keys(error).length ? <button className='submit-btn' type="submit">REGISTER</button> : <button className='submit-btn' type="submit" disabled={true}>REGISTER</button>} 
                     </form>
                 </div>
             </Modal>

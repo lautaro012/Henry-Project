@@ -1,5 +1,5 @@
 .Nav_bar img {
-    width: 100%;
+    width: 50%;
     border-radius: 100%;
 }
 
@@ -46,7 +46,7 @@
     background-color: #3131317F;
     position: fixed;
     z-index: 10;
-    top: 5%;
+    top: 2%;
     right: 2%;
     left: 2%;
     border-radius: 40px;
