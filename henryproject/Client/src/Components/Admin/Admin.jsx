@@ -110,6 +110,9 @@ export default function Admin() {
                         //falta el editar usuarios
                         null
                         :
+                        render === 'editgame' ?
+                        null
+                        :
                         null
                     }
 
