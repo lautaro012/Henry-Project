@@ -60,20 +60,11 @@
     padding-top: 3%;
 }
 
-.main-carrousel:root {
-    --shadow-color: 286deg 36% 47%;
-    --shadow-elevation-high:
-      0px 0.3px 0.2px hsl(var(--shadow-color) / 0.66),
-      0px 0.5px 0.4px -0.5px hsl(var(--shadow-color) / 0.59),
-      0px 1.1px 0.9px -1.1px hsl(var(--shadow-color) / 0.53),
-      0px 2.3px 1.8px -1.6px hsl(var(--shadow-color) / 0.47),
-      -0.1px 4.4px 3.5px -2.1px hsl(var(--shadow-color) / 0.41),
-      -0.1px 8px 6.3px -2.6px hsl(var(--shadow-color) / 0.35),
-      -0.2px 13.2px 10.4px -3.2px hsl(var(--shadow-color) / 0.28),
-      -0.4px 20.5px 16.1px -3.7px hsl(var(--shadow-color) / 0.22),
-      -0.6px 30.2px 23.8px -4.2px hsl(var(--shadow-color) / 0.16),
-      -0.8px 42.7px 33.6px -4.7px hsl(var(--shadow-color) / 0.1);
-  }
+.main-carrousel{
+-webkit-box-shadow: inset 1px 8px 104px -26px rgba(0,0,0,1);
+-moz-box-shadow: inset 1px 8px 104px -26px rgba(0,0,0,1);
+box-shadow: inset 1px 8px 104px -26px rgba(0,0,0,1);
+}
 
 .carrusel-triple{
  display:flex;

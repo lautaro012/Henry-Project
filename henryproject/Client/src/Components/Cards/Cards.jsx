@@ -76,7 +76,7 @@ export default function Card({card}) {
                 {/* <div className="image-card" style={{ backgroundImage: `url(${image})` }}></div> */}
                 <div className="card-data">
                     <span className="h">{price} US$</span>
-                    <PrettyRating value={2} icons={icons.heart} colors={colors.heart} iconsNumber={10} />
+                    <PrettyRating value={rating} icons={icons.star} colors={colors.star} />
                     {/* <span> {rating} </span> */}
                 </div>
 
