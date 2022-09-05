@@ -10,9 +10,9 @@ import { useParams } from 'react-router-dom'
 import CardHover from '../NewCard/CardHover'
 import create from '../../Style/Imagenes/create.png'
 import edit from '../../Style/Imagenes/edit.png'
-import admin from '../../Style/Imagenes/admin.png'
-import ban from '../../Style/Imagenes/ban.png'
 import disabled from '../../Style/Imagenes/disabled.png'
+import offer from '../../Style/Imagenes/offer.png'
+import SendNews from '../SendNews/SendNews'
 
 
 export default function Admin() {
@@ -122,6 +122,12 @@ export default function Admin() {
                         <span>Disabled Users</span>
                         </div>
                     </button>
+                    <button className='adminButtonStyle' onClick={() => setRender("offers")}>
+                        <div className='adminButtonStyleDiv'>
+                        <img src={offer} alt="disabled" width='20' className='adminImageButtonStyle'/>
+                        <span>Send Offers</span>
+                        </div>
+                    </button>
 
                     
                 </aside>
@@ -180,6 +186,9 @@ export default function Admin() {
                         :
                         render === 'editgame' ?
                         null
+                        :
+                        render === 'offers' ?
+                        <SendNews/>
                         :
                         render === 'disableUsers' ?
                         <div>
