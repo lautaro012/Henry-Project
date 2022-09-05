@@ -27,7 +27,11 @@ import {
     hideVideoGame,
     GET_GAMES_BY_TAG,
     GET_ALL_DISABLE_VIDEOGAME,
+    GET_ALL_USERS,
     GET_ORDERS,
+    GET_USERS_BANNED,
+    GET_NO_BANNED_ALL_USERS,
+
 } from "../Actions/Index"
 
 const initialState = {
@@ -49,14 +53,34 @@ const initialState = {
     hidenVideoGame: [],
     showVideoGame: [],
     reviews: [],
-    hidevideogames: [],
-    getAlldisableGame: [],
+    hidevideogames:[],
+    getAlldisableGame:[],
+    allUsers: [],
     orders: [],
+    allUsersBanned: [],
+    allUsersNoBanned: []
+
 }
 
 export default function rootReducer(state = initialState, action) {
 
     switch (action.type) {
+        case GET_ALL_USERS: 
+            return {
+                ...state,
+                allUsers: action.payload
+            }
+        case GET_USERS_BANNED: 
+            return {
+                ...state,
+                allUsersBanned: action.payload
+            }
+        case GET_NO_BANNED_ALL_USERS: {
+            return{
+                ...state,
+                allUsersNoBanned: action.payload
+            }
+        }
         case GET_ALL_GAMES:
             return {
                 ...state,
