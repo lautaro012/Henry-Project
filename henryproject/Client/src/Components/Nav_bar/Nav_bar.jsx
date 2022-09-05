@@ -57,11 +57,11 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
             </div>
 
             <div>
-                <Link to='/home'><button>Home</button></Link>
+                <button onClick={() => navigate('/home')}>Home</button>
             </div>
 
             <div>
-                <Link to='/home/games'> <button> Search in our game list </button> </Link>
+                <button onClick={() => navigate('/home/games')}> Explore </button>
             </div>
 
             {/* <Link to='/home/create'><button>Create Videogame</button></Link>
