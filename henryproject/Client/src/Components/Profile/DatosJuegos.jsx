@@ -2,8 +2,18 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getOrders } from '../../redux/Actions/Index'
+import CardHover from "../NewCard/CardHover.jsx";
+import PrettyRating from "pretty-rating-react";
+import { Link } from "react-router-dom";
+import {
+    faStar,
+    faStarHalfAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+    faStar as farStar,
+} from "@fortawesome/free-regular-svg-icons";
 
-export default function DatosJuegos({data}) {
+export default function DatosJuegos({ data }) {
 
     let { id_name } = data
 
@@ -17,6 +27,17 @@ export default function DatosJuegos({data}) {
         dispatch(getOrders(id_name))
     }, [dispatch, id_name])
 
+    const icons = {
+        star: {
+            complete: faStar,
+            half: faStarHalfAlt,
+            empty: farStar,
+        }
+    }
+    const colors = {
+        star: ['#d9ad26', '#d9ad26', '#434b4d'],
+    }
+
     return (
         <div>
             <h1>My games</h1>
@@ -24,15 +45,29 @@ export default function DatosJuegos({data}) {
                 orders && orders.map(order => {
                     return (
                         <div>
-                             {
+                            {
                                 order.games && order.games.map(game => {
                                     return (
-                                        <div id="conteinerCart_order">
-                                            <h4>Name</h4>
+                                        // <div id="conteinerCart_order">
+                                        <div key={game.id} className='profile-game-list'>
+                                            <Link to={`/home/games/${game.id}`} className='Link'>
+                                                <CardHover image={game.image} name={game.name}>
+                                                </CardHover>
+                                            </Link>
+                                            {/* <h4>Name</h4>
                                             <p>{game.name}</p>
-                                            <h4>Price</h4>
-                                            <p>${game.price}</p>
-                                            <img src={game.image} alt={game.id}></img>
+                                            <img src={game.image} alt={game.id}></img> */}
+                                            <div id="data_mygame_card">
+                                                <h3>Price</h3>
+                                                <p>${game.price}</p>
+                                                <h3>Date of purchase</h3>
+                                                <p>{game.createdAt}</p>
+                                                <hr></hr>
+                                                <h3>Developers</h3>
+                                                <p>{game.developers}</p>
+                                                <h3>Rating : </h3>
+                                                <PrettyRating value={game.rating} icons={icons.star} colors={colors.star} />
+                                            </div>
                                         </div>
                                     )
                                 })

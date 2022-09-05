@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { deleteUser, modificarUser } from '../../redux/Actions/Index'
+import CardHover from "../NewCard/CardHover.jsx";
 
 export default function DatosPerfil({ setUserLogged, data }) {
 
@@ -37,7 +38,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
             }
             else if ((/[^a-zA-Z0-9 ]/.test(input[key]))) { //validacion para que el name no pueda contener caracteres especiales
                 console.log("INPUT KEY VALIDATION", key)
-                if ( key !== "image" ) {
+                if (key !== "image") {
                     errors[key] = "Can't contain special characters"
                 }
             }
@@ -108,10 +109,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
         <div className="modificar_perfil">
             <h1>My profile</h1>
             <h3>{mail}</h3>
-            <img id="imagenPerfil" alt={name} src={image}></img>
-
             <form onSubmit={(event) => handleSubmit(event)} className="Form">
-
                 <div className="Label">
                     <h3>User</h3>
                     <label>{userName}</label>
@@ -136,7 +134,6 @@ export default function DatosPerfil({ setUserLogged, data }) {
                             :
                             null
                     }
-
                 </div>
 
                 <div className="Label">
