@@ -54,7 +54,7 @@ export function Profile({ setUserLogged }) {
                             <DatosPerfil setUserLogged={setUserLogged} data={userdetails}></DatosPerfil>
                             :
                             render === "juegos" ?
-                                <DatosJuegos></DatosJuegos>
+                                <DatosJuegos data={userdetails}></DatosJuegos>
                                 :
                                 render === "favoritos" ?
                                     <Favoritos></Favoritos>
@@ -63,7 +63,7 @@ export function Profile({ setUserLogged }) {
                                         <Cart></Cart>
                                         :
                                         render === "orders" ?
-                                            <Orders></Orders>
+                                            <Orders data={userdetails}></Orders>
                                             :
                                             null
                     }
