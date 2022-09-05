@@ -4,12 +4,20 @@ import { useEffect } from "react";
 import { getGameById, addToCart, addToFav, getReviews, vaciarGame } from "../../redux/Actions/Index.js";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import MiniCard from "./MiniCards.jsx";
 import ReactPlayer from 'react-player'
-import ImagenPop from '../Game_Details/ImagenPop.jsx';
 import LoadingScreen from "../LoadingScreen/LoadingScreen.jsx";
 import { Carousel } from 'react-responsive-carousel';
 import { useNavigate } from "react-router-dom";
+import CardHover from "../NewCard/CardHover.jsx";
+import { Modal } from 'reactstrap'
+import PrettyRating from "pretty-rating-react";
+import {
+    faStar,
+    faStarHalfAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+    faStar as farStar,
+} from "@fortawesome/free-regular-svg-icons";
 
 import '../Game_Details/GameDetails.css'
 
@@ -30,28 +38,10 @@ export default function GameDetails() {
     useEffect(() => {
         dispatch(getGameById(id))
         dispatch(getReviews(id))
-        return function limpiar () {
+        return function limpiar() {
             dispatch(vaciarGame())
         }
     }, [dispatch, id])
-
-    function stars(number) {
-        if (number >= 1 && number < 2) {
-            return "⭐"
-        }
-        else if (number >= 2 && number < 3) {
-            return "⭐⭐"
-        }
-        else if (number >= 3 && number < 4) {
-            return "⭐⭐⭐"
-        }
-        else if (number >= 4 && number < 5) {
-            return "⭐⭐⭐⭐"
-        }
-        else if (number === 5) {
-            return "⭐⭐⭐⭐⭐"
-        }
-    }
 
     function onHanddlePop(img) {
         setImg(img)
@@ -91,6 +81,19 @@ export default function GameDetails() {
         localStorage.setItem("favProducts", JSON.stringify(favoritos));
     }, [items, favoritos]);
 
+    const icons = {
+        star: {
+            complete: faStar,
+            half: faStarHalfAlt,
+            empty: farStar,
+        }
+    }
+    const colors = {
+        star: ['#d9ad26', '#d9ad26', '#434b4d'],
+    }
+
+    console.log(game)
+
     return (
         <div className="game_detail">
             {
@@ -101,54 +104,45 @@ export default function GameDetails() {
                             <div id="conteinerData_detalles">
                                 {
                                     imgPop === true ?
-                                        <ImagenPop show={onHanddlePop} imgPop={imgPop} img={img} />
+                                        <Modal isOpen={imgPop} fullscreen>
+                                            <img src={img} alt="ImagenPOP"></img>
+                                            <button onClick={() => setImgPop(false)}>X</button>
+                                        </Modal>
                                         :
                                         null
                                 }
+                                {
+                                    typeof game.video === "object" ?
+                                        game.video.length > 0 ?
+                                            <Carousel
+                                                showArrows={true}
+                                                infiniteLoop={true}
+                                                centerMode={true}
+                                                renderIndicator={false}
+                                            >
+                                                {
+                                                    game.video.map((video) => {
+                                                        return (
+                                                            < ReactPlayer
+                                                                id="game_video"
+                                                                url={video}
+                                                                controls
+                                                            />
 
-                                <Carousel
-                                    showArrows={true}
-                                    infiniteLoop={true}
-                                    centerMode={true}
-                                    renderIndicator={false}
-                                >
-                                    {
-                                        typeof game.video === "object" ?
-                                            game.video.length > 0 ?
-                                                game.video.map((video) => {
-                                                    return (
-                                                        < ReactPlayer
-                                                            id="game_video"
-                                                            url={video}
-                                                            controls
-                                                        />
-                                                    )
-                                                })
-                                                :
-                                                < ReactPlayer
-                                                    id="game_video"
-                                                    url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                                                    controls
-                                                    playing
-                                                    loop
-                                                    muted
-                                                />
+                                                        )
+                                                    })
+                                                }
+                                            </Carousel>
                                             :
-                                            < ReactPlayer
-                                                id="game_video"
-                                                url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                                                controls
-                                                playing
-                                                loop
-                                                muted
-                                            />
-                                    }
-                                </Carousel>
-
+                                            <img className="imagenJuego" src={game.image} alt="imagenJuego"></img>
+                                        :
+                                        <img className="imagenJuego" src={game.image} alt="imagenJuego"></img>
+                                }
                                 <div>
                                     <h1>{game.name}</h1>
                                     <hr />
-                                    <h3>Rating : {stars(game.rating)}</h3>
+                                    <h3>Rating : </h3>
+                                    <PrettyRating value={game.rating} icons={icons.star} colors={colors.star} />
                                     <hr />
                                     <div className='imagenesJuego' >
 
@@ -175,10 +169,10 @@ export default function GameDetails() {
                                 <h3>Related games</h3>
                                 <div id="contenedor_miniCards">
                                     {
-                                        game.series && game.series.map((card, index) => {
+                                        game.series && game.series.map(card => {
                                             return (
-                                                <MiniCard
-                                                    data={card} />
+                                                <CardHover
+                                                    image={card.image} name={card.name} />
                                             )
                                         })
                                     }

@@ -378,6 +378,7 @@ export function getReviews(gameId){
 }
 
 export function getOrders(user_id){
+    console.log("ACTION ORDER", user_id)
     return async function(dispatch){
         let response = await axios.get(`/orders/${user_id}`)
         return dispatch({
