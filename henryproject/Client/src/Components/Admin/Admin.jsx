@@ -2,13 +2,17 @@ import CreateVideogame from '../CreateVideogame/CreateVideogames'
 import './Admin.css'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
-import { changeName, getAllGames, getAllVideoGamesAdmin, hideVideoGame, getGameById, showVideoGame, getAllDisableVideogame } from '../../redux/Actions/Index'
+import { changeName, getAllGames, getAllVideoGamesAdmin, hideVideoGame, getGameById, showVideoGame, getAllDisableVideogame, getAllUsers, banUser } from '../../redux/Actions/Index'
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import ListVideogame from '../CreateVideogame/ListVideogame/ListVideogame'
 import { useParams } from 'react-router-dom'
 import CardHover from '../NewCard/CardHover'
+import create from '../../Style/Imagenes/create.png'
+import edit from '../../Style/Imagenes/edit.png'
+import admin from '../../Style/Imagenes/admin.png'
+import ban from '../../Style/Imagenes/ban.png'
 
 
 
@@ -18,6 +22,8 @@ export default function Admin() {
     const [name, setName] = useState("")
     const videogames = useSelector(state => state.hidevideogames);
     const disableVideogames=useSelector(state=>state.getAlldisableGame)
+    const allUsers = useSelector(state => state.allUsers)
+    console.log(allUsers)
     const [show,setShow]=useState({
         disabled:false
     });
@@ -25,11 +31,12 @@ export default function Admin() {
 
     const user = JSON.parse(localStorage.getItem("user"));
 
-    const[render , setRender] = useState('admin')
+    const[render , setRender] = useState('users')
 
     useEffect(() => {
         dispatch(getAllGames());
         dispatch(getAllDisableVideogame());
+        dispatch(getAllUsers())
     }, [dispatch])
 
     function handleSubmit(e) {
@@ -66,6 +73,9 @@ export default function Admin() {
         setShow({...show,disabled:false})
         // dispatch(getAllDisableVideogame());
     }
+    function handleBanClick(e) {
+        dispatch(banUser(e.target.value))
+    }
     // /disabled/:id
 
     //function handleChangeName(e){
@@ -78,11 +88,27 @@ export default function Admin() {
         <div className='Admin-conteiner'>
             <div className='Admin-settings'>
                 <aside className='Admin-aside'> 
-                    <h1>Welcome {user.user.userName}</h1>
+                    <h2 className='adminUserH1'>Welcome {user.user.userName}</h2>
                     <img width={200} src={user.user.image} alt={user.user.id_name}></img>
-                    <button onClick={() => setRender("admin")}> Create New Game </button>
-                    <button onClick={() => setRender("edit")}> Edit Game </button>
-                    <button onClick={() => setRender("users")}>Edit Users</button>
+                    <button className='adminButtonStyle' onClick={() => setRender("admin")}> 
+                        <div className='adminButtonStyleDiv'>
+                        <img src={create} alt="create" width='20' className='adminImageButtonStyle'/>
+                        <span>Create New Game </span>
+                        </div>
+                    </button>
+                    <button className='adminButtonStyle' onClick={() => setRender("edit")}> 
+                        <div className='adminButtonStyleDiv'>
+                        <img src={edit} alt="edit" width='20' className='adminImageButtonStyle'/>
+                        <span>Edit Game</span>
+                        </div>
+                    
+                    </button>
+                    <button className='adminButtonStyle' onClick={() => setRender("users")}>
+                        <div className='adminButtonStyleDiv'>
+                        <img src={edit} alt="edit" width='20' className='adminImageButtonStyle'/>
+                        <span>Edit Users</span>
+                        </div>
+                    </button>
                 </aside>
             </div>
             <div className="Admin-show-settings">
@@ -108,7 +134,45 @@ export default function Admin() {
                         :
                         render === "users" ?
                         //falta el editar usuarios
-                        null
+                        <div>
+                            <h2 className='adminUserH1'>Usuarios Registrados:</h2>
+                            <div className='AdminAllUsersBiggestDiv'>
+                            {allUsers.length ?
+                                allUsers.map(e => 
+                                    { return (
+                                        !e.admin ? 
+                                        <span className='adminUsersDivConfig'>
+                                            <span className='adminUsersDivCard'>
+                                            <img src={e.image} width='60' className='adminImgUserCard'></img>
+                                            <span className='adminUserLastFlex'>
+                                                <span className='adminSpanUserCard'>{e.userName}</span>
+                                                <h3>USER ID:</h3> 
+                                                <p>"{e.id_name}"</p>
+                                                <h3>MAIL:</h3>
+                                                <p>"{e.mail}"</p>
+                                                <h3>CREATED AT:</h3>
+                                                <p>"{e.createdAt}"</p>
+                                                
+                                                    <button onClick={(e) => handleBanClick(e)} value={e.mail} >
+                                                    <div className='adminButtonStyleDiv'>
+                                                    <img src={ban} alt="ban" width='20' className='adminImageButtonStyle'/>
+                                                    <span>Disable User</span>
+                                                    </div>
+                                                    </button>
+
+                                                    <button>
+                                                    <div className='adminButtonStyleDiv'>
+                                                    <img src={admin} alt="admin" width='20' className='adminImageButtonStyle'/>
+                                                    <span>Set User As Admin</span>
+                                                    </div>
+                                                </button>
+                                            </span>
+                                            
+                                            </span>
+                                        </span> : null
+                                    )}
+                                ) : <h4>no hay usuarios registrados</h4>}</div>
+                        </div>
                         :
                         render === 'editgame' ?
                         null

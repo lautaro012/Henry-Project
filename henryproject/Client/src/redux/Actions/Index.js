@@ -24,6 +24,7 @@ export const SHOW_VIDEOGAME= "SHOW_VIDEOGAME"
 export const HIDE_VIDEOGAME= "HIDE_VIDEOGAME"
 export const CHANGE_NAME= "CHANGE_NAME"
 export const GET_USER = 'GET_USER'
+export const GET_ALL_USERS = 'GET_ALL_USERS'
 export const CLEAR_USER = 'CLEAR_USER'
 export const GET_REVIEWS_GAME = "GET_REVIEWS_GAME"
 export const GET_GAMES_BY_TAG = 'GET_GAME_BY_TAG'
@@ -242,6 +243,18 @@ export function changeName(payload){
     }
 }
 
+export const getAllUsers = function () {
+    return function (dispatch) {
+        axios.get('/newUser')
+            .then(resp => resp.data)
+            .then(resp => {
+                dispatch({
+                    type: GET_ALL_USERS,
+                    payload:resp
+                })
+            })
+    }
+}
 
 export const getTags = function () {
     return function (dispatch) {
@@ -363,5 +376,12 @@ export function deleteUser(id_name) {
     console.log("SOY ACTION DELETEAR", id_name)
     return function () {
         axios.delete(`/newUser/${id_name}`)
+    }
+}
+
+export function banUser(mail) {
+    return function(){
+        axios.put(`/banned/${mail}`)
+        .then(alert('user disabled'))
     }
 }
