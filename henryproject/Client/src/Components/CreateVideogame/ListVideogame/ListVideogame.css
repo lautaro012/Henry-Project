@@ -16,6 +16,10 @@
     color: white;
     max-width: 144px;
 }
+.listVideoGamesButtonStyle:hover {
+    order: white solid 0.1px;
+    cursor: pointer;
+}
 .listAdminButton {
     background-color:#24282f;
     color: white;
