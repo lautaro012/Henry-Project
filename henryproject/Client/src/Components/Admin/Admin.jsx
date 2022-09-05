@@ -2,8 +2,7 @@ import CreateVideogame from '../CreateVideogame/CreateVideogames'
 import './Admin.css'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
-import { changeName, getAllGames, getAllVideoGamesAdmin, hideVideoGame, getGameById, showVideoGame, getAllDisableVideogame, getAllUsers, banUser } from '../../redux/Actions/Index'
-import { Link } from 'react-router-dom'
+import { getAllGames, hideVideoGame,  showVideoGame, getAllDisableVideogame, getAllUsers, banUser, getAllBannedUsers, noBanUser, getAllNoBannedUsers, updateAdmin } from '../../redux/Actions/Index'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import ListVideogame from '../CreateVideogame/ListVideogame/ListVideogame'
@@ -13,7 +12,7 @@ import create from '../../Style/Imagenes/create.png'
 import edit from '../../Style/Imagenes/edit.png'
 import admin from '../../Style/Imagenes/admin.png'
 import ban from '../../Style/Imagenes/ban.png'
-
+import disabled from '../../Style/Imagenes/disabled.png'
 
 
 export default function Admin() {
@@ -22,7 +21,8 @@ export default function Admin() {
     const [name, setName] = useState("")
     const videogames = useSelector(state => state.hidevideogames);
     const disableVideogames=useSelector(state=>state.getAlldisableGame)
-    const allUsers = useSelector(state => state.allUsers)
+    const allUsers = useSelector(state => state.allUsersNoBanned)
+    const allBannedUsers = useSelector(state => state.allUsersBanned)
     console.log(allUsers)
     const [show,setShow]=useState({
         disabled:false
@@ -31,12 +31,14 @@ export default function Admin() {
 
     const user = JSON.parse(localStorage.getItem("user"));
 
-    const[render , setRender] = useState('users')
+    const[render , setRender] = useState('edit')
 
     useEffect(() => {
         dispatch(getAllGames());
         dispatch(getAllDisableVideogame());
         dispatch(getAllUsers())
+        dispatch(getAllBannedUsers())
+        dispatch(getAllNoBannedUsers())
     }, [dispatch])
 
     function handleSubmit(e) {
@@ -60,7 +62,6 @@ export default function Admin() {
 
     function showGame(e) {
         e.preventDefault()
-        console.log(e.target.value)
         console.log(showVideoGame(e.target.value))
         dispatch(showVideoGame(e.target.value))
 
@@ -73,8 +74,14 @@ export default function Admin() {
         setShow({...show,disabled:false})
         // dispatch(getAllDisableVideogame());
     }
-    function handleBanClick(e) {
-        dispatch(banUser(e.target.value))
+    function handleBanClick(a) {
+         dispatch(banUser(a.target.value))
+    }
+    function handleNoBanClick(a) {
+        dispatch(noBanUser(a.target.value))
+    }
+    function handleAdmin(a) {
+        dispatch(updateAdmin(a.target.value))
     }
     // /disabled/:id
 
@@ -109,6 +116,14 @@ export default function Admin() {
                         <span>Edit Users</span>
                         </div>
                     </button>
+                    <button className='adminButtonStyle' onClick={() => setRender("disableUsers")}>
+                        <div className='adminButtonStyleDiv'>
+                        <img src={disabled} alt="disabled" width='20' className='adminImageButtonStyle'/>
+                        <span>Disabled Users</span>
+                        </div>
+                    </button>
+
+                    
                 </aside>
             </div>
             <div className="Admin-show-settings">
@@ -135,7 +150,7 @@ export default function Admin() {
                         render === "users" ?
                         //falta el editar usuarios
                         <div>
-                            <h2 className='adminUserH1'>Usuarios Registrados:</h2>
+                            <h2 className='adminUserH1'>Registered Users:</h2>
                             <div className='AdminAllUsersBiggestDiv'>
                             {allUsers.length ?
                                 allUsers.map(e => 
@@ -152,30 +167,50 @@ export default function Admin() {
                                                 <p>"{e.mail}"</p>
                                                 <h3>CREATED AT:</h3>
                                                 <p>"{e.createdAt}"</p>
-                                                
-                                                    <button onClick={(e) => handleBanClick(e)} value={e.mail} >
-                                                    <div className='adminButtonStyleDiv'>
-                                                    <img src={ban} alt="ban" width='20' className='adminImageButtonStyle'/>
-                                                    <span>Disable User</span>
-                                                    </div>
-                                                    </button>
-
-                                                    <button>
-                                                    <div className='adminButtonStyleDiv'>
-                                                    <img src={admin} alt="admin" width='20' className='adminImageButtonStyle'/>
-                                                    <span>Set User As Admin</span>
-                                                    </div>
-                                                </button>
+                                                  
+                                                    <button onClick={(a) => handleBanClick(a)} value={e.mail} > Disable User</button>
+                                                    <button onClick={(a) => handleAdmin(a)} value={e.mail}> Set User As Admin</button>
                                             </span>
                                             
                                             </span>
                                         </span> : null
                                     )}
-                                ) : <h4>no hay usuarios registrados</h4>}</div>
+                                ) : <h4>There's no users registered</h4>}</div>
                         </div>
                         :
                         render === 'editgame' ?
                         null
+                        :
+                        render === 'disableUsers' ?
+                        <div>
+                            <h2 className='adminUserH1'>Banned Users:</h2>
+                            <div className='AdminAllUsersBiggestDiv'>
+                            {allBannedUsers.length ?
+                                allBannedUsers.map(e => 
+                                    {
+                                        return (
+                                        <span key={e.id_name} className='adminUsersDivConfig'>
+                                            <span className='adminUsersDivCard'>
+                                            <img src={e.image} width='60' className='adminImgUserCard'></img>
+                                            <span className='adminUserLastFlex'>
+                                                <span className='adminSpanUserCard'>{e.userName}</span>
+                                                <h3>USER ID:</h3> 
+                                                <p>"{e.id_name}"</p>
+                                                <h3>MAIL:</h3>
+                                                <p>"{e.mail}"</p>
+                                                <h3>CREATED AT:</h3>
+                                                <p>"{e.createdAt}"</p>
+                                                
+                                                <button onClick={(a) => handleNoBanClick(a)} value={e.mail} > Enable User</button>
+
+
+                                            </span>
+                                            
+                                            </span>
+                                        </span>
+                                    )}
+                                ) : <h4>There's no banned users</h4>}</div>
+                        </div>
                         :
                         null
                     }

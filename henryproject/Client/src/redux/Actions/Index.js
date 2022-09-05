@@ -30,6 +30,8 @@ export const GET_REVIEWS_GAME = "GET_REVIEWS_GAME"
 export const GET_GAMES_BY_TAG = 'GET_GAME_BY_TAG'
 export const GET_ALL_DISABLE_VIDEOGAME='GET_ALL_DISABLE_VIDEOGAME'
 export const GET_ORDERS = "GET_ORDERS"
+export const GET_USERS_BANNED= 'GET_USERS_BANNED'
+export const GET_NO_BANNED_ALL_USERS = 'GET_NO_BANNED_ALL_USERS'
 
 require('dotenv').config();
 const {
@@ -63,6 +65,16 @@ export function getAllGames(name) {
                 payload: response.data
             })
         }
+    }
+}
+
+export function getAllBannedUsers () {
+    return async function (dispatch) {
+        let res = await axios.get('/banned')
+        dispatch({
+            type: GET_USERS_BANNED,
+            payload: res.data
+        })
     }
 }
 
@@ -375,6 +387,8 @@ export function getOrders(user_id){
     }
 }
 
+
+
 export function modificarUser(id_name,payload) {
     return function () {
         axios.put(`/newUser/${id_name}`, payload)
@@ -392,4 +406,28 @@ export function banUser(mail) {
         axios.put(`/banned/${mail}`)
         .then(alert('user disabled'))
     }
+}
+
+export function noBanUser(mail) {
+    return function(){
+        axios.put(`/noBanned/${mail}`)
+        .then('user enabled')
+    }
+}
+export function updateAdmin(mail) {
+    return function (){
+        axios.put(`/admin/${mail}`)
+        .then(alert('user is now admin'))
+    }
+}
+
+export const getAllNoBannedUsers = function () {
+        return async function (dispatch) {
+            let res = await axios.get('/newUser/noBanned')
+            dispatch({
+                type: GET_NO_BANNED_ALL_USERS,
+                payload: res.data
+            })
+        }
+    
 }

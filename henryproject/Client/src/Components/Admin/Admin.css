@@ -57,6 +57,10 @@
     border-radius: 0;
     margin: 10px;
     padding: 10px 20px;
+    background-color: #24282f;
+    font-size: 15px;
+    color: white;
+    max-width: 144px;
 }
 .adminUserH1{
     color: white;
@@ -65,9 +69,11 @@
 
 .adminButtonStyle:hover {
     border: white solid 0.5px;
+    cursor: pointer;
 }
 .adminImageButtonStyle{
     margin-right: 7px
+    
 }
 .adminButtonStyleDiv{
     display: flex;
@@ -129,6 +135,14 @@
 .adminUserLastFlex button {
     border-radius: 0;
     margin: 5px;
+    padding: 5px;
+    background-color: #24282f;
+    font-size: 15px;
+    color: white;
+}
+.adminUserLastFlex button:hover{
+    cursor: pointer;
+    border: white solid 0.5px;
 }
 
 .adminImgUserCard{

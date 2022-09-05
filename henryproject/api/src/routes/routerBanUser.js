@@ -22,5 +22,13 @@ router.put('/:mail', async (req, res) => {
     }
 
 })
+router.get('/', async(req, res) => {
+    const banUsers = await Users.findAll({
+        where: {
+            banned: true
+        }
+    })
+    res.send(banUsers)
+})
 
 module.exports=router;
