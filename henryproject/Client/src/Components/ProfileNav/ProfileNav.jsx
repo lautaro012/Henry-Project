@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import {  useNavigate } from "react-router-dom"
 // import Cora from '../../Style/Imagenes/Corazon.png'
-import { useNavigate } from "react-router-dom";
 
 const {
     REACT_APP_API
@@ -29,11 +28,12 @@ export default function ProfileNav ( {setUserLogged}) {
    
           },
         }).then(() => {
-            navigate("/home/games");
             localStorage.clear()
-            // localStorage.setItem("user", JSON.stringify([]));
-            // localStorage.setItem("products", JSON.stringify([]));
-            // localStorage.setItem("favProducts", JSON.stringify([]))
+            localStorage.setItem("user", JSON.stringify([]));
+            localStorage.setItem("products", JSON.stringify([]));
+            localStorage.setItem("favProducts", JSON.stringify([]))
+            navigate("/profile");
+             
             setUserLogged(false)
         }).catch(err => {
           console.log(err)
@@ -44,9 +44,9 @@ export default function ProfileNav ( {setUserLogged}) {
     return (
         <div>
             <div className="div-image-navbar">
-              <img width={50} src={user.user?.image} alt='IMAGEEN'></img>
+              <img width={45} src={user.user?.image} alt='IMAGEEN'></img>
             </div>
-            <Link to="/profile"><button> Profile </button></Link>
+            <button onClick={()=> navigate('/profile')}> Profile </button>
             <button onClick={(e) => logOutClick(e)}>Logout</button> 
             {/* <div id="fav">
                 <Link to='/favorites'>

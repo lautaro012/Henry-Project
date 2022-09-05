@@ -9,11 +9,17 @@
   background-image: linear-gradient(225deg, #05003a 0%, #000000ff 40%, #000000bd 70%, #0000007f 100%);
      height: 250px;
 }
-.fav-game-list{
-  
+.card-favourite{
+  color: ghostwhite;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 30px;
 }
-.card-videogame:hover{
-
+.card-favourite span{
+  display: flex;
+  align-items: center;
+  max-width: 190px;
+  padding-right: 10px;
 }
 
 #button_card {
@@ -61,7 +67,7 @@
     cursor: pointer;
   }
   
-  .favourite-checkbox:checked + .favourite-label {
+  .favourite-checkbox :checked + .favourite-label {
     color: red;
     transform: scale(1.2);
   }

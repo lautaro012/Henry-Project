@@ -12,7 +12,7 @@ router.put('/:mail', async (req, res) => {
             }
         )
         if(userNoBanned) {
-            console.log('user banned')
+            console.log('user enabled')
             res.send(userNoBanned)
         } else {
             res.json({err: 'error del banned'})

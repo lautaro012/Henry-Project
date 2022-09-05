@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addToCart, addToFav, deleteItemFromFavs } from "../../redux/Actions/Index.js";
+import { useDispatch, useSelector } from "react-redux";
+import { addToFav, deleteItemFromFavs } from "../../redux/Actions/Index.js";
 import PrettyRating from "pretty-rating-react";
+import { useEffect } from "react";
 import './Cards.css';
 import CardHover from "../NewCard/CardHover.jsx";
 import {
@@ -18,6 +19,8 @@ export default function Card({card}) {
     let { name, image, price, rating, id } = card
     const dispatch = useDispatch()
     const [render, setRender] = useState('')
+    const favoritos = useSelector(state => state.favorites)
+
     function handleFavourite(e) {
         let item = {
             id: id,
@@ -37,11 +40,8 @@ export default function Card({card}) {
         }
        
     }
-
-
-    const favorites = JSON.parse(localStorage.getItem("favProducts"));
-
-    console.log(favorites)
+    
+    let favorites = JSON.parse(localStorage.getItem("favProducts"));
 
     const icons = {
         star: {
@@ -54,6 +54,10 @@ export default function Card({card}) {
         star: ['#d9ad26', '#d9ad26', '#434b4d'],
     }
 
+    useEffect(() => {
+        localStorage.setItem("favProducts", JSON.stringify(favoritos));
+    }, [ favoritos ]);
+
     return (
         <div> 
             <div className="fav-game-list">
@@ -63,11 +67,13 @@ export default function Card({card}) {
                 </Link>
                     { favorites?.includes(card) ?
                     <div className="card-favourite">
+                        <span> {name} </span>
                         <input id={`hearth-${id}`} type="checkbox" value={name} onClick={(e) =>handleFavourite(e)} checked={true} className="favourite-checkbox"/>
                         <label className="favourite-label" htmlFor={`hearth-${id}`}>❤</label>
                     </div>
                         :
                     <div className="card-favourite">
+                        <span> {name} </span>
                         <input id={`hearth-${id}`} type="checkbox" value={name} onClick={(e) =>handleFavourite(e)} className="favourite-checkbox"/>
                         <label className="favourite-label" htmlFor={`hearth-${id}`}>❤</label>
                     </div>

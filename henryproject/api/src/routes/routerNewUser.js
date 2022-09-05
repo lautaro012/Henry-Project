@@ -4,7 +4,8 @@ const { getUsers } = require('../handlers/getUsers');
 const { singUp } = require('../handlers/authHandler');
 
 const { putUser } = require("../handlers/putUser")
-const { deleteUser } = require("../handlers/deleteUser")
+const { deleteUser } = require("../handlers/deleteUser");
+const { Users } = require('../db');
 
 const router = Router();
 
@@ -12,6 +13,14 @@ const router = Router();
 router.post('/', singUp)
 router.get("/",async(req,res)=>{
     return res.status(200).json(await getUsers());
+})
+router.get("/noBanned",async(req,res)=>{
+    let noBannedUsers = await Users.findAll(
+       { where: {
+            banned: false
+        }}
+    )
+    res.send(noBannedUsers)
 })
 
 
