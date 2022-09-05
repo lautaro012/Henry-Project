@@ -9,7 +9,7 @@ import DatosPerfil from './DatosPerfil'
 import DatosJuegos from './DatosJuegos'
 import Orders from './Orders'
 
-export function Profile({setUserLogged}) {
+export function Profile({ setUserLogged }) {
 
     let dispatch = useDispatch()
 
@@ -30,15 +30,15 @@ export function Profile({setUserLogged}) {
     let userdetails = useSelector(state => state.user)
     const [render, setRender] = useState("perfil")
 
-    console.log("USER DETAILS", userdetails)
-
     return (
         <div className='Profile'>
 
             <div className='User_options_conteiner'>
                 <aside className='User_options'>
-                    <h1>Welcome {userdetails.userName}</h1>
-                    <img src={userdetails.image} alt={userdetails.id_name}></img>
+                    <div>
+                        <h1>Welcome {userdetails.userName}</h1>
+                        <img src={userdetails.image} alt={userdetails.name}></img>
+                    </div>
                     <button onClick={() => setRender("perfil")}>My profile</button>
                     <button onClick={() => setRender("juegos")}>My games</button>
                     <button onClick={() => setRender("orders")}>My orders</button>
@@ -51,21 +51,21 @@ export function Profile({setUserLogged}) {
                 <div className='User_data'>
                     {
                         render && render === "perfil" ?
-                        <DatosPerfil setUserLogged={setUserLogged} data={userdetails}></DatosPerfil>
-                        :
-                        render === "juegos" ?
-                        <DatosJuegos></DatosJuegos>
-                        :
-                        render === "favoritos" ?
-                        <Favoritos></Favoritos>
-                        :
-                        render === "cart" ?
-                        <Cart></Cart>
-                        :
-                        render === "orders" ?
-                        <Orders></Orders>
-                        :
-                        null
+                            <DatosPerfil setUserLogged={setUserLogged} data={userdetails}></DatosPerfil>
+                            :
+                            render === "juegos" ?
+                                <DatosJuegos></DatosJuegos>
+                                :
+                                render === "favoritos" ?
+                                    <Favoritos></Favoritos>
+                                    :
+                                    render === "cart" ?
+                                        <Cart></Cart>
+                                        :
+                                        render === "orders" ?
+                                            <Orders></Orders>
+                                            :
+                                            null
                     }
                 </div>
             </div>

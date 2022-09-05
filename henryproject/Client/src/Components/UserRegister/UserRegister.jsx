@@ -44,13 +44,13 @@ export default function Useregister ({registersetIsOpen, registerisOpen}) {
             const data = new FormData()
             data.append("file", e.target.files[0])
             data.append("upload_preset", "gamesAPI")
-            const resp =  fetch (
+            fetch (
                 "https://api.cloudinary.com/v1_1/luubermudezz/image/upload", {
                  method: "POST",
                  body: data
                  // mode: 'no-cors'
                 }
-            ) .then(resp => resp.json())
+            ).then(resp => resp.json())
                     .then(file => {
                         if(file) {
                         setNewUser({

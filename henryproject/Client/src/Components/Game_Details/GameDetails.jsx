@@ -91,10 +91,6 @@ export default function GameDetails() {
         localStorage.setItem("favProducts", JSON.stringify(favoritos));
     }, [items, favoritos]);
 
-
-    console.log("GAME", game)
-    console.log("REVIEWS", reviews)
-
     return (
         <div className="game_detail">
             {

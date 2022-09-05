@@ -75,9 +75,17 @@ function App() {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
+    const favoritesLS = JSON.parse(localStorage.getItem("favProducts"));
+    const videogamesLS = JSON.parse(localStorage.getItem("products"));
 
     if(!user) {
       localStorage.setItem("user", JSON.stringify([]));
+    }
+    if(!favoritesLS) {
+      localStorage.setItem("favProducts", JSON.stringify([]));
+    }
+    if(!videogamesLS) {
+      localStorage.setItem("products", JSON.stringify([]));
     }
   }, [])
 
@@ -87,7 +95,7 @@ function App() {
   
 
   useEffect(() => {
-    if(localStorage.getItem('user')) {
+    if(JSON.parse(localStorage.getItem("user")).user) {
       setUserLogged(true)}
 
     if (localStorage.length === 0) {
