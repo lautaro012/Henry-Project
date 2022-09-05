@@ -63,11 +63,13 @@ export default function Card({card}) {
                 </Link>
                     { favorites?.includes(card) ?
                     <div className="card-favourite">
+                        <span> {name} </span>
                         <input id={`hearth-${id}`} type="checkbox" value={name} onClick={(e) =>handleFavourite(e)} checked={true} className="favourite-checkbox"/>
                         <label className="favourite-label" htmlFor={`hearth-${id}`}>❤</label>
                     </div>
                         :
                     <div className="card-favourite">
+                        <span> {name} </span>
                         <input id={`hearth-${id}`} type="checkbox" value={name} onClick={(e) =>handleFavourite(e)} className="favourite-checkbox"/>
                         <label className="favourite-label" htmlFor={`hearth-${id}`}>❤</label>
                     </div>

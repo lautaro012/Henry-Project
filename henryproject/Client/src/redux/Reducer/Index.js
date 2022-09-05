@@ -28,13 +28,15 @@ import {
     GET_GAMES_BY_TAG,
     GET_ALL_DISABLE_VIDEOGAME,
     GET_ALL_USERS,
+    GET_ORDERS,
+
 } from "../Actions/Index"
 
 const initialState = {
     Allvideogames: [],
     videogames: [],
     videogamesBygenre: [],
-    videogamesBytag:[],
+    videogamesBytag: [],
     game: [],
     platforms: [],
     genres: [],
@@ -46,12 +48,14 @@ const initialState = {
     tags: [],
     Tagsinfilter: [],
     user: [],
-    hidenVideoGame:[],
+    hidenVideoGame: [],
     showVideoGame: [],
     reviews: [],
     hidevideogames:[],
     getAlldisableGame:[],
     allUsers: [],
+    orders: [],
+
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -67,7 +71,7 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 videogames: action.payload,
                 Allvideogames: action.payload,
-                hidevideogames:action.payload,
+                hidevideogames: action.payload,
                 tagsFilter: action.payload
             }
 
@@ -77,7 +81,7 @@ export default function rootReducer(state = initialState, action) {
                 videogames: action.payload,
             }
 
-            
+
         case ACTUALIZAR_CART:
             return {
                 ...state,
@@ -209,54 +213,54 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 videogames: [...state.videogames, action.payload],
             }
-            case POST_VIDEOGAME:
-        return{
-          ...state
-        }
+        case POST_VIDEOGAME:
+            return {
+                ...state
+            }
         case HIDE_VIDEOGAME:
-            var getAllgameshide=state.hidevideogames;
-            var newArreglo=[];
-            getAllgameshide.filter(a=>{
-                if(a.id!==action.payload){
-                    return newArreglo.push(a); 
+            var getAllgameshide = state.hidevideogames;
+            var newArreglo = [];
+            getAllgameshide.filter(a => {
+                if (a.id !== action.payload) {
+                    return newArreglo.push(a);
                 }
             });
-            return{
+            return {
                 ...state,
-                hidevideogames:newArreglo,
-                hidenVideoGame:action.payload
-              }
-        
+                hidevideogames: newArreglo,
+                hidenVideoGame: action.payload
+            }
+
         case GET_ALL_DISABLE_VIDEOGAME:
-            
-            return{
+
+            return {
                 ...state,
-                getAlldisableGame:action.payload
-              }
-            
+                getAlldisableGame: action.payload
+            }
 
 
-        
-        case SHOW_VIDEOGAME: 
-        var getAllgameshide=state.getAlldisableGame;
-        // console.log(state.getAlldisableGame);
-            var newArreglo=[];
-            getAllgameshide.filter(a=>{
-                if(a.id!=action.payload){
-                    return newArreglo.push(a); 
+
+
+        case SHOW_VIDEOGAME:
+            var getAllgameshide = state.getAlldisableGame;
+            // console.log(state.getAlldisableGame);
+            var newArreglo = [];
+            getAllgameshide.filter(a => {
+                if (a.id != action.payload) {
+                    return newArreglo.push(a);
                 }
             });
             console.log(getAllgameshide);
             console.log(newArreglo);
-        return {
-            ...state,
-            getAlldisableGame:newArreglo,
-            showVideoGame: action.payload
-        }
+            return {
+                ...state,
+                getAlldisableGame: newArreglo,
+                showVideoGame: action.payload
+            }
         case CHANGE_NAME:
-            return{
+            return {
                 ...state
-              } 
+            }
 
         case FILTER_GAMES:
             let { platformby, genreby } = action.payload
@@ -310,6 +314,11 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 reviews: action.payload
+            }
+        case GET_ORDERS:
+            return {
+                ...state,
+                orders: action.payload
             }
 
         default: return state

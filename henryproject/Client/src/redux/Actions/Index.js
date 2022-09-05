@@ -29,6 +29,7 @@ export const CLEAR_USER = 'CLEAR_USER'
 export const GET_REVIEWS_GAME = "GET_REVIEWS_GAME"
 export const GET_GAMES_BY_TAG = 'GET_GAME_BY_TAG'
 export const GET_ALL_DISABLE_VIDEOGAME='GET_ALL_DISABLE_VIDEOGAME'
+export const GET_ORDERS = "GET_ORDERS"
 
 require('dotenv').config();
 const {
@@ -364,16 +365,23 @@ export function getReviews(gameId){
     }
 }
 
-export function modificarUser(id_name,payload) {
+export function getOrders(user_id){
+    return async function(dispatch){
+        let response = await axios.get(`/orders/${user_id}`)
+        return dispatch({
+            type: GET_ORDERS,
+            payload: response.data
+        })
+    }
+}
 
-    console.log("SOY ACTION MODIFICAR", id_name, payload)
+export function modificarUser(id_name,payload) {
     return function () {
         axios.put(`/newUser/${id_name}`, payload)
     }
 }
 
 export function deleteUser(id_name) {
-    console.log("SOY ACTION DELETEAR", id_name)
     return function () {
         axios.delete(`/newUser/${id_name}`)
     }
