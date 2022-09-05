@@ -69,8 +69,8 @@ export default function ListVideogame({ showGame, handleHide, handleOnChange, di
                             <button type="button" >Editar </button>
                         </Link>
                         {/* <Link to= {`/admin/${item.id}`}> */}
-                        <button type="button"  onClick={(ev) => handleHide(ev)} value={item.id}> Deshabilitar </button>
-                        <button type="button"   onClick={(e) => showGame(e)} value={item.id}> Habilitar </button>
+                         <button type="button"  onClick={(ev) => handleHide(ev)} value={item.id}> Deshabilitar </button>
+                         {/* <button type="button"   onClick={(e) => showGame(e)} value={item.id}> Habilitar </button> */}
                       </div>
                   </div>
                 )
@@ -88,8 +88,8 @@ export default function ListVideogame({ showGame, handleHide, handleOnChange, di
                             <button type="button" >Editar </button>
                         </Link>
                         {/* <Link to= {`/admin/${item.id}`}> */}
-                        <button type="button"  onClick={(ev) => handleHide(ev)} value={item.id}> Deshabilitar </button>
-                        <button type="button"   onClick={(e) => showGame(e)} value={item.id}> Habilitar </button>
+                        {/* <button type="button"  onClick={(ev) => handleHide(ev)} value={item.id}> Deshabilitar </button> */}
+                         <button type="button"   onClick={(e) => showGame(e)} value={item.id}> Habilitar </button>
                       </div>
                   </div>
                   )
