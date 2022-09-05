@@ -55,7 +55,7 @@ export default function Games() {
         let orderType = document.getElementById('orderType').value
         dispatch(order({ orderBy: orderBy, orderType: orderType }));
         setCurrentPage(1);
-        setRender(...render, 'hola');
+        setRender(`VAMOS ${render} VAMOS`);
     }
 
 
