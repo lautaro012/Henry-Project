@@ -90,9 +90,8 @@ let history=useNavigate();
     const [validate,setValidate]=useState({});
     //STATE SHOWERROR
     const [showError, setShowError] = useState(false); 
-
     // STATE button
-    const [buttons,setButtons]=useState(true);
+    const [buttons,setButtons]=useState(false);
 
 
     //Expresiones
@@ -359,18 +358,48 @@ let history=useNavigate();
         tags:true,
         genres:true
     })
+    
 
 
     // onclickSubmit
     function onClickSubmit(){
         // e.preventDefault();
-        if(state.name=""){
-
+        if(state.name!="" && state.price!="" && state.description!="" && state.rating != "" && state.video.length!=0 && state.image!="" && state.screenshots!=0 && state.store!=0 && state.developers!=0 && state.publishers!=0 && state.website != "" && state.releaseDate!="" && state.metacritic!="" && state.esrb_rating != "" && state.platforms.length!=0 && state.tags.length!=0 && state.genres.length!=0 && Object.keys(error).length==0){
+            // console.log(Object.keys(error).length!=0);
+            console.log(state.releaseDate);    
+            setButtons(false)
+                dispatch(postVideoGame(state));
+                alert("Se ha creado correctamente");
+            // }       
+        }else{
+            if(Object.keys(error).length!=0){
+                setButtons(true)
+                alert("Debe completar los campos correctamente")
+            }else{
+                setButtons(true)
+                alert("Debe completar los campos correctamente")
+            }
+                
         }
-        dispatch(postVideoGame(state));
-        // alert("Se ha creado correctamente");
-        console.log(state);
-        // handleRegresar();
+        //     setButtons(false)
+        //     dispatch(postVideoGame(state));
+        //     alert("Se ha creado correctamente");
+        //     console.log(state);
+        // }
+        // // else if(state.name=="" && state.price==""){
+        // //     console.log("Error");
+        // //     console.log(state);
+        // //     setButtons(true);
+        // // }
+        // setButtons(true);
+        //     console.log("A");
+        // setButtons(false);
+        // console.log()
+        // else{
+            
+        //     // handleRegresar();
+        // }
+        
     }
 
     // Para el detalle
@@ -418,7 +447,7 @@ let history=useNavigate();
                         </div>
                         {/* DESCRIPTION */}
                         <div className="create-description">
-                            <label type="text">Price: </label>
+                            <label type="text">Description: </label>
                             <textarea cols="50" rows="7" placeholder="Write some description..." onChange={(ev)=>handleChange(ev)} name="description" required onBlur={(ev)=>handleChange(ev)} onKeyUp={(ev)=>handleChange(ev)} value={state.description}></textarea>
                             <div>
                             {showError ? <span>{error.description}</span> || <span>{validate.description}</span> : <span>{error.description}</span>|| <span>{validate.description}</span>}
@@ -557,13 +586,14 @@ let history=useNavigate();
                         </div>
                         {/* RELEASEDATE */}
                         <div className="create-releasedate">
-                        <label type="text">Release Date: </label>
-                            <input type="text" onChange={(ev)=>handleChange(ev)} name="releasedate" placeholder="releasedate... " onBlur={(ev)=>{handleChange(ev)}} onKeyUp={(ev)=>handleChange(ev)} />
+                        <label type="text">ReleaseDate : </label>
+                            <input type="text" onChange={(ev)=>handleChange(ev)} required name="releaseDate" placeholder="release... " onBlur={(ev)=>{handleChange(ev)}} onKeyUp={(ev)=>handleChange(ev)} value={state.releaseDate}/>
                             {/* <input type="file" name="adjunto" accept=".mp4,.jpg,.png" multiple /> */}
                             <div>    
-                            {showError ? <span>{error.releasedate}</span> || <span>{validate.releasedate}</span> : <span>{error.releasedate}</span>|| <span>{validate.releasedate}</span>}
+                            {showError ? <span>{error.releaseDate}</span> || <span>{validate.releaseDate}</span> : <span>{error.releaseDate}</span>|| <span>{validate.releaseDate}</span>}
                             </div>
                         </div>
+                        
                         {/* METACRITIC */}
                         <div className="create-metacritic">
                         <label type="text">Metacritic </label>
@@ -663,7 +693,7 @@ let history=useNavigate();
                             </div>    
                         </div>
                         <div className="botoncreate">
-                            {(buttons==false) ? (!buttons &&(<input type="submit" onClick={()=>onClickSubmit()} value="Create" className="buttonCreate" disabled={false}/>)):(buttons &&(<input type="submit" onClick={()=>onClickSubmit()} value="Create" className="buttonCreate" disabled={true}/>)) }
+                            {(!buttons)? (!buttons &&(<input type="submit" onClick={()=>onClickSubmit()} value="Create" className="buttonCreate"/>)):(buttons &&(<input type="submit" onClick={()=>onClickSubmit()} value="Create" className="buttonCreate"/>))}
                         </div>        
 
                     {/* </form>   */}
