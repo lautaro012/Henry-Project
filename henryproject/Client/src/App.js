@@ -25,6 +25,7 @@ import { useEffect, useState } from 'react';
 // import Register from './Components/Register/Register';
 import { FormularioPago } from './Components/FormularioPago/FormularioPago';
 
+
 import {Elements} from "@stripe/react-stripe-js";
 import {loadStripe} from "@stripe/stripe-js"
 const stripePromise=loadStripe("pk_test_51Lde2sJXnqrwcfODw8cWGGVzyavpCNgaUXMhWTAbkGIJ3txhY9PVGuUzy9QPzQ5riddbQZdRADa3QTHxqhrSeSZq00dWuMhBM2")
@@ -150,6 +151,7 @@ function App() {
         <Route path='/cart' element={<Cart/>} />
         <Route path='/test' element={<CreateVideogame/>} />
         <Route path='/cart/formularioPago' element={userLogged ? <Elements stripe={stripePromise}><FormularioPago></FormularioPago></Elements> : <UserSign setUserLogged={setUserLogged} isOpen={true}/>}/>
+      
       </Routes>
       <Footer />
     </Router>

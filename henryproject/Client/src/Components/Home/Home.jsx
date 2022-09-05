@@ -1,4 +1,4 @@
-import '../Home/Home.css'
+import '../Home/Home.scss'
 //import SearchBar from '../SearchBar/SearchBar'
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -7,7 +7,6 @@ import { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
 import { getAllGames, Getbygenre, Getbytag, vaciarGame } from '../../redux/Actions/Index'
-import Card from '../Cards/Cards';
 import CardDescription from '../NewCard/CardDescription';
 import CardHover from '../NewCard/CardHover';
 
@@ -16,7 +15,7 @@ import CardHover from '../NewCard/CardHover';
 export default function Home () {
 
     const dispatch = useDispatch()
-   // const navigate = useNavigate()
+   const navigate = useNavigate()
     
     let Allvideogames = useSelector(state => state.Allvideogames)
     let videogamesBytag = useSelector(state => state.videogamesBytag)
@@ -66,7 +65,9 @@ export default function Home () {
         return 0
     }).slice(0,20)
    
-
+    function handleLink() {
+        navigate(`/home/games/${GameofTheWeek.id}`)
+    }
 
     return (
     <div className="Home">
@@ -74,7 +75,7 @@ export default function Home () {
             Allvideogames[0] ?
             <div className='Home-Games'>
                 <div className='main-carrousel'>
-                    <Carousel 
+                    <Carousel
                         showArrows={false} 
                         autoPlay={true} 
                         interval={5000}
@@ -97,9 +98,9 @@ export default function Home () {
                                 })
                             }
                     </Carousel>
-                    <div className='main-title-home'>
-                        <h1>{GameofTheWeek.name}</h1>
-                        <Link to={`/home/games/${GameofTheWeek.id}`}><button> Disponible Ahora </button></Link>
+                    <div className='main-title-home'>   
+                        <h1 >{GameofTheWeek.name}</h1>
+                        <button class="kave-btn" onClick={handleLink} > <span class='kave-line' >Disponible Ahora</span> </button>
                     </div>
                 </div>
 
@@ -124,9 +125,11 @@ export default function Home () {
                                 {
                                 news.slice(0,4).map((game) => {
                                     return (
-                                            <CardDescription
-                                            card={game}
-                                            />
+                                            <Link to={`/home/games/${game.id}`}>
+                                                <CardDescription
+                                                card={game}
+                                                />
+                                            </Link>
                                     )
                                 })
                                 }
@@ -137,9 +140,11 @@ export default function Home () {
                                 {
                             news.slice(4,8).map((game) => {
                                 return (
-                                    <CardDescription
-                                    card={game}
-                                    />
+                                    <Link to={`/home/games/${game.id}`}>
+                                                <CardDescription
+                                                card={game}
+                                                />
+                                            </Link>
                                 )
                             })
                                 }
@@ -150,9 +155,11 @@ export default function Home () {
                                 {   
                             news.slice(8,12).map((game) => {
                                 return (
-                                    <CardDescription
-                                    card={game}
-                                    />
+                                    <Link to={`/home/games/${game.id}`}>
+                                                <CardDescription
+                                                card={game}
+                                                />
+                                            </Link>
                                 )
                                 }) 
                             }
@@ -163,9 +170,11 @@ export default function Home () {
                                 {
                                     news.slice(12,16).map((game) => {
                                      return (
-                                        <CardDescription
-                                        card={game}
-                                        />
+                                        <Link to={`/home/games/${game.id}`}>
+                                                <CardDescription
+                                                card={game}
+                                                />
+                                            </Link>
                                      )
                                       })  
 
@@ -186,10 +195,12 @@ export default function Home () {
                                     cheaps?.map(game => {
                                         return (
                                             <div key={game.id} className='home-game-list'>
-                                            <CardHover
-                                            name={game.name}
-                                            image={game.image}
-                                            />  
+                                            <Link to={`/home/games/${game.id}`}>
+                                                <CardHover
+                                                name={game.name}
+                                                image={game.image}
+                                                />  
+                                            </Link>    
                                            <div>
                                                     <h3>{game.name}</h3>
                                                     <hr></hr>
@@ -209,10 +220,12 @@ export default function Home () {
                                     videogamesBygenre?.slice(0,5).map(game =>{
                                         return(
                                             <div key={game.id} className='home-game-list'>
-                                                <CardHover
-                                                name={game.name}
-                                                image={game.image}
-                                                />  
+                                                <Link to={`/home/games/${game.id}`}>
+                                                    <CardHover
+                                                    name={game.name}
+                                                    image={game.image}
+                                                    />  
+                                                </Link>
                                                 <div>
                                                     <h3>{game.name}</h3>
                                                     <hr></hr>
@@ -232,10 +245,12 @@ export default function Home () {
                                     oldies?.slice(0,5).map(game => {
                                         return(
                                             <div key={game.id} className='home-game-list'>
-                                                <CardHover
-                                                name={game.name}
-                                                image={game.image}
-                                                />  
+                                                <Link to={`/home/games/${game.id}`}>
+                                                    <CardHover
+                                                    name={game.name}
+                                                    image={game.image}
+                                                    />  
+                                                </Link>
                                                 <div>
                                                     <h3>{game.name}</h3>
                                                     <hr></hr>
@@ -269,9 +284,11 @@ export default function Home () {
                                 {
                                  videogamesBytag.map((game) => {
                                     return (
+                                        <Link to={`/home/games/${game.id}`}>
                                             <CardDescription
                                             card={game}
                                             />
+                                        </Link>
                                     )
                                 })
                                 }
@@ -282,9 +299,11 @@ export default function Home () {
                                 {
                                  videogamesBytag.slice(3).map((game) => {
                                     return (
+                                        <Link to={`/home/games/${game.id}`}>
                                             <CardDescription
                                             card={game}
                                             />
+                                        </Link>
                                     )
                                 })
                                 }

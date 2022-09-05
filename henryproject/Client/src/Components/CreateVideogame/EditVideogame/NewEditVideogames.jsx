@@ -1,343 +1,278 @@
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
-import './CreateVideogames.css'
  import { useEffect, useState } from 'react';
 import { getGenres, getPlatforms, getTags, postVideoGame } from "../../redux/Actions/Index"
 import { Carousel } from 'react-responsive-carousel';
 import ReactPlayer from 'react-player'
 import { useNavigate } from "react-router-dom";
 
-
-
-export default function CreateVideogame () {
+export default function NewEditVideogames(){
     const dispatch=useDispatch();
-    // Traemos las Plataforms,Tag,Genre
     const platforms=useSelector(state=>state.platforms);
     const genres=useSelector(state=>state.genres);
     const tags=useSelector(state=>state.tags);
 
-  // usamos useEffect
   useEffect(()=>{
     dispatch(getPlatforms());
     dispatch(getGenres());
     dispatch(getTags());
 },[dispatch])
 
-
 let history=useNavigate();
   const handleRegresar=()=>{
     history("/admin")
-  }  
+  } 
 
-    // states
-    // state general
-    const [state,setState]=useState({
-        name:"",
-        price:"",
-        description:"",
-        rating:"",
-        video:[],
-        image:"",
-        screenshots:[],
-        store:[],
-        developers:[],
-        publishers:[],
-        website:"",
-        releaseDate:"",
-        metacritic:"",
-        esrb_rating:"",
-        platforms:[],
-        tags:[],
-        genres:[]
-    })
-
-    // state movie
-    const [movie,setMovie]=useState({
-        name:""
-    })
-    // state screenshot
-    const [screenshot,setScreenshot]=useState({
-        name:""
-    })
-    // state stores
-    const [store,setStore]=useState({
-        name:""
-    })
-    // state developers
-    const [developer,setDeveloper]=useState({
-        name:""
-    })
-     // state publisher
-     const [publisher,setPublisher]=useState({
-        name:""
-    })
-    // state platforms
-    const [platform,setPlatform]=useState({
-        name:""
-    });
-    // state genres
-    const [genre,setGenre]=useState({
-        name:""
-    })
-    // state tags
-    const [tag,setTag]=useState({
-        name:""
-    })
-
-    //STATE ERROR
-    const [error,setError]=useState({});
-    // STATE VALIDATE
-    const [validate,setValidate]=useState({});
-    //STATE SHOWERROR
-    const [showError, setShowError] = useState(false); 
-    // STATE button
-    const [buttons,setButtons]=useState(false);
+  const [state,setState]=useState({
+    name:"",
+    price:"",
+    description:"",
+    rating:"",
+    video:[],
+    image:"",
+    screenshots:[],
+    store:[],
+    developers:[],
+    publishers:[],
+    website:"",
+    releaseDate:"",
+    metacritic:"",
+    esrb_rating:"",
+    platforms:[],
+    tags:[],
+    genres:[]
+}) 
 
 
-    //Expresiones
-    const expresiones={
-        name: /^[a-zA-ZñÑ0-9 ]{1,40}$/,
-        price:/^[0-9]{1,3}(([.]|[,])[0-9]+)?$/,
-        description:/^[a-zA-Z0-9ñÑ \s+]{1,1000}$/,
-        rating: /^[1-5]{1}(([.]|[,])[0-9]+)?$/,
-        developers: /^[a-zA-ZñÑ0-9 ]{1,40}$/,
-        publishers: /^[a-zA-ZñÑ0-9 ]{1,40}$/,
-        metacritic: /^[0-9]{1,5}$/,
-        esrb_rating:    /^[a-zA-ZñÑ0-9 ]{1,40}$/
-    }
-    // rating
-    // 1,1.1,1.2,1.9 ,2.1
+const [movie,setMovie]=useState({
+    name:""
+})
 
-    // VALIDATION
-    function validateFields(input){
-        const errores={};
-        
-        for(let keys in input) {
-            switch(keys){
-                case "name":
-                    if(keys=="name"){
-                        if(!input[keys].match(expresiones.name)){
-                            errores[keys] = `El ${keys} debe contener caracteres correctamente`;
-                        }
+const [screenshot,setScreenshot]=useState({
+    name:""
+})
+
+const [store,setStore]=useState({
+    name:""
+})
+
+const [developer,setDeveloper]=useState({
+    name:""
+})
+
+ const [publisher,setPublisher]=useState({
+    name:""
+})
+
+const [platform,setPlatform]=useState({
+    name:""
+});
+
+const [genre,setGenre]=useState({
+    name:""
+})
+
+const [tag,setTag]=useState({
+    name:""
+})
+
+
+const [error,setError]=useState({});
+
+const [validate,setValidate]=useState({});
+
+const [showError, setShowError] = useState(false); 
+
+const [buttons,setButtons]=useState(true);
+
+
+
+const expresiones={
+    name: /^[a-zA-ZñÑ0-9 ]{1,40}$/,
+    price:/^[0-9]{1,3}(([.]|[,])[0-9]+)?$/,
+    description:/^[a-zA-Z0-9ñÑ \s+]{1,1000}$/,
+    rating: /^[1-5]{1}(([.]|[,])[0-9]+)?$/,
+    developers: /^[a-zA-ZñÑ0-9 ]{1,40}$/,
+    publishers: /^[a-zA-ZñÑ0-9 ]{1,40}$/,
+    metacritic: /^[0-9]{1,5}$/,
+    esrb_rating:    /^[a-zA-ZñÑ0-9 ]{1,40}$/
+}
+
+function validateFields(input){
+    const errores={};
+    
+    for(let keys in input) {
+        switch(keys){
+            case "name":
+                if(keys=="name"){
+                    if(!input[keys].match(expresiones.name)){
+                        errores[keys] = `El ${keys} debe contener caracteres correctamente`;
                     }
-                case "price": 
-                    if(keys=="price"){
-                        if(!input[keys].match(expresiones.price)){
-                            errores[keys] = `El ${keys} debe contener caracteres correctamente`;
-                        }
+                }
+            case "price": 
+                if(keys=="price"){
+                    if(!input[keys].match(expresiones.price)){
+                        errores[keys] = `El ${keys} debe contener caracteres correctamente`;
                     }
-                case "description": 
-                    if(keys=="description"){
-                        if(!input[keys].match(expresiones.description)){
-                            errores[keys] = `El ${keys} debe contener caracteres correctamente`;
-                        }
+                }
+            case "description": 
+                if(keys=="description"){
+                    if(!input[keys].match(expresiones.description)){
+                        errores[keys] = `El ${keys} debe contener caracteres correctamente`;
                     }
-                case "rating": 
-                    if(keys=="rating"){
-                        
-                        
-                            if(!input[keys].match(expresiones.rating)){
-                                // if(input[keys]<0 || input[keys]>5){
-                                errores[keys] = `El ${keys} debe contener caracteres correctamente`;
-                                // }
-
-                        }
-                    }
+                }
+            case "rating": 
+                if(keys=="rating"){
                     
-                default:
-                    if(state.video.length<=0){
-                        if(!input[keys]) errores[keys] = `${keys} is required`
-                    }
-                    if(state.screenshots.length<=0){
-                        if(!input[keys]) errores[keys] = `${keys} is required`
-                    }
-                    if(state.developers.length<=0){
-                        if(!input[keys]) errores[keys] = `${keys} is required`
-                    }
-                    if(state.publishers.length<=0){
-                        if(!input[keys]) errores[keys] = `${keys} is required`
-                    }
-                    // console.log(state.)
-            }
-        }
-            return errores
-    }
+                    
+                        if(!input[keys].match(expresiones.rating)){
+                            // if(input[keys]<0 || input[keys]>5){
+                            errores[keys] = `El ${keys} debe contener caracteres correctamente`;
+                            // }
 
-    // HANDLE CHANGE
-    function handleChange(ev){
-            ev.preventDefault();
-            if(ev.target.name=="video"){
-                setMovie({...movie,name:ev.target.value});
-                setError(validateFields({...error,[ev.target.name]: ev.target.value}))
-                setValidate(validateFields({...validate,[ev.target.name]: ev.target.value}))
-
-            }else if(ev.target.name=="screenshot"){
-                setScreenshot({...screenshot,name:ev.target.value});
-                setError(validateFields({...error,[ev.target.name]: ev.target.value}))
-                setValidate(validateFields({...validate,[ev.target.name]: ev.target.value}))
-            }else if(ev.target.name=="store"){
-                if(!state.store.includes(ev.target.value)){
-                    if(ev.target.value!=="All"){
-                        setState({...state,store:[...state.store,ev.target.value]});
-                    setStore({...store,name:ev.target.value});
                     }
                 }
-            }else if(ev.target.name=="developer"){
-                setDeveloper({...developer,name:ev.target.value});
-                setError(validateFields({...error,[ev.target.name]: ev.target.value}))
-                setValidate(validateFields({...validate,[ev.target.name]: ev.target.value}))
-            }else if(ev.target.name=="publisher"){
-                setPublisher({...publisher,name:ev.target.value});
-                setError(validateFields({...error,[ev.target.name]: ev.target.value}))
-                setValidate(validateFields({...validate,[ev.target.name]: ev.target.value}))
-            }else if(ev.target.name=="platform"){
-                if(!state.platforms.includes(ev.target.value)){
-                    if(ev.target.value!=="All"){
-                        setState({...state,platforms:[...state.platforms,ev.target.value]});
-                    setPlatform({...platform,name:ev.target.value});
-                    }
-                }
-            }else if(ev.target.name=="tag"){
-                if(!state.tags.includes(ev.target.value)){
-                    if(ev.target.value!=="All"){
-                        setState({...state,tags:[...state.tags,ev.target.value]});
-                    setTag({...tag,name:ev.target.value});
-                    }
-                }
-            }else if(ev.target.name=="genre"){
-                if(!state.genres.includes(ev.target.value)){
-                    if(ev.target.value!=="All"){
-                        setState({...state,genres:[...state.genres,ev.target.value]});
-                    setGenre({...genre,name:ev.target.value});
-                    }
-                }
-            }else{
-                setState({...state,[ev.target.name]: ev.target.value})
-                setError(validateFields({...error,[ev.target.name]: ev.target.value}))
-                setValidate(validateFields({...validate,[ev.target.name]: ev.target.value}))
                 
-            }
-    }
-    
-    // FUNCIONES VIDEO
-    function onClickAgregarMovie(){
-        if(!state.video.includes(movie.name)){
-            if(movie.name!==""){
-                setState({...state,video:[...state.video,movie.name]});
-            }
-        }
-    }
-    // FUNCION VIDEO DELETE
-    function onClickDeleteVideo(ev){
-        setState({...state,video:[...state.video].filter((video)=>video!==ev)});
-    }
-
-    // FUNCIONES SCREENSHOTS
-    function onClickAgregarScreenshot(){
-            if(!state.screenshots.includes(screenshot.name)){
-                if(screenshot.name!==""){
-                    setState({...state,screenshots:[...state.screenshots,screenshot.name]});
+            default:
+                if(state.video.length<=0){
+                    if(!input[keys]) errores[keys] = `${keys} is required`
                 }
-            }
-        }
-    
-    // FUNCION SCREENSHOT DELETE
-    function onClickDeleteScreenshot(ev){
-        setState({...state,screenshots:[...state.screenshots].filter((screenshot)=>screenshot!==ev)});
-    }
-
-    // FUNCTION ONCLICKDELETE
-    function onClickDeleteStore(ev){
-        setState({...state,store:[...state.store].filter((store)=>store!==ev)});
-    }
-
-    // FUNCIONES DEVELOPER
-    function onClickAgregarDeveloper(){
-            if(!state.developers.includes(developer.name)){
-                if(developer.name!==""){
-                    setState({...state,developers:[...state.developers,developer.name]});
+                if(state.screenshots.length<=0){
+                    if(!input[keys]) errores[keys] = `${keys} is required`
                 }
-            }
-        }
-    
-    // FUNCION DEVELOPER DELETE
-    function onClickDeleteDeveloper(ev){
-        setState({...state,developers:[...state.developers].filter((developer)=>developer!==ev)});
-    }
-
-    // FUNCIONES PUBLISHERS
-    function onClickAgregarPublisher(){
-            if(!state.publishers.includes(publisher.name)){
-                if(publisher.name!==""){
-                    setState({...state,publishers:[...state.publishers,publisher.name]});
+                if(state.developers.length<=0){
+                    if(!input[keys]) errores[keys] = `${keys} is required`
                 }
+                if(state.publishers.length<=0){
+                    if(!input[keys]) errores[keys] = `${keys} is required`
+                }
+                // console.log(state.)
+        }
+    }
+        return errores
+}
+function handleChange(ev){
+    ev.preventDefault();
+    if(ev.target.name=="video"){
+        setMovie({...movie,name:ev.target.value});
+        setError(validateFields({...error,[ev.target.name]: ev.target.value}))
+        setValidate(validateFields({...validate,[ev.target.name]: ev.target.value}))
+
+    }else if(ev.target.name=="screenshot"){
+        setScreenshot({...screenshot,name:ev.target.value});
+        setError(validateFields({...error,[ev.target.name]: ev.target.value}))
+        setValidate(validateFields({...validate,[ev.target.name]: ev.target.value}))
+    }else if(ev.target.name=="store"){
+        if(!state.store.includes(ev.target.value)){
+            if(ev.target.value!=="All"){
+                setState({...state,store:[...state.store,ev.target.value]});
+            setStore({...store,name:ev.target.value});
             }
         }
+    }else if(ev.target.name=="developer"){
+        setDeveloper({...developer,name:ev.target.value});
+        setError(validateFields({...error,[ev.target.name]: ev.target.value}))
+        setValidate(validateFields({...validate,[ev.target.name]: ev.target.value}))
+    }else if(ev.target.name=="publisher"){
+        setPublisher({...publisher,name:ev.target.value});
+        setError(validateFields({...error,[ev.target.name]: ev.target.value}))
+        setValidate(validateFields({...validate,[ev.target.name]: ev.target.value}))
+    }else if(ev.target.name=="platform"){
+        if(!state.platforms.includes(ev.target.value)){
+            if(ev.target.value!=="All"){
+                setState({...state,platforms:[...state.platforms,ev.target.value]});
+            setPlatform({...platform,name:ev.target.value});
+            }
+        }
+    }else if(ev.target.name=="tag"){
+        if(!state.tags.includes(ev.target.value)){
+            if(ev.target.value!=="All"){
+                setState({...state,tags:[...state.tags,ev.target.value]});
+            setTag({...tag,name:ev.target.value});
+            }
+        }
+    }else if(ev.target.name=="genre"){
+        if(!state.genres.includes(ev.target.value)){
+            if(ev.target.value!=="All"){
+                setState({...state,genres:[...state.genres,ev.target.value]});
+            setGenre({...genre,name:ev.target.value});
+            }
+        }
+    }else{
+        setState({...state,[ev.target.name]: ev.target.value})
+        setError(validateFields({...error,[ev.target.name]: ev.target.value}))
+        setValidate(validateFields({...validate,[ev.target.name]: ev.target.value}))
+        
+    }
+}
+
+function onClickAgregarMovie(){
+    if(!state.video.includes(movie.name)){
+        if(movie.name!==""){
+            setState({...state,video:[...state.video,movie.name]});
+        }
+    }
+}
+
+function onClickDeleteVideo(ev){
+    setState({...state,video:[...state.video].filter((video)=>video!==ev)});
+}
+
+function onClickAgregarScreenshot(){
+    if(!state.screenshots.includes(screenshot.name)){
+        if(screenshot.name!==""){
+            setState({...state,screenshots:[...state.screenshots,screenshot.name]});
+        }
+    }
+}
+
+
+function onClickDeleteScreenshot(ev){
+setState({...state,screenshots:[...state.screenshots].filter((screenshot)=>screenshot!==ev)});
+}
+ 
+ function onClickDeleteStore(ev){
+    setState({...state,store:[...state.store].filter((store)=>store!==ev)});
+}
+
+
+function onClickAgregarDeveloper(){
+        if(!state.developers.includes(developer.name)){
+            if(developer.name!==""){
+                setState({...state,developers:[...state.developers,developer.name]});
+            }
+        }
+    }
+  
+  function onClickDeleteDeveloper(ev){
+    setState({...state,developers:[...state.developers].filter((developer)=>developer!==ev)});
+}
+
+
+function onClickAgregarPublisher(){
+        if(!state.publishers.includes(publisher.name)){
+            if(publisher.name!==""){
+                setState({...state,publishers:[...state.publishers,publisher.name]});
+            }
+        }
+    }
     
-    // FUNCION PUBLISHERS DELETE
     function onClickDeletePublisher(ev){
         setState({...state,publishers:[...state.publishers].filter((publisher)=>publisher!==ev)});
     }
 
-    // FUNCTION ONCLICKDELETE
+    
     function onClickDeletePlatform(ev){
         setState({...state,platforms:[...state.platforms].filter((store)=>store!==ev)});
     }
-    // FUNCTION ONCLICKDELETE
+    
     function onClickDeleteTag(ev){
         setState({...state,tags:[...state.tags].filter((store)=>store!==ev)});
     }
-    // FUNCTION ONCLICKDELETE
+    
     function onClickDeleteGenres(ev){
         setState({...state,genres:[...state.genres].filter((store)=>store!==ev)});
     }
-
-
-    // const [error,setError]=useState({
-    //     name:false,
-    //     price:false,
-    //     description:false,
-    //     rating:false,
-    //     video:false,
-    //     image:false,
-    //     screenshots:false,
-    //     store:false,
-    //     developers:false,
-    //     publishers:false,
-    //     website:false,
-    //     releaseDate:false,
-    //     metacritic:false,
-    //     esrb_rating:false,
-    //     platforms:false,
-    //     tags:false,
-    //     genres:false
-    // })
-    // STATE newError
-    // const [error,setError]=useState(false);
-
-
-    // STATE VALIDATE
-    // const [validate,setValidate]=useState({
-    //     name:false,
-    //     price:false,
-    //     description:false,
-    //     rating:false,
-    //     video:false,
-    //     image:false,
-    //     screenshots:false,
-    //     store:false,
-    //     developers:false,
-    //     publishers:false,
-    //     website:false,
-    //     releaseDate:false,
-    //     metacritic:false,
-    //     esrb_rating:false,
-    //     platforms:false,
-    //     tags:false,
-    //     genres:false
-    // })
-   
-    // stado para visualizar
     const [stateVisual,setStateVisual]=useState({
         visual:true,
         name:false,
@@ -359,50 +294,18 @@ let history=useNavigate();
         genres:true
     })
     
-
-
-    // onclickSubmit
     function onClickSubmit(){
-        // e.preventDefault();
-        if(state.name!="" && state.price!="" && state.description!="" && state.rating != "" && state.video.length!=0 && state.image!="" && state.screenshots!=0 && state.store!=0 && state.developers!=0 && state.publishers!=0 && state.website != "" && state.releaseDate!="" && state.metacritic!="" && state.esrb_rating != "" && state.platforms.length!=0 && state.tags.length!=0 && state.genres.length!=0 && Object.keys(error).length==0){
-            // console.log(Object.keys(error).length!=0);
-            console.log(state.releaseDate);    
-            setButtons(false)
-                dispatch(postVideoGame(state));
-                alert("Se ha creado correctamente");
-            // }       
-        }else{
-            if(Object.keys(error).length!=0){
-                setButtons(true)
-                alert("Debe completar los campos correctamente")
-            }else{
-                setButtons(true)
-                alert("Debe completar los campos correctamente")
-            }
-                
+        
+        if(state.name=""){
+
         }
-        //     setButtons(false)
-        //     dispatch(postVideoGame(state));
-        //     alert("Se ha creado correctamente");
-        //     console.log(state);
-        // }
-        // // else if(state.name=="" && state.price==""){
-        // //     console.log("Error");
-        // //     console.log(state);
-        // //     setButtons(true);
-        // // }
-        // setButtons(true);
-        //     console.log("A");
-        // setButtons(false);
-        // console.log()
-        // else{
-            
-        //     // handleRegresar();
-        // }
+        dispatch(postVideoGame(state));
+        
+        console.log(state);
         
     }
 
-    // Para el detalle
+   
     function stars(number) {
         if (number >= 1 && number < 2) {
             return "⭐"
@@ -420,7 +323,6 @@ let history=useNavigate();
             return "⭐⭐⭐⭐⭐"
         }
     }
-
     return(
         <div className='container-createVideogames'>
             <div className="subContainer-createVideogames">
@@ -447,22 +349,22 @@ let history=useNavigate();
                         </div>
                         {/* DESCRIPTION */}
                         <div className="create-description">
-                            <label type="text">Description: </label>
+                            <label type="text">Price: </label>
                             <textarea cols="50" rows="7" placeholder="Write some description..." onChange={(ev)=>handleChange(ev)} name="description" required onBlur={(ev)=>handleChange(ev)} onKeyUp={(ev)=>handleChange(ev)} value={state.description}></textarea>
                             <div>
                             {showError ? <span>{error.description}</span> || <span>{validate.description}</span> : <span>{error.description}</span>|| <span>{validate.description}</span>}
                             </div>
                         </div>
-                        {/* RATING */}
-                        <div className="create-rating">
+                       {/* RATING */}
+                       <div className="create-rating">
                             <label type="text">Rating: </label>
                             <input type="text" onChange={(ev)=>handleChange(ev)} name="rating" required placeholder="rating... " onBlur={(ev)=>{handleChange(ev)}} onKeyUp={(ev)=>handleChange(ev)} value={state.rating}/>
                             <div>
                             {showError ? <span>{error.rating}</span> || <span>{validate.rating}</span> : <span>{error.rating}</span>|| <span>{validate.rating}</span>}
                             </div>
                         </div>
-                        {/* VIDEO */}
-                        <div className="create-video">
+                         {/* VIDEO */}
+                         <div className="create-video">
                             <label type="text">Video: </label>
                             <input type="text" onChange={(ev)=>handleChange(ev)} required name="video" placeholder="video... "  value={movie.name} onBlur={(ev)=>{handleChange(ev)}} onKeyUp={(ev)=>handleChange(ev)} />
                             <input type="submit" value="+" onClick={()=>onClickAgregarMovie()}/>
@@ -508,7 +410,7 @@ let history=useNavigate();
                             {showError ? <span>{error.screenshot}</span> || <span>{validate.screenshot}</span> : <span>{error.screenshot}</span>|| <span>{validate.screenshot}</span>}
                             </div>
                         </div>
-                        {/* STORE */}
+                         {/* STORE */}
                         <div className="create-store">
                             <label type="text">Store: </label>
                             <select onChange={(ev)=>handleChange(ev)} value={store.name} name="store">
@@ -525,7 +427,7 @@ let history=useNavigate();
                                 <option value="Epic Games">Epic Games</option>
                             </select>
                             <div>
-                                {
+                            {
                                     state.store?.map((store)=>{
                                         return(
                                             <div key={store} className="ccstore">
@@ -586,14 +488,13 @@ let history=useNavigate();
                         </div>
                         {/* RELEASEDATE */}
                         <div className="create-releasedate">
-                        <label type="text">ReleaseDate : </label>
-                            <input type="text" onChange={(ev)=>handleChange(ev)} required name="releaseDate" placeholder="release... " onBlur={(ev)=>{handleChange(ev)}} onKeyUp={(ev)=>handleChange(ev)} value={state.releaseDate}/>
+                        <label type="text">Release Date: </label>
+                            <input type="text" onChange={(ev)=>handleChange(ev)} name="releasedate" placeholder="releasedate... " onBlur={(ev)=>{handleChange(ev)}} onKeyUp={(ev)=>handleChange(ev)} />
                             {/* <input type="file" name="adjunto" accept=".mp4,.jpg,.png" multiple /> */}
                             <div>    
-                            {showError ? <span>{error.releaseDate}</span> || <span>{validate.releaseDate}</span> : <span>{error.releaseDate}</span>|| <span>{validate.releaseDate}</span>}
+                            {showError ? <span>{error.releasedate}</span> || <span>{validate.releasedate}</span> : <span>{error.releasedate}</span>|| <span>{validate.releasedate}</span>}
                             </div>
                         </div>
-                        
                         {/* METACRITIC */}
                         <div className="create-metacritic">
                         <label type="text">Metacritic </label>
@@ -603,8 +504,8 @@ let history=useNavigate();
                             {showError ? <span>{error.metacritic}</span> || <span>{validate.metacritic}</span> : <span>{error.metacritic}</span>|| <span>{validate.metacritic}</span>}
                             </div>
                         </div>
-                        {/* ESRB_RATING */}
-                        <div className="create-esrb_rating">
+                         {/* ESRB_RATING */}
+                         <div className="create-esrb_rating">
                         <label type="text">Esrb rating: </label>
                             <input type="text" onChange={(ev)=>handleChange(ev)} required name="esrb_rating" placeholder="esrb_rating... " onBlur={(ev)=>{handleChange(ev)}} onKeyUp={(ev)=>handleChange(ev)} value={state.esrb_rating}/>
                             {/* <input type="file" name="adjunto" accept=".mp4,.jpg,.png" multiple /> */}
@@ -612,7 +513,7 @@ let history=useNavigate();
                             {showError ? <span>{error.esrb_rating}</span> || <span>{validate.esrb_rating}</span> : <span>{error.esrb_rating}</span>|| <span>{validate.esrb_rating}</span>}
                             </div>
                         </div>
-                            {/* Platforms */}
+                        {/* Platforms */}
                         <div className="create-platform">
                             <label type="text">Platforms: </label>
                             <select onChange={(ev)=>handleChange(ev)} value={platform.name} name="platform" >
@@ -650,7 +551,7 @@ let history=useNavigate();
                                         )
                                     })
                                 }
-                            </select>
+                            </select>    
                             <div>
                                 {
                                     state.tags?.map((tag)=>{
@@ -664,7 +565,7 @@ let history=useNavigate();
                                     })
                                 }
                             </div>
-                        </div>
+                        </div> 
                         {/* genres */}
                         <div className="create-genre">
                             <label>Genres: </label>
@@ -693,10 +594,9 @@ let history=useNavigate();
                             </div>    
                         </div>
                         <div className="botoncreate">
-                            {(!buttons)? (!buttons &&(<input type="submit" onClick={()=>onClickSubmit()} value="Create" className="buttonCreate"/>)):(buttons &&(<input type="submit" onClick={()=>onClickSubmit()} value="Create" className="buttonCreate"/>))}
+                            {(buttons==false) ? (!buttons &&(<input type="submit" onClick={()=>onClickSubmit()} value="Create" className="buttonCreate" disabled={false}/>)):(buttons &&(<input type="submit" onClick={()=>onClickSubmit()} value="Create" className="buttonCreate" disabled={true}/>)) }
                         </div>        
-
-                    {/* </form>   */}
+                        {/* </form>   */}
                 </div>
                 {/* Visualizar componentes */}
                 <div className="divcontainer02">
@@ -763,19 +663,19 @@ let history=useNavigate();
                                             })}
                                         </div>
                                     </div>
-                                        )
-                                    }
-                                    {
-                                        (stateVisual.store) && (
-                                            <>
-                                                <p>STORES: </p>
-                                                <div className="container-store">
-                                                    <p>{state.store?.join(", ")}</p>
-                                                </div>
-                                            </>
-                                        )
-                                    }
-                                    {
+                                    )
+                                }
+                                {
+                                    (stateVisual.store) && (
+                                        <>
+                                            <p>STORES: </p>
+                                            <div className="container-store">
+                                                <p>{state.store?.join(", ")}</p>
+                                            </div>
+                                        </>
+                                    )
+                                }
+                                {
                                         (stateVisual.developers) &&(
                                             <>
                                                 <p>DEVELOPERS: </p>
@@ -857,15 +757,12 @@ let history=useNavigate();
                                             </>
                                         )
                                     }
-                                </div>)
+                                    </div>)
                             }
-
-            
-                    
-                            
-
-                </div>        
+                             </div>        
             </div>       
     </div>
     )
 }
+
+

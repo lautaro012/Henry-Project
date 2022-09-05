@@ -32,7 +32,9 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
         setIsOpen(!isOpen);
     }
     function changeModal() {
-        setIsOpen(false)
+        if(isOpen) {
+            setIsOpen(false)
+        }
         setRegisterIsOpen(true)
     }
 

@@ -37,3 +37,16 @@
 }
 
 
+.SELECT-ORDER{
+    background-color: #242424;
+    color: white;
+    padding: 8px 15px;
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.SELECT-ORDER:hover {
+    cursor: pointer;
+  background-color: #2f2e2e;
+}
+

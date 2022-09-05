@@ -33,7 +33,7 @@ export default function Filter ({genres, platforms, tags, setCurrentPage}) {
     return (
         <div className='Filter-box'>
             <h4>Select a Platform:</h4>
-            <select id='platforms' defaultValue={'all'} onChange={(e) => handleFilter(e)}>
+            <select id='platforms' defaultValue={'all'} onChange={(e) => handleFilter(e)} className='filterSelectStyle'>
                 <option value='all' >All</option>
                 {
                     platforms.map(plat => {
@@ -47,7 +47,7 @@ export default function Filter ({genres, platforms, tags, setCurrentPage}) {
                 }
             </select>
             <h4> Select a Genre:</h4>
-            <select id='genres' defaultValue={'all'}  onChange={(e) => handleFilter(e)}>
+            <select id='genres' defaultValue={'all'} className='filterSelectStyle' onChange={(e) => handleFilter(e)}>
                 <option value= 'all'> All </option>
                 {
                     genres.map(plat => {
@@ -68,6 +68,7 @@ export default function Filter ({genres, platforms, tags, setCurrentPage}) {
                     {tags.map(el => el.name)?.map((tags, index) => {
                         return (
                             <label className='LABEL-TAGS' key= {index} ><br></br><input
+                            className='pruebainputsummary'
                             key= {tags}
                             type='checkbox'
                             name='tags'
