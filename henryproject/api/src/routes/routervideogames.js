@@ -6,6 +6,7 @@ const { llVideoGamesApi, getVideogamesByName, getVideogamesByGenre, getVideogame
 const { findGameById } = require("../handlers/getGamesDetail")
 // const { getVideogamesApi } = require("../handlers/getVideoGamesApi")
 const { createNewGame } = require("../handlers/postNewGame")
+const { putGames } = require("../handlers/putGames")
 
 // const { getVideogames } = require("../handlers/routeGetVideogamesApi")
 
@@ -44,11 +45,6 @@ router.get("/changename/:gameId?",async(req,res,next)=>{
     console.log(await Games.findByPk(gameId))
     res.send()
 })
-router.put("/updategame/:gameId",async(req,res,next)=>{
-    const{gameId}=req.params
-    const{name,price,description,rating,video,image,screenshoots,store,developers,publishers,website,releaseDate,metacritic,esrb_rating,createdInDb}=req.body
-    await Games.update({name:name,price:price,description:description,rating:rating,video:video,image,image,screenshoots:screenshoots,store:store,developers:developers,publishers:publishers,website:website,releaseDate:releaseDate,metacritic:metacritic,esrb_rating:esrb_rating,createdInDb:createdInDb})
-    res.send()
-})
+router.put("/update/:id", putGames)
 
 module.exports = router
