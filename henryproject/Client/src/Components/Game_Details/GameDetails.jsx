@@ -104,8 +104,8 @@ export default function GameDetails() {
                             <div id="conteinerData_detalles">
                                 {
                                     imgPop === true ?
-                                        <Modal isOpen={imgPop} fullscreen>
-                                            <img src={img} alt="ImagenPOP"></img>
+                                        <Modal isOpen={imgPop} fullscreen={true} width={800} autoFocus={true} centered={true}  fade={true}>
+                                            <img src={img} alt="ImagenPOP" id="imagen_pop" ></img>
                                             <button onClick={() => setImgPop(false)}>X</button>
                                         </Modal>
                                         :

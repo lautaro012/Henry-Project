@@ -51,10 +51,6 @@
     display: flex;
 }
 
-carrito {
-    display: inline-grid;
-}
-
 #conteinerSide_detalles2 {
     width: 20%;
     display: block;
@@ -105,3 +101,7 @@ carrito {
     border-radius: 20px;
     padding: 0;
 }
+
+/* #imagen_pop {
+    max-width: 200px;
+} */
