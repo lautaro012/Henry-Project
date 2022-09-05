@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addToCart, addToFav, deleteItemFromFavs } from "../../redux/Actions/Index.js";
+import { useDispatch, useSelector } from "react-redux";
+import { addToFav, deleteItemFromFavs } from "../../redux/Actions/Index.js";
 import PrettyRating from "pretty-rating-react";
+import { useEffect } from "react";
 import './Cards.css';
 import CardHover from "../NewCard/CardHover.jsx";
 import {
@@ -18,6 +19,8 @@ export default function Card({card}) {
     let { name, image, price, rating, id } = card
     const dispatch = useDispatch()
     const [render, setRender] = useState('')
+    const favoritos = useSelector(state => state.favorites)
+
     function handleFavourite(e) {
         let item = {
             id: id,
@@ -38,7 +41,7 @@ export default function Card({card}) {
        
     }
     
-    const favorites = JSON.parse(localStorage.getItem("favProducts"));
+    let favorites = JSON.parse(localStorage.getItem("favProducts"));
 
     const icons = {
         star: {
@@ -50,6 +53,10 @@ export default function Card({card}) {
     const colors = {
         star: ['#d9ad26', '#d9ad26', '#434b4d'],
     }
+
+    useEffect(() => {
+        localStorage.setItem("favProducts", JSON.stringify(favoritos));
+    }, [ favoritos ]);
 
     return (
         <div> 

@@ -67,7 +67,7 @@
     cursor: pointer;
   }
   
-  .favourite-checkbox:checked + .favourite-label {
+  .favourite-checkbox :checked + .favourite-label {
     color: red;
     transform: scale(1.2);
   }

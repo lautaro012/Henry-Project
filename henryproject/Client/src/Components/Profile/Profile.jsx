@@ -8,6 +8,7 @@ import Cart from '../Cart/Cart'
 import DatosPerfil from './DatosPerfil'
 import DatosJuegos from './DatosJuegos'
 import Orders from './Orders'
+import CardHover from "../NewCard/CardHover.jsx";
 
 export function Profile({ setUserLogged }) {
 
@@ -37,7 +38,7 @@ export function Profile({ setUserLogged }) {
                 <aside className='User_options'>
                     <div>
                         <h1>Welcome {userdetails.userName}</h1>
-                        <img src={userdetails.image} alt={userdetails.name}></img>
+                        <CardHover image={userdetails.image} name={userdetails.userName}></CardHover>
                     </div>
                     <button onClick={() => setRender("perfil")}>My profile</button>
                     <button onClick={() => setRender("juegos")}>My games</button>
