@@ -92,6 +92,8 @@ export default function GameDetails() {
         star: ['#d9ad26', '#d9ad26', '#434b4d'],
     }
 
+    console.log(game)
+
     return (
         <div className="game_detail">
             {
@@ -109,46 +111,33 @@ export default function GameDetails() {
                                         :
                                         null
                                 }
+                                {
+                                    typeof game.video === "object" ?
+                                        game.video.length > 0 ?
+                                            <Carousel
+                                                showArrows={true}
+                                                infiniteLoop={true}
+                                                centerMode={true}
+                                                renderIndicator={false}
+                                            >
+                                                {
+                                                    game.video.map((video) => {
+                                                        return (
+                                                            < ReactPlayer
+                                                                id="game_video"
+                                                                url={video}
+                                                                controls
+                                                            />
 
-                                <Carousel
-                                    showArrows={true}
-                                    infiniteLoop={true}
-                                    centerMode={true}
-                                    renderIndicator={false}
-                                >
-                                    {
-                                        typeof game.video === "object" ?
-                                            game.video.length > 0 ?
-                                                game.video.map((video) => {
-                                                    return (
-                                                        < ReactPlayer
-                                                            id="game_video"
-                                                            url={video}
-                                                            controls
-                                                        />
-                                                    )
-                                                })
-                                                :
-                                                < ReactPlayer
-                                                    id="game_video"
-                                                    url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                                                    controls
-                                                    playing
-                                                    loop
-                                                    muted
-                                                />
+                                                        )
+                                                    })
+                                                }
+                                            </Carousel>
                                             :
-                                            < ReactPlayer
-                                                id="game_video"
-                                                url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                                                controls
-                                                playing
-                                                loop
-                                                muted
-                                            />
-                                    }
-                                </Carousel>
-
+                                            <img className="imagenJuego" src={game.image} alt="imagenJuego"></img>
+                                        :
+                                        <img className="imagenJuego" src={game.image} alt="imagenJuego"></img>
+                                }
                                 <div>
                                     <h1>{game.name}</h1>
                                     <hr />
