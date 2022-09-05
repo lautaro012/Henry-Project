@@ -37,11 +37,8 @@ export default function Card({card}) {
         }
        
     }
-
-
+    
     const favorites = JSON.parse(localStorage.getItem("favProducts"));
-
-    console.log(favorites)
 
     const icons = {
         star: {

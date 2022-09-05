@@ -59,44 +59,18 @@
     margin-left: 5%;
 }
 
-
-
-
-
-
-/* .profile {
-    margin-top: 10%;
-    color: white;
-}
-.searchbar-test{
-    color:white
-}
-.show-profile-settings {
-    display: flex;
-    flex-direction: column;
-    background-color: ghostwhite;
-    background-image: linear-gradient(225deg, #1f1d38 0%, rgb(37, 36, 36) 40%, #323232bd 70%, #4a49497f 100%);
-    color: white;
+#conteiner_order{
+    border-style: solid;
     border-radius: 20px;
-    width: 20%;
 }
 
-.show-current-setting {
-    background-color: ghostwhite;
-    background-image: linear-gradient(225deg, #1f1d38 0%, rgb(37, 36, 36) 40%, #323232bd 70%, #4a49497f 100%);
-    color: white;
-    border-radius: 20px;
-    width: 80%;
-}
-
-.settings {
+#conteinerCart_order {
+    border-style: groove;
     display: flex;
-    flex-direction: column;
-    padding: 5%;
-    align-items: center;
+    border-radius: 20px;
+    justify-content: space-evenly;
 }
 
-.settings span {
-    padding-bottom: 20%;
-    padding-top: 20%;
-} */
+#conteinerCart_order img {
+    max-width: 250px;
+}

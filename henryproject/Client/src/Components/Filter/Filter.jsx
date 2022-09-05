@@ -5,7 +5,7 @@ import './Filter.css'
 
 
 
-export default function Filter ({genres, platforms, tags}) {
+export default function Filter ({genres, platforms, tags, setCurrentPage}) {
 
     let dispatch =  useDispatch()
 
@@ -15,6 +15,7 @@ export default function Filter ({genres, platforms, tags}) {
         let platformby = document.getElementById('platforms').value
         let genreby = document.getElementById('genres').value
         dispatch(filterGames({platformby, genreby}))
+        setCurrentPage(1)
     }
 
     const tagsCheckboxes = document.querySelectorAll('input[type="checkbox"]')
@@ -28,8 +29,6 @@ export default function Filter ({genres, platforms, tags}) {
         })
         dispatch(filterGamesByTags(tagstofilter))
     }
-    
-
 
     return (
         <div className='Filter-box'>

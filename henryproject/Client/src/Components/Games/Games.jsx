@@ -71,6 +71,7 @@ export default function Games() {
                                 platforms={platforms}
                                 tags={tags}
                                 setRender={el => setRender(el + render)}
+                                setCurrentPage={setCurrentPage}
                             />
 
                         </div>
