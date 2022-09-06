@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getGameById, addToCart, addToFav, getReviews, vaciarGame } from "../../redux/Actions/Index.js";
+import { getGameById, addToCart, addToFav, getReviews, vaciarGame, postReview } from "../../redux/Actions/Index.js";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import ReactPlayer from 'react-player'
@@ -92,7 +92,49 @@ export default function GameDetails() {
         star: ['#d9ad26', '#d9ad26', '#434b4d'],
     }
 
-    console.log(game)
+    let userLogged = JSON.parse(localStorage.getItem("user"));
+    console.log("GAME", game)
+    console.log("REVIEWS", reviews)
+    console.log("USER", userLogged.user)
+
+    const [input, setInput] = useState({})
+    const score = [1, 2, 3, 4, 5]
+
+    function handleInput(event) {
+        event.preventDefault()
+        setInput({
+            ...input,
+            [event.target.name]: event.target.value
+        })
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault()
+        dispatch(postReview(input))
+        alert("Commentary sent!")
+        setInput({})
+    }
+
+    function handleRadio(event) {
+
+        let currentRadio = document.getElementById(event.target.id);
+
+        if (event.target.id === input.score) {
+            currentRadio.checked = false
+            setInput({
+                ...input,
+                "score": null
+            })
+        }
+        else {
+            setInput({
+                ...input,
+                "score": event.target.value
+            })
+        }
+    }
+
+
 
     return (
         <div className="game_detail">
@@ -104,7 +146,7 @@ export default function GameDetails() {
                             <div id="conteinerData_detalles">
                                 {
                                     imgPop === true ?
-                                        <Modal isOpen={imgPop} fullscreen={true} width={800} autoFocus={true} centered={true}  fade={true}>
+                                        <Modal isOpen={imgPop} fullscreen={true} width={800} autoFocus={true} centered={true} fade={true}>
                                             <img src={img} alt="ImagenPOP" id="imagen_pop" ></img>
                                             <button onClick={() => setImgPop(false)}>X</button>
                                         </Modal>
@@ -190,6 +232,7 @@ export default function GameDetails() {
                                         })
                                     }
                                 </div>
+                                <hr />
                                 {
                                     reviews.length > 0 ?
                                         <div>
@@ -204,6 +247,40 @@ export default function GameDetails() {
                                                 })
                                             }
                                         </div>
+                                        :
+                                        null
+                                }
+                                {
+                                    userLogged.user && userLogged.user.banned === false ?
+                                        <form onSubmit={(event) => handleSubmit(event)} className="Form">
+                                            <div className="Label">
+                                                <label>Comment this game!</label>
+                                                <textarea id="Comment"
+                                                    type='text'
+                                                    value={input.comment}
+                                                    name='comment'
+                                                    placeholder="Here you can put your review"
+                                                    rows="5" cols="55"
+                                                    onChange={(event) => handleInput(event)}
+                                                />
+                                            </div>
+                                            <div className="Label">
+                                                <label>Score</label>
+                                                <div id="score">
+                                                    {
+                                                        score.map(number => {
+                                                            return (
+                                                                <div key={number}>
+                                                                    <input type="radio" value={number} onClick={(event) => handleRadio(event)} id={`${number}`} name="score" />
+                                                                    <label htmlFor={`${number}`}> {number} </label>
+                                                                </div>
+                                                            )
+                                                        })
+                                                    }
+                                                </div>
+                                            </div>
+                                            <button id="submit" type="submit">Post review</button>
+                                        </form>
                                         :
                                         null
                                 }
