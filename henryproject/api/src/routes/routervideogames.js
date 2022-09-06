@@ -1,11 +1,13 @@
 const { Router } = require("express")
-const { Platforms } = require("../db")
+const { Platforms,Games } = require("../db")
 // const { getAllVideogamesApiAndDB } = require("../handlers/convineAllVideogames")
 const { llVideoGamesApi, getVideogamesByName, getVideogamesByGenre, getVideogamesByPlatforms, getVideogamesByTag, getAllVideoGames } = require("../handlers/getAllVideoGames")
 // const { getVideoGamesDB } = require('../handlers/getGamesDB')
 const { findGameById } = require("../handlers/getGamesDetail")
 // const { getVideogamesApi } = require("../handlers/getVideoGamesApi")
 const { createNewGame } = require("../handlers/postNewGame")
+const { putGames } = require("../handlers/putGames")
+
 // const { getVideogames } = require("../handlers/routeGetVideogamesApi")
 
 
@@ -34,5 +36,15 @@ router.get("/", async(req,res)=>{
 })
 router.get("/:gameId", findGameById)
 router.post("/", createNewGame)
+
+
+
+router.get("/changename/:gameId?",async(req,res,next)=>{
+    const{gameId}=req.query
+    await Games.update({name:newName},{where:{id:gameId}})
+    console.log(await Games.findByPk(gameId))
+    res.send()
+})
+router.put("/update/:id", putGames)
 
 module.exports = router

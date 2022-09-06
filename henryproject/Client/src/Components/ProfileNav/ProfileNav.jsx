@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import {  useNavigate } from "react-router-dom"
 // import Cora from '../../Style/Imagenes/Corazon.png'
-require('dotenv').config();
 const {
   REACT_APP_API
 } = process.env;
@@ -9,7 +8,11 @@ const {
 export default function ProfileNav ( {setUserLogged, userLogged}) {
    
     const itemsFavorites = useSelector(state => state.favorites)
+    const navigate = useNavigate();
+
    
+    const user = JSON.parse(localStorage.getItem("user"));
+
     async function logOutClick() {
 
         fetch(`${REACT_APP_API}/auth/logout`, {
@@ -25,7 +28,11 @@ export default function ProfileNav ( {setUserLogged, userLogged}) {
           },
         }).then(() => {
             localStorage.clear()
-            // localStorage.removeItem('user')
+            localStorage.setItem("user", JSON.stringify([]));
+            localStorage.setItem("products", JSON.stringify([]));
+            localStorage.setItem("favProducts", JSON.stringify([]))
+            navigate("/profile");
+             
             setUserLogged(false)
         }).catch(err => {
           console.log(err)
@@ -35,7 +42,10 @@ export default function ProfileNav ( {setUserLogged, userLogged}) {
 
     return (
         <div>
-            <Link to="/profile"><button>Profile</button></Link>
+            <div className="div-image-navbar">
+              <img width={45} src={user.user?.image} alt='IMAGEEN'></img>
+            </div>
+            <button onClick={()=> navigate('/profile')}> Profile </button>
             <button onClick={(e) => logOutClick(e)}>Logout</button> 
             {/* <div id="fav">
                 <Link to='/favorites'>

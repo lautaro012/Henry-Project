@@ -1,6 +1,7 @@
 const {Users} = require('../db');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { transporter } = require("../config/mailer")
 
 function validateAttributes(name, lastName, userName, mail){
     if (!name || (typeof name !== "string") || (name.length < 0) ){
@@ -15,12 +16,14 @@ function validateAttributes(name, lastName, userName, mail){
         return true;
     }
 }
+
+
 const singUp = async (req, res) =>    {
     if(req.body.password !== undefined)  
         {
         try {
-       
-        
+
+        let admins = ['lautaro0121@gmail.com', 'Lautaro0121@gmail.com', "jejog50@gmail.com","juandavid614@hotmail.com", "bermudez.luciana9@gmail.com","f.s.b.rojas@gmail.com", "phyrofyre@gmail.com"]
         let password = bcrypt.hashSync(req.body.password, 8);
         const { name, lastName, userName, mail, address, image} = req.body
         
@@ -37,18 +40,36 @@ const singUp = async (req, res) =>    {
               userName,
               address,
               password,
-              image
+              image,
+              admin: admins.includes(mail) ? true : false
             },
           })
           let token = jwt.sign({ user: newUser }, 'aaa', {
             expiresIn: Math.floor(Date.now() / 1000) + (60 * 60)
         });
 
+
          if (!created ) res.status(201).send('There is already a user with that mail') 
          else {
           res.json({newUser,token})
          }
-  
+        
+         await transporter.sendMail({
+            from: '"Thanks For Register In Games Store 👻" <henry.games.store@gmail.com>', // sender address
+            to: mail, // list of receivers
+            subject: "Hello ✔", // Subject line
+            html: `
+                <h1>User Information 📓</h1>
+                <h2>Thanks For Register In Games Store 👻</h2>
+                <h2>This is your information:</h2>
+                <ul>
+                    <li>Name: ${name}</li>
+                    <li>Username: ${userName}</li>
+                    <li>Address: ${address}</li>
+                </ul>
+            `, // html body
+          });
+
         } else {
           return res.status(404).send(validation)
         }

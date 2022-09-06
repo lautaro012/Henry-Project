@@ -61,7 +61,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 // const { Videogame } = sequelize.models;
-const {Users, Orders, Games, Genres, Platforms, Comments, Tags} = sequelize.models;
+const {Users, Orders, Games, Genres, Platforms, Reviews, Tags, Newsletter} = sequelize.models;
 
 
 // Aca vendrian las relaciones
@@ -71,7 +71,7 @@ const {Users, Orders, Games, Genres, Platforms, Comments, Tags} = sequelize.mode
     //FALTA IMPORTAR USERS
         Users.belongsToMany(Games, {through: 'userGames'});
         Games.belongsToMany(Users, {through: 'userGames'});
-  
+        Orders.belongsTo(Users);
       //FALTA IMPORTAR ORDERS
         Orders.belongsToMany(Games, {through: 'orderGames'});
         Games.belongsToMany(Orders, {through: 'orderGames'});
@@ -85,8 +85,8 @@ const {Users, Orders, Games, Genres, Platforms, Comments, Tags} = sequelize.mode
         Games.belongsToMany(Tags, {through: 'tagsGames'});
         Tags.belongsToMany(Games,{through: 'tagsGames'});
         // ver relación con juegos y games
-        Games.hasMany(Comments);
-        Comments.belongsTo(Games);
+        Reviews.belongsTo(Users);
+        Reviews.belongsTo(Games);
 
         //sale
         // Games.hasMany(Sale)
@@ -95,5 +95,5 @@ module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
   Op,API_KEY,KEY_CHECK,
-  Games,Genres,Platforms,Tags,Orders,Users
+  Games,Genres,Platforms,Tags,Orders,Users,Reviews, Newsletter
 };

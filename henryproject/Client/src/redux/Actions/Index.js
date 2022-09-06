@@ -20,15 +20,25 @@ export const ADD_TO_FAV = "ADD_TO_FAV"
 export const ACTUALIZAR_CART = "ACTUALIZAR_CART"
 export const ACTUALIZAR_FAV = "ACTUALIZAR_FAV"
 export const POST_VIDEOGAME= "POST_VIDEOGAME"
+export const SHOW_VIDEOGAME= "SHOW_VIDEOGAME"
+export const HIDE_VIDEOGAME= "HIDE_VIDEOGAME"
+export const CHANGE_NAME= "CHANGE_NAME"
 export const GET_USER = 'GET_USER'
+export const GET_ALL_USERS = 'GET_ALL_USERS'
 export const CLEAR_USER = 'CLEAR_USER'
+export const GET_REVIEWS_GAME = "GET_REVIEWS_GAME"
+export const GET_GAMES_BY_TAG = 'GET_GAME_BY_TAG'
+export const GET_ALL_DISABLE_VIDEOGAME='GET_ALL_DISABLE_VIDEOGAME'
+export const GET_ORDERS = "GET_ORDERS"
+export const GET_USERS_BANNED= 'GET_USERS_BANNED'
+export const GET_NO_BANNED_ALL_USERS = 'GET_NO_BANNED_ALL_USERS'
+export const EMPTY_VIDEOGAMES = "EMPTY_VIDEOGAMES"
+
 
 require('dotenv').config();
 const {
     REACT_APP_API
 } = process.env;
-
-
 
 export function getAllGames(name) {
 
@@ -58,16 +68,60 @@ export function getAllGames(name) {
     }
 }
 
+export function getAllBannedUsers () {
+    return async function (dispatch) {
+        let res = await axios.get('/banned')
+        dispatch({
+            type: GET_USERS_BANNED,
+            payload: res.data
+        })
+    }
+}
+
+
+
 export function getGameById(id) {
     return async function (dispatch) {
         let response = await axios(`/videogames/${id}`)
-        console.log("RESPONSE ID GAME", response.data)
         dispatch({
             type: GET_GAME_BY_ID,
             payload: response.data
         })
     }
 }
+
+
+export function hideVideoGame(id){
+    return async function(dispatch){
+        await axios.put(`/disabled/${id}`)
+        dispatch({type:HIDE_VIDEOGAME, payload: id})
+    }
+}
+
+export function showVideoGame(id) {
+    return async function (dispatch) {
+        await axios.put(`/abled/${id}`)
+        dispatch({type: SHOW_VIDEOGAME, payload: id})
+    }
+}
+
+export function getAllDisableVideogame(){
+    return async(dispatch)=>{
+        const json=await axios.get("/disabled");
+            return dispatch({
+                type:GET_ALL_DISABLE_VIDEOGAME,
+                payload:json.data
+            })
+    }
+}
+// export const getOcultar=(id)=>{
+//     // console.log(id)
+//     return async function(dispatch){
+//         await axios.put(`/disabled/${id}`)
+//         // console.log(ss.data);
+//         dispatch({type:GET_OCULTAR, payload:id})
+//     }
+
 
 export const clear = function () {
     return {
@@ -146,22 +200,6 @@ export function postNewUser(user) {
     }
 }
 
-
-
-export const createvideogame = function (payload, history) {
-    console.log(payload)
-    return function (dispatch) {
-        try {
-            
-            
-            
-
-        } catch (error) {
-            console.log('error PORQUE:' + error)
-        }
-    }
-}
-
 export const Getbygenre = function (genre) {
     return function (dispatch) {
         axios.get(`/videogames?genres=${genre}`)
@@ -173,17 +211,23 @@ export const Getbygenre = function (genre) {
                 })
             })
             .catch(err => console.log(err))
-
-        // fetch(`${REACT_APP_API}/videogames?genres=${genre}`)
-        // .then(resp => resp.json())
-        // .then(resp => {
-        //     dispatch({
-        //         type: GET_GAMES_BY_GENRE,
-        //         payload: resp
-        //     })
-        // })
     }
 }
+
+export const Getbytag = function (tag) {
+    return function (dispatch) {
+        axios.get(`/videogames?tag=${tag}`)
+            .then(resp => resp.data)
+            .then(resp => {
+                dispatch({
+                    type: GET_GAMES_BY_TAG,
+                    payload: resp
+                })
+            })
+            .catch(err => console.log(err))
+    }
+}
+
 export const filterGamesByTags = function (payload) {
     return {
         type: FILTER_GAMES_BY_TAGS,
@@ -197,6 +241,12 @@ export function vaciarGame() {
     }
 }
 
+export function clearVideogames() {
+    return {
+        type: EMPTY_VIDEOGAMES,
+    }
+}
+
 export function postVideoGame(payload){
     return async function(dispatch){
         await axios.post("/videogames",payload)
@@ -204,6 +254,26 @@ export function postVideoGame(payload){
      }
 }
 
+
+export function changeName(payload){
+    return async function(dispatch){
+        await axios.get("/changename/:gameId?",payload)
+        return dispatch({type:CHANGE_NAME,payload})
+    }
+}
+
+export const getAllUsers = function () {
+    return function (dispatch) {
+        axios.get('/newUser')
+            .then(resp => resp.data)
+            .then(resp => {
+                dispatch({
+                    type: GET_ALL_USERS,
+                    payload:resp
+                })
+            })
+    }
+}
 
 export const getTags = function () {
     return function (dispatch) {
@@ -270,26 +340,23 @@ export function deleteItemFromFavs(id) {
     }
 }
 
-export function signin(payload) {
-    console.log(payload)
-    return function () {
-        axios.post(`/login`, payload)
-            .then(resp => resp.data)
-            .then(resp => {
-                console.log('RESP DEL SIGN IN', resp)
-                localStorage.setItem('user', JSON.stringify(resp))
-                window.location.reload()
-            })
-            .catch(err => console.log(payload))
-    }
-}
+// export function signin(payload) {
+//     return function () {
+//         axios.post(`/login`, payload)
+//             .then(resp => resp.data)
+//             .then(resp => {
+//                 localStorage.setItem('user', JSON.stringify(resp))
+//                 window.location.reload()
+//             })
+//             .catch(err => console.log(payload))
+//     }
+// }
 
 export function getUser (payload) {
     return function (dispatch) {
         axios.get(`/userLogged/${payload}`)
         .then(resp => resp.data)
         .then(resp => {
-            // console.log('response del back', resp)
             dispatch({
                 type: GET_USER,
                 payload: resp
@@ -304,4 +371,76 @@ export function clearUser() {
             type: CLEAR_USER
         })
     }
+}
+
+export function getReviews(gameId){
+    return async function(dispatch){
+        let response = await axios.get(`/reviews/${gameId}`)
+        return dispatch({
+            type: GET_REVIEWS_GAME,
+            payload: response.data
+        })
+    }
+}
+
+export function getOrders(user_id){
+    console.log("ACTION ORDER", user_id)
+    return async function(dispatch){
+        let response = await axios.get(`/orders/${user_id}`)
+        return dispatch({
+            type: GET_ORDERS,
+            payload: response.data
+        })
+    }
+}
+
+
+
+export function modificarUser(id_name,payload) {
+    return function () {
+        axios.put(`/newUser/${id_name}`, payload)
+    }
+}
+
+export function deleteUser(id_name) {
+    return function () {
+        axios.delete(`/newUser/${id_name}`)
+    }
+}
+
+export function postReview(id_game, payload) {
+    return function () {
+        axios.post(`/reviews/${id_game}/add`, payload)
+    }
+}
+
+export function banUser(mail) {
+    return function(){
+        axios.put(`/banned/${mail}`)
+        .then(alert('user disabled'))
+    }
+}
+
+export function noBanUser(mail) {
+    return function(){
+        axios.put(`/noBanned/${mail}`)
+        .then('user enabled')
+    }
+}
+export function updateAdmin(mail) {
+    return function (){
+        axios.put(`/admin/${mail}`)
+        .then(alert('user is now admin'))
+    }
+}
+
+export const getAllNoBannedUsers = function () {
+        return async function (dispatch) {
+            let res = await axios.get('/newUser/noBanned')
+            dispatch({
+                type: GET_NO_BANNED_ALL_USERS,
+                payload: res.data
+            })
+        }
+    
 }

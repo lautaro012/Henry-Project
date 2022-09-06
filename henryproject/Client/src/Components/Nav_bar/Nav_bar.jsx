@@ -13,8 +13,9 @@ import './Nav_bar.css'
 import { useState } from "react";
 import ProfileNav from "../ProfileNav/ProfileNav";
 //const axios = require('axios')
-import { getAllGames } from '../../redux/Actions/Index';
+import { getAllGames, clearVideogames } from '../../redux/Actions/Index';
 import { useDispatch } from 'react-redux';
+import Useregister from "../UserRegister/UserRegister";
 
 
 export default function Nav_bar({ userLogged, setUserLogged }) {
@@ -26,15 +27,26 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
 
 
     const [isOpen, setIsOpen] = useState(false);
-
+    const [registerisOpen, setRegisterIsOpen] = useState(false)
     function toggleModal() {
-        
         setIsOpen(!isOpen);
+    }
+    function changeModal() {
+        if(isOpen) {
+            setIsOpen(false)
+        }
+        setRegisterIsOpen(true)
     }
 
     const onSearch = (name) => {
         navigate("../home/games", { replace: true });
+        dispatch(clearVideogames())
         dispatch(getAllGames(name))
+    }
+
+    function handleNavigate(url){
+        setIsOpen(false)
+        navigate(url)
     }
 
     return (
@@ -53,22 +65,23 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
             </div>
 
             <div>
-                <Link to='/home'><button>Home</button></Link>
+                <button onClick={() => handleNavigate("/home")}>Home</button>
             </div>
 
             <div>
-                <Link to='/home/games'> <button> Search in our game list </button> </Link>
+                <button onClick={() => handleNavigate('/home/games')}> Explore </button>
             </div>
 
-            {/* <Link to='/home/create'><button>Create Videogame</button></Link>
-
-                <Link to='/profile'> <button> My Profile </button></Link>
-             */}
-            {userLogged ? <ProfileNav userLogged={userLogged} setUserLogged={setUserLogged} /> :
+            {userLogged ? 
+            
+            <ProfileNav userLogged={userLogged} setUserLogged={setUserLogged} /> 
+            
+            :
 
                 <div>
                     <button onClick={toggleModal}>Loggin</button>
-                    <UserSign toggleModal={toggleModal} isOpen={isOpen} setUserLogged={e => setUserLogged(e)} />
+                    <UserSign changeModal={changeModal} setRegisterIsOpen={setRegisterIsOpen} toggleModal={toggleModal} isOpen={isOpen} setUserLogged={e => setUserLogged(e)} />
+                    <Useregister registerisOpen={registerisOpen} registersetIsOpen={setRegisterIsOpen} ></Useregister>
                 </div>
 
             }

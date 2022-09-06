@@ -8,19 +8,6 @@
   pointer-events: none;
 }
 
-button {
-  cursor: pointer;
-  padding: 10px 40px;
-  background: rgb(49, 49, 49);
-  color: white;
-  box-shadow: 1px 1px 10px -5px #000000;
-  border-radius: 20px;
-}
-
-button:hover {
-  box-shadow: 5px 5px 20px #000000;
-  transform: translateY(-5px);
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
