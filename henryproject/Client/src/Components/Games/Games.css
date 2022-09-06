@@ -4,8 +4,8 @@
 }
 
 .show-filters{
-    background-color: ghostwhite;
-    background-image: linear-gradient(225deg, #1f1d38 0%, rgb(37, 36, 36) 40%, #323232bd 70%, #4a49497f 100%);
+    border: 2px solid;
+    border-color: rgb(217, 173, 38);
     color: white;
     border-radius: 20px;
     width: 20%;
@@ -16,12 +16,12 @@
 }
 
 .Sorts {
-    color:white;
+    color: white;
     margin: 1%;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    max-height: 2%;
+    flex-direction: column;
+    align-items: stretch;
+    width: 200px;
 }
 
 .Games-Cards-Div {

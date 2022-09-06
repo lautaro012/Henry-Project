@@ -28,8 +28,6 @@
 #caja {
     display: flex;
     align-items: center;
-    border-style: inset;
-    border-radius: 20px;
 }
 
 #caja button,
