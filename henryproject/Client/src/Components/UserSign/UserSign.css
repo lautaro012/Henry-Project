@@ -111,11 +111,11 @@
       cursor: pointer;
   }
   
-  .submit-btn:hover:enabled {
+  /* .submit-btn:hover:enabled {
       transform: translateY(2px);
       transform: translateX(2px);
       box-shadow: 2px 2px 26px 0px rgba(0, 0, 0, 0.3)
-  }
+  } */
   
   .submit-btn:disabled {
       cursor: not-allowed;
