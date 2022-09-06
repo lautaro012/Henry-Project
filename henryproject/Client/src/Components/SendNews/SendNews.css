@@ -19,6 +19,14 @@
     align-items: center;
 }
 
+.divMailsAdded{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    color: white;
+}
+
 .buttonSendNewsForm{
     border-radius: 0;
     margin: 10px;

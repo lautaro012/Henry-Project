@@ -55,9 +55,9 @@ export default function About() {
                         <span><img width={200} className='imageProfileAbout' height={200} id="imgl" src={juandavid} alt="juandavid"></img></span>
                     </a>
                     <p>
-                    <a target="_blank" rel="noreferrer" href='https://www.linkedin.com/in/juan-david-pabon-porras-4123b389/'><img src={linkedin} height="35" width="35" ></img></a> 
-                        <img src={instagram} height="35" width="35"></img>
-                        <img src={github} height="35" width="35"></img>
+                        <a target="_blank" rel="noreferrer" href='https://www.linkedin.com/in/juan-david-pabon-porras-4123b389/'><img src={linkedin} height="35" width="35" ></img></a> 
+                        <a target="_blank" rel="noreferrer" href="https://www.instagram.com/juandapabon84/" ><img src={instagram} height="35" width="35"></img></a>
+                        <a target="_blank" rel="noreferrer" href="https://github.com/juandavid84" ><img src={github} height="35" width="35"></img></a>
                     </p>
                 </div>
                 </div>
@@ -71,8 +71,8 @@ export default function About() {
                     </a>
                     <p>
                     <a target="_blank" rel="noreferrer" href='https://www.linkedin.com/in/luciana-bermudez-72a40520b'><img src={linkedin} height="35" width="35" ></img></a> 
-                        <img src={instagram} height="35" width="35"></img>
-                        <img src={github} height="35" width="35"></img>
+                       <a target="_blank" rel="noreferrer" href="https://www.instagram.com/luubermudezz/" ><img src={instagram} height="35" width="35"></img></a> 
+                       <a target="_blank" rel="noreferrer" href="https://github.com/lubermudezz" ><img src={github} height="35" width="35"></img></a> 
                     </p>
                 </div>
                 </div>
@@ -85,9 +85,9 @@ export default function About() {
                         <span><img width={200} className='imageProfileAbout' height={200} id="imgl" src={sergiog} alt="sergiog"></img></span>
                     </a>
                     <p>
-                    <a target="_blank" rel="noreferrer" href='https://www.linkedin.com/in/serch07/?originalSubdomain=co'><img src={linkedin} height="35" width="35" ></img></a> 
-                        <img src={instagram} height="35" width="35"></img>
-                        <img src={github} height="35" width="35"></img>
+                        <a target="_blank" rel="noreferrer" href='https://www.linkedin.com/in/serch07/?originalSubdomain=co'><img src={linkedin} height="35" width="35" ></img></a> 
+                        <a target="_blank" rel="noreferrer" href="https://www.instagram.com/theserch.07/" ></a><img src={instagram} height="35" width="35"></img>
+                        <a target="_blank" rel="noreferrer" href="https://github.com/TheSerch07" ><img src={github} height="35" width="35"></img></a>
                     </p>
                 </div>
                 </div>
@@ -118,9 +118,9 @@ export default function About() {
 </span>
                     </a>
                     <p>
-                    <a target="_blank" rel="noreferrer" href='https://www.linkedin.com/in/pierino-esteban-juncos-9a4804240/'><img src={linkedin} height="35" width="35" ></img></a> 
-                        <img src={instagram} height="35" width="35"></img>
-                        <img src={github} height="35" width="35"></img>
+                        <a target="_blank" rel="noreferrer" href='https://www.linkedin.com/in/pierino-esteban-juncos-9a4804240/'><img src={linkedin} height="35" width="35" ></img></a> 
+                        <a target="_blank" rel="noreferrer" href="https://www.instagram.com/pier_carp/" ><img src={instagram} height="35" width="35"></img></a>
+                        <a target="_blank" rel="noreferrer" href="https://github.com/pierino2203" ><img src={github} height="35" width="35"></img></a>
                     </p>
                 </div>
                 </div>
