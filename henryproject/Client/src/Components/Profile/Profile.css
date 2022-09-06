@@ -59,8 +59,7 @@
     transition: .3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-.Profile input:focus,
-input:hover {
+.Profile input:hover {
     outline: none;
     padding: .2rem 1rem;
     border-radius: 1rem;

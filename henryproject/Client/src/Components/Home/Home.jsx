@@ -9,6 +9,7 @@ import LoadingScreen from '../LoadingScreen/LoadingScreen';
 import { getAllGames, Getbygenre, Getbytag, vaciarGame } from '../../redux/Actions/Index'
 import CardDescription from '../NewCard/CardDescription';
 import CardHover from '../NewCard/CardHover';
+import Suscribe from '../Suscribe/Suscribe';
 
 
 
@@ -336,6 +337,8 @@ export default function Home () {
                         }
                     </Carousel>
                 </div > */}
+
+                <Suscribe/>
 
             </div>
             :
