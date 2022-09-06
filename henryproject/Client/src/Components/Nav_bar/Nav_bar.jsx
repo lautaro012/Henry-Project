@@ -13,7 +13,7 @@ import './Nav_bar.css'
 import { useState } from "react";
 import ProfileNav from "../ProfileNav/ProfileNav";
 //const axios = require('axios')
-import { getAllGames } from '../../redux/Actions/Index';
+import { getAllGames, clearVideogames } from '../../redux/Actions/Index';
 import { useDispatch } from 'react-redux';
 import Useregister from "../UserRegister/UserRegister";
 
@@ -40,6 +40,7 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
 
     const onSearch = (name) => {
         navigate("../home/games", { replace: true });
+        dispatch(clearVideogames())
         dispatch(getAllGames(name))
     }
 

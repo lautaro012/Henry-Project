@@ -9,6 +9,7 @@ import LoadingScreen from "../LoadingScreen/LoadingScreen.jsx";
 import { Carousel } from 'react-responsive-carousel';
 import { useNavigate } from "react-router-dom";
 import CardHover from "../NewCard/CardHover.jsx";
+//import Modal from 'react-modal'
 import { Modal } from 'reactstrap'
 import PrettyRating from "pretty-rating-react";
 import {
@@ -97,9 +98,12 @@ export default function GameDetails() {
     console.log("REVIEWS", reviews)
     console.log("USER", userLogged.user)
 
-    const [input, setInput] = useState({
-        userIdName: userLogged.user.id_name
-    })
+    const [input, setInput] = useState(
+        userLogged.user ?
+            { userIdName: userLogged.user.id_name }
+            :
+            null
+    )
     const score = [1, 2, 3, 4, 5]
 
     function handleInput(event) {
@@ -149,7 +153,7 @@ export default function GameDetails() {
                             <div id="conteinerData_detalles">
                                 {
                                     imgPop === true ?
-                                        <Modal isOpen={imgPop} fullscreen={true} width={800} autoFocus={true} centered={true} fade={true}>
+                                        <Modal isOpen={imgPop} fade={true} id="modal_detail" closeTimeoutMs={500}>
                                             <img src={img} alt="ImagenPOP" id="imagen_pop" ></img>
                                             <button onClick={() => setImgPop(false)}>X</button>
                                         </Modal>
@@ -230,7 +234,7 @@ export default function GameDetails() {
                                         game.tags && game.tags.map(tag => {
                                             return (
                                                 // <div id="tag_details" key={tag.name}>
-                                                    <li>{tag.name}</li>
+                                                <li>{tag.name}</li>
                                                 // </div>
                                             )
                                         })

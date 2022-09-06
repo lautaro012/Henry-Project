@@ -20,13 +20,9 @@ export default function Games() {
     let favorites = useSelector(state => state.favorites)
     const [render, setRender] = useState('')
 
-
-
-
     useEffect(() => {
         dispatch(getGenres())
         dispatch(getPlatforms())
-        dispatch(vaciarGame()) // para vaciar estado global del juegodetail
         dispatch(getTags())
         if (videogames.length === 0) {
             dispatch(getAllGames())
@@ -110,7 +106,7 @@ export default function Games() {
                                             />)
                                         })
                                         :
-                                        <h1 className='h'> NO GAMES THAT MATCH YOUR REQUISITES </h1>
+                                        <LoadingScreen></LoadingScreen>
                                 }
                             </div>
                         </div>
