@@ -28,10 +28,19 @@
 }
 
 #about{
- border-radius: 20px;
- width: 40vh;
- font-size: 15px;
+    border-radius: 20px;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #24282f;
+    font-size: 15px;
+    color: white;
+    min-width: 20%;
 
+}
+
+#about:hover {
+    border: white solid 0.5px;
+    cursor: pointer;
 }
 
 .footer ul li a{
