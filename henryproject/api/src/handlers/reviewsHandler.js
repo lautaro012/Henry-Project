@@ -21,7 +21,7 @@ const postReviews =async(req,res)=> {
             userIdName: userIdName,
             gameId: gameId
         })
-        let rating = ((game.rating+value)/2);
+        let rating = (game.rating+value)/2
         // console.log(newRating)
         await Games.update(
             {rating},
