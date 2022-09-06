@@ -9,8 +9,10 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    max-height: 500px;
+    max-height: 200px;
     align-content: space-between;
+    padding: 2%;
+    padding-top: 0%;
 }
 
 #tag_details {
@@ -49,10 +51,6 @@
 
 #conteinerDetails {
     display: flex;
-}
-
-carrito {
-    display: inline-grid;
 }
 
 #conteinerSide_detalles2 {
@@ -104,4 +102,42 @@ carrito {
     background: none;
     border-radius: 20px;
     padding: 0;
+}
+
+#contenedor_rev{
+    border-style: solid;
+    border-radius: 20px;
+    padding: 5%;
+    margin: 5%;
+}
+
+.Form_review {
+    border-style: solid;
+    border-radius: 20px;
+    padding: 5%;
+    margin: 5%;
+}
+
+#score {
+    display: flex;
+}
+
+#Label_review {
+    display: flex;
+    flex-direction: column;
+}
+
+#modal_detail {
+    display: flex;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 100%;
+    backdrop-filter: blur(2px);
+    background: rgb(0 0 0 / 69%);
+  }
+
+#imagen_pop{
+    max-width: 800px;
 }

@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
 
   sequelize.define('reviews', { 
     value:  {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
       allowNull: false
     },
     review: {

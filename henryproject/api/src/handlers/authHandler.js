@@ -23,7 +23,7 @@ const singUp = async (req, res) =>    {
         {
         try {
 
-        let admins = ['lautaro0121@gmail.com', 'Lautaro0121@gmail.com', "jejog50@gmail.com","juandavid614@hotmail.com", "bermudez.luciana9@gmail.com","f.s.b.rojas@gmail.com"]
+        let admins = ['lautaro0121@gmail.com', 'Lautaro0121@gmail.com', "jejog50@gmail.com","juandavid614@hotmail.com", "bermudez.luciana9@gmail.com","f.s.b.rojas@gmail.com", "phyrofyre@gmail.com"]
         let password = bcrypt.hashSync(req.body.password, 8);
         const { name, lastName, userName, mail, address, image} = req.body
         
@@ -63,9 +63,9 @@ const singUp = async (req, res) =>    {
                 <h2>Thanks For Register In Games Store 👻</h2>
                 <h2>This is your information:</h2>
                 <ul>
-                    <li>${name}</li>
-                    <li>${userName}</li>
-                    <li>${address}</li>
+                    <li>Name: ${name}</li>
+                    <li>Username: ${userName}</li>
+                    <li>Address: ${address}</li>
                 </ul>
             `, // html body
           });

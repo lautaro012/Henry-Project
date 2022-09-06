@@ -3,6 +3,7 @@ const { default: Stripe } = require('stripe');
 const { Orders, Games } = require('../db');
 // const { Orders } = require('../db');
 const {KEY_CHECK}= process.env;
+const { transporter } = require("../config/mailer")
 
 const stripe= new Stripe(KEY_CHECK);
 
@@ -39,6 +40,12 @@ router.post("/", async(req,res)=>{
            
         
          res.status(200).json({message: "Successful Payment"});
+         await transporter.sendMail({
+            from: '"Thanks For Buy In Games Store 👻" <henry.games.store@gmail.com>',
+            to: mail,
+            subject: `Your receipt of Games Store ${id} 🧾`,
+            html: `buenas`
+         })
             
     } catch (error) {
         return res.status(404).json(error.raw.message);
