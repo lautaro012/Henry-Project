@@ -31,6 +31,7 @@ import {
     GET_ORDERS,
     GET_USERS_BANNED,
     GET_NO_BANNED_ALL_USERS,
+    EMPTY_VIDEOGAMES,
 
 } from "../Actions/Index"
 
@@ -334,6 +335,11 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 orders: action.payload
+            }
+        case EMPTY_VIDEOGAMES:
+            return {
+                ...state,
+                videogames: []
             }
 
         default: return state

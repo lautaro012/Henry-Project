@@ -109,6 +109,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
         <div className="modificar_perfil">
             <h1>My profile</h1>
             <h3>{mail}</h3>
+            <hr></hr>
             <form onSubmit={(event) => handleSubmit(event)} className="Form">
                 <div className="Label">
                     <h3>User</h3>
@@ -135,7 +136,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
                             null
                     }
                 </div>
-
+                <hr></hr>
                 <div className="Label">
                     <h3>Name</h3>
                     <label>{name}</label>
@@ -163,7 +164,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
                     }
 
                 </div>
-
+                <hr></hr>
                 <div className="Label">
                     <h3>Last name</h3>
                     <label>{lastName}</label>
@@ -190,7 +191,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
                     }
 
                 </div>
-
+                <hr></hr>
                 <div className="Label">
                     <h3>Address</h3>
                     <label>{address}</label>
@@ -216,7 +217,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
                             null
                     }
                 </div>
-
+                <hr></hr>
                 <div className="Label">
                     <h3>User image</h3>
                     <button onClick={(event) => abrirForm(event, "image")}>Edit</button>
@@ -240,7 +241,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
                             null
                     }
                 </div>
-
+                <hr></hr>
                 <button id="submit" type="submit">Edit User</button>
             </form>
 

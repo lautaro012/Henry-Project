@@ -32,13 +32,13 @@ export const GET_ALL_DISABLE_VIDEOGAME='GET_ALL_DISABLE_VIDEOGAME'
 export const GET_ORDERS = "GET_ORDERS"
 export const GET_USERS_BANNED= 'GET_USERS_BANNED'
 export const GET_NO_BANNED_ALL_USERS = 'GET_NO_BANNED_ALL_USERS'
+export const EMPTY_VIDEOGAMES = "EMPTY_VIDEOGAMES"
+
 
 require('dotenv').config();
 const {
     REACT_APP_API
 } = process.env;
-
-
 
 export function getAllGames(name) {
 
@@ -238,6 +238,12 @@ export const filterGamesByTags = function (payload) {
 export function vaciarGame() {
     return {
         type: EMPTY_GAME_STATE,
+    }
+}
+
+export function clearVideogames() {
+    return {
+        type: EMPTY_VIDEOGAMES,
     }
 }
 
