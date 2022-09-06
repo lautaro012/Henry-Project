@@ -59,6 +59,7 @@ const singUp = async (req, res) =>    {
             to: mail, // list of receivers
             subject: "Hello ✔", // Subject line
             html: `
+            <div>
                 <h1>User Information 📓</h1>
                 <h2>Thanks For Register In Games Store 👻</h2>
                 <h2>This is your information:</h2>
@@ -67,6 +68,7 @@ const singUp = async (req, res) =>    {
                     <li>Username: ${userName}</li>
                     <li>Address: ${address}</li>
                 </ul>
+            </div>
             `, // html body
           });
 
