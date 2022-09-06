@@ -68,25 +68,12 @@ export default function Games() {
                                 tags={tags}
                                 setRender={el => setRender(el + render)}
                                 setCurrentPage={setCurrentPage}
+                                handleSort={handleSort}
                             />
 
                         </div>
                         <div className='Sorts-Games'>
-                            <div className='Sorts'>
-                                <h4 color='#ffffff'> Name/Rate </h4>
-                                <select className='SELECT-ORDER' id='orderBy' onChange={(e) => handleSort(e)} defaultValue='orderBy'>
-                                    <option value='name'> Name </option>
-                                    <option value='rating'> Rate </option>
-                                </select>
-                                <h4>In What Order ?</h4>
-                                <select className='SELECT-ORDER' id='orderType' onChange={(e) => handleSort(e)} defaultValue='orderType'>
-                                    <option value='asc'> Ascendent </option>
-                                    <option value='des'> Descendent </option>
-                                </select>
-
-                            </div>
-
-                            <div className='PAGINADO'>
+                          <div className='PAGINADO'>
                                 <Paginado
                                     VideogamesPerPage={videogamesPerPage}
                                     allVideogames={videogames.length}
