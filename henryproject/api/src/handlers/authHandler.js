@@ -63,9 +63,9 @@ const singUp = async (req, res) =>    {
                 <h2>Thanks For Register In Games Store 👻</h2>
                 <h2>This is your information:</h2>
                 <ul>
-                    <li>${name}</li>
-                    <li>${userName}</li>
-                    <li>${address}</li>
+                    <li>Name: ${name}</li>
+                    <li>Username: ${userName}</li>
+                    <li>Address: ${address}</li>
                 </ul>
             `, // html body
           });
