@@ -79,7 +79,7 @@ export default function UserSign({toggleModal, isOpen, setUserLogged, changeModa
       >
         <div className="modal-welcome">
         <img src={Icon} className='iconito-de-sergio' alt='iconito de Sergio'/>
-                Bienvenido
+                <h1>Bienvenido</h1>
         </div>
         <div>
             <form className="form-modal" onSubmit={handleSubmit}>
@@ -87,13 +87,13 @@ export default function UserSign({toggleModal, isOpen, setUserLogged, changeModa
                 <input onChange={handleChange} type="mail" id="mail" name='mail'></input>
                 <label>Password:</label>   
                 <input onChange={handleChange} type="password" id="password" name='password' autocomplete="off" ></input>
-                {loading ? <button type="submit" disabled={true} > Loading.. </button> : <button type="submit"> Loggin </button>}
+                {loading ? <button type="submit" disabled={true} className='button-30'> Loading.. </button> : <button className="button-30" type="submit"> Loggin </button>}
                 {/* <button type="submit"> Loggin </button> */}
             </form>
         </div>
         
         <button onClick={(e) => handleClick(e)} className='login-with-google-btn' >Ingresar con cuenta de Google</button>
-        Are you new ?  <button onClick={changeModal}>Register free now !</button>
+        Are you new ?  <button onClick={changeModal} className='register-button'>{<u>Register free now</u>} !</button>
 
       </Modal>
 
