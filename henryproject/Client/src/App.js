@@ -75,6 +75,7 @@ function App() {
   // }, [])
 
   useEffect(() => {
+
     const user = JSON.parse(localStorage.getItem("user"));
     const favoritesLS = JSON.parse(localStorage.getItem("favProducts"));
     const videogamesLS = JSON.parse(localStorage.getItem("products"));
@@ -88,6 +89,7 @@ function App() {
     if(!videogamesLS) {
       localStorage.setItem("products", JSON.stringify([]));
     }
+
   }, [])
 
   const user = JSON.parse(localStorage.getItem("user"));
