@@ -1,7 +1,41 @@
+.filterSelectStyle{
+  background-color: #242424;
+  color: white;
+  padding: 8px 15px;
+  font-size: 15px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.filterSelectStyle:hover{
+  cursor: pointer;
+  background-color: #2f2e2e;
+}
+.SUMMARY-TAGS{
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 5%;
+}
+
+.LABEL-TAGS{
+  font-size: 17px;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  margin: 10px;
+}
+.pruebainputsummary{
+  width:60px;
+  height: 17px;
+  margin: 0;
+}
+
+
+
 .box-tag {
     margin: 1%;
     padding: 1%;
 }
+
 
 .Filter-box {
     display: flex;
@@ -45,6 +79,7 @@
     padding: 1%;
     overflow-y: scroll;
     height: 32rem;
+    margin-top: 15%;
   }
 
   .taglist {
@@ -62,3 +97,6 @@
     flex-wrap: wrap;
     margin: 1%;
   }
+ 
+
+

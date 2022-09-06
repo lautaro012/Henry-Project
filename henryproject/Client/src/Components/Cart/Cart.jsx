@@ -25,7 +25,7 @@ export default function Cart({props}) {
     useEffect(() => {
         localStorage.setItem("products", JSON.stringify(items));
         localStorage.setItem("precioTotal", JSON.stringify(precios));
-      }, [items][precios]);
+      }, [items, precios]);
 
     return (
         <div className="conteinerCart">
@@ -33,7 +33,7 @@ export default function Cart({props}) {
             {
                  items && items.length ?
                     <div id="conteinerCart2">{
-                        items && items.map(item => {
+                        items && items?.map(item => {
                             return (
                                 <div key={item.id} id="item">
                                     <img src={item.image} alt={item.id}></img>

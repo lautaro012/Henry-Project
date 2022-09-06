@@ -3,14 +3,18 @@ const {DataTypes}=require("sequelize");
 module.exports=(sequelize)=>{
     sequelize.define('orders',{
         id_Orders:{
-            type:DataTypes.INTEGER,
+            type:DataTypes.STRING,
             primaryKey:true,
-            allowNull:false,
-
+            allowNull:false
+        },
+        userMail: {
+            type: DataTypes.STRING,
+            allowNull:false
         },
         date:{
             type:DataTypes.DATEONLY,
-            allowNull:false
+            allowNull:false,
+            defaultValue: new Date()
         },
         payment:{
             type:DataTypes.STRING,

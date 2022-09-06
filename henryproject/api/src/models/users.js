@@ -36,6 +36,15 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue: false
     },
+    banned: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
+    // myGames: {
+    //   type: DataTypes.ARRAY(DataTypes.STRING),
+    //   allowNull: true
+    // },
     userName: {
       type: DataTypes.STRING,
       allowNull: false

@@ -1,4 +1,3 @@
-import { NavItem } from "reactstrap"
 import {
     GET_ALL_GAMES,
     GET_ALL_GAMES_BY_NAME,
@@ -19,35 +18,76 @@ import {
     ACTUALIZAR_CART,
     ACTUALIZAR_FAV,
     POST_VIDEOGAME,
+    SHOW_VIDEOGAME,
+    CHANGE_NAME,
+    HIDE_VIDEOGAME,
+    GET_REVIEWS_GAME,
     GET_USER,
     CLEAR_USER,
+    hideVideoGame,
+    GET_GAMES_BY_TAG,
+    GET_ALL_DISABLE_VIDEOGAME,
+    GET_ALL_USERS,
+    GET_ORDERS,
+    GET_USERS_BANNED,
+    GET_NO_BANNED_ALL_USERS,
+    EMPTY_VIDEOGAMES,
+
 } from "../Actions/Index"
 
 const initialState = {
     Allvideogames: [],
     videogames: [],
     videogamesBygenre: [],
+    videogamesBytag: [],
     game: [],
     platforms: [],
     genres: [],
     genreby: 'all',
     platformby: 'all',
-    tagsFilter: [],
     cart: [],
     favorites: [],
+    tagsFilter: [],
     tags: [],
     Tagsinfilter: [],
-    user: []
+    user: [],
+    hidenVideoGame: [],
+    showVideoGame: [],
+    reviews: [],
+    hidevideogames:[],
+    getAlldisableGame:[],
+    allUsers: [],
+    orders: [],
+    allUsersBanned: [],
+    allUsersNoBanned: []
+
 }
 
 export default function rootReducer(state = initialState, action) {
 
     switch (action.type) {
+        case GET_ALL_USERS: 
+            return {
+                ...state,
+                allUsers: action.payload
+            }
+        case GET_USERS_BANNED: 
+            return {
+                ...state,
+                allUsersBanned: action.payload
+            }
+        case GET_NO_BANNED_ALL_USERS: {
+            return{
+                ...state,
+                allUsersNoBanned: action.payload
+            }
+        }
         case GET_ALL_GAMES:
             return {
                 ...state,
                 videogames: action.payload,
                 Allvideogames: action.payload,
+                hidevideogames: action.payload,
                 tagsFilter: action.payload
             }
 
@@ -56,6 +96,8 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 videogames: action.payload,
             }
+
+
         case ACTUALIZAR_CART:
             return {
                 ...state,
@@ -144,12 +186,16 @@ export default function rootReducer(state = initialState, action) {
                 tags: action.payload
             }
         case GET_GAMES_BY_GENRE:
-            console.log(action.payload)
             return {
                 ...state,
                 videogamesBygenre: action.payload
             }
 
+        case GET_GAMES_BY_TAG:
+            return {
+                ...state,
+                videogamesBytag: action.payload
+            }
         case ORDER:
             const orderType = action.payload.orderType
             const orderBy = action.payload.orderBy
@@ -183,10 +229,54 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 videogames: [...state.videogames, action.payload],
             }
-            case POST_VIDEOGAME:
-        return{
-          ...state
-        }
+        case POST_VIDEOGAME:
+            return {
+                ...state
+            }
+        case HIDE_VIDEOGAME:
+            var getAllgameshide = state.hidevideogames;
+            var newArreglo = [];
+            getAllgameshide.filter(a => {
+                if (a.id !== action.payload) {
+                    return newArreglo.push(a);
+                }
+            });
+            return {
+                ...state,
+                hidevideogames: newArreglo,
+                hidenVideoGame: action.payload
+            }
+
+        case GET_ALL_DISABLE_VIDEOGAME:
+
+            return {
+                ...state,
+                getAlldisableGame: action.payload
+            }
+
+
+
+
+        case SHOW_VIDEOGAME:
+            var getAllgameshide = state.getAlldisableGame;
+            // console.log(state.getAlldisableGame);
+            var newArreglo = [];
+            getAllgameshide.filter(a => {
+                if (a.id != action.payload) {
+                    return newArreglo.push(a);
+                }
+            });
+            console.log(getAllgameshide);
+            console.log(newArreglo);
+            return {
+                ...state,
+                getAlldisableGame: newArreglo,
+                showVideoGame: action.payload
+            }
+        case CHANGE_NAME:
+            return {
+                ...state
+            }
 
         case FILTER_GAMES:
             let { platformby, genreby } = action.payload
@@ -235,6 +325,21 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 user: []
+            }
+        case GET_REVIEWS_GAME:
+            return {
+                ...state,
+                reviews: action.payload
+            }
+        case GET_ORDERS:
+            return {
+                ...state,
+                orders: action.payload
+            }
+        case EMPTY_VIDEOGAMES:
+            return {
+                ...state,
+                videogames: []
             }
 
         default: return state

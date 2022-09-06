@@ -11,7 +11,15 @@ const checkoutRouter=require("./routerCheckout");
 const userLogged = require("./routerGetUserLogged")
 const gameDisabled = require ("./routerDisableGame")
 const gameAbled = require("./routerAbleGame")
+const banUser = require('./routerBanUser')
+const noBanUser = require('./routerNoBanUser')
+const adminConfig = require('./routerSetAdmin')
+const removeAdmin = require('./routerRemoveAdmin')
 const { singIn } = require('../handlers/authHandler');
+const reviewsRouter = require('./routerReviews');
+const ordersRouter = require('../routes/routerOrders');
+const newsletter = require('../routes/routerNewsLetter');
+const getmails= require('../routes/routerGetMails')
 const router = Router();
 
 
@@ -28,8 +36,14 @@ router.use("/login", singIn)
 router.use('/userLogged', userLogged)
 router.use('/disabled', gameDisabled)
 router.use('/abled', gameAbled )
-
-
+router.use('/banned', banUser)
+router.use('/noBanned', noBanUser)
+router.use('/admin', adminConfig)
+router.use('/noAdmin', removeAdmin)
+router.use('/reviews',reviewsRouter)
+router.use('/orders',ordersRouter);
+router.use('/newsletter', newsletter)
+router.use('/emails', getmails)
 
 
 router.use("/auth", authRoute)
