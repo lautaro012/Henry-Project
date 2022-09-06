@@ -4,9 +4,7 @@ import axios from "axios";
 import './formularioPago.css';
 import Cart from "../Cart/Cart";
 import { useState } from "react";
-
 import { useNavigate } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
 import { deleteItemFromCart } from "../../redux/Actions/Index";
 import { useEffect } from "react";
