@@ -51,10 +51,6 @@
     display: flex;
 }
 
-carrito {
-    display: inline-grid;
-}
-
 #conteinerSide_detalles2 {
     width: 20%;
     display: block;
@@ -104,4 +100,27 @@ carrito {
     background: none;
     border-radius: 20px;
     padding: 0;
+}
+
+#contenedor_rev{
+    border-style: solid;
+    border-radius: 20px;
+    padding: 5%;
+    margin: 5%;
+}
+
+.Form_review {
+    border-style: solid;
+    border-radius: 20px;
+    padding: 5%;
+    margin: 5%;
+}
+
+#score {
+    display: flex;
+}
+
+#Label_review {
+    display: flex;
+    flex-direction: column;
 }

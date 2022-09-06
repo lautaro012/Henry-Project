@@ -43,6 +43,11 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
         dispatch(getAllGames(name))
     }
 
+    function handleNavigate(url){
+        setIsOpen(false)
+        navigate(url)
+    }
+
     return (
         <nav className="Nav_bar">
 
@@ -59,17 +64,13 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
             </div>
 
             <div>
-                <button onClick={() => navigate('/home')}>Home</button>
+                <button onClick={() => handleNavigate("/home")}>Home</button>
             </div>
 
             <div>
-                <button onClick={() => navigate('/home/games')}> Explore </button>
+                <button onClick={() => handleNavigate('/home/games')}> Explore </button>
             </div>
 
-            {/* <Link to='/home/create'><button>Create Videogame</button></Link>
-
-                <Link to='/profile'> <button> My Profile </button></Link>
-             */}
             {userLogged ? 
             
             <ProfileNav userLogged={userLogged} setUserLogged={setUserLogged} /> 
