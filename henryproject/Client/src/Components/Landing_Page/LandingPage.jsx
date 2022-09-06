@@ -1,14 +1,12 @@
 
 import React from "react";
 import { Carousel } from 'react-responsive-carousel';
-
+import CardHover2 from './Cardhover2';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getAllGames } from '../../redux/Actions/Index'
 
 import '../Landing_Page/LandingPage.css'
-
-import Carrousel2 from "./Carrousel2";
 import LoadingScreen from "../LoadingScreen/LoadingScreen.jsx"
 import { Link } from "react-router-dom";
 
@@ -53,10 +51,16 @@ export default function LandingPage() {
                         {
                             populars && populars.map((game) => {
                                 return (
-                                    <div key={game.id} id="contenedor_landing_img">
-                                        <img src={game.image} alt={game.id}/>
-                                        <Link to={'/home/games/' + game.id} key={game.id}><p className="legend">{game.name}</p></Link>
-                                    </div>
+                                    // <div key={game.id} id="contenedor_landing_img">
+                                    //     <img src={game.image} alt={game.id}/>
+                                    //     <Link to={'/home/games/' + game.id} key={game.id}><p className="legend">{game.name}</p></Link>
+                                    // </div>
+                                        <Link to={`/home/games/${game.id}`}>
+                                            <CardHover2
+                                                name={game.name}
+                                                image={game.image}
+                                            />
+                                        </Link>
                                 )
                             })
                         }
