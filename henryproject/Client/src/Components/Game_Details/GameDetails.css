@@ -102,6 +102,25 @@
     padding: 0;
 }
 
-/* #imagen_pop {
-    max-width: 200px;
-} */
+#contenedor_rev{
+    border-style: solid;
+    border-radius: 20px;
+    padding: 5%;
+    margin: 5%;
+}
+
+.Form_review {
+    border-style: solid;
+    border-radius: 20px;
+    padding: 5%;
+    margin: 5%;
+}
+
+#score {
+    display: flex;
+}
+
+#Label_review {
+    display: flex;
+    flex-direction: column;
+}

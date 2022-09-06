@@ -97,7 +97,9 @@ export default function GameDetails() {
     console.log("REVIEWS", reviews)
     console.log("USER", userLogged.user)
 
-    const [input, setInput] = useState({})
+    const [input, setInput] = useState({
+        userIdName: userLogged.user.id_name
+    })
     const score = [1, 2, 3, 4, 5]
 
     function handleInput(event) {
@@ -110,26 +112,27 @@ export default function GameDetails() {
 
     function handleSubmit(event) {
         event.preventDefault()
-        dispatch(postReview(input))
+        dispatch(postReview(id, input))
         alert("Commentary sent!")
         setInput({})
+        window.location.reload()
     }
 
     function handleRadio(event) {
 
         let currentRadio = document.getElementById(event.target.id);
 
-        if (event.target.id === input.score) {
+        if (event.target.id === input.value) {
             currentRadio.checked = false
             setInput({
                 ...input,
-                "score": null
+                "value": null
             })
         }
         else {
             setInput({
                 ...input,
-                "score": event.target.value
+                "value": event.target.value
             })
         }
     }
@@ -185,6 +188,7 @@ export default function GameDetails() {
                                     <hr />
                                     <h3>Rating : </h3>
                                     <PrettyRating value={game.rating} icons={icons.star} colors={colors.star} />
+                                    <p>{game.rating}</p>
                                     <hr />
                                     <div className='imagenesJuego' >
 
@@ -225,9 +229,9 @@ export default function GameDetails() {
                                     {
                                         game.tags && game.tags.map(tag => {
                                             return (
-                                                <div id="tag_details" key={tag.name}>
-                                                    <p>{tag.name}</p>
-                                                </div>
+                                                // <div id="tag_details" key={tag.name}>
+                                                    <li>{tag.name}</li>
+                                                // </div>
                                             )
                                         })
                                     }
@@ -240,8 +244,10 @@ export default function GameDetails() {
                                             {
                                                 reviews.map(rev => {
                                                     return (
-                                                        <div>
-                                                            <p>{rev}</p>
+                                                        <div id="contenedor_rev">
+                                                            <p>{rev.createdAt}</p>
+                                                            <p>{rev.review}</p>
+                                                            <PrettyRating value={rev.value} icons={icons.star} colors={colors.star} />
                                                         </div>
                                                     )
                                                 })
@@ -252,13 +258,13 @@ export default function GameDetails() {
                                 }
                                 {
                                     userLogged.user && userLogged.user.banned === false ?
-                                        <form onSubmit={(event) => handleSubmit(event)} className="Form">
-                                            <div className="Label">
+                                        <form onSubmit={(event) => handleSubmit(event)} className="Form_review">
+                                            <div id="Label_review">
                                                 <label>Comment this game!</label>
-                                                <textarea id="Comment"
+                                                <textarea id="Review"
                                                     type='text'
-                                                    value={input.comment}
-                                                    name='comment'
+                                                    value={input.review}
+                                                    name='review'
                                                     placeholder="Here you can put your review"
                                                     rows="5" cols="55"
                                                     onChange={(event) => handleInput(event)}
@@ -271,7 +277,7 @@ export default function GameDetails() {
                                                         score.map(number => {
                                                             return (
                                                                 <div key={number}>
-                                                                    <input type="radio" value={number} onClick={(event) => handleRadio(event)} id={`${number}`} name="score" />
+                                                                    <input type="radio" value={number} onClick={(event) => handleRadio(event)} id={`${number}`} name="value" />
                                                                     <label htmlFor={`${number}`}> {number} </label>
                                                                 </div>
                                                             )
