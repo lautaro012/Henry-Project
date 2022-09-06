@@ -27,23 +27,39 @@
 .spanFooterStyle{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-content: center;
-    align-items: flex-end;
+    align-items: center;
 }
 
 #about{
-    border-radius: 10px;
-    padding: 10px 20px;
+    padding: 5px 18px;
     background-color: rgb(49, 49, 49);
     font-size: 13px;
     color: white;
     width: 30vh;
     border: white solid 0.1px;
     margin: 0px;
-    margin-top: 10px;
+    /* margin-top: 10px; */
+    margin-left: 30px;
 
 
+}
+.spanSuscribe{
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.whatIsGameS{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: flex-start;
 }
 
 #about_button {

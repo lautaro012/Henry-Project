@@ -1,14 +1,18 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import {  useNavigate } from "react-router-dom";
 import { deleteUser, modificarUser } from '../../redux/Actions/Index'
+<<<<<<< HEAD
 import CardHover from "../NewCard/CardHover.jsx";
 import swal from "sweetalert";
+=======
+//import CardHover from "../NewCard/CardHover.jsx";
+>>>>>>> Development
 
 export default function DatosPerfil({ setUserLogged, data }) {
 
-    let { name, lastName, image, address, mail, userName, id_name } = data
+    let { name, lastName, address, mail, userName, id_name } = data
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -83,28 +87,32 @@ export default function DatosPerfil({ setUserLogged, data }) {
         setForm(nombreDelInput)
     }
 
-    // async function handleImageChange(e) {
-    //     if (e.target.files && e.target.files[0]) {
-    //         console.log("TARGET FILE", e.target.files[0])
-    //         const data = new FormData()
-    //         data.append("file", e.target.files[0])
-    //         data.append("upload_preset", "gamesAPI")
-    //         fetch(
-    //             "https://api.cloudinary.com/v1_1/luubermudezz/image/upload", {
-    //             method: "POST",
-    //             body: data
-    //         }
-    //         ).then(resp => resp.json())
-    //             .then(file => {
-    //                 if (file) {
-    //                     setInput({
-    //                         ...input,
-    //                         image: `${file.secure_url}`
-    //                     })
-    //                 }
-    //             })
-    //     }
-    // }
+    //const [loading, setLoading] = useState(false)
+
+    async function handleImageChange(e) {
+        if (e.target.files && e.target.files[0]) {
+            console.log("TARGET FILE", e.target.files[0])
+            //setLoading(true)
+            const data = new FormData()
+            data.append("file", e.target.files[0])
+            data.append("upload_preset", "gamesAPI")
+            fetch(
+                "https://api.cloudinary.com/v1_1/luubermudezz/image/upload", {
+                method: "POST",
+                body: data
+            }
+            ).then(resp => resp.json())
+                .then(file => {
+                    if (file) {
+                        setInput({
+                            ...input,
+                            image: `${file.secure_url}`
+                        })
+                       // setLoading(false)
+                    }
+                })
+        }
+    }
 
     return (
         <div className="modificar_perfil">
@@ -226,12 +234,12 @@ export default function DatosPerfil({ setUserLogged, data }) {
                         form && form === "image" ?
                             <div>
                                 <input
-                                    type='text'
+                                    type='file'
                                     size="80"
-                                    value={input.image}
+
                                     name='image'
                                     placeholder="Insert a image URL"
-                                    onChange={(event) => handleInput(event)}
+                                    onChange={(event) => handleImageChange(event)}
                                 />
                                 {
                                     !errors.image ? null : <span>{errors.image}</span>
@@ -246,7 +254,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
                 <button id="submit" type="submit">Edit User</button>
             </form>
 
-            <button id="delete_user" onClick={() => { if (window.confirm("Are you sure to delete your profile user?")) deleteUserFromDB(id_name)}}>Delete user</button>
+            <button id="delete_user" onClick={() => { if (window.confirm("Are you sure to delete your profile user?")) deleteUserFromDB(id_name) }}>Delete user</button>
         </div>
     )
 }

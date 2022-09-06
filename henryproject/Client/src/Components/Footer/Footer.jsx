@@ -6,6 +6,7 @@ import instagram from "../../Style/Imagenes/instagram.png"
 import github from '../../Style/Imagenes/github.png'
 import facebook from '../../Style/Imagenes/facebook.png'
 import pinterest from '../../Style/Imagenes/pinterest.png'
+import Suscribe from '../Suscribe/Suscribe'
 
 
 import '../Footer/Footer.css'
@@ -51,6 +52,9 @@ export default function Footer() {
                         </ul>
                         <hr></hr>
                     </span>
+                    <span className="spanSuscribe">
+                    <Suscribe></Suscribe>
+                    </span>
                     <span>
                         <h3>Press And Media</h3>
                         <a target="_blank" rel="noreferrer"  href="https://www.facebook.com/"><img src={facebook} height="35" width="35"></img></a>
@@ -62,7 +66,14 @@ export default function Footer() {
                         
                  
                 </span>
-
+                <span className="whatIsGameS">
+                    <h3>Wanna know more about us . . . ?</h3>
+                    <div id="about_button">
+                                <Link to='/about'>
+                                    <button id="about">OUR TEAM</button>
+                                </Link>
+                    </div>
+                </span>
                 <span>
                     <h3>Henry's grupal proyect:  </h3>
                     <p>
@@ -70,11 +81,7 @@ export default function Footer() {
                         Please, be free to explore our page and give your opinion about it. We were more than pleased to read your commentaries to improve.
                     </p>
                 </span>
-                <div id="about_button">
-                            <Link to='/about'>
-                                <button id="about">ABOUT US</button>
-                            </Link>
-                        </div>
+                    
 
             </div>
 
