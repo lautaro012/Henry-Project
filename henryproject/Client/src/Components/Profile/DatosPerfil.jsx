@@ -108,11 +108,11 @@ export default function DatosPerfil({ setUserLogged, data }) {
     return (
         <div className="modificar_perfil">
             <h1>My profile</h1>
-            <h3>{mail}</h3>
+            <h2>{mail}</h2>
             <hr></hr>
             <form onSubmit={(event) => handleSubmit(event)} className="Form">
                 <div className="Label">
-                    <h3>User</h3>
+                    <h2>User</h2>
                     <label>{userName}</label>
                     <button onClick={(event) => abrirForm(event, "user name")}>Edit</button>
                     {
@@ -138,7 +138,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
                 </div>
                 <hr></hr>
                 <div className="Label">
-                    <h3>Name</h3>
+                    <h2>Name</h2>
                     <label>{name}</label>
                     <button onClick={(event) => abrirForm(event, "name")}>Edit</button>
                     {
@@ -166,7 +166,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
                 </div>
                 <hr></hr>
                 <div className="Label">
-                    <h3>Last name</h3>
+                    <h2>Last name</h2>
                     <label>{lastName}</label>
                     <button onClick={(event) => abrirForm(event, "last name")}>Edit</button>
                     {
@@ -193,7 +193,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
                 </div>
                 <hr></hr>
                 <div className="Label">
-                    <h3>Address</h3>
+                    <h2>Address</h2>
                     <label>{address}</label>
                     <button onClick={(event) => abrirForm(event, "address")}>Edit</button>
                     {
@@ -219,7 +219,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
                 </div>
                 <hr></hr>
                 <div className="Label">
-                    <h3>User image</h3>
+                    <h2>User image</h2>
                     <button onClick={(event) => abrirForm(event, "image")}>Edit</button>
                     {
                         form && form === "image" ?

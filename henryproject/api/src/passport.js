@@ -11,7 +11,7 @@ passport.use(new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
     callbackURL: '/auth/google/callback',
-    // scope: [ 'profile' ],
+    // scope: [ 'profile' ],z
     // state: true
   },
  async function verify(accessToken, refreshToken, profile, done) {

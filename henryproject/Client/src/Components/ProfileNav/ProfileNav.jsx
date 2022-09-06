@@ -1,12 +1,11 @@
 import { useSelector } from "react-redux"
 import {  useNavigate } from "react-router-dom"
 // import Cora from '../../Style/Imagenes/Corazon.png'
-
 const {
-    REACT_APP_API
-  } = process.env;
+  REACT_APP_API
+} = process.env;
 
-export default function ProfileNav ( {setUserLogged}) {
+export default function ProfileNav ( {setUserLogged, userLogged}) {
    
     const itemsFavorites = useSelector(state => state.favorites)
     const navigate = useNavigate();

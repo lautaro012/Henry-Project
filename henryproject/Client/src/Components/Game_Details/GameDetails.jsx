@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getGameById, addToCart, addToFav, getReviews, vaciarGame, postReview } from "../../redux/Actions/Index.js";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 import ReactPlayer from 'react-player'
 import LoadingScreen from "../LoadingScreen/LoadingScreen.jsx";
@@ -141,8 +141,6 @@ export default function GameDetails() {
         }
     }
 
-
-
     return (
         <div className="game_detail">
             {
@@ -221,8 +219,10 @@ export default function GameDetails() {
                                     {
                                         game.series && game.series.map(card => {
                                             return (
+                                                <a href={`https://rawg.io/search?query=${card.name}`}  target="_blank" rel="noreferrer">
                                                 <CardHover
                                                     image={card.image} name={card.name} />
+                                                </a>
                                             )
                                         })
                                     }
