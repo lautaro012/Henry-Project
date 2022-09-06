@@ -141,8 +141,6 @@ export default function GameDetails() {
         }
     }
 
-
-
     return (
         <div className="game_detail">
             {
