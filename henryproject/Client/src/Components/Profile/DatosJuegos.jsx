@@ -49,16 +49,12 @@ export default function DatosJuegos({ data }) {
                             {
                                 order.games && order.games.map(game => {
                                     return (
-                                        // <div id="conteinerCart_order">
                                         <div key={game.id} className='profile-game-list'>
                                             <Link to={`/home/games/${game.id}`} className='Link'>
                                                 <CardHover image={game.image} name={game.name}>
                                                 </CardHover>
                                             </Link>
-                                            {/* <h4>Name</h4>
-                                            <p>{game.name}</p>
-                                            <img src={game.image} alt={game.id}></img> */}
-                                            <div id="data_mygame_card">
+                                            <div>
                                                 <h3>Price</h3>
                                                 <p>${game.price}</p>
                                                 <h3>Date of purchase</h3>

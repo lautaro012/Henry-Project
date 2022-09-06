@@ -2,7 +2,18 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, deleteItemFromFavs } from "../../redux/Actions/Index.js";
-import Sad from '../../Style/Imagenes/sadFace.png'
+import { Link } from "react-router-dom";
+import Icon from '../../Style/Imagenes/Icon.PNG'
+import CardHover from "../NewCard/CardHover.jsx";
+import PrettyRating from "pretty-rating-react";
+import {
+    faStar,
+    faStarHalfAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+    faStar as farStar,
+} from "@fortawesome/free-regular-svg-icons";
+
 
 import '../Favoritos/Favoritos.css'
 
@@ -11,11 +22,23 @@ export default function Favs() {
     const dispatch = useDispatch()
     const items = useSelector(state => state.favorites)
 
+    const icons = {
+        star: {
+            complete: faStar,
+            half: faStarHalfAlt,
+            empty: farStar,
+        }
+    }
+    const colors = {
+        star: ['#d9ad26', '#d9ad26', '#434b4d'],
+    }
+
+
     function deleteItem(id) {
         dispatch(deleteItemFromFavs(id))
     }
 
-    function agregarAlCarrito(item){
+    function agregarAlCarrito(item) {
         dispatch(deleteItemFromFavs(item.id))
         dispatch(addToCart(item))
     }
@@ -25,30 +48,39 @@ export default function Favs() {
     }, [items]);
 
     return (
-        <div className="conteinerFav">
+        <div className="conteinerCart">
             <h1>Welcome to your favorites list !</h1>
             {
                 items && items.length ?
-                    <div id="conteinerFav2">{
+                    <div id="conteinerCart2">{
                         items && items?.map(item => {
                             return (
-                                <div id="itemFav">
-                                    <img src={item.image} alt={item.id}></img>
-                                    <h1>{item.name}</h1>
-                                    <h3>$ {item.price}</h3>
-                                    <button onClick={() => deleteItem(item.id)}>Delete</button>
-                                    <button onClick={() => agregarAlCarrito(item)}>Add to cart</button>
+                                <div key={item.id} id='cart-item-list'>
+                                    <Link to={`/home/items/${item.id}`} className='Link'>
+                                        <CardHover image={item.image} name={item.name}>
+                                        </CardHover>
+                                    </Link>
+                                    <div>
+                                        <h3>Price</h3>
+                                        <p>${item.price}</p>
+                                        <h3>Rating : </h3>
+                                        <PrettyRating value={item.rating} icons={icons.star} colors={colors.star} />
+                                    </div>
+                                    <div id="cart_fav_buttons">
+                                        <button onClick={() => deleteItem(item.id)}>🗑</button>
+                                        <button onClick={() => agregarAlCarrito(item)}>🛒</button>
+                                    </div>
                                 </div>
                             )
                         })
                     }
-                        <div>
-                            <button onClick={() => deleteItem("All")}>Empty favorites list</button>
+                        <div id="caja">
+                            <button onClick={() => { if (window.confirm("Are you sure to empty your favorites ?"))deleteItem("All")}}>Empty favorites list</button>
                         </div>
                     </div>
                     :
-                    <div>
-                        <img src={Sad} alt="Sad Face"></img>
+                    <div id="no_games_cart">
+                        <img src={Icon} alt="Sad Face"></img>
                         <h1>The are no games in your favorites list</h1>
                     </div>
             }
