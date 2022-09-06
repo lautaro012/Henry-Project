@@ -24,9 +24,14 @@ export const SHOW_VIDEOGAME= "SHOW_VIDEOGAME"
 export const HIDE_VIDEOGAME= "HIDE_VIDEOGAME"
 export const CHANGE_NAME= "CHANGE_NAME"
 export const GET_USER = 'GET_USER'
+export const GET_ALL_USERS = 'GET_ALL_USERS'
 export const CLEAR_USER = 'CLEAR_USER'
 export const GET_REVIEWS_GAME = "GET_REVIEWS_GAME"
 export const GET_GAMES_BY_TAG = 'GET_GAME_BY_TAG'
+export const GET_ALL_DISABLE_VIDEOGAME='GET_ALL_DISABLE_VIDEOGAME'
+export const GET_ORDERS = "GET_ORDERS"
+export const GET_USERS_BANNED= 'GET_USERS_BANNED'
+export const GET_NO_BANNED_ALL_USERS = 'GET_NO_BANNED_ALL_USERS'
 
 require('dotenv').config();
 const {
@@ -63,6 +68,16 @@ export function getAllGames(name) {
     }
 }
 
+export function getAllBannedUsers () {
+    return async function (dispatch) {
+        let res = await axios.get('/banned')
+        dispatch({
+            type: GET_USERS_BANNED,
+            payload: res.data
+        })
+    }
+}
+
 
 
 export function getGameById(id) {
@@ -78,17 +93,35 @@ export function getGameById(id) {
 
 export function hideVideoGame(id){
     return async function(dispatch){
-        let resp = await axios.put(`/disabled/${id}`)
-        dispatch({type:HIDE_VIDEOGAME, payload: resp.data})
+        await axios.put(`/disabled/${id}`)
+        dispatch({type:HIDE_VIDEOGAME, payload: id})
     }
 }
 
 export function showVideoGame(id) {
     return async function (dispatch) {
-        let resp = await axios.put(`/abled/${id}`)
-        dispatch({type: SHOW_VIDEOGAME, payload: resp.data})
+        await axios.put(`/abled/${id}`)
+        dispatch({type: SHOW_VIDEOGAME, payload: id})
     }
 }
+
+export function getAllDisableVideogame(){
+    return async(dispatch)=>{
+        const json=await axios.get("/disabled");
+            return dispatch({
+                type:GET_ALL_DISABLE_VIDEOGAME,
+                payload:json.data
+            })
+    }
+}
+// export const getOcultar=(id)=>{
+//     // console.log(id)
+//     return async function(dispatch){
+//         await axios.put(`/disabled/${id}`)
+//         // console.log(ss.data);
+//         dispatch({type:GET_OCULTAR, payload:id})
+//     }
+
 
 export const clear = function () {
     return {
@@ -223,6 +256,18 @@ export function changeName(payload){
     }
 }
 
+export const getAllUsers = function () {
+    return function (dispatch) {
+        axios.get('/newUser')
+            .then(resp => resp.data)
+            .then(resp => {
+                dispatch({
+                    type: GET_ALL_USERS,
+                    payload:resp
+                })
+            })
+    }
+}
 
 export const getTags = function () {
     return function (dispatch) {
@@ -332,17 +377,58 @@ export function getReviews(gameId){
     }
 }
 
-export function modificarUser(id_name,payload) {
+export function getOrders(user_id){
+    console.log("ACTION ORDER", user_id)
+    return async function(dispatch){
+        let response = await axios.get(`/orders/${user_id}`)
+        return dispatch({
+            type: GET_ORDERS,
+            payload: response.data
+        })
+    }
+}
 
-    console.log("SOY ACTION MODIFICAR", id_name, payload)
+
+
+export function modificarUser(id_name,payload) {
     return function () {
         axios.put(`/newUser/${id_name}`, payload)
     }
 }
 
 export function deleteUser(id_name) {
-    console.log("SOY ACTION DELETEAR", id_name)
     return function () {
         axios.delete(`/newUser/${id_name}`)
     }
+}
+
+export function banUser(mail) {
+    return function(){
+        axios.put(`/banned/${mail}`)
+        .then(alert('user disabled'))
+    }
+}
+
+export function noBanUser(mail) {
+    return function(){
+        axios.put(`/noBanned/${mail}`)
+        .then('user enabled')
+    }
+}
+export function updateAdmin(mail) {
+    return function (){
+        axios.put(`/admin/${mail}`)
+        .then(alert('user is now admin'))
+    }
+}
+
+export const getAllNoBannedUsers = function () {
+        return async function (dispatch) {
+            let res = await axios.get('/newUser/noBanned')
+            dispatch({
+                type: GET_NO_BANNED_ALL_USERS,
+                payload: res.data
+            })
+        }
+    
 }

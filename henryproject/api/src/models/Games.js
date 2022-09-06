@@ -89,6 +89,10 @@ module.exports = (sequelize) => {
     display:{
       type: DataTypes.BOOLEAN,
       defaultValue:true,
+    },
+    deal:{
+      type: DataTypes.BOOLEAN,
+      defaultValue:false
     }
 
   });

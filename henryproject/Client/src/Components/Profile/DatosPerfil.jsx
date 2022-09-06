@@ -3,11 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { deleteUser, modificarUser } from '../../redux/Actions/Index'
+import CardHover from "../NewCard/CardHover.jsx";
 
 export default function DatosPerfil({ setUserLogged, data }) {
 
-    console.log("DATA DE PERFIL", data)
-    console.log("SET USER LOGGED", setUserLogged)
     let { name, lastName, image, address, mail, userName, id_name } = data
 
     const dispatch = useDispatch();
@@ -38,60 +37,39 @@ export default function DatosPerfil({ setUserLogged, data }) {
                 errors[key] = "Must be at least 3 characters"
             }
             else if ((/[^a-zA-Z0-9 ]/.test(input[key]))) { //validacion para que el name no pueda contener caracteres especiales
-                if (input[key] !== image) {
+                console.log("INPUT KEY VALIDATION", key)
+                if (key !== "image") {
                     errors[key] = "Can't contain special characters"
                 }
             }
         }
-
         return errors
     }
 
-    const [todoOk, settodoOk] = useState(false)
+    //const [todoOk, settodoOk] = useState(false)
+
 
     function handleSubmit(event) {
         event.preventDefault()
-        for (const key in input) {
-            if (!input[key]) {
-                alert(`Completa el campo ${key}`)
-            }
-            else {
-                dispatch(modificarUser(id_name, input))
-                alert("User modify!")
-                setInput({})
-                settodoOk(false)
-                setUserLogged(false)
-                navigate("/home/games");
-            }
+        let error = validations(input)
+        let error2 = Object.keys(error)
+
+        if (error2.length > 0) {
+            alert('Debe salvar errores')
+        }
+        else if (Object.keys(input).length === 0) {
+            alert("Nothing to edit")
+        }
+        else {
+            dispatch(modificarUser(id_name, input))
+            alert("User edited!")
+            setInput({})
+            navigate("/home/games");
         }
     }
 
-    // function handleSubmit(event) {
-    //     event.preventDefault()
-
-    //     if (todoOk === true){
-    //         dispatch(modificarUser(id_name, input))
-    //         alert("User modify!")
-    //         setInput({})
-    //         settodoOk(false)
-    //         navigate("/home/games");
-    //     }
-    //     else{
-    //         for (const key in input) {
-    //             if(!input[key]){
-    //             alert(`Completa el campo ${key}`)
-    //             }
-    //             else if (input[key]?.trim().length < 3) { //el .trim() saca los espacios del inicio y el fin de la palabra
-    //                 alert(`El campo ${key} debe tener al menos 3 caracteres`)
-    //             }
-    //             else {
-    //                 settodoOk(true)
-    //             }
-    //         }
-    //     }
-    // }
-
     function deleteUserFromDB(id_name) {
+        setUserLogged(false)
         dispatch(deleteUser(id_name))
         alert("User deleted")
         navigate("/home/games");
@@ -104,16 +82,36 @@ export default function DatosPerfil({ setUserLogged, data }) {
         setForm(nombreDelInput)
     }
 
+    // async function handleImageChange(e) {
+    //     if (e.target.files && e.target.files[0]) {
+    //         console.log("TARGET FILE", e.target.files[0])
+    //         const data = new FormData()
+    //         data.append("file", e.target.files[0])
+    //         data.append("upload_preset", "gamesAPI")
+    //         fetch(
+    //             "https://api.cloudinary.com/v1_1/luubermudezz/image/upload", {
+    //             method: "POST",
+    //             body: data
+    //         }
+    //         ).then(resp => resp.json())
+    //             .then(file => {
+    //                 if (file) {
+    //                     setInput({
+    //                         ...input,
+    //                         image: `${file.secure_url}`
+    //                     })
+    //                 }
+    //             })
+    //     }
+    // }
+
     return (
         <div className="modificar_perfil">
             <h1>My profile</h1>
             <h3>{mail}</h3>
-            <img id="imagenPerfil" alt={name} src={image}></img>
-
             <form onSubmit={(event) => handleSubmit(event)} className="Form">
-
                 <div className="Label">
-                    <h3>User name</h3>
+                    <h3>User</h3>
                     <label>{userName}</label>
                     <button onClick={(event) => abrirForm(event, "user name")}>Edit</button>
                     {
@@ -136,7 +134,6 @@ export default function DatosPerfil({ setUserLogged, data }) {
                             :
                             null
                     }
-
                 </div>
 
                 <div className="Label">
@@ -222,7 +219,6 @@ export default function DatosPerfil({ setUserLogged, data }) {
 
                 <div className="Label">
                     <h3>User image</h3>
-                    <label>{image}</label>
                     <button onClick={(event) => abrirForm(event, "image")}>Edit</button>
                     {
                         form && form === "image" ?
@@ -245,10 +241,10 @@ export default function DatosPerfil({ setUserLogged, data }) {
                     }
                 </div>
 
-                <button id="submit" type="submit">Modify User</button>
+                <button id="submit" type="submit">Edit User</button>
             </form>
 
-            <button onClick={() => deleteUserFromDB(id_name)}>Delete user</button>
+            <button id="delete_user" onClick={() => deleteUserFromDB(id_name)}>Delete user</button>
         </div>
     )
 }

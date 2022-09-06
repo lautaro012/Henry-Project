@@ -61,7 +61,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 // const { Videogame } = sequelize.models;
-const {Users, Orders, Games, Genres, Platforms, Reviews, Tags} = sequelize.models;
+const {Users, Orders, Games, Genres, Platforms, Reviews, Tags, Newsletter} = sequelize.models;
 
 
 // Aca vendrian las relaciones
@@ -95,5 +95,5 @@ module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
   Op,API_KEY,KEY_CHECK,
-  Games,Genres,Platforms,Tags,Orders,Users,Reviews
+  Games,Genres,Platforms,Tags,Orders,Users,Reviews, Newsletter
 };

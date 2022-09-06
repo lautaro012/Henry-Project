@@ -12,13 +12,15 @@ import LoadingScreen from '../LoadingScreen/LoadingScreen';
 export default function Games() {
 
     let dispatch = useDispatch()
-    //  let allvideogames = useSelector(state => state.Allvideogames)
+     let allvideogames = useSelector(state => state.Allvideogames)
     let videogames = useSelector(state => state.videogames)
     let tags = useSelector(state => state.tags)
     let genres = useSelector(state => state.genres)
     let platforms = useSelector(state => state.platforms)
     let favorites = useSelector(state => state.favorites)
     const [render, setRender] = useState('')
+
+
 
 
     useEffect(() => {
@@ -53,15 +55,15 @@ export default function Games() {
         let orderType = document.getElementById('orderType').value
         dispatch(order({ orderBy: orderBy, orderType: orderType }));
         setCurrentPage(1);
-        setRender(`${render} renderizado`);
+        setRender(`VAMOS ${render} VAMOS`);
     }
 
 
     return (
         <div className='Search-Filters'>
             {
-                tags.length > 0 && videogames.length > 0 ?
-                    <div className='filters'>
+                 allvideogames.length > 0  ? 
+                    <div className='filters-games'>
                         <div className="show-filters">
 
                             <Filter
@@ -69,6 +71,7 @@ export default function Games() {
                                 platforms={platforms}
                                 tags={tags}
                                 setRender={el => setRender(el + render)}
+                                setCurrentPage={setCurrentPage}
                             />
 
                         </div>
@@ -92,7 +95,7 @@ export default function Games() {
                                     VideogamesPerPage={videogamesPerPage}
                                     allVideogames={videogames.length}
                                     paginado={paginado}
-                                    actual={currentPage}
+                                    currentPage={currentPage}
                                 />
                             </div>
                             <div className='Games-Cards-Div'>

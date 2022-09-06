@@ -1,16 +1,45 @@
-.containerVideogame{
+.card-videogame-admin{
     border: 1px solid black;
-    border-radius: 20px;
-    padding-left: 5px;
+    margin: 2px;
+}
+.card-videogame-admin:hover {
+    cursor: pointer;
+    background-color: #4a4f56c0;
+}
+
+.listVideoGamesButtonStyle{
+    border-radius: 0;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #24282f;
+    font-size: 15px;
+    color: white;
+    max-width: 144px;
+}
+.listVideoGamesButtonStyle:hover {
+    order: white solid 0.1px;
+    cursor: pointer;
+}
+.listAdminButton {
+    background-color:#24282f;
+    color: white;
+    font-size: 15px;
+    margin: 5px;
+    padding: 7px;
+}
+.listAdminButton:hover {
+    border: white solid 0.1px;
+    cursor: pointer;
+}
+.searchInputAdmin{
+    padding: 5px;
+    text-align: center;
+}
+
+.admin-games{
     display: flex;
-    flex-wrap: nowrap;
-    width: 220px;
-}
-
-.subcontainer1{
-    width: 80%;
-}
-
-.ubcontainer2{
-    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
 }

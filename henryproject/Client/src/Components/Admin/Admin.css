@@ -1,94 +1,162 @@
-.Admin-general {
-    margin: 10%;
-    color: white;
+.Admin-show-settings{
+    width: 80%;
+    background: #24282f;
+    height: auto;
 }
 
-.half {
+.Admin-settings{
+    width: 20%;
+    background-color: #24282f;
+    border: white solid 1px;
+
+}
+
+.Admin-conteiner {
     display: flex;
-    width: 50%;
-    height: 100%;
+    flex-direction: row;
+    margin-top: 8%;
+
+}
+.AdminAllUsersBiggestDiv{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* align-items: center; */
+    align-content: center;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100%;
 }
 
-.show-current-setting-admin {
-    background-color: ghostwhite;
-    background-image: linear-gradient(225deg, #1f1d38 0%, rgb(37, 36, 36) 40%, #323232bd 70%, #4a49497f 100%);
-    color: white;
-    border-radius: 20px;
-    width: 1000px; 
+.Admin-games{
     display: flex;
     flex-wrap: wrap;
-    border-left: solid white 5px;
-    border-right: solid white 5px;
+    justify-content: center;
+    overflow-y: scroll;
+    height: 1150px;
+}
+.Admin-games::-webkit-scrollbar {
+    display: none;
 }
 
-.settings-admin {
-    display: flex;
-    flex-direction: column;
-    padding: 5%;
-    align-items: center;
-}
-
-
-.settings-admin button {
-    margin-bottom: 20%;
-    margin-top: 20%;
-}
-
-.conteinerCart_admin {
+.conteinerCart2{
     color: white;
     margin-top: 10%;
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 1000px;
+    min-height: 800px;
+    justify-content: space-around;
+    margin-bottom: 10%;
 }
 
-.show-profile-settings{
-    padding:none;
-    border:none;
-    min-width: 450px;
-}
-
- .filters{
-    min-width:500px;
-    justify-content: center;
-    
-} 
-
-.Search-Filters{
+.Admin-aside {
     display: flex;
-}
-
-.item{
-    display:flex;
     flex-direction: column;
-    border-style: groove;
-    /* display: inline-flex; */
     align-items: center;
-    justify-content: space-between;
-    max-width: 50%;
-    padding: 2%;
+}
+.adminButtonStyle{
+    border-radius: 0;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #24282f;
+    font-size: 15px;
+    color: white;
+    max-width: 144px;
+}
+.adminUserH1{
+    color: white;
+    text-align: center;
 }
 
-.item img {
-    max-width: 25%;
+.adminButtonStyle:hover {
+    border: white solid 0.5px;
+    cursor: pointer;
 }
-
-.props{
-    display:flex;
+.adminImageButtonStyle{
+    margin-right: 7px
+    
+}
+.adminButtonStyleDiv{
+    display: flex;
     flex-direction: row;
-    font-size: 10px;
-    justify-content: space-between;
-    margin-bottom: 2%;
+    align-items: center;
 }
-.buttons{
-    width:max-content;
-    display:flex;
+.adminUsersDivConfig{
+    box-sizing: border-box;
+    display: flex;
+    width: 400px;
+    justify-content: center;
+    align-content: space-around;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    color: #10182f;
     flex-direction: row;
 }
+.adminUsersDivCard:hover{
+    background-color:rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+}
+
+.adminUsersDivCard{
+    margin: 10px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.453);
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 300px;
+    
+}
+.adminUserLastFlex{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content:center; 
+}
+.adminUserLastFlex h3 {
+    color: white;
+    margin: 0;
+    font-size: 16px;
+}
+.adminUserLastFlex p {
+    font-size: 13px;
+    margin: 2px 0 40px
+}
+.adminSpanUserCard {
+  background: #c4bebe;
+  font-size: 13px;
+  margin: 30px 20px ;
+  color: black;
+  padding: 5px 15px;
+  cursor: pointer;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.adminUserLastFlex button {
+    border-radius: 0;
+    margin: 5px;
+    padding: 5px;
+    background-color: #24282f;
+    font-size: 15px;
+    color: white;
+}
+.adminUserLastFlex button:hover{
+    cursor: pointer;
+    border: white solid 0.5px;
+}
+
+.adminImgUserCard{
+    width: 50%;
+    margin-left: 25%;
+    border: black solid;    
+    object-fit: cover;
+    border-radius: 50%;
+}
 
 
+.searchbar-admin{
+    display: flex;
+    justify-content: center;
+    margin: 7px;
+    /* margin-top: 7px */
+}

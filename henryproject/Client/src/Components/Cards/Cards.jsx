@@ -1,17 +1,26 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addToCart, addToFav, deleteItemFromFavs } from "../../redux/Actions/Index.js";
-import Heart from '../../Style/Imagenes/Hearth'
-
+import { useDispatch, useSelector } from "react-redux";
+import { addToFav, deleteItemFromFavs } from "../../redux/Actions/Index.js";
+import PrettyRating from "pretty-rating-react";
+import { useEffect } from "react";
 import './Cards.css';
 import CardHover from "../NewCard/CardHover.jsx";
+import {
+    faStar,
+    faStarHalfAlt,
+  } from "@fortawesome/free-solid-svg-icons";
+import {
+faStar as farStar,
+} from "@fortawesome/free-regular-svg-icons";
 
-export default function Card({card, favorites}) {
+export default function Card({card}) {
 
     let { name, image, price, rating, id } = card
     const dispatch = useDispatch()
     const [render, setRender] = useState('')
+    const favoritos = useSelector(state => state.favorites)
+
     function handleFavourite(e) {
         let item = {
             id: id,
@@ -31,29 +40,51 @@ export default function Card({card, favorites}) {
         }
        
     }
+    
+    let favorites = JSON.parse(localStorage.getItem("favProducts"));
+
+    const icons = {
+        star: {
+          complete: faStar,
+          half: faStarHalfAlt,
+          empty: farStar,
+        }
+    }
+    const colors = {
+        star: ['#d9ad26', '#d9ad26', '#434b4d'],
+    }
+
+    useEffect(() => {
+        localStorage.setItem("favProducts", JSON.stringify(favoritos));
+    }, [ favoritos ]);
 
     return (
-        <div >
-            <Link to={`/home/games/${id}`} className='Link'>
-                <CardHover image={image} name={name}>
+        <div> 
+            <div className="fav-game-list">
+                <Link to={`/home/games/${id}`} className='Link'>
+                    <CardHover image={image} name={name}>
+                    </CardHover>
+                </Link>
                     { favorites?.includes(card) ?
                     <div className="card-favourite">
+                        <span> {name} </span>
                         <input id={`hearth-${id}`} type="checkbox" value={name} onClick={(e) =>handleFavourite(e)} checked={true} className="favourite-checkbox"/>
                         <label className="favourite-label" htmlFor={`hearth-${id}`}>❤</label>
                     </div>
                         :
                     <div className="card-favourite">
+                        <span> {name} </span>
                         <input id={`hearth-${id}`} type="checkbox" value={name} onClick={(e) =>handleFavourite(e)} className="favourite-checkbox"/>
                         <label className="favourite-label" htmlFor={`hearth-${id}`}>❤</label>
                     </div>
                     }
-                </CardHover>
+            </div>
                 {/* <div className="image-card" style={{ backgroundImage: `url(${image})` }}></div> */}
                 <div className="card-data">
-                    <span className="h">${price}</span>
-                    <span> {rating} </span>
+                    <span className="h">{price} US$</span>
+                    <PrettyRating value={rating} icons={icons.star} colors={colors.star} />
+                    {/* <span> {rating} </span> */}
                 </div>
-            </Link>
 
 
         </div>

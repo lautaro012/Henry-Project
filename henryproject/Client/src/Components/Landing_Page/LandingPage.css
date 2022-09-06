@@ -11,3 +11,7 @@
 .carrousel_card {
   display: flex;
 }
+
+#contenedor_landing_img img{
+  height: 500px;
+}
