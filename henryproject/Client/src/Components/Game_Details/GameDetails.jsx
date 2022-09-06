@@ -21,6 +21,7 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 
 import '../Game_Details/GameDetails.css'
+import swal from 'sweetalert'
 
 export default function GameDetails() {
 
@@ -57,7 +58,8 @@ export default function GameDetails() {
             image: game.image,
         }
         dispatch(addToCart(item))
-        alert(`${game.name} added to cart!`)
+        swal({
+            title: `${game.name} added to cart!`})
     }
 
     function addGameToFav() {
@@ -68,7 +70,9 @@ export default function GameDetails() {
             image: game.image,
         }
         dispatch(addToFav(item))
-        alert(`${game.name} added to your favorites!`)
+        swal({
+            title: `${game.name} added to your favorites!`
+        })
     }
 
     async function buy() {
@@ -117,7 +121,7 @@ export default function GameDetails() {
     function handleSubmit(event) {
         event.preventDefault()
         dispatch(postReview(id, input))
-        alert("Commentary sent!")
+        swal({title:"Commentary sent!"})
         setInput({})
         window.location.reload()
     }

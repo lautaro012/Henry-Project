@@ -6,6 +6,7 @@ import { getGenres, getPlatforms, getTags, postVideoGame } from "../../redux/Act
 import { Carousel } from 'react-responsive-carousel';
 import ReactPlayer from 'react-player'
 import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 
 
@@ -305,14 +306,14 @@ let history=useNavigate();
             console.log(state.releaseDate);    
             setButtons(false)
                 dispatch(postVideoGame(state));
-                alert("Se ha creado correctamente");    
+                swal({title:"Se ha creado correctamente"});    
         }else{
             if(Object.keys(error).length!=0){
                 setButtons(true)
-                alert("Debe completar los campos correctamente")
+                swal({title:"Debe completar los campos correctamente"})
             }else{
                 setButtons(true)
-                alert("Debe completar los campos correctamente")
+                swal({title:"Debe completar los campos correctamente"})
             }
                 
         }       

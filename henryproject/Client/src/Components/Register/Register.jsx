@@ -3,6 +3,7 @@
 // import { useDispatch } from 'react-redux'
 // import { postNewUser } from '../../redux/Actions/Index'
 // import "./Register.css"
+// import swal from 'sweetalert'
 
 // const Register = () => {
 //     const dispatch= useDispatch()
@@ -63,7 +64,7 @@
 //     function handleSubmit(e) {
 //         e.preventDefault()
 //             dispatch(postNewUser(newUser))
-//             alert('registrado bro')   
+//             swal({title:'registrado bro'})   
 //     }
 
 

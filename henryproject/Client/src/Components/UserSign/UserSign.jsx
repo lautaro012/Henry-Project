@@ -4,6 +4,7 @@ import Icon from '../../Style/Imagenes/Icon.PNG'
 import Modal from "react-modal";
 import axios from 'axios'
 import { useDispatch } from "react-redux";
+import swal from 'sweetalert'; 
 const {
   REACT_APP_API
 } = process.env;
@@ -57,7 +58,7 @@ export default function UserSign({toggleModal, isOpen, setUserLogged, changeModa
               setLoading(false)
           })
           .catch(error => {
-            alert(error.response.data.msg ? error.response.data.msg : error.response.data)
+            swal({title:error.response.data.msg ? error.response.data.msg : error.response.data})
             console.log('el error fue', error.response)
             setLoading(false)
           })

@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteItemFromCart } from "../../redux/Actions/Index";
 import { useEffect } from "react";
 import CardHover from "../NewCard/CardHover";
-
+import swal from 'sweetalert'
 const {
   REACT_APP_API
 } = process.env;
@@ -73,13 +73,13 @@ export const FormularioPago = () => {
 
         })
         console.log(data);
-        alert(`You have pay $ ${precioTotal} successfully`)
+        swal({title:`You have pay $ ${precioTotal} successfully`})
         
         dispatch(deleteItemFromCart('All'))
         history("/")
 
       } catch (error) {
-        alert(error)
+        swal({title:error})
       }
       setLoading(false)
     }
