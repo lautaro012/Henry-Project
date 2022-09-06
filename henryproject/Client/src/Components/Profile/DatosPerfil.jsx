@@ -244,7 +244,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
                 <button id="submit" type="submit">Edit User</button>
             </form>
 
-            <button id="delete_user" onClick={() => deleteUserFromDB(id_name)}>Delete user</button>
+            <button id="delete_user" onClick={() => { if (window.confirm("Are you sure to delete your profile user?")) deleteUserFromDB(id_name)}}>Delete user</button>
         </div>
     )
 }

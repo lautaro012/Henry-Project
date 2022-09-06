@@ -24,6 +24,7 @@ export default function Orders({ data }) {
         <div>
             <h1>Orders</h1>
             {
+                orders.length > 0 ?
                 orders && orders.map(order => {
                     return (
                         <div id="conteiner_order">
@@ -50,6 +51,8 @@ export default function Orders({ data }) {
                         </div>
                     )
                 })
+                :
+                <h3>You haven't buy any games yet, explore our store to buy one !</h3>
             }
         </div>
     )

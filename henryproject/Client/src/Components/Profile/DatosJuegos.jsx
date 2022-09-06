@@ -42,6 +42,7 @@ export default function DatosJuegos({ data }) {
         <div>
             <h1>My games</h1>
             {
+                orders.length > 0 ?
                 orders && orders.map(order => {
                     return (
                         <div>
@@ -75,6 +76,8 @@ export default function DatosJuegos({ data }) {
                         </div>
                     )
                 })
+                :
+                <h3>You have no games yet, explore our store to buy one !</h3>
             }
         </div>
     )

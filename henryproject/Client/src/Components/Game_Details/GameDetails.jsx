@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getGameById, addToCart, addToFav, getReviews, vaciarGame } from "../../redux/Actions/Index.js";
+import { getGameById, addToCart, addToFav, getReviews, vaciarGame, postReview } from "../../redux/Actions/Index.js";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import ReactPlayer from 'react-player'
@@ -92,7 +92,52 @@ export default function GameDetails() {
         star: ['#d9ad26', '#d9ad26', '#434b4d'],
     }
 
-    console.log(game)
+    let userLogged = JSON.parse(localStorage.getItem("user"));
+    console.log("GAME", game)
+    console.log("REVIEWS", reviews)
+    console.log("USER", userLogged.user)
+
+    const [input, setInput] = useState({
+        userIdName: userLogged.user.id_name
+    })
+    const score = [1, 2, 3, 4, 5]
+
+    function handleInput(event) {
+        event.preventDefault()
+        setInput({
+            ...input,
+            [event.target.name]: event.target.value
+        })
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault()
+        dispatch(postReview(id, input))
+        alert("Commentary sent!")
+        setInput({})
+        window.location.reload()
+    }
+
+    function handleRadio(event) {
+
+        let currentRadio = document.getElementById(event.target.id);
+
+        if (event.target.id === input.value) {
+            currentRadio.checked = false
+            setInput({
+                ...input,
+                "value": null
+            })
+        }
+        else {
+            setInput({
+                ...input,
+                "value": event.target.value
+            })
+        }
+    }
+
+
 
     return (
         <div className="game_detail">
@@ -104,8 +149,8 @@ export default function GameDetails() {
                             <div id="conteinerData_detalles">
                                 {
                                     imgPop === true ?
-                                        <Modal isOpen={imgPop} fullscreen>
-                                            <img src={img} alt="ImagenPOP"></img>
+                                        <Modal isOpen={imgPop} fullscreen={true} width={800} autoFocus={true} centered={true} fade={true}>
+                                            <img src={img} alt="ImagenPOP" id="imagen_pop" ></img>
                                             <button onClick={() => setImgPop(false)}>X</button>
                                         </Modal>
                                         :
@@ -143,6 +188,7 @@ export default function GameDetails() {
                                     <hr />
                                     <h3>Rating : </h3>
                                     <PrettyRating value={game.rating} icons={icons.star} colors={colors.star} />
+                                    <p>{game.rating}</p>
                                     <hr />
                                     <div className='imagenesJuego' >
 
@@ -183,13 +229,14 @@ export default function GameDetails() {
                                     {
                                         game.tags && game.tags.map(tag => {
                                             return (
-                                                <div id="tag_details" key={tag.name}>
-                                                    <p>{tag.name}</p>
-                                                </div>
+                                                // <div id="tag_details" key={tag.name}>
+                                                    <li>{tag.name}</li>
+                                                // </div>
                                             )
                                         })
                                     }
                                 </div>
+                                <hr />
                                 {
                                     reviews.length > 0 ?
                                         <div>
@@ -197,13 +244,49 @@ export default function GameDetails() {
                                             {
                                                 reviews.map(rev => {
                                                     return (
-                                                        <div>
-                                                            <p>{rev}</p>
+                                                        <div id="contenedor_rev">
+                                                            <p>{rev.createdAt}</p>
+                                                            <p>{rev.review}</p>
+                                                            <PrettyRating value={rev.value} icons={icons.star} colors={colors.star} />
                                                         </div>
                                                     )
                                                 })
                                             }
                                         </div>
+                                        :
+                                        null
+                                }
+                                {
+                                    userLogged.user && userLogged.user.banned === false ?
+                                        <form onSubmit={(event) => handleSubmit(event)} className="Form_review">
+                                            <div id="Label_review">
+                                                <label>Comment this game!</label>
+                                                <textarea id="Review"
+                                                    type='text'
+                                                    value={input.review}
+                                                    name='review'
+                                                    placeholder="Here you can put your review"
+                                                    rows="5" cols="55"
+                                                    onChange={(event) => handleInput(event)}
+                                                />
+                                            </div>
+                                            <div className="Label">
+                                                <label>Score</label>
+                                                <div id="score">
+                                                    {
+                                                        score.map(number => {
+                                                            return (
+                                                                <div key={number}>
+                                                                    <input type="radio" value={number} onClick={(event) => handleRadio(event)} id={`${number}`} name="value" />
+                                                                    <label htmlFor={`${number}`}> {number} </label>
+                                                                </div>
+                                                            )
+                                                        })
+                                                    }
+                                                </div>
+                                            </div>
+                                            <button id="submit" type="submit">Post review</button>
+                                        </form>
                                         :
                                         null
                                 }

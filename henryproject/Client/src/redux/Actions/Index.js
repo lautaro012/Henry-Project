@@ -402,6 +402,12 @@ export function deleteUser(id_name) {
     }
 }
 
+export function postReview(id_game, payload) {
+    return function () {
+        axios.post(`/reviews/${id_game}/add`, payload)
+    }
+}
+
 export function banUser(mail) {
     return function(){
         axios.put(`/banned/${mail}`)
