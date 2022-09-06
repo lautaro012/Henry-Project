@@ -44,7 +44,20 @@ router.post("/", async(req,res)=>{
             from: '"Thanks For Buy In Games Store 👻" <henry.games.store@gmail.com>',
             to: mail,
             subject: `Your receipt of Games Store ${id} 🧾`,
-            html: `buenas`
+            html: `
+            <div>
+
+                <h1>Thanks!</h1>
+                <h3>Hi ${userIdName} 👋</h3>
+                <p>Thanks for your purchase from Games Store</p>
+                <h1>Invoice ID: ${id}</h1>
+                <h2>INFORMATION ABOUT YOUR ORDER:</h2>
+                <br></br>
+                <h3>Billed to: ${mail}</h3>
+                <h3>Font: Games Store</h3>
+                <h3>Total [USD]: ${amount}</h3>
+            </div>
+            `
          })
             
     } catch (error) {
