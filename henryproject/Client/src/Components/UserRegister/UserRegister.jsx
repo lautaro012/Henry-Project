@@ -80,6 +80,7 @@ export default function Useregister ({registersetIsOpen, registerisOpen}) {
         setShowError(true)
         dispatch(postNewUser(newUser))
         console.log('el nuevo usario es',newUser)
+        alert(`${newUser.userName} you have been succesfully been registred`)
         setNewUser({
             userName: "",
             mail: "",
@@ -89,6 +90,7 @@ export default function Useregister ({registersetIsOpen, registerisOpen}) {
             address: "",
             image: 'https://pbs.twimg.com/profile_images/831173492968140804/43M7c5j__400x400.jpg'
         })
+        window.location.reload()
     }
 
     return (

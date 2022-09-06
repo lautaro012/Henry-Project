@@ -6,9 +6,12 @@ import { Link, useNavigate  } from "react-router-dom";
 import { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
+
 import { getAllGames, Getbygenre, Getbytag, vaciarGame } from '../../redux/Actions/Index'
 import CardDescription from '../NewCard/CardDescription';
 import CardHover from '../NewCard/CardHover';
+import Suscribe from '../Suscribe/Suscribe';
+
 
 
 
@@ -20,7 +23,6 @@ export default function Home () {
     let Allvideogames = useSelector(state => state.Allvideogames)
     let videogamesBytag = useSelector(state => state.videogamesBytag)
     let videogamesBygenre = useSelector(state => state.videogamesBygenre)
-
     useEffect(() => {    
         Allvideogames.length === 0 ? dispatch(getAllGames()) : console.log('Allvideogames en store')
         videogamesBygenre.length === 0 ? dispatch(Getbygenre('Indie')) : console.log('Indie games en store')
@@ -73,6 +75,7 @@ export default function Home () {
     <div className="Home">
         {
             Allvideogames[0] ?
+
             <div className='Home-Games'>
                 <div className='main-carrousel'>
                     <Carousel
@@ -108,7 +111,9 @@ export default function Home () {
 
 
                 <div className='carruseles'>
+
                     <h1 className='h'> New Releases : </h1>
+
                     <Carousel 
                         showArrows={true} 
                         autoPlay={true} 
@@ -116,6 +121,7 @@ export default function Home () {
                         infiniteLoop={true} 
                         stopOnHover={true} 
                         showThumbs={false}
+
                         width={1600}
                         dynamicHeight={true}
                         renderIndicator={false}
@@ -184,7 +190,6 @@ export default function Home () {
 
                     </Carousel>
                 </div >
-
                 <hr></hr>
 
                 <div className='home-list'>
@@ -314,6 +319,7 @@ export default function Home () {
 
 
                     {/* <div className='carruseles'>
+
                     <Carousel 
                         showArrows={true} 
                         animationHandler={'fade'} 
@@ -336,6 +342,8 @@ export default function Home () {
                         }
                     </Carousel>
                 </div > */}
+
+                <Suscribe/>
 
             </div>
             :

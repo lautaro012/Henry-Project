@@ -32,13 +32,13 @@ export const GET_ALL_DISABLE_VIDEOGAME='GET_ALL_DISABLE_VIDEOGAME'
 export const GET_ORDERS = "GET_ORDERS"
 export const GET_USERS_BANNED= 'GET_USERS_BANNED'
 export const GET_NO_BANNED_ALL_USERS = 'GET_NO_BANNED_ALL_USERS'
+export const EMPTY_VIDEOGAMES = "EMPTY_VIDEOGAMES"
+
 
 require('dotenv').config();
 const {
     REACT_APP_API
 } = process.env;
-
-
 
 export function getAllGames(name) {
 
@@ -241,6 +241,12 @@ export function vaciarGame() {
     }
 }
 
+export function clearVideogames() {
+    return {
+        type: EMPTY_VIDEOGAMES,
+    }
+}
+
 export function postVideoGame(payload){
     return async function(dispatch){
         await axios.post("/videogames",payload)
@@ -399,6 +405,12 @@ export function modificarUser(id_name,payload) {
 export function deleteUser(id_name) {
     return function () {
         axios.delete(`/newUser/${id_name}`)
+    }
+}
+
+export function postReview(id_game, payload) {
+    return function () {
+        axios.post(`/reviews/${id_game}/add`, payload)
     }
 }
 

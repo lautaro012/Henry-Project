@@ -93,6 +93,11 @@ let history=useNavigate();
     // STATE button
     const [buttons,setButtons]=useState(false);
 
+    // stado para visualizar
+    const [stateVisual,setStateVisual]=useState({
+        visual:true
+    })
+
 
     //Expresiones
     const expresiones={
@@ -105,8 +110,6 @@ let history=useNavigate();
         metacritic: /^[0-9]{1,5}$/,
         esrb_rating:    /^[a-zA-ZñÑ0-9 ]{1,40}$/
     }
-    // rating
-    // 1,1.1,1.2,1.9 ,2.1
 
     // VALIDATION
     function validateFields(input){
@@ -137,9 +140,7 @@ let history=useNavigate();
                         
                         
                             if(!input[keys].match(expresiones.rating)){
-                                // if(input[keys]<0 || input[keys]>5){
                                 errores[keys] = `El ${keys} debe contener caracteres correctamente`;
-                                // }
 
                         }
                     }
@@ -157,7 +158,6 @@ let history=useNavigate();
                     if(state.publishers.length<=0){
                         if(!input[keys]) errores[keys] = `${keys} is required`
                     }
-                    // console.log(state.)
             }
         }
             return errores
@@ -170,7 +170,6 @@ let history=useNavigate();
                 setMovie({...movie,name:ev.target.value});
                 setError(validateFields({...error,[ev.target.name]: ev.target.value}))
                 setValidate(validateFields({...validate,[ev.target.name]: ev.target.value}))
-
             }else if(ev.target.name=="screenshot"){
                 setScreenshot({...screenshot,name:ev.target.value});
                 setError(validateFields({...error,[ev.target.name]: ev.target.value}))
@@ -179,7 +178,8 @@ let history=useNavigate();
                 if(!state.store.includes(ev.target.value)){
                     if(ev.target.value!=="All"){
                         setState({...state,store:[...state.store,ev.target.value]});
-                    setStore({...store,name:ev.target.value});
+                        setStore({...store,name:ev.target.value});
+                        setStateVisual({...stateVisual,visual:false});
                     }
                 }
             }else if(ev.target.name=="developer"){
@@ -190,11 +190,13 @@ let history=useNavigate();
                 setPublisher({...publisher,name:ev.target.value});
                 setError(validateFields({...error,[ev.target.name]: ev.target.value}))
                 setValidate(validateFields({...validate,[ev.target.name]: ev.target.value}))
+                
             }else if(ev.target.name=="platform"){
                 if(!state.platforms.includes(ev.target.value)){
                     if(ev.target.value!=="All"){
                         setState({...state,platforms:[...state.platforms,ev.target.value]});
                     setPlatform({...platform,name:ev.target.value});
+                    setStateVisual({...stateVisual,visual:false});
                     }
                 }
             }else if(ev.target.name=="tag"){
@@ -202,6 +204,7 @@ let history=useNavigate();
                     if(ev.target.value!=="All"){
                         setState({...state,tags:[...state.tags,ev.target.value]});
                     setTag({...tag,name:ev.target.value});
+                    setStateVisual({...stateVisual,visual:false});
                     }
                 }
             }else if(ev.target.name=="genre"){
@@ -209,13 +212,14 @@ let history=useNavigate();
                     if(ev.target.value!=="All"){
                         setState({...state,genres:[...state.genres,ev.target.value]});
                     setGenre({...genre,name:ev.target.value});
+                    setStateVisual({...stateVisual,visual:false});
                     }
                 }
             }else{
                 setState({...state,[ev.target.name]: ev.target.value})
                 setError(validateFields({...error,[ev.target.name]: ev.target.value}))
                 setValidate(validateFields({...validate,[ev.target.name]: ev.target.value}))
-                
+                setStateVisual({...stateVisual,visual:false});
             }
     }
     
@@ -224,6 +228,7 @@ let history=useNavigate();
         if(!state.video.includes(movie.name)){
             if(movie.name!==""){
                 setState({...state,video:[...state.video,movie.name]});
+                setStateVisual({...stateVisual,visual:false});
             }
         }
     }
@@ -237,6 +242,7 @@ let history=useNavigate();
             if(!state.screenshots.includes(screenshot.name)){
                 if(screenshot.name!==""){
                     setState({...state,screenshots:[...state.screenshots,screenshot.name]});
+                    setStateVisual({...stateVisual,visual:false});
                 }
             }
         }
@@ -278,7 +284,6 @@ let history=useNavigate();
     function onClickDeletePublisher(ev){
         setState({...state,publishers:[...state.publishers].filter((publisher)=>publisher!==ev)});
     }
-
     // FUNCTION ONCLICKDELETE
     function onClickDeletePlatform(ev){
         setState({...state,platforms:[...state.platforms].filter((store)=>store!==ev)});
@@ -292,85 +297,15 @@ let history=useNavigate();
         setState({...state,genres:[...state.genres].filter((store)=>store!==ev)});
     }
 
-
-    // const [error,setError]=useState({
-    //     name:false,
-    //     price:false,
-    //     description:false,
-    //     rating:false,
-    //     video:false,
-    //     image:false,
-    //     screenshots:false,
-    //     store:false,
-    //     developers:false,
-    //     publishers:false,
-    //     website:false,
-    //     releaseDate:false,
-    //     metacritic:false,
-    //     esrb_rating:false,
-    //     platforms:false,
-    //     tags:false,
-    //     genres:false
-    // })
-    // STATE newError
-    // const [error,setError]=useState(false);
-
-
-    // STATE VALIDATE
-    // const [validate,setValidate]=useState({
-    //     name:false,
-    //     price:false,
-    //     description:false,
-    //     rating:false,
-    //     video:false,
-    //     image:false,
-    //     screenshots:false,
-    //     store:false,
-    //     developers:false,
-    //     publishers:false,
-    //     website:false,
-    //     releaseDate:false,
-    //     metacritic:false,
-    //     esrb_rating:false,
-    //     platforms:false,
-    //     tags:false,
-    //     genres:false
-    // })
-   
-    // stado para visualizar
-    const [stateVisual,setStateVisual]=useState({
-        visual:true,
-        name:false,
-        price:false,
-        description:false,
-        rating:false,
-        video:false,
-        image:false,
-        screenshots:false,
-        store:false,
-        developers:true,
-        publishers:true,
-        website:true,
-        releaseDate:true,
-        metacritic:true,
-        esrb_rating:true,
-        platforms:true,
-        tags:true,
-        genres:true
-    })
     
-
 
     // onclickSubmit
     function onClickSubmit(){
-        // e.preventDefault();
         if(state.name!="" && state.price!="" && state.description!="" && state.rating != "" && state.video.length!=0 && state.image!="" && state.screenshots!=0 && state.store!=0 && state.developers!=0 && state.publishers!=0 && state.website != "" && state.releaseDate!="" && state.metacritic!="" && state.esrb_rating != "" && state.platforms.length!=0 && state.tags.length!=0 && state.genres.length!=0 && Object.keys(error).length==0){
-            // console.log(Object.keys(error).length!=0);
             console.log(state.releaseDate);    
             setButtons(false)
                 dispatch(postVideoGame(state));
-                alert("Se ha creado correctamente");
-            // }       
+                alert("Se ha creado correctamente");    
         }else{
             if(Object.keys(error).length!=0){
                 setButtons(true)
@@ -380,26 +315,7 @@ let history=useNavigate();
                 alert("Debe completar los campos correctamente")
             }
                 
-        }
-        //     setButtons(false)
-        //     dispatch(postVideoGame(state));
-        //     alert("Se ha creado correctamente");
-        //     console.log(state);
-        // }
-        // // else if(state.name=="" && state.price==""){
-        // //     console.log("Error");
-        // //     console.log(state);
-        // //     setButtons(true);
-        // // }
-        // setButtons(true);
-        //     console.log("A");
-        // setButtons(false);
-        // console.log()
-        // else{
-            
-        //     // handleRegresar();
-        // }
-        
+        }       
     }
 
     // Para el detalle
@@ -700,37 +616,35 @@ let history=useNavigate();
                 </div>
                 {/* Visualizar componentes */}
                 <div className="divcontainer02">
-                            {
-                                (stateVisual.visual==true)?(stateVisual.visual && (
+                                {(stateVisual.visual)?(stateVisual.visual && (
                                     <div className="container-preview">
                                         <p className="preview">Preview</p>
                                     </div>
-                                )):(<div className="container-visual">
-                                    {
-                                        (stateVisual.name)&&(
-                                            <h2 className="containers-name">{state.name}</h2>
-                                        )
-                                    }
-                                    {
-                                        (stateVisual.price)&&(
-                                        <p className="containers-price">Price: $/.{state.price}</p>
-                                        ) 
-                                    }
-                                    {
-                                        (stateVisual.description)&&(
-                                        <p className="containers-description">{state.description}</p>
-                                        )
-                                    }
-                                    {
-                                        (stateVisual.rating)&&(
-                                        <p className="containers-rating">{stars(state.rating)} {state.rating}</p>
-                                        )
-                                    }
-                                    {
-                                        (stateVisual.video)&&
-                                            (
+                                )):(
+                                    <div className="container-visual">
+                                        {
+                                            (state.name=="")?(state.name==""&&(
+                                                null
+                                            )):(<h2 className="containers-name">{state.name}</h2>)
+                                        }
+                                        {
+                                            (state.price=="")?(state.price=="" && (
+                                                null
+                                            )):(<p className="containers-price">Price: $/.{state.price}</p>)
+                                        }
+                                        {
+                                            (state.description=="")?(state.description=="" && (
+                                                null
+                                            )):(<p className="containers-description">{state.description}</p>)
+                                        }
+                                        {
+                                            (state.rating=="")?(state.rating=="" && (
+                                                null
+                                            )):(<p className="containers-rating">{stars(state.rating)} {state.rating}</p>)
+                                        }
+                                        {
+                                            (state.video.length==0)?(state.video.length==0 && null):(
                                                 <>
-                                                
                                                 < ReactPlayer
                                                     className="containers-video"
                                                     url={state.video}
@@ -741,129 +655,126 @@ let history=useNavigate();
                                                     loop
                                                     muted
                                                 /></>
-                                            )  
-                                    }
-                                    {
-                                        (stateVisual.image)&&(
-                                            <div className="containers-img">
+                                            )          
+                                        }
+                                        {
+                                            (state.image=="")?(state.image=="" && null):(
+                                                <div className="containers-img">
                                                 <img src={state.image} alt="NOT FOUND" />
-                                            </div>
-                                        )
-                                    }
-                                    {
-                                        (stateVisual.screenshots)&&(
-                                            <div className="container-screenshot">
-                                            <div className="subcontain1">
-                                            {state.screenshots?.map(ev=>{
-                                                return(
-                                                    <div key={ev} className="screenshot-img">
-                                                        <img src={ev} alt="NOT FOUND" />
-                                                    </div>
-                                                );
-                                            })}
-                                        </div>
-                                    </div>
-                                        )
-                                    }
-                                    {
-                                        (stateVisual.store) && (
-                                            <>
+                                                </div>
+                                            ) 
+                                        }
+                                        {
+                                            (state.screenshots.length==0)?(state.screenshots.length==0 && null):(
+                                                <div className="container-screenshot">
+                                                <div className="subcontain1">
+                                                    {state.screenshots?.map(ev=>{
+                                                        return(
+                                                            <div key={ev} className="screenshot-img">
+                                                                <img src={ev} alt="NOT FOUND" />
+                                                            </div>
+                                                        );
+                                                    })}
+                                                </div>
+                                                </div>
+                                            )
+                                        }
+                                        {
+                                            (state.store.length==0)? (state.store.length==0 && null):(
+                                                <>
                                                 <p>STORES: </p>
                                                 <div className="container-store">
                                                     <p>{state.store?.join(", ")}</p>
                                                 </div>
                                             </>
-                                        )
-                                    }
-                                    {
-                                        (stateVisual.developers) &&(
-                                            <>
+                                            )
+                                        }
+                                        {
+                                            (state.developers.length==0)?(state.developers.length==0 && null):(
+                                                <>
                                                 <p>DEVELOPERS: </p>
                                                 <div className="container-developers">
                                                 <p>{state.developers?.join(", ")}</p>
                                                 </div>
-                                            </>
-                                        )
-                                    }
-                                    {
-                                        (stateVisual.publishers)&&(
-                                            <>
-                                            <p>PUBLISHERS: </p>
-                                            <div className="container-publishers">
+                                                </>
+                                            )
+                                        }
+                                        {
+                                            (state.publishers.length==0)?(state.publishers.length==0 && null):(
+                                                <>
+                                                <p>PUBLISHERS: </p>
+                                                <div className="container-publishers">
                                                 <p>{state.publishers?.join(", ")}</p>
-                                            </div>
+                                                </div>
+                                                </>
+                                            )
+                                        }
+                                        {
+                                            (state.website=="")?(state.website=="" && null):(
+                                                <>
+                                                <p>WEBSITE: </p>
+                                                <p>{state.website}</p>
                                             </>
-                                        )
-                                    }
-                                    {
-                                        (stateVisual.website)&&(
-                                            <>
-                                            <p>WEBSITE: </p>
-                                            <p>{state.website}</p>
-                                            </>
-                                        )
-                                    }
-                                    {
-                                        (stateVisual.releaseDate)&&(
-                                            <>
-                                            <p>RELEASEDATE: </p>
-                                            <p>{state.releaseDate}</p>
-                                            </>
-                                        )
-                                    }
-                                    {
-                                            (stateVisual.metacritic)&&(
-                                            <>
-                                            <p>METACRITIC: </p>
-                                            <p>{state.metacritic}</p>
-                                            </>
-                                        )
-                                    }
-                                    {
-                                        (stateVisual.esrb_rating)&&(
-                                            <>
-                                            <p>ESRB_RATNG:</p>
-                                            <p>{state.esrb_rating}</p>
-                                            </>
-                                        )
-                                    }
-                                    {
-                                        (stateVisual.platforms)&&(
-                                            <>
-                                            <p>PLATFORMS: </p>
-                                            <div className="container-platforms">
-                                            <p>{state.platforms?.join(", ")}</p>
-                                            </div>
-                                            </>
-                                        )
-                                    }
-                                    {
-                                        (stateVisual.tags)&&(
-                                            <>
-                                            <p>TAGS: </p>
-                                            <div className="container-tags">
-                                            <p>{state.ntags?.join(", ")}</p>
-                                            </div>
-                                            </>
-                                        )
-                                    }
-                                    {
-                                        (stateVisual.genres)&&(
-                                            <>
-                                            <p>GENRES: </p>
-                                            <div className="container-genres">
-                                            <p>{state.genres?.join(", ")}</p>
-                                            </div>
-                                            </>
-                                        )
-                                    }
-                                </div>)
+                                            )
+                                        }
+                                        {
+                                            (state.releaseDate=="")?(state.releaseDate=="" && null):(
+                                                <>
+                                                <p>RELEASEDATE: </p>
+                                                <p>{state.releaseDate}</p>
+                                                </>
+                                            )
+                                        }
+                                        {
+                                            (state.metacritic=="")?(state.metacritic=="" && null):(
+                                                <>
+                                                <p>METACRITIC: </p>
+                                                <p>{state.metacritic}</p>
+                                                </>
+                                            )
+                                        }
+                                        {
+                                            (state.esrb_rating=="")?(state.esrb_rating=="" && null):(
+                                                <>
+                                                <p>ESRB_RATNG:</p>
+                                                <p>{state.esrb_rating}</p>
+                                                </>
+                                            )
+                                        }
+                                        {
+                                            (state.platforms.length==0)? (state.platforms.length==0 && null):(
+                                                <>
+                                                <p>PLATFORMS: </p>
+                                                <div className="container-platforms">
+                                                <p>{state.platforms?.join(", ")}</p>
+                                                </div>
+                                                </>
+                                            )
+                                        }
+                                        {
+                                            (state.tags.length==0)? (state.tags.length==0 && null):(
+                                                <>
+                                                <p>TAGS: </p>
+                                                <div className="container-tags">
+                                                <p>{state.tags?.join(", ")}</p>
+                                                </div>
+                                                </>
+                                            )
+                                        }
+                                        {
+                                            (state.genres.length==0)? (state.genres.length==0 && null):(
+                                                <>
+                                                <p>GENRES: </p>
+                                                <div className="container-genres">
+                                                <p>{state.genres?.join(", ")}</p>
+                                                </div>
+                                                </>
+                                            )
+                                        }
+                                          
+                                    </div>
+                                )
                             }
-
-            
-                    
-                            
-
                 </div>        
             </div>       
     </div>
