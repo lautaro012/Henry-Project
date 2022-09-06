@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { deleteUser, modificarUser } from '../../redux/Actions/Index'
 import CardHover from "../NewCard/CardHover.jsx";
+import swal from "sweetalert";
 
 export default function DatosPerfil({ setUserLogged, data }) {
 
@@ -55,14 +56,14 @@ export default function DatosPerfil({ setUserLogged, data }) {
         let error2 = Object.keys(error)
 
         if (error2.length > 0) {
-            alert('Debe salvar errores')
+            swal({title:'Debe salvar errores'})
         }
         else if (Object.keys(input).length === 0) {
-            alert("Nothing to edit")
+            swal({title:"Nothing to edit"})
         }
         else {
             dispatch(modificarUser(id_name, input))
-            alert("User edited!")
+            swal({title:"User edited!"})
             setInput({})
             navigate("/home/games");
         }
@@ -71,7 +72,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
     function deleteUserFromDB(id_name) {
         setUserLogged(false)
         dispatch(deleteUser(id_name))
-        alert("User deleted")
+        swal({title:"User deleted!"})
         navigate("/home/games");
     }
 

@@ -1,3 +1,4 @@
+import swal from 'sweetalert'
 const axios = require('axios');
 export const GET_ALL_GAMES = 'GET_ALL_GAMES'
 export const GET_ALL_GAMES_BY_NAME = 'GET_ALL_GAMES_BY_NAME'
@@ -52,7 +53,7 @@ export function getAllGames(name) {
                     payload: response.data
                 })
             } catch (error) {
-                alert('no games whit that name :(')
+                swal({title:'no games whit that name :('})
                 dispatch({
                     type: CLEAR,                  
                 })
@@ -427,20 +428,20 @@ export function postReview(id_game, payload) {
 export function banUser(mail) {
     return function(){
         axios.put(`/banned/${mail}`)
-        .then(alert('user disabled'))
+        .then(swal({title:'user disabled'}))
     }
 }
 
 export function noBanUser(mail) {
     return function(){
         axios.put(`/noBanned/${mail}`)
-        .then('user enabled')
+        .then({title:'user enabled'})
     }
 }
 export function updateAdmin(mail) {
     return function (){
         axios.put(`/admin/${mail}`)
-        .then(alert('user is now admin'))
+        .then(swal({title:'user is now admin'}))
     }
 }
 

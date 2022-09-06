@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useState } from 'react'
 import './Suscribe.css'
+import swal from 'sweetalert';
 
 
 export default function Suscribe () {
@@ -22,7 +23,7 @@ export default function Suscribe () {
         .then(resp => resp.data)
         .then(resp => {
             console.log('newsletter', resp)
-            alert('Thanks for suscribing ! ')
+            swal({title:'Thanks for suscribing ! '})
             setLoading(false)
          })
          .catch(error => {

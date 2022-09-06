@@ -13,6 +13,7 @@ import {
 import {
     faStar as farStar,
 } from "@fortawesome/free-regular-svg-icons";
+import swal from 'sweetalert';
 
 export default function Card({ card }) {
 
@@ -30,11 +31,16 @@ export default function Card({ card }) {
         }
         if (e.target.checked) {
             dispatch(addToFav(item))
-            alert(`${name} added to your favorites!`)
+            swal({
+                title: `${name} added to your favorites!`,
+                // background: 'black' 
+            })
             setRender(render, 'hola')
         } else {
             dispatch(deleteItemFromFavs(item.id))
-            alert(`${name} remove from your favorites!`)
+            swal({
+                title: `${name} remove from your favorites!`,
+            })
             setRender(render, 'hola')
         }
     }
