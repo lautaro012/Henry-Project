@@ -64,7 +64,7 @@ const initialState = {
     allUsersBanned: [],
     allUsersNoBanned: [],
 
-    mails: []
+    mails: [],
     mailsNews: []
 
 
@@ -94,6 +94,7 @@ export default function rootReducer(state = initialState, action) {
                 allUsersNoBanned: action.payload
             }
         }
+    
         case GET_ALL_GAMES:
             return {
                 ...state,

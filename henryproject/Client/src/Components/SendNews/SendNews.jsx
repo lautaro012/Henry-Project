@@ -92,7 +92,10 @@ function handleSubmit(ev) {
     {/* <img src={}></img> */}
 
     </div>
+    </div>
   )
 }
 
 export default SendNews
+}
+}
