@@ -29,6 +29,7 @@ function onChangeEmail(ev){
   }
    
  
+
 }
 function handleSubmit(ev) {
   ev.preventDefault()
@@ -37,6 +38,7 @@ function handleSubmit(ev) {
 
 
   return (
+
     <div className='firstDivFormSendNews'>
     <h3 className='titleSendNewOffer'>Send your newsletter:</h3>
     <form onSubmit={(ev) => handleSubmit(ev)}> 
@@ -67,4 +69,4 @@ function handleSubmit(ev) {
   )
 }
 
-export default SendNews
+export default  SendNews

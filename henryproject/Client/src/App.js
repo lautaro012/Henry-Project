@@ -10,7 +10,7 @@ import Home from './Components/Home/Home.jsx'
 import Games from './Components/Games/Games';
 import NavBar from './Components/Nav_bar/Nav_bar';
 import GameDetail from './Components/Game_Details/GameDetails.jsx'
-import CreateVideogame from './Components/CreateVideogame/CreateVideogame.jsx';
+import CreateVideogame from './Components/CreateVideogame/CreateVideogames.jsx';
 // import CreateVideogame from './Components/CreateVideogame/CreateVideogames.jsx';
 
 import Admin from './Components/Admin/Admin';
@@ -20,7 +20,7 @@ import LoadingScreen from './Components/LoadingScreen/LoadingScreen';
 import Cart from './Components/Cart/Cart.jsx';
 import Footer from './Components/Footer/Footer.jsx'
 import Favoritos from './Components/Favoritos/Favoritos.jsx'
-import EditVideogame from './Components/CreateVideogame/EditVideogame/EditVideogame';
+import EditVideogame from './Components/CreateVideogame/EditVideogame/EditVideogames';
 import { useEffect, useState } from 'react';
 // import Register from './Components/Register/Register';
 import { FormularioPago } from './Components/FormularioPago/FormularioPago';
