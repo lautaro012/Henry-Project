@@ -13,21 +13,21 @@ const postReviews =async(req,res)=> {
     const {gameId} = req.params
     const { value, review, userIdName } = req.body;
     let game = await Games.findByPk(gameId)
-    // console.log(game)
+
     try {
         await Reviews.create({
-            value: value,
+            value: Number(value),
             review: review,
             userIdName: userIdName,
             gameId: gameId
         })
-        let rating = ((game.rating+value)/2);
-        // console.log(newRating)
+        let rating = ((game.rating+Number(value))/2).toFixed(2)
+
         await Games.update(
             {rating},
             {where: {id: gameId}}
         )
-        console.log(game.rating)
+
         res.send('review add')
     } catch (error) {
         console.log('error al crear Review');

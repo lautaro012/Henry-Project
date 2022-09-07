@@ -1,13 +1,15 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import {  useNavigate } from "react-router-dom";
 import { deleteUser, modificarUser } from '../../redux/Actions/Index'
-import CardHover from "../NewCard/CardHover.jsx";
+import swal from "sweetalert";
+//import CardHover from "../NewCard/CardHover.jsx";
+
 
 export default function DatosPerfil({ setUserLogged, data }) {
 
-    let { name, lastName, image, address, mail, userName, id_name } = data
+    let { name, lastName, address, mail, userName, id_name } = data
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -55,14 +57,14 @@ export default function DatosPerfil({ setUserLogged, data }) {
         let error2 = Object.keys(error)
 
         if (error2.length > 0) {
-            alert('Debe salvar errores')
+            swal({title:'Debe salvar errores'})
         }
         else if (Object.keys(input).length === 0) {
-            alert("Nothing to edit")
+            swal({title:"Nothing to edit"})
         }
         else {
             dispatch(modificarUser(id_name, input))
-            alert("User edited!")
+            swal({title:"User edited!"})
             setInput({})
             navigate("/home/games");
         }
@@ -71,7 +73,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
     function deleteUserFromDB(id_name) {
         setUserLogged(false)
         dispatch(deleteUser(id_name))
-        alert("User deleted")
+        swal({title:"User deleted!"})
         navigate("/home/games");
     }
 
@@ -82,37 +84,41 @@ export default function DatosPerfil({ setUserLogged, data }) {
         setForm(nombreDelInput)
     }
 
-    // async function handleImageChange(e) {
-    //     if (e.target.files && e.target.files[0]) {
-    //         console.log("TARGET FILE", e.target.files[0])
-    //         const data = new FormData()
-    //         data.append("file", e.target.files[0])
-    //         data.append("upload_preset", "gamesAPI")
-    //         fetch(
-    //             "https://api.cloudinary.com/v1_1/luubermudezz/image/upload", {
-    //             method: "POST",
-    //             body: data
-    //         }
-    //         ).then(resp => resp.json())
-    //             .then(file => {
-    //                 if (file) {
-    //                     setInput({
-    //                         ...input,
-    //                         image: `${file.secure_url}`
-    //                     })
-    //                 }
-    //             })
-    //     }
-    // }
+    //const [loading, setLoading] = useState(false)
+
+    async function handleImageChange(e) {
+        if (e.target.files && e.target.files[0]) {
+            console.log("TARGET FILE", e.target.files[0])
+            //setLoading(true)
+            const data = new FormData()
+            data.append("file", e.target.files[0])
+            data.append("upload_preset", "gamesAPI")
+            fetch(
+                "https://api.cloudinary.com/v1_1/luubermudezz/image/upload", {
+                method: "POST",
+                body: data
+            }
+            ).then(resp => resp.json())
+                .then(file => {
+                    if (file) {
+                        setInput({
+                            ...input,
+                            image: `${file.secure_url}`
+                        })
+                       // setLoading(false)
+                    }
+                })
+        }
+    }
 
     return (
         <div className="modificar_perfil">
             <h1>My profile</h1>
-            <h3>{mail}</h3>
+            <h2>{mail}</h2>
             <hr></hr>
             <form onSubmit={(event) => handleSubmit(event)} className="Form">
                 <div className="Label">
-                    <h3>User</h3>
+                    <h2>User</h2>
                     <label>{userName}</label>
                     <button onClick={(event) => abrirForm(event, "user name")}>Edit</button>
                     {
@@ -138,7 +144,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
                 </div>
                 <hr></hr>
                 <div className="Label">
-                    <h3>Name</h3>
+                    <h2>Name</h2>
                     <label>{name}</label>
                     <button onClick={(event) => abrirForm(event, "name")}>Edit</button>
                     {
@@ -166,7 +172,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
                 </div>
                 <hr></hr>
                 <div className="Label">
-                    <h3>Last name</h3>
+                    <h2>Last name</h2>
                     <label>{lastName}</label>
                     <button onClick={(event) => abrirForm(event, "last name")}>Edit</button>
                     {
@@ -193,7 +199,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
                 </div>
                 <hr></hr>
                 <div className="Label">
-                    <h3>Address</h3>
+                    <h2>Address</h2>
                     <label>{address}</label>
                     <button onClick={(event) => abrirForm(event, "address")}>Edit</button>
                     {
@@ -219,18 +225,18 @@ export default function DatosPerfil({ setUserLogged, data }) {
                 </div>
                 <hr></hr>
                 <div className="Label">
-                    <h3>User image</h3>
+                    <h2>User image</h2>
                     <button onClick={(event) => abrirForm(event, "image")}>Edit</button>
                     {
                         form && form === "image" ?
                             <div>
                                 <input
-                                    type='text'
+                                    type='file'
                                     size="80"
-                                    value={input.image}
+
                                     name='image'
                                     placeholder="Insert a image URL"
-                                    onChange={(event) => handleInput(event)}
+                                    onChange={(event) => handleImageChange(event)}
                                 />
                                 {
                                     !errors.image ? null : <span>{errors.image}</span>
@@ -245,7 +251,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
                 <button id="submit" type="submit">Edit User</button>
             </form>
 
-            <button id="delete_user" onClick={() => { if (window.confirm("Are you sure to delete your profile user?")) deleteUserFromDB(id_name)}}>Delete user</button>
+            <button id="delete_user" onClick={() => { if (window.confirm("Are you sure to delete your profile user?")) deleteUserFromDB(id_name) }}>Delete user</button>
         </div>
     )
 }

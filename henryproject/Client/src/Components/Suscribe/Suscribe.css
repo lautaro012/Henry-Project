@@ -2,7 +2,14 @@
     background-color: #ffffffd4;
     padding: 1%;
     border-radius: 25px;
-    width: 50%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
 }
 
 .suscribe-textarea{
@@ -16,6 +23,7 @@
     border-radius: 25px;
     justify-content: space-around;
     font-size: 25px;
+    width: 98%;
     border: 5px solid #ffeb3b;
 }
 
@@ -35,7 +43,7 @@
     color: ghostwhite;
     padding: 1%;
     font-family: sans-serif;
-    font-size: 15px;
+    font-size: 10px;
     font-weight: bolder;
     overflow: hidden;
 }
@@ -50,13 +58,19 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
 }
 
-.suscribe-form button {
-    width: 10%;
+/* .suscribe-form button {
+    width: 43%;
     border-radius: 10px;
     margin: 2%;
-}
+    padding: 2%;
+} */
+
 
 .suscribe-form input{
     background: none;
@@ -64,4 +78,48 @@
     border-bottom: 2px solid black;
     padding: 2%;
     font-size: 25px;
+}
+
+.suscribe-conteiner h2 {
+    font-size: 15px;
+}
+
+/* CSS */
+.button-52 {
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 1px solid black;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-52:after {
+  content: "";
+  background-color: #ffeb3b;
+  width: 100%;
+  margin: 1%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
+}
+
+.button-52:hover:after {
+  top: 0px;
+  left: 0px;
+}
+
+@media (min-width: 768px) {
+  .button-52 {
+    padding: 13px 50px 13px;
+  }
 }

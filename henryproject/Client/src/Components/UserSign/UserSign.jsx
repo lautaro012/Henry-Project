@@ -3,7 +3,7 @@ import './UserSign.css'
 import Icon from '../../Style/Imagenes/Icon.PNG'
 import Modal from "react-modal";
 import axios from 'axios'
-import { useDispatch } from "react-redux";
+import swal from 'sweetalert'; 
 const {
   REACT_APP_API
 } = process.env;
@@ -12,7 +12,6 @@ const {
 export default function UserSign({toggleModal, isOpen, setUserLogged, changeModal}) {
 
 
-    let dispatch = useDispatch()
     const [render, setRender] = useState('')
     const[loading, setLoading] = useState(false)
     const [input, setInput] = useState({
@@ -20,10 +19,10 @@ export default function UserSign({toggleModal, isOpen, setUserLogged, changeModa
         password: ''
     })
 
-    function handleClick(e) {
-        // e.preventDefault()
-        window.open(`http://localhost:3001/auth/google`, "_self")
-    }
+    // function handleClick(e) {
+    //     // e.preventDefault()
+    //     window.open(`http://localhost:3001/auth/google`, "_self")
+    // }
 
     Modal.setAppElement("#root");
 
@@ -57,7 +56,7 @@ export default function UserSign({toggleModal, isOpen, setUserLogged, changeModa
               setLoading(false)
           })
           .catch(error => {
-            alert(error.response.data.msg ? error.response.data.msg : error.response.data)
+            swal({title:error.response.data.msg ? error.response.data.msg : error.response.data})
             console.log('el error fue', error.response)
             setLoading(false)
           })
@@ -78,7 +77,7 @@ export default function UserSign({toggleModal, isOpen, setUserLogged, changeModa
       >
         <div className="modal-welcome">
         <img src={Icon} className='iconito-de-sergio' alt='iconito de Sergio'/>
-                Bienvenido
+                <h1>Bienvenido</h1>
         </div>
         <div>
             <form className="form-modal" onSubmit={handleSubmit}>
@@ -86,13 +85,13 @@ export default function UserSign({toggleModal, isOpen, setUserLogged, changeModa
                 <input onChange={handleChange} type="mail" id="mail" name='mail'></input>
                 <label>Password:</label>   
                 <input onChange={handleChange} type="password" id="password" name='password' autocomplete="off" ></input>
-                {loading ? <button type="submit" disabled={true} > Loading.. </button> : <button type="submit"> Loggin </button>}
+                {loading ? <button type="submit" disabled={true} className='button-30'> Loading.. </button> : <button className="button-30" type="submit"> Loggin </button>}
                 {/* <button type="submit"> Loggin </button> */}
             </form>
         </div>
         
-        <button onClick={(e) => handleClick(e)} className='login-with-google-btn' >Ingresar con cuenta de Google</button>
-        Are you new ?  <button onClick={changeModal}>Register free now !</button>
+        {/* <button onClick={(e) => handleClick(e)} className='login-with-google-btn' >Ingresar con cuenta de Google</button> */}
+        Are you new ?  <button onClick={changeModal} className='register-button'>{<u>Register free now</u>} !</button>
 
       </Modal>
 

@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getGameById, addToCart, addToFav, getReviews, vaciarGame, postReview } from "../../redux/Actions/Index.js";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 import ReactPlayer from 'react-player'
 import LoadingScreen from "../LoadingScreen/LoadingScreen.jsx";
@@ -21,6 +21,7 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 
 import '../Game_Details/GameDetails.css'
+import swal from 'sweetalert'
 
 export default function GameDetails() {
 
@@ -57,7 +58,8 @@ export default function GameDetails() {
             image: game.image,
         }
         dispatch(addToCart(item))
-        alert(`${game.name} added to cart!`)
+        swal({
+            title: `${game.name} added to cart!`})
     }
 
     function addGameToFav() {
@@ -68,7 +70,9 @@ export default function GameDetails() {
             image: game.image,
         }
         dispatch(addToFav(item))
-        alert(`${game.name} added to your favorites!`)
+        swal({
+            title: `${game.name} added to your favorites!`
+        })
     }
 
     async function buy() {
@@ -117,7 +121,7 @@ export default function GameDetails() {
     function handleSubmit(event) {
         event.preventDefault()
         dispatch(postReview(id, input))
-        alert("Commentary sent!")
+        swal({title:"Commentary sent!"})
         setInput({})
         window.location.reload()
     }
@@ -140,8 +144,6 @@ export default function GameDetails() {
             })
         }
     }
-
-
 
     return (
         <div className="game_detail">
@@ -221,8 +223,10 @@ export default function GameDetails() {
                                     {
                                         game.series && game.series.map(card => {
                                             return (
+                                                <a href={`https://rawg.io/search?query=${card.name}`}  target="_blank" rel="noreferrer">
                                                 <CardHover
                                                     image={card.image} name={card.name} />
+                                                </a>
                                             )
                                         })
                                     }
@@ -361,9 +365,9 @@ export default function GameDetails() {
 
                                 <h2>Price : ${game.price}</h2>
 
-                                <button onClick={() => buy()}>Buy now ! 💰</button>
-                                <button onClick={() => addGameToCart()}>Add to cart 🛒</button>
-                                <button onClick={() => addGameToFav()}>Add to favorites 🤍</button>
+                                <button className="button-84" onClick={() => buy()}>Buy now ! 💰</button>
+                                <button  className="button-84" onClick={() => addGameToCart()}>Add to cart 🛒</button>
+                                <button  className="button-84" onClick={() => addGameToFav()}>Add to favorites 🤍</button>
                             </aside>
                         </div>
                     </div>

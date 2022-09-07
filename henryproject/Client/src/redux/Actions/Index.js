@@ -1,3 +1,4 @@
+import swal from 'sweetalert'
 const axios = require('axios');
 export const GET_ALL_GAMES = 'GET_ALL_GAMES'
 export const GET_ALL_GAMES_BY_NAME = 'GET_ALL_GAMES_BY_NAME'
@@ -33,6 +34,8 @@ export const GET_ORDERS = "GET_ORDERS"
 export const GET_USERS_BANNED= 'GET_USERS_BANNED'
 export const GET_NO_BANNED_ALL_USERS = 'GET_NO_BANNED_ALL_USERS'
 export const EMPTY_VIDEOGAMES = "EMPTY_VIDEOGAMES"
+export const GET_MAILS= "GET_MAILS"
+export const GET_ALL_MAILS_NEWS="GET_ALL_MAILS_NEWS"
 
 
 require('dotenv').config();
@@ -51,7 +54,7 @@ export function getAllGames(name) {
                     payload: response.data
                 })
             } catch (error) {
-                alert('no games whit that name :(')
+                swal({title:'no games whit that name :('})
                 dispatch({
                     type: CLEAR,                  
                 })
@@ -77,6 +80,15 @@ export function getAllBannedUsers () {
         })
     }
 }
+export function getAllMailsNews () {
+    return async function (dispatch) {
+        let res = await axios.get('/newsletter')
+        dispatch({
+            type: GET_ALL_MAILS_NEWS,
+            payload: res.data
+        })
+    }
+}
 
 
 
@@ -88,6 +100,17 @@ export function getGameById(id) {
             payload: response.data
         })
     }
+}
+
+export function getMails(){
+    return async function(dispatch){
+        let res= await axios(`/newsletter`)
+        dispatch({
+            type: GET_MAILS,
+            payload: res.data
+        })
+    }
+
 }
 
 
@@ -417,20 +440,20 @@ export function postReview(id_game, payload) {
 export function banUser(mail) {
     return function(){
         axios.put(`/banned/${mail}`)
-        .then(alert('user disabled'))
+        .then(swal({title:'user disabled'}))
     }
 }
 
 export function noBanUser(mail) {
     return function(){
         axios.put(`/noBanned/${mail}`)
-        .then('user enabled')
+        .then({title:'user enabled'})
     }
 }
 export function updateAdmin(mail) {
     return function (){
         axios.put(`/admin/${mail}`)
-        .then(alert('user is now admin'))
+        .then(swal({title:'user is now admin'}))
     }
 }
 

@@ -33,6 +33,9 @@ import {
     GET_NO_BANNED_ALL_USERS,
     EMPTY_VIDEOGAMES,
 
+    GET_MAILS,
+    GET_ALL_MAILS_NEWS,
+
 } from "../Actions/Index"
 
 const initialState = {
@@ -59,7 +62,10 @@ const initialState = {
     allUsers: [],
     orders: [],
     allUsersBanned: [],
-    allUsersNoBanned: []
+    allUsersNoBanned: [],
+    mails: [],
+    mailsNews: []
+
 
 }
 
@@ -75,6 +81,11 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 allUsersBanned: action.payload
+            }
+        case GET_ALL_MAILS_NEWS:
+            return {
+                ...state,
+                mailsNews: action.payload
             }
         case GET_NO_BANNED_ALL_USERS: {
             return{
@@ -180,6 +191,11 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 platforms: action.payload
             }
+            case GET_MAILS:
+                return{
+                    ...state,
+                    mails: action.payload
+                }
         case GET_TAGS:
             return {
                 ...state,

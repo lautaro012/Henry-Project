@@ -4,6 +4,7 @@ import '../UserSign/UserSign.css'
 import Icon from '../../Style/Imagenes/Icon.PNG'
 import { postNewUser } from "../../redux/Actions/Index"
 import { useDispatch } from "react-redux"
+import swal from 'sweetalert';
 
 export default function Useregister ({registersetIsOpen, registerisOpen}) {
 
@@ -80,6 +81,8 @@ export default function Useregister ({registersetIsOpen, registerisOpen}) {
         setShowError(true)
         dispatch(postNewUser(newUser))
         console.log('el nuevo usario es',newUser)
+        
+         swal({title:`${newUser.userName} you have been succesfully been registred`})
         setNewUser({
             userName: "",
             mail: "",
@@ -89,6 +92,7 @@ export default function Useregister ({registersetIsOpen, registerisOpen}) {
             address: "",
             image: 'https://pbs.twimg.com/profile_images/831173492968140804/43M7c5j__400x400.jpg'
         })
+        window.location.reload()
     }
 
     return (
