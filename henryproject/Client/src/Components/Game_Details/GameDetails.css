@@ -158,7 +158,8 @@
     border-style: solid;
     border-radius: 20px;
     padding: 5%;
-    margin: 5%;
+    margin: 5%; 
+    font-size: 25px;
 }
 
 #score {

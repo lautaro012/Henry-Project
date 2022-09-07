@@ -364,7 +364,6 @@ export default function GameDetails() {
                                 </div>
 
                                 <h2>Price : ${game.price}</h2>
-
                                 <button id="buttons_detail_buy" onClick={() => buy()}>Buy now ! 💰</button>
                                 <button id="buttons_detail_buy" onClick={() => addGameToCart()}>Add to cart 🛒</button>
                                 <button id="buttons_detail_buy" onClick={() => addGameToFav()}>Add to favorites 🤍</button>

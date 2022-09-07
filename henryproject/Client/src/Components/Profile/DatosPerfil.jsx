@@ -3,11 +3,8 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteUser, modificarUser } from '../../redux/Actions/Index'
-
-
-
-import CardHover from "../NewCard/CardHover.jsx";
 import swal from "sweetalert";
+//import CardHover from "../NewCard/CardHover.jsx"
 
 export default function DatosPerfil({ setUserLogged, data }) {
 
