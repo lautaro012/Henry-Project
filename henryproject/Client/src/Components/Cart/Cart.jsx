@@ -62,7 +62,7 @@ export default function Cart() {
                                 //     <button onClick={() => deleteItem(item.id)}>Delete</button>
                                 // </div>
                                 <div key={item.id} id='cart-item-list'>
-                                    <Link to={`/home/items/${item.id}`} className='Link'>
+                                    <Link to={`/home/games/${item.id}`} className='Link'>
                                         <CardHover image={item.image} name={item.name}>
                                         </CardHover>
                                     </Link>

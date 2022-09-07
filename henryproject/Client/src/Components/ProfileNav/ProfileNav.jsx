@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 // import Cora from '../../Style/Imagenes/Corazon.png'
 import { useEffect } from 'react'
-import { getUser} from '../../redux/Actions/Index'
+import { getUser } from '../../redux/Actions/Index'
 
 const {
   REACT_APP_API
@@ -10,7 +10,6 @@ const {
 
 export default function ProfileNav({ setUserLogged, userLogged }) {
 
-  //const itemsFavorites = useSelector(state => state.favorites)
   const navigate = useNavigate();
   let dispatch = useDispatch()
 
@@ -27,8 +26,6 @@ export default function ProfileNav({ setUserLogged, userLogged }) {
     }
     dispatch(getUser(usermail))
   }, [dispatch])
-
-  // const user = JSON.parse(localStorage.getItem("user"));
 
   async function logOutClick() {
 
@@ -48,7 +45,7 @@ export default function ProfileNav({ setUserLogged, userLogged }) {
       localStorage.setItem("user", JSON.stringify([]));
       localStorage.setItem("products", JSON.stringify([]));
       localStorage.setItem("favProducts", JSON.stringify([]))
-      navigate("/profile");
+      navigate("/home");
 
       setUserLogged(false)
     }).catch(err => {
@@ -62,14 +59,20 @@ export default function ProfileNav({ setUserLogged, userLogged }) {
       <div className="div-image-navbar">
         <img width={45} src={userdetails.image} alt='IMAGEEN'></img>
       </div>
-      <button onClick={() => navigate('/profile')}> Profile </button>
-      <button onClick={(e) => logOutClick(e)}>Logout</button>
-      {/* <div id="fav">
-                <Link to='/favorites'>
-                    <img src={Cora} alt="fav_item" />
-                </Link>
-                <h3>{itemsFavorites && itemsFavorites.length ? itemsFavorites.length : 0}</h3>
-            </div> */}
+      <div id="nav_bar_user">
+        <button onClick={() => navigate('/profile')}>{userdetails.userName}</button>
+      </div>
+      <div id="nav_bar_user">
+        <button onClick={(e) => logOutClick(e)}>Logout</button>
+      </div>
+      <div id="nav_bar_user">
+        {
+          userdetails && userdetails.banned ?
+            <p>⛔Banned⛔</p>
+            :
+            null
+        }
+      </div>
     </div>
 
   )

@@ -93,3 +93,7 @@
     box-shadow: 5px 5px 20px #0000007f;
     transform: translate(5px, 5px, 5px);
 }
+
+#nav_bar_user{
+    margin: 10%;
+}
