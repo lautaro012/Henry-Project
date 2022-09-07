@@ -28,7 +28,7 @@ export default function CreateVideogame () {
 
 let history=useNavigate();
   const handleRegresar=()=>{
-    history("/admin")
+    history("/home/games")
   }  
 
     // states
@@ -337,6 +337,27 @@ let history=useNavigate();
             setButtons(false)
                 dispatch(postVideoGame(state));
                 swal({title:"It has been created successfully"});    
+                setState({
+                    name:"",
+                    price:"",
+                    description:"",
+                    rating:"",
+                    video:[],
+                    image:"",
+                    screenshots:[],
+                    store:[],
+                    developers:[],
+                    publishers:[],
+                    website:"",
+                    releaseDate:"",
+                    metacritic:"",
+                    esrb_rating:"",
+                    platforms:[],
+                    tags:[],
+                    genres:[]
+                })
+                history("/home/games")
+
         }else{
             if(Object.keys(error).length!=0){
                 setButtons(true)
