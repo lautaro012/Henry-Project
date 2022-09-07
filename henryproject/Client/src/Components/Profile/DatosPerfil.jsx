@@ -4,8 +4,7 @@ import { useState } from "react";
 import {  useNavigate } from "react-router-dom";
 import { deleteUser, modificarUser } from '../../redux/Actions/Index'
 import swal from "sweetalert";
-//import CardHover from "../NewCard/CardHover.jsx";
-
+//import CardHover from "../NewCard/CardHover.jsx"
 
 export default function DatosPerfil({ setUserLogged, data }) {
 
@@ -48,9 +47,6 @@ export default function DatosPerfil({ setUserLogged, data }) {
         return errors
     }
 
-    //const [todoOk, settodoOk] = useState(false)
-
-
     function handleSubmit(event) {
         event.preventDefault()
         let error = validations(input)
@@ -84,12 +80,9 @@ export default function DatosPerfil({ setUserLogged, data }) {
         setForm(nombreDelInput)
     }
 
-    //const [loading, setLoading] = useState(false)
-
     async function handleImageChange(e) {
         if (e.target.files && e.target.files[0]) {
             console.log("TARGET FILE", e.target.files[0])
-            //setLoading(true)
             const data = new FormData()
             data.append("file", e.target.files[0])
             data.append("upload_preset", "gamesAPI")
@@ -105,7 +98,6 @@ export default function DatosPerfil({ setUserLogged, data }) {
                             ...input,
                             image: `${file.secure_url}`
                         })
-                       // setLoading(false)
                     }
                 })
         }
@@ -250,7 +242,6 @@ export default function DatosPerfil({ setUserLogged, data }) {
                 <hr></hr>
                 <button id="submit" type="submit">Edit User</button>
             </form>
-
             <button id="delete_user" onClick={() => { if (window.confirm("Are you sure to delete your profile user?")) deleteUserFromDB(id_name) }}>Delete user</button>
         </div>
     )

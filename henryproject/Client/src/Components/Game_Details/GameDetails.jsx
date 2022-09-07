@@ -278,7 +278,7 @@ export default function GameDetails() {
                                                     onChange={(event) => handleInput(event)}
                                                 />
                                             </div>
-                                            <div className="Label">
+                                            <div className="Label_score_detail">
                                                 <label>Score</label>
                                                 <div id="score">
                                                     {
@@ -364,10 +364,9 @@ export default function GameDetails() {
                                 </div>
 
                                 <h2>Price : ${game.price}</h2>
-
-                                <button className="button-84" onClick={() => buy()}>Buy now ! 💰</button>
-                                <button  className="button-84" onClick={() => addGameToCart()}>Add to cart 🛒</button>
-                                <button  className="button-84" onClick={() => addGameToFav()}>Add to favorites 🤍</button>
+                                <button id="buttons_detail_buy" onClick={() => buy()}>Buy now ! 💰</button>
+                                <button id="buttons_detail_buy" onClick={() => addGameToCart()}>Add to cart 🛒</button>
+                                <button id="buttons_detail_buy" onClick={() => addGameToFav()}>Add to favorites 🤍</button>
                             </aside>
                         </div>
                     </div>
