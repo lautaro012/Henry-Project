@@ -1,8 +1,9 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+
 import { getMails } from '../../redux/Actions/Index'
+import { sendNewsletter } from '../../../../api/src/handlers/newsletterhandler'
 
 const SendNews = () => {
  const dispatch= useDispatch()
@@ -14,9 +15,9 @@ useEffect(() => {
 
 function onChangeEmail(){
 
-import './SendNews.css'
-import { getAllMailsNews } from '../../redux/Actions/Index'
-import { useState } from 'react'
+// import './SendNews.css'
+// import { getAllMailsNews } from '../../redux/Actions/Index'
+// import { useState } from 'react'
 
 
 const SendNews = () => {
@@ -96,6 +97,6 @@ function handleSubmit(ev) {
   )
 }
 
+}
+}
 export default SendNews
-}
-}
