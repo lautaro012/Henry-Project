@@ -11,7 +11,7 @@ import Suscribe from '../Suscribe/Suscribe'
 
 import '../Footer/Footer.css'
 
-export default function Footer() {
+export default function Footer({userLogged}) {
 
     let Allvideogames = useSelector(state => state.Allvideogames)
 
@@ -53,7 +53,7 @@ export default function Footer() {
                         <hr></hr>
                     </span>
                     <span className="spanSuscribe">
-                    <Suscribe></Suscribe>
+                    <Suscribe userLogged={userLogged}></Suscribe>
                     </span>
                     <span>
                         <h3>Press And Media</h3>
