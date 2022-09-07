@@ -10,7 +10,7 @@ const SendNews = () => {
  const dispatch= useDispatch()
  const mailsNews= useSelector(state=>state.mailsNews)
  const [mails, setMails] = useState([])
- console.log(mails)
+ console.log('aaaaaaaaaaaaaaaaaaa',mailsNews)
 
 useEffect(() => {
    dispatch(getAllMailsNews());

@@ -48,7 +48,7 @@ export default function ProfileNav({ setUserLogged, userLogged }) {
       localStorage.setItem("user", JSON.stringify([]));
       localStorage.setItem("products", JSON.stringify([]));
       localStorage.setItem("favProducts", JSON.stringify([]))
-      navigate("/profile");
+      navigate("/home");
 
       setUserLogged(false)
     }).catch(err => {
