@@ -3,10 +3,9 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import {  useNavigate } from "react-router-dom";
 import { deleteUser, modificarUser } from '../../redux/Actions/Index'
-<<<<<<< HEAD
 
-=======
->>>>>>> Development
+
+
 import CardHover from "../NewCard/CardHover.jsx";
 import swal from "sweetalert";
 

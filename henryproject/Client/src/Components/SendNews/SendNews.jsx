@@ -1,29 +1,40 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-<<<<<<< HEAD
+import './SendNews.css'
+import { getAllMailsNews } from '../../redux/Actions/Index'
+import { useState } from 'react'
 
-import { getMails } from '../../redux/Actions/Index'
-import { sendNewsletter } from '../../../../api/src/handlers/newsletterhandler'
+//import { getMails } from '../../redux/Actions/Index'
+//import { sendNewsletter } from '../../../../api/src/handlers/newsletterhandler'
 
 const SendNews = () => {
  const dispatch= useDispatch()
-  const email= useSelector(state=>state.mails)
- console.log(email)
+  const mailsNews= useSelector(state=>state.mailsNews)
+  const[mails,setMails]= useState([])
+ console.log(mails)
+
 useEffect(() => {
-   dispatch(getMails());
+   dispatch(getAllMailsNews());
 }, [dispatch])
 
-function onChangeEmail(){
+// useEffect(() => {
+//   let mailing = document.getElementById('divToAppendMails')
+//   let sending = mails.join([', '])
+//   mailing.innerHTML=`${sending}`
+// }, [mails])
+
+function onChangeEmail(ev){
+  ev.preventDefault()
+}
+
 
 // import './SendNews.css'
 // import { getAllMailsNews } from '../../redux/Actions/Index'
 // import { useState } from 'react'
-=======
-import './SendNews.css'
-import { getAllMailsNews } from '../../redux/Actions/Index'
-import { useState } from 'react'
->>>>>>> Development
+
+
+
 
 
 const SendNews = () => {
@@ -50,15 +61,17 @@ function onChangeEmail(ev){
    
  
 
-}
+
 function handleSubmit(ev) {
   ev.preventDefault()
   
 }
 
 
-  return (
 
+ 
+  return (
+     
     <div className='firstDivFormSendNews'>
     <h3 className='titleSendNewOffer'>Send your newsletter:</h3>
     <form onSubmit={(ev) => handleSubmit(ev)}> 
@@ -86,14 +99,17 @@ function handleSubmit(ev) {
     {/* <img src={}></img> */}
 
     </div>
-    </div>
+    
+  
   )
-}
+      
 
-<<<<<<< HEAD
+
+
+
+
+
+}
 }
 }
 export default SendNews
-=======
-export default  SendNews
->>>>>>> Development
