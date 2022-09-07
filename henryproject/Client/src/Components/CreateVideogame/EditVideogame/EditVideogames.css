@@ -1,4 +1,4 @@
-.container-editVideogames{
+.container-createVideogames{
     margin-top: 10%;
     color: white;
     width: 100%;
@@ -6,11 +6,11 @@
     
 }
 
-.subContainer-editVideogames{
+.subContainer-createVideogames{
     display: flex;
     flex-wrap: nowrap;
     width: 100%;
-    height: 100vh;
+    height: auto;
     position: relative;
    
 }
@@ -69,18 +69,18 @@
     text-align: center;
     text-shadow: 5px 3px 5px rgba(0, 0, 0, 0.712),5px 3px 5px rgba(0, 0, 0, 0.712) ;
 }
-.edit-name{
+.create-name{
     margin-left: 10px;
     padding: 2px;
     padding-top: 0px;
 }
-.edit-name label{
+.create-name label{
     color: white;
     text-shadow: 3px 3px 3px black;
     font-size: 20px;
 }
 
-.edit-name input[type=text]{
+.create-name input[type=text]{
     border: 1px solid white;
     border-radius: 0px 15px 0px 15px;
     box-shadow: 2px 4px 5px black;
@@ -92,21 +92,21 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
 }
-.edit-name input[type=text]:focus{
+.create-name input[type=text]:focus{
     outline:none;
 }
 /* Price */
-.edit-price{
+.create-price{
     margin-left: 10px;
     padding: 2px;
     padding-top: 0px;
 }
-.edit-price label{
+.create-price label{
     color: white;
     text-shadow: 3px 3px 3px black;
     font-size: 20px;
 }
-.edit-price input[type=text]{
+.create-price input[type=text]{
     border: 1px solid white;
     border-radius: 0px 15px 0px 15px;
     box-shadow: 2px 4px 5px black;
@@ -118,23 +118,23 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
 }
-.edit-price input[type=text]:focus{
+.create-price input[type=text]:focus{
     outline:none;
 }
 /*Description*/
-.edit-description{
+.create-description{
     margin-left: 10px;
     padding: 2px;
     padding-top: 0px;
 }
 
-.edit-description label{
+.create-description label{
     color: white;
     text-shadow: 3px 3px 3px black;
     font-size: 20px;
 }
 
-.edit-description textarea{
+.create-description textarea{
     background-color: rgba(0, 0, 0, 0.39);
     color: white;
     font-size: 14px;
@@ -144,22 +144,22 @@
     margin: 10px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-.edit-description textarea:focus{
+.create-description textarea:focus{
     outline:none;
 }
 
 /* Rating */
-.edit-rating{
+.create-rating{
     margin-left: 10px;
     padding: 2px;
     padding-top: 0px;
 }
-.edit-rating label{
+.create-rating label{
     color: white;
     text-shadow: 3px 3px 3px black;
     font-size: 20px;
 }
-.edit-rating input[type=text]{
+.create-rating input[type=text]{
     border: 1px solid white;
     border-radius: 0px 15px 0px 15px;
     box-shadow: 2px 4px 5px black;
@@ -171,22 +171,22 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
 }
-.edit-rating input[type=text]:focus{
+.create-rating input[type=text]:focus{
     outline:none;
 }
 
 /* Video */
-.edit-video{
+.create-video{
     margin-left: 10px;
     padding: 2px;
     padding-top: 0px;
 }
-.edit-video label{
+.create-video label{
     color: white;
     text-shadow: 3px 3px 3px black;
     font-size: 20px;
 }
-.edit-video input[type=text]{
+.create-video input[type=text]{
     border: 1px solid white;
     border-radius: 0px 15px 0px 15px;
     box-shadow: 2px 4px 5px black;
@@ -198,11 +198,11 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
 }
-.edit-video input[type=text]:focus{
+.create-video input[type=text]:focus{
     outline:none;
 }
 
-.edit-video input[type=submit]{
+.create-video input[type=submit]{
     border: 1px solid white;
     border-radius: 0px 15px 0px 15px;
     box-shadow: 2px 4px 5px black;
@@ -213,10 +213,10 @@
     height: auto;
     padding: 3px;
 }
-.edit-video input[type=submit]:hover{
+.create-video input[type=submit]:hover{
     cursor:pointer;
 }
-.edit-video input[type=submit]:focus{
+.create-video input[type=submit]:focus{
     outline:none;
 }
 
@@ -249,17 +249,17 @@
 
 /* Image */
 
-.edit-image{
+.create-image{
     margin-left: 10px;
     padding: 2px;
     padding-top: 0px;
 }
-.edit-image label{
+.create-image label{
     color: white;
     text-shadow: 3px 3px 3px black;
     font-size: 20px;
 }
-.edit-image input[type=text]{
+.create-image input[type=text]{
     border: 1px solid white;
     border-radius: 0px 15px 0px 15px;
     box-shadow: 2px 4px 5px black;
@@ -271,21 +271,21 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
 }
-.edit-image input[type=text]:focus{
+.create-image input[type=text]:focus{
     outline:none;
 }
 /* Screenshot */
-.edit-screenshots{
+.create-screenshots{
     margin-left: 10px;
     padding: 2px;
     padding-top: 0px;
 }
-.edit-screenshots label{
+.create-screenshots label{
     color: white;
     text-shadow: 3px 3px 3px black;
     font-size: 20px;
 }
-.edit-screenshots input[type=text]{
+.create-screenshots input[type=text]{
     border: 1px solid white;
     border-radius: 0px 15px 0px 15px;
     box-shadow: 2px 4px 5px black;
@@ -297,11 +297,11 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
 }
-.edit-screenshots input[type=text]:focus{
+.create-screenshots input[type=text]:focus{
     outline:none;
 }
 
-.edit-screenshots input[type=submit]{
+.create-screenshots input[type=submit]{
     border: 1px solid white;
     border-radius: 0px 15px 0px 15px;
     box-shadow: 2px 4px 5px black;
@@ -312,10 +312,10 @@
     height: auto;
     padding: 3px;
 }
-.edit-screenshots input[type=submit]:hover{
+.create-screenshots input[type=submit]:hover{
     cursor:pointer;
 }
-.edit-screenshots input[type=submit]:focus{
+.create-screenshots input[type=submit]:focus{
     outline:none;
 }
 
@@ -347,17 +347,17 @@
 }
 
 /* STORE */
-.edit-store{
+.create-store{
     margin-left: 10px;
     padding: 2px;
     padding-top: 0px;
 }
-.edit-store label{
+.create-store label{
     color: white;
     text-shadow: 3px 3px 3px black;
     font-size: 20px;
 }
-.edit-store select{
+.create-store select{
     background-color: rgba(0, 0, 0, 0.39);
     color: white;
     border: 1px solid white;
@@ -369,12 +369,12 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     height: auto;
 }
-.edit-store select option{
+.create-store select option{
     background-color: darkgray;
     color:black;
 }
 
-.edit-store select:focus{
+.create-store select:focus{
     outline:none;
 }
 
@@ -418,17 +418,17 @@
 
 
 /* Developers */
-.edit-developers{
+.create-developers{
     margin-left: 10px;
     padding: 2px;
     padding-top: 0px;
 }
-.edit-developers label{
+.create-developers label{
     color: white;
     text-shadow: 3px 3px 3px black;
     font-size: 20px;
 }
-.edit-developers input[type=text]{
+.create-developers input[type=text]{
     border: 1px solid white;
     border-radius: 0px 15px 0px 15px;
     box-shadow: 2px 4px 5px black;
@@ -440,11 +440,11 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
 }
-.edit-developers input[type=text]:focus{
+.create-developers input[type=text]:focus{
     outline:none;
 }
 
-.edit-developers input[type=submit]{
+.create-developers input[type=submit]{
     border: 1px solid white;
     border-radius: 0px 15px 0px 15px;
     box-shadow: 2px 4px 5px black;
@@ -455,10 +455,10 @@
     height: auto;
     padding: 3px;
 }
-.edit-developers input[type=submit]:hover{
+.create-developers input[type=submit]:hover{
     cursor:pointer;
 }
-.edit-developers input[type=submit]:focus{
+.create-developers input[type=submit]:focus{
     outline:none;
 }
 
@@ -490,17 +490,17 @@
 }
 
 /* publishers */
-.edit-publishers{
+.create-publishers{
     margin-left: 10px;
     padding: 2px;
     padding-top: 0px;
 }
-.edit-publishers label{
+.create-publishers label{
     color: white;
     text-shadow: 3px 3px 3px black;
     font-size: 20px;
 }
-.edit-publishers input[type=text]{
+.create-publishers input[type=text]{
     border: 1px solid white;
     border-radius: 0px 15px 0px 15px;
     box-shadow: 2px 4px 5px black;
@@ -512,11 +512,11 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
 }
-.edit-publishers input[type=text]:focus{
+.create-publishers input[type=text]:focus{
     outline:none;
 }
 
-.edit-publishers input[type=submit]{
+.create-publishers input[type=submit]{
     border: 1px solid white;
     border-radius: 0px 15px 0px 15px;
     box-shadow: 2px 4px 5px black;
@@ -527,10 +527,10 @@
     height: auto;
     padding: 3px;
 }
-.edit-publishers input[type=submit]:hover{
+.create-publishers input[type=submit]:hover{
     cursor:pointer;
 }
-.edit-publishers input[type=submit]:focus{
+.create-publishers input[type=submit]:focus{
     outline:none;
 }
 
@@ -561,18 +561,18 @@
     padding: 1px;
 }
 /* Web site */
-.edit-website{
+.create-website{
     margin-left: 10px;
     padding: 2px;
     padding-top: 0px;
 }
-.edit-website label{
+.create-website label{
     color: white;
     text-shadow: 3px 3px 3px black;
     font-size: 20px;
 }
 
-.edit-website input[type=text]{
+.create-website input[type=text]{
     border: 1px solid white;
     border-radius: 0px 15px 0px 15px;
     box-shadow: 2px 4px 5px black;
@@ -584,22 +584,22 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
 }
-.edit-website input[type=text]:focus{
+.create-website input[type=text]:focus{
     outline:none;
 }
 /* Release Date */
-.edit-releasedate{
+.create-releasedate{
     margin-left: 10px;
     padding: 2px;
     padding-top: 0px;
 }
-.edit-releasedate label{
+.create-releasedate label{
     color: white;
     text-shadow: 3px 3px 3px black;
     font-size: 20px;
 }
 
-.edit-releasedate input[type=text]{
+.create-releasedate input[type=text]{
     border: 1px solid white;
     border-radius: 0px 15px 0px 15px;
     box-shadow: 2px 4px 5px black;
@@ -611,23 +611,23 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
 }
-.edit-releasedate input[type=text]:focus{
+.create-releasedate input[type=text]:focus{
     outline:none;
 }
 
 /* Metacritic */
-.edit-metacritic{
+.create-metacritic{
     margin-left: 10px;
     padding: 2px;
     padding-top: 0px;
 }
-.edit-metacritic label{
+.create-metacritic label{
     color: white;
     text-shadow: 3px 3px 3px black;
     font-size: 20px;
 }
 
-.edit-metacritic input[type=text]{
+.create-metacritic input[type=text]{
     border: 1px solid white;
     border-radius: 0px 15px 0px 15px;
     box-shadow: 2px 4px 5px black;
@@ -639,23 +639,23 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
 }
-.edit-metacritic input[type=text]:focus{
+.create-metacritic input[type=text]:focus{
     outline:none;
 }
 
 /* esrb_rating */
-.edit-esrb_rating{
+.create-esrb_rating{
     margin-left: 10px;
     padding: 2px;
     padding-top: 0px;
 }
-.edit-esrb_rating label{
+.create-esrb_rating label{
     color: white;
     text-shadow: 3px 3px 3px black;
     font-size: 20px;
 }
 
-.edit-esrb_rating input[type=text]{
+.create-esrb_rating input[type=text]{
     border: 1px solid white;
     border-radius: 0px 15px 0px 15px;
     box-shadow: 2px 4px 5px black;
@@ -667,21 +667,21 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
 }
-.edit-esrb_rating input[type=text]:focus{
+.create-esrb_rating input[type=text]:focus{
     outline:none;
 }
 /* Platforms */
-.edit-platform{
+.create-platform{
     margin-left: 10px;
     padding: 2px;
     padding-top: 0px;
 }
-.edit-platform label{
+.create-platform label{
     color: white;
     text-shadow: 3px 3px 3px black;
     font-size: 20px;
 }
-.edit-platform select{
+.create-platform select{
     background-color: rgba(0, 0, 0, 0.39);
     color: white;
     border: 1px solid white;
@@ -693,26 +693,26 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     height: auto;
 }
-.edit-platform select option{
+.create-platform select option{
     background-color: darkgray;
     color:black;
 }
 
-.edit-platform select:focus{
+.create-platform select:focus{
     outline:none;
 }
 /* Tag */
-.edit-tag{
+.create-tag{
     margin-left: 10px;
     padding: 2px;
     padding-top: 0px;
 }
-.edit-tag label{
+.create-tag label{
     color: white;
     text-shadow: 3px 3px 3px black;
     font-size: 20px;
 }
-.edit-tag select{
+.create-tag select{
     background-color: rgba(0, 0, 0, 0.39);
     color: white;
     border: 1px solid white;
@@ -724,26 +724,26 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     height: auto;
 }
-.edit-tag select option{
+.create-tag select option{
     background-color: darkgray;
     color:black;
 }
 
-.edit-tag select:focus{
+.create-tag select:focus{
     outline:none;
 }
 /* Genre */
-.edit-genre{
+.create-genre{
     margin-left: 10px;
     padding: 2px;
     padding-top: 0px;
 }
-.edit-genre label{
+.create-genre label{
     color: white;
     text-shadow: 3px 3px 3px black;
     font-size: 20px;
 }
-.edit-genre select{
+.create-genre select{
     background-color: rgba(0, 0, 0, 0.39);
     color: white;
     border: 1px solid white;
@@ -755,12 +755,12 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     height: auto;
 }
-.edit-genre select option{
+.create-genre select option{
     background-color: darkgray;
     color:black;
 }
 
-.edit-genre select:focus{
+.create-genre select:focus{
     outline:none;
 }
 
@@ -1004,7 +1004,7 @@
     padding: 2px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-.botonEdit{
+.botoncreate{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1012,7 +1012,7 @@
     margin-top:10px ;
     margin-bottom: 10px;
 }
-.buttonEdit{
+.buttonCreate{
 border: 1px solid white;
 border-radius: 0px 15px 0px 15px;
 box-shadow: 2px 4px 5px black;
@@ -1024,9 +1024,9 @@ height: auto;
 padding: 3px;
 text-align: center;
 }
-.buttonEdit:hover{
+.buttonCreate:hover{
 cursor:pointer;
 }
-.buttonEdit:focus{
+.buttonCreate:focus{
 outline:none;
 }
