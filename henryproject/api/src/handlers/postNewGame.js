@@ -1,7 +1,7 @@
 const {Games, Platforms, Tags, Genres} = require('../db')
 
 const createNewGame = async (req, res) => {
-    let { name, price, description, rating, createdInDb, video, image, screenshots, store, developers, publishers, website, releaseDate, metacritic, esrb_rating, platforms, tags, genres } = req.body;
+    let { name, price, description, rating, video, image, screenshots, store, developers, publishers, website, releaseDate, metacritic, esrb_rating, platforms, tags, genres } = req.body;
 
     if (!name || !price || !description) return res.status(404).send("Falta enviar datos obligatorios")
     try {
@@ -19,8 +19,8 @@ const createNewGame = async (req, res) => {
             website,
             releaseDate,
             metacritic,
-            esrb_rating,
-            createdInDb
+            esrb_rating
+            
         })
         let plat = await Platforms.findAll({where: {name: platforms}})
         await gameCreated.addPlatforms(plat)
@@ -31,7 +31,7 @@ const createNewGame = async (req, res) => {
         res.send(gameCreated)
 
     } catch (error) {
-        return res.status(404).send("Error en alguno de los datos provistos")
+        console.log(error)
     }
 }
 

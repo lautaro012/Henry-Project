@@ -34,6 +34,7 @@ export const GET_ORDERS = "GET_ORDERS"
 export const GET_USERS_BANNED= 'GET_USERS_BANNED'
 export const GET_NO_BANNED_ALL_USERS = 'GET_NO_BANNED_ALL_USERS'
 export const EMPTY_VIDEOGAMES = "EMPTY_VIDEOGAMES"
+export const GET_MAILS= "GET_MAILS"
 export const GET_ALL_MAILS_NEWS="GET_ALL_MAILS_NEWS"
 
 
@@ -99,6 +100,17 @@ export function getGameById(id) {
             payload: response.data
         })
     }
+}
+
+export function getMails(){
+    return async function(dispatch){
+        let res= await axios(`/newsletter`)
+        dispatch({
+            type: GET_MAILS,
+            payload: res.data
+        })
+    }
+
 }
 
 
