@@ -63,7 +63,6 @@ const initialState = {
     orders: [],
     allUsersBanned: [],
     allUsersNoBanned: [],
-
     mails: [],
     mailsNews: []
 
