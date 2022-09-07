@@ -40,11 +40,11 @@ export function Profile({ setUserLogged }) {
                         <h1>Welcome {userdetails.userName}</h1>
                         <CardHover image={userdetails.image} name={userdetails.userName}></CardHover>
                     </div>
-                    <button onClick={() => setRender("perfil")}>My profile</button>
-                    <button onClick={() => setRender("juegos")}>My games</button>
-                    <button onClick={() => setRender("orders")}>My orders</button>
-                    <button onClick={() => setRender("favoritos")}>Favorites</button>
-                    <button onClick={() => setRender("cart")}>Cart</button>
+                    <button id='profile_buttons' onClick={() => setRender("perfil")}>My profile</button>
+                    <button id='profile_buttons' onClick={() => setRender("juegos")}>My games</button>
+                    <button id='profile_buttons' onClick={() => setRender("orders")}>My orders</button>
+                    <button id='profile_buttons' onClick={() => setRender("favoritos")}>Favorites</button>
+                    <button id='profile_buttons' onClick={() => setRender("cart")}>Cart</button>
                 </aside>
             </div>
 

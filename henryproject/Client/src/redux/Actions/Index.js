@@ -447,7 +447,7 @@ export function banUser(mail) {
 export function noBanUser(mail) {
     return function(){
         axios.put(`/noBanned/${mail}`)
-        .then({title:'user enabled'})
+        .then(swal({title:'user enabled'}))
     }
 }
 export function updateAdmin(mail) {

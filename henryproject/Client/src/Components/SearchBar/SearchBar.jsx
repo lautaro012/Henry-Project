@@ -16,7 +16,7 @@ export default function SearchBar({ onSearch }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        navigate("../home/games", { replace: true });
+        navigate("../home/games");
         clearVideogames() 
         onSearch(name)
         // setName('')
