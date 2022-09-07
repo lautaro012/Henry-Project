@@ -5,7 +5,7 @@ import swal from 'sweetalert';
 
 
 export default function Suscribe ({userLogged}) {
-    
+    let usermail = JSON.parse(localStorage.getItem('user'))
     const [input, setInput] = useState({
         mail: ''
     })
@@ -19,17 +19,22 @@ export default function Suscribe ({userLogged}) {
     function handleSubmit(e) {
         e.preventDefault()
         setLoading(true)
-        axios.post('/newsletter', input)
-        .then(resp => resp.data)
-        .then(resp => {
-            console.log('newsletter', resp)
-            swal({title:'Thanks for suscribing ! '})
-            setLoading(false)
-         })
-         .catch(error => {
-            setLoading(false)
-            console.log('suscripcion fallida', error) 
-        })
+        if(userLogged){
+            setInput({
+                mail: usermail.user.mail
+            })
+        }
+            axios.post('/newsletter', input)
+            .then(resp => resp.data)
+            .then(resp => {
+                console.log('newsletter', resp)
+                swal({title:'Thanks for suscribing ! '})
+                setLoading(false)
+             })
+             .catch(error => {
+                setLoading(false)
+                console.log('suscripcion fallida', error) 
+            })
     }
     return (
         <div className='suscribe-conteiner'>
@@ -48,7 +53,7 @@ export default function Suscribe ({userLogged}) {
                         :
                         <input placeholder='Email' name='mail' required onChange={(e) => handleChange(e)}></input>
                     }
-                    {!loading ? <button type='submit'> Receive offers </button> : <button disabled={true} type='submit'> Receive offers </button>}
+                    {!loading ? <button className='button-52' type='submit'> Receive offers </button> : <button className='button-52' disabled={true} type='submit'> Receive offers </button>}
                 </form>
             </div>
         </div>
