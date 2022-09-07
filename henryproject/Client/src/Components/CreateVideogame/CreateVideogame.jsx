@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import './CreateVideogame.css'
  import { useEffect, useState } from 'react';
 import { getGenres, getPlatforms, postVideoGame } from "../../redux/Actions/Index"
+import swal from 'sweetalert';
 
 export default function CreateVideogame () {
     const dispatch= useDispatch()
@@ -100,7 +101,7 @@ export default function CreateVideogame () {
     }
     function onChangeGenre(e){
         if(state.genres.includes(e.target.value)){
-            alert("genero previamente seleccionado")
+            swal({title:"genero previamente seleccionado"})
             // return
         }
         setState({...state,[e.target.name]:[...state.genres,e.target.value]})
@@ -108,7 +109,7 @@ export default function CreateVideogame () {
     }
     function onChangePlatform(e){
         if(state.platforms.includes(e.target.value)){
-            alert("plataforma previamente seleccionada")
+            swal({title:"plataforma previamente seleccionada"})
             // return
         }
         setState({...state,[e.target.name]:[...state.platforms,e.target.value]})

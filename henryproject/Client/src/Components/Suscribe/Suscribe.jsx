@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useState } from 'react'
 import './Suscribe.css'
+import swal from 'sweetalert';
 
 
 export default function Suscribe () {
@@ -22,7 +23,7 @@ export default function Suscribe () {
         .then(resp => resp.data)
         .then(resp => {
             console.log('newsletter', resp)
-            alert('Thanks for suscribing ! ')
+            swal({title:'Thanks for suscribing ! '})
             setLoading(false)
          })
          .catch(error => {
@@ -37,7 +38,7 @@ export default function Suscribe () {
                     <h2> Suscribe to Games Store ! </h2>
                     <textarea> Be the first to find out about our new games and the best offers/promotions via e-mail </textarea>
                 </div>
-                <img width={135} src='https://i.pinimg.com/originals/8f/c3/7b/8fc37b74b608a622588fbaa361485f32.png' alt='correo'></img>
+                <img width={50} src='https://i.pinimg.com/originals/8f/c3/7b/8fc37b74b608a622588fbaa361485f32.png' alt='correo'></img>
             </div>
             <div className='suscribe-form'>
                 <form onSubmit={(e) => handleSubmit(e)}>
