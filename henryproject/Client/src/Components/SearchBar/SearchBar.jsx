@@ -1,11 +1,13 @@
-import { Link } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
 import './SearchBar.css'
 import { useState } from "react";
 import lupita from '../../Style/Imagenes/lupa.png'
+import { clearVideogames } from '../../redux/Actions/Index'
 
 export default function SearchBar({ onSearch }) {
 
     const [name, setName] = useState('')
+    const navigate = useNavigate()
 
     function handleInputChange(e) {
         e.preventDefault();
@@ -14,6 +16,8 @@ export default function SearchBar({ onSearch }) {
 
     function handleSubmit(e) {
         e.preventDefault();
+        navigate("../home/games", { replace: true });
+        clearVideogames() 
         onSearch(name)
         // setName('')
     }
