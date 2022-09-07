@@ -39,8 +39,8 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
     }
 
     const onSearch = (name) => {
-        navigate("../home/games", { replace: true });
-        dispatch(clearVideogames())
+        // navigate("../home/games", { replace: true });
+        // dispatch(clearVideogames())
         dispatch(getAllGames(name))
     }
 
