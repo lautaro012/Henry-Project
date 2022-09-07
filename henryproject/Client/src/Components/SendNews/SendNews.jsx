@@ -5,36 +5,6 @@ import './SendNews.css'
 import { getAllMailsNews } from '../../redux/Actions/Index'
 import { useState } from 'react'
 
-//import { getMails } from '../../redux/Actions/Index'
-//import { sendNewsletter } from '../../../../api/src/handlers/newsletterhandler'
-
-const SendNews = () => {
- const dispatch= useDispatch()
-  const mailsNews= useSelector(state=>state.mailsNews)
-  const[mails,setMails]= useState([])
- console.log(mails)
-
-useEffect(() => {
-   dispatch(getAllMailsNews());
-}, [dispatch])
-
-// useEffect(() => {
-//   let mailing = document.getElementById('divToAppendMails')
-//   let sending = mails.join([', '])
-//   mailing.innerHTML=`${sending}`
-// }, [mails])
-
-function onChangeEmail(ev){
-  ev.preventDefault()
-}
-
-
-// import './SendNews.css'
-// import { getAllMailsNews } from '../../redux/Actions/Index'
-// import { useState } from 'react'
-
-
-
 
 
 const SendNews = () => {
@@ -58,20 +28,17 @@ function onChangeEmail(ev){
   if(!mails?.includes(ev.target.value) && ev.target.value !== "All") {
     setMails([...mails, ev.target.value])
   }
-   
- 
+
+}
 
 
 function handleSubmit(ev) {
   ev.preventDefault()
-  
+
 }
 
-
-
- 
   return (
-     
+
     <div className='firstDivFormSendNews'>
     <h3 className='titleSendNewOffer'>Send your newsletter:</h3>
     <form onSubmit={(ev) => handleSubmit(ev)}> 
@@ -85,7 +52,7 @@ function handleSubmit(ev) {
             return(
                 <option value={ev.mail} key={ev.id} > {ev.mail} </option>
             )
-        })}      
+        })}
       </select>
       <div className='divMailsAdded'>
         <h4>You'll send newsletter to:</h4>
@@ -99,17 +66,9 @@ function handleSubmit(ev) {
     {/* <img src={}></img> */}
 
     </div>
-    
-  
+
+
   )
-      
+      }
 
-
-
-
-
-
-}
-}
-}
 export default SendNews
