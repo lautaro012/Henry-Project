@@ -56,7 +56,7 @@ export default function Favs() {
                         items && items?.map(item => {
                             return (
                                 <div key={item.id} id='cart-item-list'>
-                                    <Link to={`/home/items/${item.id}`} className='Link'>
+                                    <Link to={`/home/games/${item.id}`} className='Link'>
                                         <CardHover image={item.image} name={item.name}>
                                         </CardHover>
                                     </Link>

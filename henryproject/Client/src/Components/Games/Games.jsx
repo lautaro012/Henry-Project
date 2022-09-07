@@ -27,10 +27,10 @@ export default function Games() {
         if (videogames.length === 0) {
             dispatch(getAllGames())
         }
-        return function cleaning() {
-            dispatch(clear())
-        }
-    }, [])
+        // return function cleaning() {
+        //     dispatch(clear())
+        // }
+    }, [dispatch, videogames.length])
 
 
     //paginado

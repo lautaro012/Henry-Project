@@ -30,6 +30,11 @@ export default function Filter ({genres, platforms, tags, setCurrentPage, handle
         dispatch(filterGamesByTags(tagstofilter))
     }
 
+    function handleRefresh(event){
+        event.preventDefault()
+        window.location.reload()
+    }
+
     return (
         <div className='Filter-box'>
             <h4>Select a Platform:</h4>
@@ -100,6 +105,7 @@ export default function Filter ({genres, platforms, tags, setCurrentPage, handle
                 }
                  </ul>
                 <button onClick={handleFilter}> Search Tags </button>
+                <button onClick={(event) => handleRefresh(event)}> Clear filters </button>
             </div>
         
         </div>
