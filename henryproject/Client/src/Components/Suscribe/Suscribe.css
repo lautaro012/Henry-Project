@@ -71,6 +71,12 @@
     padding: 2%;
 }
 
+.suscribe-form button:hover{
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
 
 .suscribe-form input{
     background: none;
