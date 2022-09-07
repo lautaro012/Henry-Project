@@ -35,7 +35,7 @@ function onChangeEmail(ev){
 function handleSubmit(ev) {
   ev.preventDefault()
   setLoading(true)
-  axios.post('/sendNewsletter', [mails, input] ).then(resp => resp.data)
+  axios.post('/sendNewsletter', {mails:mails, emailHtml:input} ).then(resp => resp.data)
   .then(resp => {
     setLoading(false)
     console.log(resp)
