@@ -4,7 +4,7 @@ import './Suscribe.css'
 import swal from 'sweetalert';
 
 
-export default function Suscribe () {
+export default function Suscribe ({userLogged}) {
     
     const [input, setInput] = useState({
         mail: ''
@@ -42,7 +42,12 @@ export default function Suscribe () {
             </div>
             <div className='suscribe-form'>
                 <form onSubmit={(e) => handleSubmit(e)}>
-                    <input placeholder='Email' name='mail' required onChange={(e) => handleChange(e)}></input>
+                    {
+                        userLogged ?
+                        null
+                        :
+                        <input placeholder='Email' name='mail' required onChange={(e) => handleChange(e)}></input>
+                    }
                     {!loading ? <button type='submit'> Receive offers </button> : <button disabled={true} type='submit'> Receive offers </button>}
                 </form>
             </div>

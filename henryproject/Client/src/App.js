@@ -155,7 +155,7 @@ function App() {
         <Route path='/cart/formularioPago' element={userLogged ? <Elements stripe={stripePromise}><FormularioPago></FormularioPago></Elements> : <UserSign setUserLogged={setUserLogged} isOpen={true}/>}/>
       
       </Routes>
-      <Footer />
+      <Footer userLogged={userLogged}/>
     </Router>
   );
 }
