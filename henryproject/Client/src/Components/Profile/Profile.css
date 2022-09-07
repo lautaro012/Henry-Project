@@ -110,7 +110,7 @@
     color: #fff;
     letter-spacing: 3px;
     line-height: 1;
-    box-shadow: 6px 0px 0px #00e6f6;
+    box-shadow: 6px 0px 0px #000000;
     outline: transparent;
     position: relative;
 }
@@ -129,12 +129,13 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, transparent 3%, #00e6f6 3%, #00e6f6 5%, #ff013c 5%);
-    text-shadow: -3px -3px 0px #f8f005, 3px 3px 0px #00e6f6;
+    background: linear-gradient(45deg, transparent 3%, #000000 3%, #000000 5%, #ff013c 5%);
+    text-shadow: -3px -3px 0px #f8f005, 3px 3px 0px #000000;
     clip-path: var(--slice-0);
 }
 
 .User_options button:hover::after {
+    cursor: pointer;
     animation: 1s glitch;
     animation-timing-function: steps(2, end);
 }

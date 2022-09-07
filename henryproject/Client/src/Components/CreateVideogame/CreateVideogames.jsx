@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux"
 import './CreateVideogames.css'
  import { useEffect, useState } from 'react';
 import { getGenres, getPlatforms, getTags, postVideoGame } from "../../redux/Actions/Index"
-import { Carousel } from 'react-responsive-carousel';
 import ReactPlayer from 'react-player'
 import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 
 
@@ -15,6 +15,8 @@ export default function CreateVideogame () {
     const platforms=useSelector(state=>state.platforms);
     const genres=useSelector(state=>state.genres);
     const tags=useSelector(state=>state.tags);
+    const [loading, setLoading] = useState(false)
+
 
   // usamos useEffect
   useEffect(()=>{
@@ -26,7 +28,7 @@ export default function CreateVideogame () {
 
 let history=useNavigate();
   const handleRegresar=()=>{
-    history("/admin")
+    history("/home/games")
   }  
 
     // states
@@ -163,6 +165,35 @@ let history=useNavigate();
             return errores
     }
 
+
+    function handleChangeImage(e) {
+        if(e.target.files && e.target.files[0]) {
+            console.log(e.target.files[0])
+            const data = new FormData()
+            data.append("file", e.target.files[0])
+            data.append("upload_preset", "gamesAPI")
+            fetch (
+                "https://api.cloudinary.com/v1_1/luubermudezz/image/upload", {
+                 method: "POST",
+                 body: data
+                 // mode: 'no-cors'
+                }
+            ).then(resp => resp.json())
+                    .then(file => {
+                        if(file) {
+                        setState({
+                        ...state,
+                        image: `${file.secure_url}`
+                        })
+                    }
+                    })
+            // const file = await resp.json()
+            
+            
+        }
+        
+        // setState({...state,[ev.target.name]: ev.target.value})
+    }
     // HANDLE CHANGE
     function handleChange(ev){
             ev.preventDefault();
@@ -305,14 +336,35 @@ let history=useNavigate();
             console.log(state.releaseDate);    
             setButtons(false)
                 dispatch(postVideoGame(state));
-                alert("Se ha creado correctamente");    
+                swal({title:"Se ha creado correctamente"});
+                setState({
+                    name:"",
+                    price:"",
+                    description:"",
+                    rating:"",
+                    video:[],
+                    image:"",
+                    screenshots:[],
+                    store:[],
+                    developers:[],
+                    publishers:[],
+                    website:"",
+                    releaseDate:"",
+                    metacritic:"",
+                    esrb_rating:"",
+                    platforms:[],
+                    tags:[],
+                    genres:[]
+                })
+                history("/home/games")
+
         }else{
             if(Object.keys(error).length!=0){
                 setButtons(true)
-                alert("Debe completar los campos correctamente")
+                swal({title:"Debe completar los campos correctamente"})
             }else{
                 setButtons(true)
-                alert("Debe completar los campos correctamente")
+                swal({title:"Debe completar los campos correctamente"})
             }
                 
         }       
@@ -399,7 +451,7 @@ let history=useNavigate();
                         {/* IMAGEN  */}
                         <div className="create-image">
                         <label type="text">Image: </label>
-                            <input type="text" onChange={(ev)=>handleChange(ev)} required name="image" placeholder="image... " onBlur={(ev)=>{handleChange(ev)}} onKeyUp={(ev)=>handleChange(ev)} value={state.image}/>
+                            <input type="file" onChange={handleChangeImage} required name="image" placeholder="image... " />
                             {/* <input type="file" name="adjunto" accept=".mp4,.jpg,.png" multiple /> */}
                             <div>    
                             {showError ? <span>{error.image}</span> || <span>{validate.image}</span> : <span>{error.image}</span>|| <span>{validate.image}</span>}
@@ -557,7 +609,7 @@ let history=useNavigate();
                         {/* Tags */}
                         <div className="create-tag">
                             <label>Tags: </label>
-                            <select name="" id="" onChange={(ev)=>handleChange(ev)} value={tag.name} name="tag">
+                            <select id="" onChange={(ev)=>handleChange(ev)} value={tag.name} name="tag">
                                 <option value="All">Select Tag: </option>
                                 {
                                     tags?.map((tag)=>{
@@ -584,7 +636,7 @@ let history=useNavigate();
                         {/* genres */}
                         <div className="create-genre">
                             <label>Genres: </label>
-                            <select name="" id="" onChange={(ev)=>handleChange(ev)} value={genre.name} name="genre">
+                            <select id="" onChange={(ev)=>handleChange(ev)} value={genre.name} name="genre">
                                 <option value="All">Select Genre: </option>
                                 {
                                     genres?.map((genre)=>{

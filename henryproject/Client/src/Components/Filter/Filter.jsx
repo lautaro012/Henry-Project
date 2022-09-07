@@ -5,7 +5,7 @@ import './Filter.css'
 
 
 
-export default function Filter ({genres, platforms, tags, setCurrentPage}) {
+export default function Filter ({genres, platforms, tags, setCurrentPage, handleSort}) {
 
     let dispatch =  useDispatch()
 
@@ -61,8 +61,21 @@ export default function Filter ({genres, platforms, tags, setCurrentPage}) {
                 }
             </select>
             
-            <div>
-                <details className='DETAILS-TAGS' open>
+            <div className='Sorts'>
+                <h4 color='#ffffff'> Sort By: </h4>
+                <select className='SELECT-ORDER' id='orderBy' onChange={(e) => handleSort(e)} defaultValue='orderBy'>
+                    <option value='name'> Name </option>
+                    <option value='rating'> Rate </option>
+                </select>
+                <h4>In What Order ? </h4>
+                <select className='SELECT-ORDER' id='orderType' onChange={(e) => handleSort(e)} defaultValue='orderType'>
+                    <option value='asc'> Ascendent </option>
+                    <option value='des'> Descendent </option>
+                </select>
+            </div>  
+
+            <div className='details-tags-button'>
+                <details close className='DETAILS-TAGS' open>
                     <summary className='SUMMARY-TAGS'> Tags: </summary>
                     
                     {tags.map(el => el.name)?.map((tags, index) => {

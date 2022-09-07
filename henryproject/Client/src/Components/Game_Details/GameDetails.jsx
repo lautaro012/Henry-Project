@@ -21,6 +21,7 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 
 import '../Game_Details/GameDetails.css'
+import swal from 'sweetalert'
 
 export default function GameDetails() {
 
@@ -57,7 +58,8 @@ export default function GameDetails() {
             image: game.image,
         }
         dispatch(addToCart(item))
-        alert(`${game.name} added to cart!`)
+        swal({
+            title: `${game.name} added to cart!`})
     }
 
     function addGameToFav() {
@@ -68,7 +70,9 @@ export default function GameDetails() {
             image: game.image,
         }
         dispatch(addToFav(item))
-        alert(`${game.name} added to your favorites!`)
+        swal({
+            title: `${game.name} added to your favorites!`
+        })
     }
 
     async function buy() {
@@ -117,7 +121,7 @@ export default function GameDetails() {
     function handleSubmit(event) {
         event.preventDefault()
         dispatch(postReview(id, input))
-        alert("Commentary sent!")
+        swal({title:"Commentary sent!"})
         setInput({})
         window.location.reload()
     }
@@ -274,7 +278,7 @@ export default function GameDetails() {
                                                     onChange={(event) => handleInput(event)}
                                                 />
                                             </div>
-                                            <div className="Label">
+                                            <div className="Label_score_detail">
                                                 <label>Score</label>
                                                 <div id="score">
                                                     {
@@ -361,9 +365,9 @@ export default function GameDetails() {
 
                                 <h2>Price : ${game.price}</h2>
 
-                                <button onClick={() => buy()}>Buy now ! 💰</button>
-                                <button onClick={() => addGameToCart()}>Add to cart 🛒</button>
-                                <button onClick={() => addGameToFav()}>Add to favorites 🤍</button>
+                                <button id="buttons_detail_buy" onClick={() => buy()}>Buy now ! 💰</button>
+                                <button id="buttons_detail_buy" onClick={() => addGameToCart()}>Add to cart 🛒</button>
+                                <button id="buttons_detail_buy" onClick={() => addGameToFav()}>Add to favorites 🤍</button>
                             </aside>
                         </div>
                     </div>

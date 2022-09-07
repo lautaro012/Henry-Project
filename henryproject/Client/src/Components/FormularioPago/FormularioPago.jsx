@@ -1,5 +1,5 @@
 import React from "react";
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { CardElement, CardNumberElement, CardExpiryElement, CardCvcElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import './formularioPago.css';
 import Cart from "../Cart/Cart";
@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteItemFromCart } from "../../redux/Actions/Index";
 import { useEffect } from "react";
 import CardHover from "../NewCard/CardHover";
-
+import swal from 'sweetalert'
 const {
   REACT_APP_API
 } = process.env;
@@ -54,7 +54,7 @@ export const FormularioPago = () => {
     e.preventDefault();
     const { error, paymentMethod } = await stripe.createPaymentMethod({ //Tieme objetos que debe de completar
       type: "card",  //type de pago: metodo de tarjeta
-      card: elements.getElement(CardElement) //Selecciona el input element de la tarjeta
+      card: elements.getElement(CardNumberElement) //Selecciona el input element de la tarjeta
     });
     setLoading(true)
     console.log(paymentMethod);
@@ -73,13 +73,13 @@ export const FormularioPago = () => {
 
         })
         console.log(data);
-        alert(`You have pay $ ${precioTotal} successfully`)
+        swal({title:`You have pay $ ${precioTotal} successfully`})
         
         dispatch(deleteItemFromCart('All'))
         history("/")
 
       } catch (error) {
-        alert(error)
+        swal({title:error})
       }
       setLoading(false)
     }
@@ -93,6 +93,11 @@ export const FormularioPago = () => {
       <div className="container">
 
         <div className="divElementsFromCartPayment">
+          <div>
+          <button onClick={(e) => handleRegresar(e)} className="button-49">{'Continue Shopping'}</button>
+          </div>
+        <hr></hr>
+        <div className="Games-buy-conteiner">
           {items && items.length ? items.map(game => {
             return (
               <CardHover image={game.image} price={game.price} name={game.name}></CardHover>
@@ -100,22 +105,35 @@ export const FormularioPago = () => {
             )
           }) : <div>no tiene elementos seleccionados</div>}
         </div>
+        </div>
         <hr />
-        <span className="spanFormPayment">
-            <h2 className="tituloTarjeta">Metodo de Pago : Tarjeta de Crédito o Débito</h2>
-          <p className="pTarjeta">Monto Total a Pagar: ${precioTotal}</p>
-          <div className="divFormPayment">
-              <div className="cardTarjeta">
-              <CardElement className="cardElement" />
+        <div className="conteiner-card">
+              <h2 className="tituloTarjeta">Card Details</h2>
+            <div className="divFormPayment">
+                <div className="cardTarjeta">
+                {/* <CardElement className="cardElement" /> */}
+                <h4> Card Number </h4>
+                <CardNumberElement className="CardNumberElement"></CardNumberElement>
+                <div className="Date-CVV-conteiner">
+                  <div className="details-date-cvv">
+                    <h4> Date </h4> 
+                    <CardExpiryElement className="CardExpiryElement"></CardExpiryElement>
+                  </div>
+                  <div className="details-date-cvv">
+                    <h4> CVV </h4>
+                    <CardCvcElement className="CardCvcElement"></CardCvcElement>
+                  </div>
+                </div>
+              </div>
+              <div className="subcontainerPagar">
+                <div className="button-pagar">                    
+                    <button onClick={(e) => handleSubmit(e)} className="button-19" disabled={loading ? true : false}>
+                      {loading ? <p>Cargando</p> : <p>   { `$ ${precioTotal}.00`}</p>}  <p> 'Checkout'   </p>
+                    </button>
+                </div>
+              </div>
             </div>
-            <div className="subcontainerPagar">
-              <button onClick={(e) => handleRegresar(e)} className="ButtonPagar">Regresar</button>
-              <button onClick={(e) => handleSubmit(e)} className="ButtonPagar" disabled={loading ? true : false}>
-                {loading ? "Cargando" : "Pagar"}
-              </button>
-            </div>
-          </div>
-        </span>
+        </div>
         
         
       </div>

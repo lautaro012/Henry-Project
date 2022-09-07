@@ -13,6 +13,7 @@ import edit from '../../Style/Imagenes/edit.png'
 import disabled from '../../Style/Imagenes/disabled.png'
 import offer from '../../Style/Imagenes/offer.png'
 import SendNews from '../SendNews/SendNews'
+import LoadingScreen from '../LoadingScreen/LoadingScreen'
 
 
 export default function Admin() {
@@ -93,36 +94,39 @@ export default function Admin() {
 
     return (
         <div className='Admin-conteiner'>
-            <div className='Admin-settings'>
+            {
+                videogames[0]?
+              <>  
+                <div className='Admin-settings'>
                 <aside className='Admin-aside'> 
                     <h2 className='adminUserH1'>Welcome {user.user.userName}</h2>
                     <img width={200} src={user.user.image} alt={user.user.id_name}></img>
-                    <button className='adminButtonStyle' onClick={() => setRender("admin")}> 
+                    <button className='button-40' onClick={() => setRender("admin")}> 
                         <div className='adminButtonStyleDiv'>
                         <img src={create} alt="create" width='20' className='adminImageButtonStyle'/>
                         <span>Create New Game </span>
                         </div>
                     </button>
-                    <button className='adminButtonStyle' onClick={() => setRender("edit")}> 
+                    <button className='button-40' onClick={() => setRender("edit")}> 
                         <div className='adminButtonStyleDiv'>
                         <img src={edit} alt="edit" width='20' className='adminImageButtonStyle'/>
                         <span>Edit Game</span>
                         </div>
                     
                     </button>
-                    <button className='adminButtonStyle' onClick={() => setRender("users")}>
+                    <button className='button-40' onClick={() => setRender("users")}>
                         <div className='adminButtonStyleDiv'>
                         <img src={edit} alt="edit" width='20' className='adminImageButtonStyle'/>
                         <span>Edit Users</span>
                         </div>
                     </button>
-                    <button className='adminButtonStyle' onClick={() => setRender("disableUsers")}>
+                    <button className='button-40' onClick={() => setRender("disableUsers")}>
                         <div className='adminButtonStyleDiv'>
                         <img src={disabled} alt="disabled" width='20' className='adminImageButtonStyle'/>
                         <span>Disabled Users</span>
                         </div>
                     </button>
-                    <button className='adminButtonStyle' onClick={() => setRender("offers")}>
+                    <button className='button-40' onClick={() => setRender("offers")}>
                         <div className='adminButtonStyleDiv'>
                         <img src={offer} alt="disabled" width='20' className='adminImageButtonStyle'/>
                         <span>Send Offers</span>
@@ -225,6 +229,11 @@ export default function Admin() {
                     }
 
         </div>
+                
+        </>        
+                
+                :<LoadingScreen></LoadingScreen>
+            }
         </div>
     )
 }
