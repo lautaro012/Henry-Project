@@ -13,6 +13,7 @@ import edit from '../../Style/Imagenes/edit.png'
 import disabled from '../../Style/Imagenes/disabled.png'
 import offer from '../../Style/Imagenes/offer.png'
 import SendNews from '../SendNews/SendNews'
+import LoadingScreen from '../LoadingScreen/LoadingScreen'
 
 
 export default function Admin() {
@@ -93,7 +94,10 @@ export default function Admin() {
 
     return (
         <div className='Admin-conteiner'>
-            <div className='Admin-settings'>
+            {
+                videogames[0]?
+              <>  
+                <div className='Admin-settings'>
                 <aside className='Admin-aside'> 
                     <h2 className='adminUserH1'>Welcome {user.user.userName}</h2>
                     <img width={200} src={user.user.image} alt={user.user.id_name}></img>
@@ -225,6 +229,11 @@ export default function Admin() {
                     }
 
         </div>
+                
+        </>        
+                
+                :<LoadingScreen></LoadingScreen>
+            }
         </div>
     )
 }
