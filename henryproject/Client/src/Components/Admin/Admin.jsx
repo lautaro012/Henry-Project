@@ -33,6 +33,7 @@ export default function Admin() {
     const user = JSON.parse(localStorage.getItem("user"));
 
     const[render , setRender] = useState('edit')
+    const[renderTwo, setRenderTwo] = useState('')
 
     useEffect(() => {
         dispatch(getAllGames());
@@ -40,7 +41,7 @@ export default function Admin() {
         dispatch(getAllUsers())
         dispatch(getAllBannedUsers())
         dispatch(getAllNoBannedUsers())
-    }, [dispatch])
+    }, [dispatch, render])
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -77,9 +78,13 @@ export default function Admin() {
     }
     function handleBanClick(a) {
          dispatch(banUser(a.target.value))
+         setRender(`edit`)
+
     }
     function handleNoBanClick(a) {
         dispatch(noBanUser(a.target.value))
+        setRender(`edit`)
+
     }
     function handleAdmin(a) {
         dispatch(updateAdmin(a.target.value))
