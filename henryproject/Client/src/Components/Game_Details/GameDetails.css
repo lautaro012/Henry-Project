@@ -155,7 +155,8 @@
     border-style: solid;
     border-radius: 20px;
     padding: 5%;
-    margin: 5%;
+    margin: 5%; 
+    font-size: 25px;
 }
 
 #score {
@@ -180,12 +181,4 @@
 
 #imagen_pop{
     max-width: 800px;
-}
-
-.Label_score_detail{
-    margin-top: 5%;
-}
-
-#buttons_detail_buy{
-    margin: 5%;
 }
