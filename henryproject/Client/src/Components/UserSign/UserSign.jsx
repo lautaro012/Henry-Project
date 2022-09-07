@@ -3,7 +3,6 @@ import './UserSign.css'
 import Icon from '../../Style/Imagenes/Icon.PNG'
 import Modal from "react-modal";
 import axios from 'axios'
-import { useDispatch } from "react-redux";
 import swal from 'sweetalert'; 
 const {
   REACT_APP_API
@@ -13,7 +12,6 @@ const {
 export default function UserSign({toggleModal, isOpen, setUserLogged, changeModal}) {
 
 
-    let dispatch = useDispatch()
     const [render, setRender] = useState('')
     const[loading, setLoading] = useState(false)
     const [input, setInput] = useState({
@@ -21,10 +19,10 @@ export default function UserSign({toggleModal, isOpen, setUserLogged, changeModa
         password: ''
     })
 
-    function handleClick(e) {
-        // e.preventDefault()
-        window.open(`http://localhost:3001/auth/google`, "_self")
-    }
+    // function handleClick(e) {
+    //     // e.preventDefault()
+    //     window.open(`http://localhost:3001/auth/google`, "_self")
+    // }
 
     Modal.setAppElement("#root");
 
@@ -92,7 +90,7 @@ export default function UserSign({toggleModal, isOpen, setUserLogged, changeModa
             </form>
         </div>
         
-        <button onClick={(e) => handleClick(e)} className='login-with-google-btn' >Ingresar con cuenta de Google</button>
+        {/* <button onClick={(e) => handleClick(e)} className='login-with-google-btn' >Ingresar con cuenta de Google</button> */}
         Are you new ?  <button onClick={changeModal} className='register-button'>{<u>Register free now</u>} !</button>
 
       </Modal>
