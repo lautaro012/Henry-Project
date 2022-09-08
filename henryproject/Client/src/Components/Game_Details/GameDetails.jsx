@@ -119,8 +119,6 @@ export default function GameDetails() {
         })
     }
 
-    //const [render, setRender ] = useState("")
-
     function handleSubmit(event) {
         event.preventDefault()
         dispatch(postReview(id, input))

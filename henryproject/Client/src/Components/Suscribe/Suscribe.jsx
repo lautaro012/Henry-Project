@@ -2,13 +2,18 @@ import axios from 'axios'
 import { useState } from 'react'
 import './Suscribe.css'
 import swal from 'sweetalert';
+import { useEffect } from 'react';
 
 
 export default function Suscribe ({userLogged}) {
+
     let usermail = JSON.parse(localStorage.getItem('user'))
     const [input, setInput] = useState({
         mail: ''
     })
+
+  
+
     const [loading, setLoading] = useState(false)
     function handleChange(e) {
         setInput({
@@ -16,9 +21,15 @@ export default function Suscribe ({userLogged}) {
         })
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault()
         setLoading(true)
+        let emails = await axios.get('/newsletter').then(res => res.data).then(res => res)
+        console.log('los emails son', emails)
+        if(emails.map(el => el.mail).includes(input.mail)){
+            setLoading(false)
+            return swal({title:'Already Suscribed ! '})
+        }
         if(userLogged){
             setInput({
                 mail: usermail.user.mail
@@ -36,26 +47,32 @@ export default function Suscribe ({userLogged}) {
                 console.log('suscripcion fallida', error) 
             })
     }
+
+
+
+
+
     return (
-        <div className='suscribe-conteiner'>
-            <div className='suscribe-textarea'>
-                <div className='h2-textarea'>
-                    <h2> Suscribe to Games Store ! </h2>
-                    <textarea> Be the first to find out about our new games and the best offers/promotions via e-mail </textarea>
-                </div>
-                <img width={50} src='https://i.pinimg.com/originals/8f/c3/7b/8fc37b74b608a622588fbaa361485f32.png' alt='correo'></img>
-            </div>
-            <div className='suscribe-form'>
-                <form onSubmit={(e) => handleSubmit(e)}>
-                    {
-                        userLogged ?
-                        null
-                        :
-                        <input placeholder='Email' name='mail' required onChange={(e) => handleChange(e)}></input>
-                    }
-                    {!loading ? <button className='button-52' type='submit'> Receive offers </button> : <button className='button-52' disabled={true} type='submit'> Receive offers </button>}
-                </form>
-            </div>
+        <section className="wrapper">
+        <div className="content">
+                <header>
+                  <h1>Subscribe Us</h1>
+                </header>
+            <section>
+                <p>
+                    Suscribe to our newsletter and stay updated.
+                </p>
+            </section>
+            <form onSubmit={e => handleSubmit(e)}>
+            {
+                userLogged ?
+                <input className='input-disabled' disabled={true} placeholder='Email' name='mail' required onChange={(e) => handleChange(e)}></input>
+                :
+                <input placeholder='Email' name='mail' required onChange={(e) => handleChange(e)}></input>
+            }
+                {!loading ? <button  type='submit'> Suscribe </button> : <button  disabled={true} type='submit'> Loading... </button>}
+            </form>
         </div>
+    </section>
     )
 }
