@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getGameById, getGenres, getPlatforms, getTags } from "../../../redux/Actions/Index";
+import { getGameById, getGenres, getPlatforms, getTags, putVideogame } from "../../../redux/Actions/Index";
 
 export default function EditVideogames(){
     const dispatch=useDispatch();
@@ -475,43 +475,99 @@ function handleChangeRespuesta(ev){
     }
 }
 
-
+// MODIFICA TODO
 const todoelvideogames={
         name:detailsVideogames.name,
         price:`${detailsVideogames.price}`,
         description:detailsVideogames.description,
-        rating:detailsVideogames.rating,
+        rating:`${detailsVideogames.rating}`,
         video:detailsVideogames.video,
         image:detailsVideogames.image,
-        screenshots:detailsVideogames.screenshots
+        screenshots:detailsVideogames.screenshots,
+        store:detailsVideogames.store,
+        developers:detailsVideogames.developers,
+        publishers:detailsVideogames.publishers,
+        website:detailsVideogames.website,
+        releaseDate:detailsVideogames.realeaseDate,
+        metacritic:detailsVideogames.metacritic,
+        esrb_rating:detailsVideogames.esrb_rating,
+        platforms:detailsVideogames.platforms,
+        tags:detailsVideogames.tags,
+        genres:detailsVideogames.genres
+}
+// POR NAME
+const todoelvideogamesName={
+    name:value.name,
+    price:`${detailsVideogames.price}`,
+    description:detailsVideogames.description,
+    rating:`${detailsVideogames.rating}`,
+    video:detailsVideogames.video,
+    image:detailsVideogames.image,
+    screenshots:detailsVideogames.screenshots,
+    store:detailsVideogames.store,
+    developers:detailsVideogames.developers,
+    publishers:detailsVideogames.publishers,
+    website:detailsVideogames.website,
+    releaseDate:detailsVideogames.realeaseDate,
+    metacritic:detailsVideogames.metacritic,
+    esrb_rating:detailsVideogames.esrb_rating,
+    platforms:detailsVideogames.platforms,
+    tags:detailsVideogames.tags,
+    genres:detailsVideogames.genres
 }
 
+
 function onClickEditar(){
-    var data1=[]
-        if(value.name=="" && value.price=="" && value.description==""){
+    // var data1=[]
+        if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+            dispatch(putVideogame(id,todoelvideogames));
+            alert("Se registro");
+
+        }else if(value.name!="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+            dispatch(putVideogame(id,todoelvideogamesName))
+            alert("Se registro");
+
+        }else if(value.name=="" && value.price!="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+            // Si el value.price cambio
+            // dispatch(putVideogames({name:todoelvideogames.name,price:value.price,description:todoelvideogames.video, ...}))
+        }else if(value.name=="" && value.price=="" && value.description!="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+            // ...
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating!="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
             console.log(todoelvideogames)
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+            console.log(todoelvideogames)
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+            console.log(todoelvideogames)
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+            console.log(todoelvideogames)
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+            console.log(todoelvideogames)
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+            console.log(todoelvideogames)
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+            console.log(todoelvideogames)
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+            console.log(todoelvideogames)
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+            console.log(todoelvideogames)
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+            console.log(todoelvideogames)
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+            console.log(todoelvideogames)
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+            console.log(todoelvideogames)
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+            console.log(todoelvideogames)
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+            console.log(todoelvideogames)
+        }else{
+            // Si todo cambia
+        
         }
-        else if(value.name!="" && value.price!=""){
-            data1={name:value.name,price:value.price}
-            console.log(data1)
-        }else if(value.name!="" && value.description!=""){
-// EN PROCESO
-        }
-        else if(value.name!=""){
-            data1={name:value.name,price:todoelvideogames.price,description:todoelvideogames.description}
-            console.log(data1)
-        }else if(value.price!=""){
-            data1={name:todoelvideogames.name,price:value.price,description:todoelvideogames.description}
-            console.log(data1)
-        }else if(value.description!=""){
-            data1={name:todoelvideogames.name,price:todoelvideogames.price,description:value.description}
-            console.log(data1)
-        }
-// EN PROCESO
-        // console.log(value);
+        
 }
-console.log(detailsVideogames);
-// console.log(detailsVideogames);
+
+// console.log(value);
     return (
         <div className='container-createVideogames'>
             <div className="subContainer-createVideogames">
@@ -966,8 +1022,8 @@ console.log(detailsVideogames);
                                     {
                                         value.platforms.flat()?.map((store)=>{
                                             return(
-                                                <div key={store.name} className="ccstore">
-                                                    <p>{store.name}</p>
+                                                <div key={[store.name|| store]} className="ccstore">
+                                                    <p>{[store.name|| store]}</p>
                                                     <input type="submit" onClick={()=>onClickDeletePlatform(store)} value="X"/>
                                                 </div>
                                                 )
@@ -1021,8 +1077,8 @@ console.log(detailsVideogames);
                                     {
                                         value.tags.flat()?.map((store)=>{
                                             return(
-                                                <div key={store.name} className="ccstore">
-                                                    <p>{store.name}</p>
+                                                <div key={[store.name|| store]} className="ccstore">
+                                                    <p>{[store.name|| store]}</p>
                                                     <input type="submit" onClick={()=>onClickDeleteTag(store)} value="X"/>
                                                 </div>
                                                 )
@@ -1076,8 +1132,8 @@ console.log(detailsVideogames);
                                     {
                                         value.genres.flat()?.map((store)=>{
                                             return(
-                                                <div key={store.name} className="ccstore">
-                                                    <p>{store.name}</p>
+                                                <div key={[store.name||store]} className="ccstore">
+                                                    <p>{[store.name|| store]}</p>
                                                     <input type="submit" onClick={()=>onClickDeleteGenres(store)} value="X"/>
                                                 </div>
                                                 )
