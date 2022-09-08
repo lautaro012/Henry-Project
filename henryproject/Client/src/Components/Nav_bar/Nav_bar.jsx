@@ -48,15 +48,14 @@ export default function Nav_bar({ userLogged, setUserLogged, setCurrentPage }) {
     function handleNavigate(url){
         setIsOpen(false)
         navigate(url)
+        window.scrollTo({ behavior: "smooth", top: "0px" })
     }
 
     return (
         <nav className="Nav_bar">
 
             <div id="icon">
-                <Link to='/'>
-                    <img src={Icon} alt="Icon" />
-                </Link>
+                 <button onClick={() => handleNavigate("/")}><img src={Icon} alt="Icon" /></button>
             </div>
 
             <div>
