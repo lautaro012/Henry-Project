@@ -171,7 +171,7 @@ export default function Admin() {
                             {allUsers.length ?
                                 allUsers.map(e => 
                                     { return (
-                                        !e.admin ? 
+                                        
                                         <span className='adminUsersDivConfig'>
                                             <span className='adminUsersDivCard'>
                                             <img src={e.image} width='60' className='adminImgUserCard' alt='admin_image'></img>
@@ -189,7 +189,7 @@ export default function Admin() {
                                             </span>
                                             
                                             </span>
-                                        </span> : null
+                                        </span>
                                     )}
                                 ) : <h4>There's no users registered</h4>}</div>
                         </div>

@@ -75,6 +75,10 @@
     width: 100px;
 }
 
+.Nav_bar button:hover {
+    cursor: pointer;
+}
+
 .Nav_bar :link {
     border: none;
     border-radius: 4px;

@@ -96,7 +96,7 @@
     display: inline-flex;
 }
 
-.suscribe-conteiner {
+/* .suscribe-conteiner {
     background-color: #ffffffd4;
     padding: 1%;
     border-radius: 25px;
@@ -185,4 +185,4 @@
 .suscribe-form input::placeholder {
     text-align: center;
     font-size: 15px;
-}
+} */
