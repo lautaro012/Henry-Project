@@ -36,6 +36,7 @@ export const GET_NO_BANNED_ALL_USERS = 'GET_NO_BANNED_ALL_USERS'
 export const EMPTY_VIDEOGAMES = "EMPTY_VIDEOGAMES"
 export const GET_MAILS= "GET_MAILS"
 export const GET_ALL_MAILS_NEWS="GET_ALL_MAILS_NEWS"
+export const SAVE_PAGE_GLOBAL= "SAVE_PAGE_GLOBAL"
 
 
 require('dotenv').config();
@@ -466,4 +467,13 @@ export const getAllNoBannedUsers = function () {
             })
         }
     
+}
+
+export function savePageGlobal(numero) {
+    return function (dispatch) {
+        dispatch({
+            type: SAVE_PAGE_GLOBAL,
+            payload: numero
+        })
+    }
 }
