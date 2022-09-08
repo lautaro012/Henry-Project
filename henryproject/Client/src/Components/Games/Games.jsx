@@ -10,7 +10,7 @@ import Filter from '../Filter/Filter';
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
 import icon from '../../Style/Imagenes/Icon.PNG'
 
-export default function Games() {
+export default function Games({currentPage, setCurrentPage}) {
 
     let dispatch = useDispatch()
     let allvideogames = useSelector(state => state.Allvideogames)
@@ -22,7 +22,7 @@ export default function Games() {
     let pageGlobal = useSelector(state => state.pageGlobal)
     const [render, setRender] = useState('')
     
-    const [currentPage, setCurrentPage] = useState(pageGlobal ? pageGlobal : 1)
+   
     
     useEffect(() => {
         dispatch(getGenres())
