@@ -56,6 +56,7 @@ export default function GameDetails() {
             name: game.name,
             price: game.price,
             image: game.image,
+            rating: game.rating,
         }
         dispatch(addToCart(item))
         swal({
@@ -68,6 +69,7 @@ export default function GameDetails() {
             name: game.name,
             price: game.price,
             image: game.image,
+            rating: game.rating,
         }
         dispatch(addToFav(item))
         swal({

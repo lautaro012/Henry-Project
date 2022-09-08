@@ -28,6 +28,7 @@ export default function Card({ card }) {
             name: name,
             price: price,
             image: image,
+            rating: rating,
         }
         if (e.target.checked) {
             dispatch(addToFav(item))
@@ -61,9 +62,6 @@ export default function Card({ card }) {
     useEffect(() => {
         localStorage.setItem("favProducts", JSON.stringify(favoritos));
     }, [favoritos]);
-
-    console.log("CARD",card)
-    console.log("FAVORITES",favorites)
 
     return (
         <div>
