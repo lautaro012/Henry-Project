@@ -3,7 +3,7 @@ import './Games.css'
 import Cards from '../Cards/Cards.jsx'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllGames, clear, getGenres, getPlatforms, order, vaciarGame, getTags } from '../../redux/Actions/Index'
+import { getAllGames, clear, getGenres, getPlatforms, order, vaciarGame, getTags, savePageGlobal } from '../../redux/Actions/Index'
 import { useState } from 'react';
 import Paginado from '../Paginado/Paginado';
 import Filter from '../Filter/Filter';
@@ -19,8 +19,11 @@ export default function Games() {
     let genres = useSelector(state => state.genres)
     let platforms = useSelector(state => state.platforms)
     let favorites = useSelector(state => state.favorites)
+    let pageGlobal = useSelector(state => state.pageGlobal)
     const [render, setRender] = useState('')
-
+    
+    const [currentPage, setCurrentPage] = useState(pageGlobal ? pageGlobal : 1)
+    
     useEffect(() => {
         dispatch(getGenres())
         dispatch(getPlatforms())
@@ -32,11 +35,13 @@ export default function Games() {
         // return function cleaning() {
         //     dispatch(clear())
         // }
-    }, [dispatch, allvideogames.length])
+        return function cleaning() {
+            dispatch(savePageGlobal(currentPage))
+        }
+    }, [dispatch, allvideogames.length, currentPage])
 
 
     //paginado
-    const [currentPage, setCurrentPage] = useState(1)
     const videogamesPerPage = 10
 
     //videojuegos filtradas por pagina

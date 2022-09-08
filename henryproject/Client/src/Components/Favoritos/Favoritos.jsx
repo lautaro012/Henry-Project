@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Icon from '../../Style/Imagenes/Icon.PNG'
 import CardHover from "../NewCard/CardHover.jsx";
 import PrettyRating from "pretty-rating-react";
+import swal from 'sweetalert';
 import {
     faStar,
     faStarHalfAlt,
@@ -41,6 +42,7 @@ export default function Favs() {
     function agregarAlCarrito(item) {
         dispatch(deleteItemFromFavs(item.id))
         dispatch(addToCart(item))
+        swal({title:`${item.name} to cart !`})
     }
 
     useEffect(() => {
@@ -67,7 +69,7 @@ export default function Favs() {
                                         <PrettyRating value={item.rating} icons={icons.star} colors={colors.star} />
                                     </div>
                                     <div id="cart_fav_buttons">
-                                        <button onClick={() => deleteItem(item.id)}>🗑</button>
+                                        <button onClick={() => { if (window.confirm(`Are you sure delete ${item.name} from your favorites ?`))deleteItem(item.id)}}>🗑</button>
                                         <button onClick={() => agregarAlCarrito(item)}>🛒</button>
                                     </div>
                                 </div>

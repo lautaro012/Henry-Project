@@ -32,7 +32,7 @@ import {
     GET_USERS_BANNED,
     GET_NO_BANNED_ALL_USERS,
     EMPTY_VIDEOGAMES,
-
+    SAVE_PAGE_GLOBAL,
     GET_MAILS,
     GET_ALL_MAILS_NEWS,
     PUTVIDEOGAME
@@ -50,7 +50,7 @@ const initialState = {
     genreby: 'all',
     platformby: 'all',
     cart: [],
-    favorites: [],
+    favorites: [], 
     tagsFilter: [],
     tags: [],
     Tagsinfilter: [],
@@ -65,9 +65,8 @@ const initialState = {
     allUsersBanned: [],
     allUsersNoBanned: [],
     mails: [],
-    mailsNews: []
-
-
+    mailsNews: [],
+    pageGlobal: null,
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -94,7 +93,11 @@ export default function rootReducer(state = initialState, action) {
                 allUsersNoBanned: action.payload
             }
         }
-    
+        case SAVE_PAGE_GLOBAL: 
+        return {
+            ...state,
+            pageGlobal: action.payload
+        }
         case GET_ALL_GAMES:
             return {
                 ...state,
@@ -272,9 +275,6 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 getAlldisableGame: action.payload
             }
-
-
-
 
         case SHOW_VIDEOGAME:
             var getAllgameshide = state.getAlldisableGame;
