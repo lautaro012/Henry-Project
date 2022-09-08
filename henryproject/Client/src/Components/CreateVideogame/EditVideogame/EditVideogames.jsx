@@ -2,12 +2,13 @@ import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import ReactPlayer from "react-player";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getGameById, getGenres, getPlatforms, getTags, modificarGame, putVideogame } from "../../../redux/Actions/Index";
 import './EditVideogames.css';
 
 export default function EditVideogames(){
     const dispatch=useDispatch();
+    const navigation=useNavigate();
     const detailsVideogames=useSelector(state => state.game);
     const platforms=useSelector(state=>state.platforms);
     const genres=useSelector(state=>state.genres);
@@ -488,11 +489,15 @@ function handleChangeRespuesta(ev){
 
 
 function onClickEditar(){
-    
-        console.log(value);
         dispatch(modificarGame(id,value));
-        
+        alert("video games updated")
+        navigation("/admin");
 }
+function onClickCancelar(){
+    alert("cancel games updated");
+    navigation("/admin");
+}
+
  // Para el detalle
  function stars(number) {
     if (number >= 1 && number < 2) {
@@ -532,7 +537,7 @@ function onClickEditar(){
                                 )
                             }
                             {
-                                (mensaje.name)?(<p>Para modificar debe darle click en boton editar...</p>):null
+                                (mensaje.name)?(<p>To modify you must click on the button edit ...</p>):null
                             }
                             <div>
                                 {showError ? <span>{error.name}</span> || <span>{validate.name}</span> : <span>{error.name}</span>|| <span>{validate.name}</span>}
@@ -552,7 +557,7 @@ function onClickEditar(){
                                 )
                             }
                             {
-                                (mensaje.price)?(<p>Para modificar debe darle click en boton editar...</p>):null
+                                (mensaje.price)?(<p>To modify you must click on the button edit ...</p>):null
                             }
                             <div>
                             {showError ? <span>{error.price}</span> || <span>{validate.price}</span> : <span>{error.price}</span>|| <span>{validate.price}</span>}
@@ -573,7 +578,7 @@ function onClickEditar(){
                                 )
                             }
                             {
-                                (mensaje.description)?(<p>Para modificar debe darle click en boton editar...</p>):null
+                                (mensaje.description)?(<p>To modify you must click on the button edit ...</p>):null
                             }
                             <div>
                             {showError ? <span>{error.description}</span> || <span>{validate.description}</span> : <span>{error.description}</span>|| <span>{validate.description}</span>}
@@ -594,7 +599,7 @@ function onClickEditar(){
                                 )
                             }
                             {
-                                (mensaje.rating)?(<p>Para modificar debe darle click en boton editar...</p>):null
+                                (mensaje.rating)?(<p>To modify you must click on the button edit ...</p>):null
                             }
                             <div>
                             {showError ? <span>{error.rating}</span> || <span>{validate.rating}</span> : <span>{error.rating}</span>|| <span>{validate.rating}</span>}
@@ -608,6 +613,7 @@ function onClickEditar(){
                                 (muestra.video)?(<>
                                 <input type="text" onChange={(ev)=>handleChangeInput(ev)} required name="video" placeholder="videa... " value={""}/>
                                 <input type="submit" value="+" onClick={()=>onClickAgregarMovie()}/>
+                                <input type="submit" onClick={()=>onClickVideo()} value="Edit Video"/>
                                 {
                                     detailsVideogames.video?.map((video)=>{
                                     return(
@@ -618,7 +624,7 @@ function onClickEditar(){
                                         )
                                     })
                                 }
-                                <input type="submit" onClick={()=>onClickVideo()} value="Edit Name"/></>):(
+                                </>):(
                                     <>
                                     <input type="text" onChange={(ev)=>handleChangeRespuesta(ev)} required name="video" placeholder="video... "/>
                                     <input type="submit" value="+" onClick={()=>onClickAgregarMovie()}/>
@@ -636,7 +642,7 @@ function onClickEditar(){
                                 
                             }
                             {
-                                (mensaje.video)?(<p>Para modificar debe darle click en boton editar...</p>):null
+                                (mensaje.video)?(<p>To modify you must click on the button edit ...</p>):null
                             }
                             {showError ? <span>{error.video}</span> || <span>{validate.video}</span> : <span>{error.video}</span>|| <span>{validate.video}</span>}
                             </div>
@@ -655,7 +661,7 @@ function onClickEditar(){
                                 )
                             }
                             {
-                                (mensaje.image)?(<p>Para modificar debe darle click en boton editar...</p>):null
+                                (mensaje.image)?(<p>To modify you must click on the button edit ...</p>):null
                             }
                             <div>    
                             {showError ? <span>{error.image}</span> || <span>{validate.image}</span> : <span>{error.image}</span>|| <span>{validate.image}</span>}
@@ -669,6 +675,7 @@ function onClickEditar(){
                                 (muestra.screenshots)?(<>
                                 <input type="text" onChange={(ev)=>handleChangeInput(ev)} required name="screenshot" placeholder="screenshot... " value={""}/>
                                 <input type="submit" value="+" onClick={()=>onClickAgregarScreenshot()}/>
+                                <input type="submit" onClick={()=>onClickScreenshot()} value="Edit Screenshot"/>
                                 {
                                     detailsVideogames.screenshots?.map((video)=>{
                                     return(
@@ -679,7 +686,7 @@ function onClickEditar(){
                                         )
                                     })
                                 }
-                                <input type="submit" onClick={()=>onClickScreenshot()} value="Edit Screenshot"/></>):(
+                                </>):(
                                     <>
                                     <input type="text" onChange={(ev)=>handleChangeRespuesta(ev)} required name="screenshot" placeholder="screenshot... "/>
                                     <input type="submit" value="+" onClick={()=>onClickAgregarScreenshot()}/>
@@ -697,7 +704,7 @@ function onClickEditar(){
                                 
                             }
                             {
-                                (mensaje.screenshots)?(<p>Para modificar debe darle click en boton editar...</p>):null
+                                (mensaje.screenshots)?(<p>To modify you must click on the button edit ...</p>):null
                             }
                             {showError ? <span>{error.screenshot}</span> || <span>{validate.screenshot}</span> : <span>{error.screenshot}</span>|| <span>{validate.screenshot}</span>}
                             </div>
@@ -720,6 +727,7 @@ function onClickEditar(){
                                 <option value="itch.io">itch.io</option>
                                 <option value="Epic Games">Epic Games</option>
                                 </select>
+                                <input type="submit" onClick={()=>onClickStore()} value="Edit Store"/>
                                 <div>
                                 {
                                     detailsVideogames.store?.map((store)=>{
@@ -732,7 +740,7 @@ function onClickEditar(){
                                     })
                                 }
                                 </div> 
-                                <input type="submit" onClick={()=>onClickStore()} value="Edit Store"/></>):(<>
+                                </>):(<>
 
                                     <select onChange={(ev)=>handleChangeRespuesta(ev)} value={store.name} name="store">
                                         <option value="All">Select Store: </option>
@@ -760,7 +768,7 @@ function onClickEditar(){
                                 </>)
                             }
                             {
-                                (mensaje.store)?(<p>Para modificar debe darle click en boton editar...</p>):null
+                                (mensaje.store)?(<p>To modify you must click on the button edit ...</p>):null
                             }
                         </div>
                         {/* DEVELOPERS */}
@@ -771,6 +779,7 @@ function onClickEditar(){
                                 (muestra.developers)?(<>
                                 <input type="text" onChange={(ev)=>handleChangeInput(ev)} required name="developers" placeholder="developers... " value={""}/>
                                 <input type="submit" value="+" onClick={()=>onClickAgregarScreenshot()}/>
+                                <input type="submit" onClick={()=>onClickDevelopers()} value="Edit Developers"/>
                                 {
                                     detailsVideogames.developers?.map((video)=>{
                                     return(
@@ -781,7 +790,7 @@ function onClickEditar(){
                                         )
                                     })
                                 }
-                                <input type="submit" onClick={()=>onClickDevelopers()} value="Edit Developers"/></>):(
+                                </>):(
                                     <>
                                     <input type="text" onChange={(ev)=>handleChangeRespuesta(ev)} required name="developers" placeholder="developers... "/>
                                     <input type="submit" value="+" onClick={()=>onClickAgregarDeveloper()}/>
@@ -799,7 +808,7 @@ function onClickEditar(){
                                 
                             }
                             {
-                                (mensaje.developers)?(<p>Para modificar debe darle click en boton editar...</p>):null
+                                (mensaje.developers)?(<p>To modify you must click on the button edit ...</p>):null
                             }
                             {showError ? <span>{error.developers}</span> || <span>{validate.developers}</span> : <span>{error.developers}</span>|| <span>{validate.developers}</span>}
                             </div>
@@ -812,6 +821,7 @@ function onClickEditar(){
                                 (muestra.publishers)?(<>
                                 <input type="text" onChange={(ev)=>handleChangeInput(ev)} required name="publishers" placeholder="publishers... " value={""}/>
                                 <input type="submit" value="+" onClick={()=>onClickAgregarPublisher()}/>
+                                <input type="submit" onClick={()=>onClickPublishers()} value="Edit Publishers"/>
                                 {
                                     detailsVideogames.publishers?.map((video)=>{
                                     return(
@@ -822,7 +832,7 @@ function onClickEditar(){
                                         )
                                     })
                                 }
-                                <input type="submit" onClick={()=>onClickPublishers()} value="Edit Publishers"/></>):(
+                                </>):(
                                     <>
                                     <input type="text" onChange={(ev)=>handleChangeRespuesta(ev)} required name="publishers" placeholder="publishers... "/>
                                     <input type="submit" value="+" onClick={()=>onClickAgregarPublisher()}/>
@@ -840,7 +850,7 @@ function onClickEditar(){
                                 
                             }
                             {
-                                (mensaje.publishers)?(<p>Para modificar debe darle click en boton editar...</p>):null
+                                (mensaje.publishers)?(<p>To modify you must click on the button edit ...</p>):null
                             }
                             {showError ? <span>{error.publishers}</span> || <span>{validate.publishers}</span> : <span>{error.publishers}</span>|| <span>{validate.publishers}</span>}
                             </div>
@@ -859,7 +869,7 @@ function onClickEditar(){
                                 )
                             }
                             {
-                                (mensaje.website)?(<p>Para modificar debe darle click en boton editar...</p>):null
+                                (mensaje.website)?(<p>To modify you must click on the button edit ...</p>):null
                             }
                             <div>    
                             {showError ? <span>{error.website}</span> || <span>{validate.website}</span> : <span>{error.website}</span>|| <span>{validate.website}</span>}
@@ -879,7 +889,7 @@ function onClickEditar(){
                                 )
                             }
                             {
-                                (mensaje.releaseDate)?(<p>Para modificar debe darle click en boton editar...</p>):null
+                                (mensaje.releaseDate)?(<p>To modify you must click on the button edit ...</p>):null
                             }
                             <div>    
                             {showError ? <span>{error.releaseDate}</span> || <span>{validate.releaseDate}</span> : <span>{error.releaseDate}</span>|| <span>{validate.releaseDate}</span>}
@@ -899,7 +909,7 @@ function onClickEditar(){
                                 )
                             }
                             {
-                                (mensaje.metacritic)?(<p>Para modificar debe darle click en boton editar...</p>):null
+                                (mensaje.metacritic)?(<p>To modify you must click on the button edit ...</p>):null
                             }
                             <div>    
                             {showError ? <span>{error.metacritic}</span> || <span>{validate.metacritic}</span> : <span>{error.metacritic}</span>|| <span>{validate.metacritic}</span>}
@@ -919,7 +929,7 @@ function onClickEditar(){
                                 )
                             }
                             {
-                                (mensaje.esrb_rating)?(<p>Para modificar debe darle click en boton editar...</p>):null
+                                (mensaje.esrb_rating)?(<p>To modify you must click on the button edit ...</p>):null
                             }
                             <div>    
                             {showError ? <span>{error.esrb_rating}</span> || <span>{validate.esrb_rating}</span> : <span>{error.esrb_rating}</span>|| <span>{validate.esrb_rating}</span>}
@@ -940,6 +950,7 @@ function onClickEditar(){
                                         })
                                         }
                                     </select>
+                                    <input type="submit" onClick={()=>onClickPlatforms()} value="Edit Platform"/>
                                 <div>
                                 {
                                     detailsVideogames.platforms?.map((store)=>{
@@ -952,7 +963,7 @@ function onClickEditar(){
                                     })
                                 }
                                 </div> 
-                                <input type="submit" onClick={()=>onClickPlatforms()} value="Edit Platform"/></>):(<>
+                                </>):(<>
 
                                     <select onChange={(ev)=>handleChangeRespuesta(ev)} value={platform.name} name="platforms">
                                         <option value="All">Select Plataform: </option>
@@ -977,7 +988,7 @@ function onClickEditar(){
                                 </>)
                             }
                             {
-                                (mensaje.platforms)?(<p>Para modificar debe darle click en boton editar...</p>):null
+                                (mensaje.platforms)?(<p>To modify you must click on the button edit ...</p>):null
                             }
                         </div>
                         {/* Tags */}
@@ -995,6 +1006,7 @@ function onClickEditar(){
                                         })
                                         }
                                     </select>
+                                    <input type="submit" onClick={()=>onClickTags()} value="Edit Tag"/>
                                 <div>
                                 {
                                     detailsVideogames.tags?.map((store)=>{
@@ -1007,7 +1019,7 @@ function onClickEditar(){
                                     })
                                 }
                                 </div> 
-                                <input type="submit" onClick={()=>onClickTags()} value="Edit Tag"/></>):(<>
+                                </>):(<>
 
                                     <select onChange={(ev)=>handleChangeRespuesta(ev)} value={tag.name} name="tags">
                                         <option value="All">Select Tag: </option>
@@ -1032,7 +1044,7 @@ function onClickEditar(){
                                 </>)
                             }
                             {
-                                (mensaje.tags)?(<p>Para modificar debe darle click en boton editar...</p>):null
+                                (mensaje.tags)?(<p>To modify you must click on the button edit ...</p>):null
                             }
                         </div>
                         {/* genres */}
@@ -1050,6 +1062,7 @@ function onClickEditar(){
                                         })
                                         }
                                     </select>
+                                    <input type="submit" onClick={()=>onClickGenres()} value="Edit Genre"/>
                                 <div>
                                 {
                                     detailsVideogames.genres?.map((store)=>{
@@ -1062,7 +1075,7 @@ function onClickEditar(){
                                     })
                                 }
                                 </div> 
-                                <input type="submit" onClick={()=>onClickGenres()} value="Edit Genre"/></>):(<>
+                                </>):(<>
 
                                     <select onChange={(ev)=>handleChangeRespuesta(ev)} value={genre.name} name="genres">
                                         <option value="All">Select Genre: </option>
@@ -1087,12 +1100,13 @@ function onClickEditar(){
                                 </>)
                             }
                             {
-                                (mensaje.genres)?(<p>Para modificar debe darle click en boton editar...</p>):null
+                                (mensaje.genres)?(<p>To modify you must click on the button edit ...</p>):null
                             }
                         </div>
 
                         {/* BUTTON */}
-                        <button onClick={()=>onClickEditar()}>EDITAR</button>
+                        <button onClick={()=>onClickEditar()}>EDIT VIDEOGAME</button>
+                        <button onClick={()=>onClickCancelar()}>CANCEL</button>
                 </div>
                 <div className="divcontainer02">
                     {(
@@ -1101,237 +1115,303 @@ function onClickEditar(){
                                     (!value.name)?(!value.name&&(
                                         (<h2 className="containers-name">{detailsVideogames.name}</h2>)
                                     )):(<h2 className="containers-name">{value.name}</h2>)
+                                }{
+                                    (!value.price)?(!value.price && (
+                                        (<p className="containers-price">Price: $/.{detailsVideogames.price}</p>)
+                                    )):(<p className="containers-price">Price: $/.{value.price}</p>)
                                 }
                                 {
-                                            (!value.price)?(!value.price && (
-                                                (<p className="containers-price">Price: $/.{detailsVideogames.price}</p>)
-                                            )):(<p className="containers-price">Price: $/.{value.price}</p>)
-                                        }
-                                        {
-                                            (!value.description)?(!value.description && (
-                                                (<p className="containers-description">{detailsVideogames.description}</p>)
-                                            )):(<p className="containers-description">{value.description}</p>)
-                                        }
-                                        {
-                                            (!value.rating)?(!value.rating && (
-                                                (<p className="containers-rating">{stars(detailsVideogames.rating)} {detailsVideogames.rating}</p>)
-                                            )):(<p className="containers-rating">{stars(value.rating)} {value.rating}</p>)
-                                        }
-                                        {
-                                            (!value.video)?(!value.video && <>
-                                                < ReactPlayer
-                                                    className="containers-video"
-                                                    url={detailsVideogames.video}
-                                                    width="100%"
-                                                    height="250px"
-                                                    controls
-                                                    playing
-                                                    loop
-                                                    muted
-                                                /></>):(
-                                                <>
-                                                < ReactPlayer
-                                                    className="containers-video"
-                                                    url={value.video}
-                                                    width="100%"
-                                                    height="250px"
-                                                    controls
-                                                    playing
-                                                    loop
-                                                    muted
-                                                /></>
-                                            )          
-                                        }
-                                        {
-                                            (!value.image)?(!value.image && <div className="containers-img">
-                                            <img src={detailsVideogames.image} alt="NOT FOUND" />
-                                            </div>):(
-                                                <div className="containers-img">
-                                                <img src={value.image} alt="NOT FOUND" />
+                                    (!value.description)?(!value.description && (
+                                        (<p className="containers-description">{detailsVideogames.description}</p>)
+                                    )):(<p className="containers-description">{value.description}</p>)
+                                }
+                                {
+                                    (!value.rating)?(!value.rating && (
+                                        (<p className="containers-rating">{stars(detailsVideogames.rating)} {detailsVideogames.rating}</p>)
+                                    )):(<p className="containers-rating">{stars(value.rating)} {value.rating}</p>)
+                                }
+                                {
+                                    (!value.video)?(!value.video && <>
+                                        < ReactPlayer
+                                            className="containers-video"
+                                            url={detailsVideogames.video}
+                                            width="100%"
+                                            height="250px"
+                                            controls
+                                            playing
+                                            loop
+                                            muted
+                                        /></>):(
+                                        <>
+                                        < ReactPlayer
+                                            className="containers-video"
+                                            url={value.video}
+                                            width="100%"
+                                            height="250px"
+                                            controls
+                                            playing
+                                            loop
+                                            muted
+                                        /></>
+                                    )          
+                                }
+                                {
+                                    (!value.image)?(!value.image && <div className="containers-img">
+                                    <img src={detailsVideogames.image} alt="NOT FOUND" />
+                                    </div>):(
+                                        <div className="containers-img">
+                                        <img src={value.image} alt="NOT FOUND" />
+                                        </div>
+                                    ) 
+                                }
+                                {
+                                    (!value.screenshots)?(!value.screenshots && <div className="container-screenshot">
+                                    <div className="subcontain1">
+                                        {detailsVideogames.screenshots?.map(ev=>{
+                                            return(
+                                                <div key={ev} className="screenshot-img">
+                                                    <img src={ev} alt="NOT FOUND" />
                                                 </div>
-                                            ) 
-                                        }
-                                        {
-                                            (!value.screenshots)?(!value.screenshots && <div className="container-screenshot">
-                                            <div className="subcontain1">
-                                                {detailsVideogames.screenshots?.map(ev=>{
+                                            );
+                                        })}
+                                    </div>
+                                    </div>):(
+                                        <div className="container-screenshot">
+                                        <div className="subcontain1">
+                                            {value.screenshots?.map(ev=>{
+                                                return(
+                                                    <div key={ev} className="screenshot-img">
+                                                        <img src={ev} alt="NOT FOUND" />
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                        </div>
+                                    )
+                                }
+                                {
+                                    (!value.store)? (!value.store && <>
+                                        <p className="pstores">STORES: </p>
+                                        <div className="container-stores">
+                                            {
+                                                detailsVideogames.store?.map(c=>{
                                                     return(
-                                                        <div key={ev} className="screenshot-img">
-                                                            <img src={ev} alt="NOT FOUND" />
+                                                        <div>
+                                                            <p>{c}</p>
                                                         </div>
-                                                    );
-                                                })}
-                                            </div>
-                                            </div>):(
-                                                <div className="container-screenshot">
-                                                <div className="subcontain1">
-                                                    {value.screenshots?.map(ev=>{
-                                                        return(
-                                                            <div key={ev} className="screenshot-img">
-                                                                <img src={ev} alt="NOT FOUND" />
-                                                            </div>
-                                                        );
-                                                    })}
-                                                </div>
-                                                </div>
-                                            )
-                                        }
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                    </>):(
+                                        <>
+                                        <p className="pstores">STORES: </p>
+                                        <div className="container-stores">
                                         {
-                                            (!value.store)? (!value.store && <>
-                                                <p>STORES: </p>
-                                                <div className="container-store">
-                                                    <p>{detailsVideogames.store?.join(", ")}</p>
-                                                </div>
-                                            </>):(
-                                                <>
-                                                <p>STORES: </p>
-                                                <div className="container-store">
-                                                    <p>{value.store?.join(", ")}</p>
-                                                </div>
-                                            </>
-                                            )
-                                        }
-                                        {
-                                            (!value.developers)?(!value.developers && <>
-                                                <p>DEVELOPERS: </p>
-                                                <div className="container-developers">
-                                                <p>{detailsVideogames.developers?.join(", ")}</p>
-                                                </div>
-                                                </>):(
-                                                <>
-                                                <p>DEVELOPERS: </p>
-                                                <div className="container-developers">
-                                                <p>{value.developers?.join(", ")}</p>
-                                                </div>
-                                                </>
-                                            )
-                                        }
-                                        {
-                                            (!value.publishers)?(!value.publishers && <>
-                                                <p>PUBLISHERS: </p>
-                                                <div className="container-publishers">
-                                                <p>{detailsVideogames.publishers?.join(", ")}</p>
-                                                </div>
-                                                </>):(
-                                                <>
-                                                <p>PUBLISHERS: </p>
-                                                <div className="container-publishers">
-                                                <p>{value.publishers?.join(", ")}</p>
-                                                </div>
-                                                </>
-                                            )
-                                        }
-                                        {
-                                            (!value.website)?(!value.website && <>
-                                            <p>WEBSITE: </p>
-                                            <p>{detailsVideogames.website}</p>
+                                                value.store?.map(c=>{
+                                                    return(
+                                                        <div>
+                                                            <p>{c}</p>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                    </>
+                                    )
+                                }
+                                {
+                                    (!value.developers)?(!value.developers && <>
+                                        <p className="pstores">DEVELOPERS: </p>
+                                        <div className="container-stores">
+                                            {
+                                                detailsVideogames.developers?.map(c=>{
+                                                    return(
+                                                        <div>
+                                                            <p>{c}</p>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </div>
                                         </>):(
-                                                <>
-                                                <p>WEBSITE: </p>
-                                                <p>{value.website}</p>
-                                            </>
-                                            )
-                                        }
+                                        <>
+                                        <p className="pstores">DEVELOPERS: </p>
+                                        <div className="container-stores">
                                         {
-                                            (!value.releaseDate)?(!value.releaseDate && <>
-                                            <p>RELEASEDATE: </p>
-                                            <p>{detailsVideogames.realeaseDate}</p>
-                                            </>):(
-                                                <>
-                                                <p>RELEASEDATE: </p>
-                                                <p>{value.releaseDate}</p>
-                                                </>
-                                            )
-                                        }
+                                                value.developers?.map(c=>{
+                                                    return(
+                                                        <div>
+                                                            <p>{c}</p>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                        </>
+                                    )
+                                }
+                                {
+                                    (!value.publishers)?(!value.publishers && <>
+                                        <p className="pstores">PUBLISHERS: </p>
+                                        <div className="container-stores">
+                                            {
+                                                detailsVideogames.publishers?.map(c=>{
+                                                    return(
+                                                        <div>
+                                                            <p>{c}</p>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                        </>):(
+                                        <>
+                                        <p className="pstores">PUBLISHERS: </p>
+                                        <div className="container-stores">
+                                            {
+                                                value.publishers?.map(c=>{
+                                                    return(
+                                                        <div>
+                                                            <p>{c}</p>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                        </>
+                                    )
+                                }
+                                {
+                                    (!value.website)?(!value.website && <>
+                                    <p className="pstores">WEBSITE: </p>
+                                    <p>{detailsVideogames.website}</p>
+                                </>):(
+                                        <>
+                                        <p className="pstores">WEBSITE: </p>
+                                        <p>{value.website}</p>
+                                    </>
+                                    )
+                                }
+                                {
+                                    (!value.releaseDate)?(!value.releaseDate && <>
+                                    <p className="pstores">RELEASEDATE: </p>
+                                    <p>{detailsVideogames.realeaseDate}</p>
+                                    </>):(
+                                        <>
+                                        <p className="pstores">RELEASEDATE: </p>
+                                        <p>{value.releaseDate}</p>
+                                        </>
+                                    )
+                                }
+                                {
+                                    (!value.metacritic)?(!value.metacritic && 
+                                    <>
+                                        <p className="pstores">METACRITIC: </p>
+                                        <p>{detailsVideogames.metacritic}</p>
+                                        </>
+                                    ):(
+                                        <>
+                                        <p className="pstores">METACRITIC: </p>
+                                        <p>{value.metacritic}</p>
+                                        </>
+                                    )
+                                }
+                                {
+                                    (!value.esrb_rating)?(!value.esrb_rating && <>
+                                    <p className="pstores">ESRB_RATNG:</p>
+                                    <p>{detailsVideogames.esrb_rating}</p>
+                                    </>):(
+                                        <>
+                                        <p>ESRB_RATNG:</p>
+                                        <p>{value.esrb_rating}</p>
+                                        </>
+                                    )
+                                }
+                                {
+                                    (!value.platforms)? (!value.platforms && <>
+                                        <p className="pstores">PLATFORMS: </p>
+                                        <div className="container-stores">
                                         {
-                                            (!value.metacritic)?(!value.metacritic && 
-                                            <>
-                                                <p>METACRITIC: </p>
-                                                <p>{detailsVideogames.metacritic}</p>
-                                                </>
-                                            ):(
-                                                <>
-                                                <p>METACRITIC: </p>
-                                                <p>{value.metacritic}</p>
-                                                </>
-                                            )
-                                        }
+                                                detailsVideogames.platforms?.map(c=>{
+                                                    return(
+                                                        <p>{c.name}</p>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                        </>):(
+                                        <>
+                                        <p className="pstores">PLATFORMS: </p>
+                                        <div className="container-stores">
                                         {
-                                            (!value.esrb_rating)?(!value.esrb_rating && <>
-                                            <p>ESRB_RATNG:</p>
-                                            <p>{detailsVideogames.esrb_rating}</p>
-                                            </>):(
-                                                <>
-                                                <p>ESRB_RATNG:</p>
-                                                <p>{value.esrb_rating}</p>
-                                                </>
-                                            )
-                                        }
+                                                value.platforms?.map(c=>{
+                                                    return(
+                                                        <p>{c}</p>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                        </>
+                                    )
+                                }
+                                {
+                                    (!value.tags)? (!value.tags && <>
+                                        <p className="pstores">TAGS: </p>
+                                        <div className="container-stores">
+                                            {
+                                                detailsVideogames.tags?.map(c=>{
+                                                    return(
+                                                        <p>{c.name}</p>
+                                                    )
+                                                })
+                                            }
+                                        
+                                        </div>
+                                        </>):(
+                                        <>
+                                        <p className="pstores">TAGS: </p>
+                                        <div className="container-stores">
                                         {
-                                            (!value.platforms)? (!value.platforms && <>
-                                                <p>PLATFORMS: </p>
-                                                <div className="container-platforms">
-                                                {
-                                                        detailsVideogames.platforms?.map(c=>{
-                                                            return(
-                                                                <p>{c.name}</p>
-                                                            )
-                                                        })
-                                                    }
-                                                </div>
-                                                </>):(
-                                                <>
-                                                <p>PLATFORMS: </p>
-                                                <div className="container-platforms">
-                                                <p>{value.platforms.name.flat()?.join(", ")}</p>
-                                                </div>
-                                                </>
-                                            )
-                                        }
+                                                value.tags?.map(c=>{
+                                                    return(
+                                                        <p>{c}</p>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                        </>
+                                    )
+                                }
+                                {
+                                    (!value.genres)? (!value.genres && <>
+                                        <p className="pstores">GENRES: </p>
+                                        <div className="container-stores">
+                                            {
+                                                detailsVideogames.genres?.map(c=>{
+                                                    return(
+                                                        <p>{c.name}</p>
+                                                    )
+                                                })
+                                            }
+                                        
+                                        </div>
+                                        </>):(
+                                        <>
+                                        <p className="pstores">GENRES: </p>
+                                        <div className="container-stores">
                                         {
-                                            (!value.tags)? (!value.tags && <>
-                                                <p>TAGS: </p>
-                                                <div className="container-tags">
-                                                    {
-                                                        detailsVideogames.tags?.map(c=>{
-                                                            return(
-                                                                <p>{c.name}</p>
-                                                            )
-                                                        })
-                                                    }
-                                                {/* <p>{detailsVideogames.tags.name?.join(", ")}</p> */}
-                                                </div>
-                                                </>):(
-                                                <>
-                                                <p>TAGS: </p>
-                                                <div className="container-tags">
-                                                <p>{value.tags?.join(", ")}</p>
-                                                </div>
-                                                </>
-                                            )
-                                        }
-                                        {
-                                            (!value.genres)? (!value.genres && <>
-                                                <p>GENRES: </p>
-                                                <div className="container-genres">
-                                                    {
-                                                        detailsVideogames.genres?.map(c=>{
-                                                            return(
-                                                                <p>{c.name}</p>
-                                                            )
-                                                        })
-                                                    }
-                                                {/* <p>{detailsVideogames.genres?.join(", ")}</p> */}
-                                                </div>
-                                                </>):(
-                                                <>
-                                                <p>GENRES: </p>
-                                                <div className="container-genres">
-                                                <p>{value.genres?.join(", ")}</p>
-                                                </div>
-                                                </>
-                                            )
-                                        }    
+                                                value.genres?.map(c=>{
+                                                    return(
+                                                        <p>{c}</p>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                        </>
+                                    )
+                                }    
+                                
                             </div>
                         )
                     }
@@ -1340,14 +1420,3 @@ function onClickEditar(){
         </div>
     )
 }
-
-
-
-
-
-
-
-                        
-//                         
-                            
-                        
