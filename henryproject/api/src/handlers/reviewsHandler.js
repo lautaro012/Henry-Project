@@ -70,7 +70,6 @@ const allReviewsGames = async (req,res) =>{
 // funcion que devuelve los comentarios que hizo un usuario y en que juego los hizo
 const allReviewsUser =async (req,res) =>{
     const {userIdName} = req.params
-    console.log(userIdName);
     const allReviews = await Reviews.findAll({
         where:  {
             userIdName: userIdName

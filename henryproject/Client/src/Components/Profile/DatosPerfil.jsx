@@ -38,7 +38,6 @@ export default function DatosPerfil({ setUserLogged, data }) {
                 errors[key] = "Must be at least 3 characters"
             }
             else if ((/[^a-zA-Z0-9 ]/.test(input[key]))) { //validacion para que el name no pueda contener caracteres especiales
-                console.log("INPUT KEY VALIDATION", key)
                 if (key !== "image") {
                     errors[key] = "Can't contain special characters"
                 }

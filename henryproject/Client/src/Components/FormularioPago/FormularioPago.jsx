@@ -58,7 +58,6 @@ export const FormularioPago = () => {
       // date: elements.getElement(CardExpiryElement)
     });
     setLoading(true)
-    console.log(paymentMethod);
 
     if (!error) {
       const { id } = paymentMethod
