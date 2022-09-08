@@ -44,6 +44,7 @@ function App() {
   const [userLogged, setUserLogged] = useState(false)
   console.log(`Variable de entorno es ${REACT_APP_API}`)
 
+  const [currentPage, setCurrentPage] = useState(pageGlobal ? pageGlobal : 1)
 
   // useEffect(() => {
 
@@ -126,13 +127,13 @@ function App() {
   return (
     <Router>
 
-      <NavBar userLogged={userLogged} setUserLogged={setUserLogged} />
+      <NavBar userLogged={userLogged} setUserLogged={setUserLogged} setCurrentPage={setCurrentPage}/>
       <Routes>
         <Route exact path='/' element={<LandingPage />} />
         <Route path='/about' element={<About />} />
         {/* <Route path='/register' element={<Register></Register>} /> */}
         <Route path='/home' element={<Home />} />
-        <Route path='/home/games' element={<Games />} />
+        <Route path='/home/games' element={<Games currentPage={currentPage} setCurrentPage={setCurrentPage}/>} />
         <Route path='/home/games/:id' element={<GameDetail />} />
         <Route path='/favorites' element={<Favoritos />} />
 
