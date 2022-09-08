@@ -286,8 +286,7 @@ export default function rootReducer(state = initialState, action) {
                     return newArreglo.push(a);
                 }
             });
-            console.log(getAllgameshide);
-            console.log(newArreglo);
+
             return {
                 ...state,
                 getAlldisableGame: newArreglo,

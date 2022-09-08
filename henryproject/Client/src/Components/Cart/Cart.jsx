@@ -68,7 +68,6 @@ export default function Cart({userLogged}) {
                 items && items.length ?
                     <div id="conteinerCart2">{
                         items && items?.map(item => {
-                            console.log("ITEM RATING", item)
                             return (
                                 <div key={item.id} id='cart-item-list'>
                                     <Link to={`/home/games/${item.id}`} className='Link'>
