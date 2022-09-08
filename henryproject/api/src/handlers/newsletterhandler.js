@@ -1,5 +1,5 @@
 const { Newsletter, Games } = require("../db")
-
+const { transporter } = require("../config/mailer")
 
 
 const getMailsNewsLetter = async (req, res) => {
@@ -23,6 +23,12 @@ const sendNewsletter = async (req, res) => {
             defaults: {
                 mail: mail
             }
+        })
+        await transporter.sendMail({
+            from: '"Thanks For Subscriber To Newsletter 🎮" <henry.games.store@gmail.com>',
+            to: mail,
+            subject: "Welcome to newsletters of Games Store 📰🧐",
+            html: "buenas"
         })
         res.send(news)
     } catch(err) {

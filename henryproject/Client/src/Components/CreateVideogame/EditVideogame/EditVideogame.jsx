@@ -7,6 +7,7 @@ import { getGameById,getGenres,getPlatforms,getAllGames } from "../../../redux/A
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import LoadingScreen from "../../LoadingScreen/LoadingScreen";
+import swal from "sweetalert";
 
 export default function EditVideogame(){
     const {id}= useParams();
@@ -91,7 +92,7 @@ const[value,setValue]=useState({
        }
        function onChangeGenre(e){
            if(state.genres.includes(e.target.value)){
-               alert("genero previamente seleccionado")
+                swal({title:"genero previamente seleccionado"})
                return
            }
            setState({...state,[e.target.name]:[...state.genres,e.target.value]})
@@ -99,7 +100,7 @@ const[value,setValue]=useState({
        }
        function onChangePlatform(e){
            if(state.platforms.includes(e.target.value)){
-               alert("plataforma previamente seleccionada")
+               swal;(title:{"plataforma previamente seleccionada"})
                return
            }
            setState({...state,[e.target.name]:[...state.platforms,e.target.value]})
@@ -162,11 +163,11 @@ const[value,setValue]=useState({
            e.preventDefault()
            for(var props in errors){
                if(errors[props]){
-                   alert ("debe corregir errores")
+                   swal ({title:"debe corregir errores"})
                    return
                }
            }
-           alert("todo bien")
+           swal({title:"OK"})
        }
        if(!state||!genres||!platforms){
         

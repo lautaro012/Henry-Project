@@ -1,15 +1,14 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { deleteUser, modificarUser } from '../../redux/Actions/Index'
 import swal from "sweetalert";
-//import CardHover from "../NewCard/CardHover.jsx";
-
+//import CardHover from "../NewCard/CardHover.jsx"
 
 export default function DatosPerfil({ setUserLogged, data }) {
 
-    let { name, lastName, address, mail, userName, id_name } = data
+    let { name, lastName, address, mail, userName, id_name, banned } = data
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -48,23 +47,20 @@ export default function DatosPerfil({ setUserLogged, data }) {
         return errors
     }
 
-    //const [todoOk, settodoOk] = useState(false)
-
-
     function handleSubmit(event) {
         event.preventDefault()
         let error = validations(input)
         let error2 = Object.keys(error)
 
         if (error2.length > 0) {
-            swal({title:'Debe salvar errores'})
+            swal({ title: 'Debe salvar errores' })
         }
         else if (Object.keys(input).length === 0) {
-            swal({title:"Nothing to edit"})
+            swal({ title: "Nothing to edit" })
         }
         else {
             dispatch(modificarUser(id_name, input))
-            swal({title:"User edited!"})
+            swal({ title: "User edited!" })
             setInput({})
             navigate("/home/games");
         }
@@ -73,7 +69,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
     function deleteUserFromDB(id_name) {
         setUserLogged(false)
         dispatch(deleteUser(id_name))
-        swal({title:"User deleted!"})
+        swal({ title: "User deleted!" })
         navigate("/home/games");
     }
 
@@ -84,12 +80,9 @@ export default function DatosPerfil({ setUserLogged, data }) {
         setForm(nombreDelInput)
     }
 
-    //const [loading, setLoading] = useState(false)
-
     async function handleImageChange(e) {
         if (e.target.files && e.target.files[0]) {
             console.log("TARGET FILE", e.target.files[0])
-            //setLoading(true)
             const data = new FormData()
             data.append("file", e.target.files[0])
             data.append("upload_preset", "gamesAPI")
@@ -105,16 +98,25 @@ export default function DatosPerfil({ setUserLogged, data }) {
                             ...input,
                             image: `${file.secure_url}`
                         })
-                       // setLoading(false)
                     }
                 })
         }
     }
 
+    console.log("DATA", data)
+
     return (
         <div className="modificar_perfil">
             <h1>My profile</h1>
-            <h2>{mail}</h2>
+            <div>
+                <h2>{mail}</h2>
+                {
+                    banned === false ?
+                    <h2>You're ✔ Online ✔</h2>
+                    :
+                    <h2>You're ⛔Banned⛔</h2>
+                }
+            </div>
             <hr></hr>
             <form onSubmit={(event) => handleSubmit(event)} className="Form">
                 <div className="Label">
@@ -250,7 +252,6 @@ export default function DatosPerfil({ setUserLogged, data }) {
                 <hr></hr>
                 <button id="submit" type="submit">Edit User</button>
             </form>
-
             <button id="delete_user" onClick={() => { if (window.confirm("Are you sure to delete your profile user?")) deleteUserFromDB(id_name) }}>Delete user</button>
         </div>
     )

@@ -20,6 +20,7 @@ const reviewsRouter = require('./routerReviews');
 const ordersRouter = require('../routes/routerOrders');
 const newsletter = require('../routes/routerNewsLetter');
 const getmails= require('../routes/routerGetMails')
+const sendNewsletter = require("./routerSendNewsletter")
 const router = Router();
 
 
@@ -44,6 +45,7 @@ router.use('/reviews',reviewsRouter)
 router.use('/orders',ordersRouter);
 router.use('/newsletter', newsletter)
 router.use('/emails', getmails)
+router.use("/sendNewsletter", sendNewsletter)
 
 
 router.use("/auth", authRoute)

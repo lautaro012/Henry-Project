@@ -36,6 +36,9 @@ export const GET_NO_BANNED_ALL_USERS = 'GET_NO_BANNED_ALL_USERS'
 export const EMPTY_VIDEOGAMES = "EMPTY_VIDEOGAMES"
 export const GET_MAILS= "GET_MAILS"
 export const GET_ALL_MAILS_NEWS="GET_ALL_MAILS_NEWS"
+export const SAVE_PAGE_GLOBAL= "SAVE_PAGE_GLOBAL"
+export const PUTVIDEOGAME="PUTVIDEOGAME"
+
 
 
 require('dotenv').config();
@@ -54,9 +57,9 @@ export function getAllGames(name) {
                     payload: response.data
                 })
             } catch (error) {
-                swal({title:'no games whit that name :('})
                 dispatch({
-                    type: CLEAR,                  
+                    type: GET_ALL_GAMES_BY_NAME,
+                    payload: "NO HAY JUEGOS PA"
                 })
             }
         }
@@ -447,7 +450,7 @@ export function banUser(mail) {
 export function noBanUser(mail) {
     return function(){
         axios.put(`/noBanned/${mail}`)
-        .then({title:'user enabled'})
+        .then(swal({title:'user enabled'}))
     }
 }
 export function updateAdmin(mail) {
@@ -466,4 +469,20 @@ export const getAllNoBannedUsers = function () {
             })
         }
     
+}
+
+export function savePageGlobal(numero) {
+    return function (dispatch) {
+        dispatch({
+            type: SAVE_PAGE_GLOBAL,
+            payload: numero
+        })
+    }
+}
+
+export function putVideogame(id,payload){
+    return  function(){
+        axios.put(`videogames/update/${id}`,payload)
+        // dispatch({type:PUTVIDEOGAME, payload: id})
+    }
 }

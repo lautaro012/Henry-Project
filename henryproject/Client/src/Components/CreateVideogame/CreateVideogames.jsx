@@ -28,7 +28,7 @@ export default function CreateVideogame () {
 
 let history=useNavigate();
   const handleRegresar=()=>{
-    history("/admin")
+    history("/home/games")
   }  
 
     // states
@@ -122,19 +122,19 @@ let history=useNavigate();
                 case "name":
                     if(keys=="name"){
                         if(!input[keys].match(expresiones.name)){
-                            errores[keys] = `El ${keys} debe contener caracteres correctamente`;
+                            errores[keys] = `The ${keys} must be a word between 1 and 40 characters`;
                         }
                     }
                 case "price": 
                     if(keys=="price"){
                         if(!input[keys].match(expresiones.price)){
-                            errores[keys] = `El ${keys} debe contener caracteres correctamente`;
+                            errores[keys] = `The ${keys} must be a number`;
                         }
                     }
                 case "description": 
                     if(keys=="description"){
                         if(!input[keys].match(expresiones.description)){
-                            errores[keys] = `El ${keys} debe contener caracteres correctamente`;
+                            errores[keys] = `The ${keys} must be a word between 1 and 1000 characters`;
                         }
                     }
                 case "rating": 
@@ -142,23 +142,23 @@ let history=useNavigate();
                         
                         
                             if(!input[keys].match(expresiones.rating)){
-                                errores[keys] = `El ${keys} debe contener caracteres correctamente`;
+                                errores[keys] = `The ${keys} must be a number between 1 and 5`;
 
                         }
                     }
                     
                 default:
                     if(state.video.length<=0){
-                        if(!input[keys]) errores[keys] = `${keys} is required`
+                        if(!input[keys]) errores[keys] = `The ${keys} is required`
                     }
                     if(state.screenshots.length<=0){
-                        if(!input[keys]) errores[keys] = `${keys} is required`
+                        if(!input[keys]) errores[keys] = `The ${keys} is required`
                     }
                     if(state.developers.length<=0){
-                        if(!input[keys]) errores[keys] = `${keys} is required`
+                        if(!input[keys]) errores[keys] = `The ${keys} is required`
                     }
                     if(state.publishers.length<=0){
-                        if(!input[keys]) errores[keys] = `${keys} is required`
+                        if(!input[keys]) errores[keys] = `The ${keys} is required`
                     }
             }
         }
@@ -336,14 +336,35 @@ let history=useNavigate();
             console.log(state.releaseDate);    
             setButtons(false)
                 dispatch(postVideoGame(state));
-                swal({title:"Se ha creado correctamente"});    
+                swal({title:"It has been created successfully"});    
+                setState({
+                    name:"",
+                    price:"",
+                    description:"",
+                    rating:"",
+                    video:[],
+                    image:"",
+                    screenshots:[],
+                    store:[],
+                    developers:[],
+                    publishers:[],
+                    website:"",
+                    releaseDate:"",
+                    metacritic:"",
+                    esrb_rating:"",
+                    platforms:[],
+                    tags:[],
+                    genres:[]
+                })
+                history("/home/games")
+
         }else{
             if(Object.keys(error).length!=0){
                 setButtons(true)
-                swal({title:"Debe completar los campos correctamente"})
+                swal({title:"It has been created successfully"})
             }else{
                 setButtons(true)
-                swal({title:"Debe completar los campos correctamente"})
+                swal({title:"It has been created successfully"})
             }
                 
         }       

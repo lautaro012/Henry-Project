@@ -97,10 +97,10 @@ h2 span {
   left: 0;
   right: 0;
   padding: 20px;
-  padding-bottom: 10px;
-  font-size: 100px;
+  padding-bottom: 200px;
+  font-size: 80px;
   background: none;
-  color: rgb(23 23 23);
+  color: rgb(255 255 255);
   transform: translateY(100%);
   transition: 0.3s;
 }
@@ -114,7 +114,7 @@ h2 span {
   height: 100%;
   top: -90%;
   left: -20px;
-  opacity: 0.1;
+  opacity: 100%;
   transform: rotate(45deg);
   background: linear-gradient(to top, transparent, #fff 15%, rgba(255, 255, 255, 0.5));
   transition: 0.3s;
@@ -148,7 +148,7 @@ h2 span {
 .news .card2:active:after {
   transform: rotate(25deg);
   top: -40%;
-  opacity: 0.15;
+  opacity: 1%;
 }
 
 .news .article {
@@ -173,7 +173,7 @@ h2 span {
   padding: 30px;
   box-shadow: 0 0 2px rgb(0 0 0 / 20%);
   background: rgba(6,18,53,0.6);
-  opacity: 0;
+  opacity: 1%;
   transform: scale(1.15);
   transition: 0.2s;
   overflow-x: scroll;
@@ -201,7 +201,7 @@ h2 span {
 .news .article:hover figcaption,
 .news .article:focus figcaption,
 .news .article:active figcaption {
-  opacity: 1;
+  opacity: 1%;
   transform: none;
   animation: slide 25s linear infinite;
 }

@@ -13,12 +13,12 @@ import './Nav_bar.css'
 import { useState } from "react";
 import ProfileNav from "../ProfileNav/ProfileNav";
 //const axios = require('axios')
-import { getAllGames, clearVideogames } from '../../redux/Actions/Index';
+import { getAllGames } from '../../redux/Actions/Index';
 import { useDispatch } from 'react-redux';
 import Useregister from "../UserRegister/UserRegister";
 
 
-export default function Nav_bar({ userLogged, setUserLogged }) {
+export default function Nav_bar({ userLogged, setUserLogged, setCurrentPage }) {
 
     const itemsCart = useSelector(state => state.cart)
     const itemsFavorites = useSelector(state => state.favorites)
@@ -39,9 +39,10 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
     }
 
     const onSearch = (name) => {
-        navigate("../home/games", { replace: true });
-        dispatch(clearVideogames())
+        // navigate("../home/games", { replace: true });
+        // dispatch(clearVideogames())
         dispatch(getAllGames(name))
+        setCurrentPage(1)
     }
 
     function handleNavigate(url){

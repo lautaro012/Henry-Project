@@ -2,7 +2,7 @@ import CreateVideogame from '../CreateVideogame/CreateVideogames'
 import './Admin.css'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
-import { getAllGames, hideVideoGame,  showVideoGame, getAllDisableVideogame, getAllUsers, banUser, getAllBannedUsers, noBanUser, getAllNoBannedUsers, updateAdmin } from '../../redux/Actions/Index'
+import { getAllGames, hideVideoGame,  showVideoGame, getAllDisableVideogame, getAllUsers, banUser, getAllBannedUsers, noBanUser, getAllNoBannedUsers, updateAdmin, clear } from '../../redux/Actions/Index'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import ListVideogame from '../CreateVideogame/ListVideogame/ListVideogame'
@@ -13,6 +13,7 @@ import edit from '../../Style/Imagenes/edit.png'
 import disabled from '../../Style/Imagenes/disabled.png'
 import offer from '../../Style/Imagenes/offer.png'
 import SendNews from '../SendNews/SendNews'
+import LoadingScreen from '../LoadingScreen/LoadingScreen'
 
 
 export default function Admin() {
@@ -23,7 +24,6 @@ export default function Admin() {
     const disableVideogames=useSelector(state=>state.getAlldisableGame)
     const allUsers = useSelector(state => state.allUsersNoBanned)
     const allBannedUsers = useSelector(state => state.allUsersBanned)
-    console.log(allUsers)
     const [show,setShow]=useState({
         disabled:false
     });
@@ -39,16 +39,21 @@ export default function Admin() {
         dispatch(getAllUsers())
         dispatch(getAllBannedUsers())
         dispatch(getAllNoBannedUsers())
-    }, [dispatch])
+        return function () {
+            dispatch(clear())
+        }
+    }, [dispatch, render])
 
     function handleSubmit(e) {
         e.preventDefault()
+
         dispatch(getAllGames(name))
+        setName('')
+
     };
     function handleOnChange(e) {
         e.preventDefault()
         setName(e.target.value)
-        dispatch(getAllGames(name))
     }
     //const videogamesAdmin= videogames.slice(0,8)
     //useEffect(()=>{
@@ -76,9 +81,13 @@ export default function Admin() {
     }
     function handleBanClick(a) {
          dispatch(banUser(a.target.value))
+         setRender(`edit`)
+
     }
     function handleNoBanClick(a) {
         dispatch(noBanUser(a.target.value))
+        setRender(`edit`)
+
     }
     function handleAdmin(a) {
         dispatch(updateAdmin(a.target.value))
@@ -93,7 +102,10 @@ export default function Admin() {
 
     return (
         <div className='Admin-conteiner'>
-            <div className='Admin-settings'>
+            {
+                videogames[0]?
+              <>  
+                <div className='Admin-settings'>
                 <aside className='Admin-aside'> 
                     <h2 className='adminUserH1'>Welcome {user.user.userName}</h2>
                     <img width={200} src={user.user.image} alt={user.user.id_name}></img>
@@ -161,7 +173,7 @@ export default function Admin() {
                             {allUsers.length ?
                                 allUsers.map(e => 
                                     { return (
-                                        !e.admin ? 
+                                        
                                         <span className='adminUsersDivConfig'>
                                             <span className='adminUsersDivCard'>
                                             <img src={e.image} width='60' className='adminImgUserCard'></img>
@@ -179,7 +191,7 @@ export default function Admin() {
                                             </span>
                                             
                                             </span>
-                                        </span> : null
+                                        </span>
                                     )}
                                 ) : <h4>There's no users registered</h4>}</div>
                         </div>
@@ -225,6 +237,11 @@ export default function Admin() {
                     }
 
         </div>
+                
+        </>        
+                
+                :<LoadingScreen></LoadingScreen>
+            }
         </div>
     )
 }

@@ -36,7 +36,7 @@ export default function GameDetails() {
     const [imgPop, setImgPop] = useState(false)
 
     const [img, setImg] = useState("")
-
+    
     useEffect(() => {
         dispatch(getGameById(id))
         dispatch(getReviews(id))
@@ -98,6 +98,7 @@ export default function GameDetails() {
     }
 
     let userLogged = JSON.parse(localStorage.getItem("user"));
+
     console.log("GAME", game)
     console.log("REVIEWS", reviews)
     console.log("USER", userLogged.user)
@@ -121,9 +122,12 @@ export default function GameDetails() {
     function handleSubmit(event) {
         event.preventDefault()
         dispatch(postReview(id, input))
-        swal({title:"Commentary sent!"})
         setInput({})
         window.location.reload()
+        swal({title:"Commentary sent!"})
+        //navigate(`/home`);
+        // window.scrollTo({ behavior: "smooth", top: "0px" });
+        // render === "" ? setRender("render") : setRender("")
     }
 
     function handleRadio(event) {
@@ -278,7 +282,7 @@ export default function GameDetails() {
                                                     onChange={(event) => handleInput(event)}
                                                 />
                                             </div>
-                                            <div className="Label">
+                                            <div className="Label_score_detail">
                                                 <label>Score</label>
                                                 <div id="score">
                                                     {
@@ -303,7 +307,7 @@ export default function GameDetails() {
                         <div id="conteinerSide_detalles2">
                             <aside id="conteinerSide_detalles">
                                 <h1>{game.name}</h1>
-                                <a href={game.website} target="_blank" rel="noreferrer"><h3>{game.website}</h3></a>
+                                <a href={game.website} target="_blank" rel="noreferrer"><h3>Official Website</h3></a>
                                 <img className="imagenJuego" src={game.image} alt="imagenJuego"></img>
                                 <p>{game.realeaseDate}</p>
                                 <div>
@@ -364,10 +368,9 @@ export default function GameDetails() {
                                 </div>
 
                                 <h2>Price : ${game.price}</h2>
-
-                                <button className="button-84" onClick={() => buy()}>Buy now ! 💰</button>
-                                <button  className="button-84" onClick={() => addGameToCart()}>Add to cart 🛒</button>
-                                <button  className="button-84" onClick={() => addGameToFav()}>Add to favorites 🤍</button>
+                                <button id="buttons_detail_buy" onClick={() => buy()}>Buy now ! 💰</button>
+                                <button id="buttons_detail_buy" onClick={() => addGameToCart()}>Add to cart 🛒</button>
+                                <button id="buttons_detail_buy" onClick={() => addGameToFav()}>Add to favorites 🤍</button>
                             </aside>
                         </div>
                     </div>

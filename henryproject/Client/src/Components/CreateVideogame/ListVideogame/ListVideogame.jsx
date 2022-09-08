@@ -14,23 +14,27 @@ export default function ListVideogame({ showGame, handleHide, handleOnChange, di
   //   e.preventDefault()
   //   dispatch(changeName())
   // }
+
+
   return(
     <div>
     <div className='searchbar-admin'>
-        <input
-            id="search"
-            className="searchInputAdmin"
-            type="text"
-            value={name}
-            onChange={(e) => handleOnChange(e)}
-            placeholder="Buscar videojuego..."
-        />
-        <button className='listAdminButton' type="submit" onClick={(e) => handleSubmit(e)}> Search </button>
+        <form onSubmit={(e) => handleSubmit(e)}>
+            <input
+                id="search"
+                className="searchInputAdmin"
+                type="text"
+                value={name}
+                onChange={(e) => handleOnChange(e)}
+                placeholder="Buscar videojuego..."
+            />
+              <button id="button-86" className='listAdminButton' type="submit"> Search </button>
+        </form>
         {
-        (!show.disabled) && (<button className='listAdminButton' onClick={()=>handleSubmitOcultados()}>Disabled Games</button>)
+        (!show.disabled) && (<button id="button-86" role='button' className='listAdminButton' onClick={()=>handleSubmitOcultados()}>Disabled Games</button>)
         }
         {
-        (show.disabled) && (<button className='listAdminButton' onClick={()=>handleRegresar()}>Go Back</button>)
+        (show.disabled) && (<button id="button-86" role='button' className='listAdminButton' onClick={()=>handleRegresar()}>Go Back</button>)
         }
     </div> 
 
@@ -45,13 +49,13 @@ export default function ListVideogame({ showGame, handleHide, handleOnChange, di
                         image={item.image}
                         price={item.price}
                         />
-                      <div>
+                        <div>
                         <Link to={`/admin/editgame/${item.id}`}>
-                            <button className="listVideoGamesButtonStyle" type="button" >Edit </button>
+                            <button id="button-86" role='button' className="listVideoGamesButtonStyle" type="button" >Edit </button>
                         </Link>
                         {/* <Link to= {`/admin/${item.id}`}> */}
-                        <button className="listVideoGamesButtonStyle" type="button" onClick={(ev) => handleHide(ev)} value={item.id}> Disable </button>
-                        <button className="listVideoGamesButtonStyle" type="button" onClick={(e) => showGame(e)} value={item.id}> Enable </button>
+                        <button id="button-86" role='button' className="listVideoGamesButtonStyle" type="button" onClick={(ev) => handleHide(ev)} value={item.id}> Disable </button>
+                        <button id="button-86" role='button' className="listVideoGamesButtonStyle" type="button" onClick={(e) => showGame(e)} value={item.id}> Enable </button>
                       </div>
                     </div>
                 )
@@ -66,13 +70,12 @@ export default function ListVideogame({ showGame, handleHide, handleOnChange, di
                         />
                         <div className="buttons">
                         <Link to={`/admin/editgame/${item.id}`}>
-                            <button type="button" className="listVideoGamesButtonStyle" >Edit </button>
+                            <button id="button-86" role='button' type="button" className="listVideoGamesButtonStyle" >Edit </button>
                         </Link>
                         {/* <Link to= {`/admin/${item.id}`}> */}
-                         {/* <button type="button"   onClick={(e) => showGame(e)} value={item.id}> Habilitar </button> */}
+                         {/* <button id="button-86" role='button' type="button"   onClick={(e) => showGame(e)} value={item.id}> Habilitar </button> */}
 
-                        <button type="button" className="listVideoGamesButtonStyle"  onClick={(ev) => handleHide(ev)} value={item.id}> Disable </button>
-                        <button type="button" className="listVideoGamesButtonStyle"   onClick={(e) => showGame(e)} value={item.id}> Enable </button>
+                        <button id="button-86" role='button' type="button" className="listVideoGamesButtonStyle"  onClick={(ev) => handleHide(ev)} value={item.id}> Disable </button>
 
                       </div>
                   </div>
@@ -88,13 +91,12 @@ export default function ListVideogame({ showGame, handleHide, handleOnChange, di
                         />
                         <div className="buttons">
                         <Link to={`/admin/editgame/${item.id}`}>
-                            <button type="button" className="listVideoGamesButtonStyle" >Edit </button>
+                            <button id="button-86" role='button' type="button" className="listVideoGamesButtonStyle" >Edit </button>
                         </Link>
                         {/* <Link to= {`/admin/${item.id}`}> */}
-                        {/* <button type="button"  onClick={(ev) => handleHide(ev)} value={item.id}> Deshabilitar </button> */}
+                        {/* <button id="button-86" role='button' type="button"  onClick={(ev) => handleHide(ev)} value={item.id}> Deshabilitar </button> */}
 
-                        <button type="button" className="listVideoGamesButtonStyle" onClick={(ev) => handleHide(ev)} value={item.id}> Disable </button>
-                        <button type="button"  className="listVideoGamesButtonStyle" onClick={(e) => showGame(e)} value={item.id}> Enable </button>
+                        <button id="button-86" role='button' type="button"  className="listVideoGamesButtonStyle" onClick={(e) => showGame(e)} value={item.id}> Enable </button>
 
                       </div>
                   </div>
