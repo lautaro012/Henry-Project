@@ -61,19 +61,16 @@ export default function ProfileNav({ setUserLogged, userLogged }) {
       </div>
       <div id="nav_bar_user">
         <button onClick={() => navigate('/profile')}>{userdetails.userName}</button>
+        {
+          userdetails && userdetails.banned ?
+            <h1>⛔</h1>
+            :
+            <h1>🟢</h1>
+        }
       </div>
       <div id="nav_bar_user">
         <button onClick={(e) => logOutClick(e)}>Logout</button>
       </div>
-      <div id="nav_bar_user">
-        {
-          userdetails && userdetails.banned ?
-            <p>⛔Banned⛔</p>
-            :
-            null
-        }
-      </div>
     </div>
-
   )
 }

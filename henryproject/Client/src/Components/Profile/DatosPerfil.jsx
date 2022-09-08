@@ -82,7 +82,6 @@ export default function DatosPerfil({ setUserLogged, data }) {
 
     async function handleImageChange(e) {
         if (e.target.files && e.target.files[0]) {
-            console.log("TARGET FILE", e.target.files[0])
             const data = new FormData()
             data.append("file", e.target.files[0])
             data.append("upload_preset", "gamesAPI")
@@ -103,8 +102,6 @@ export default function DatosPerfil({ setUserLogged, data }) {
         }
     }
 
-    console.log("DATA", data)
-
     return (
         <div className="modificar_perfil">
             <h1>My profile</h1>
@@ -112,9 +109,9 @@ export default function DatosPerfil({ setUserLogged, data }) {
                 <h2>{mail}</h2>
                 {
                     banned === false ?
-                    <h2>You're ✔ Online ✔</h2>
+                    <h2>You're Online 🟢</h2>
                     :
-                    <h2>You're ⛔Banned⛔</h2>
+                    <h2>You're Banned ⛔</h2>
                 }
             </div>
             <hr></hr>
@@ -129,7 +126,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
                                 <input
                                     id="User"
                                     type='text'
-                                    size="20"
+                                    size="80"
                                     value={input.userName}
                                     name='userName'
                                     placeholder="User..."
@@ -156,7 +153,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
                                     required
                                     id="Name"
                                     type='text'
-                                    size="20"
+                                    size="80"
                                     value={input.name}
                                     name='name'
                                     placeholder="Name..."
@@ -183,7 +180,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
                                 <input
                                     id="Last name"
                                     type='text'
-                                    size="40"
+                                    size="80"
                                     value={input.lastName}
                                     name='lastName'
                                     placeholder="Last name..."
@@ -210,7 +207,7 @@ export default function DatosPerfil({ setUserLogged, data }) {
                                 <input
                                     id="Address"
                                     type='text'
-                                    size="40"
+                                    size="80"
                                     value={input.address}
                                     name='address'
                                     placeholder="Address..."
@@ -228,14 +225,13 @@ export default function DatosPerfil({ setUserLogged, data }) {
                 <hr></hr>
                 <div className="Label">
                     <h2>User image</h2>
-                    <button onClick={(event) => abrirForm(event, "image")}>Edit</button>
+                    <button id="edit_img" onClick={(event) => abrirForm(event, "image")}>Edit</button>
                     {
                         form && form === "image" ?
                             <div>
                                 <input
                                     type='file'
                                     size="80"
-
                                     name='image'
                                     placeholder="Insert a image URL"
                                     onChange={(event) => handleImageChange(event)}

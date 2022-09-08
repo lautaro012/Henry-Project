@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addToFav, deleteItemFromFavs } from "../../redux/Actions/Index.js";
+import { addToFav, deleteItemFromFavs, addToCart, deleteItemFromCart } from "../../redux/Actions/Index.js";
 import PrettyRating from "pretty-rating-react";
 import { useEffect } from "react";
 import './Cards.css';
@@ -21,32 +21,86 @@ export default function Card({ card }) {
     const dispatch = useDispatch()
     const [render, setRender] = useState('')
     const favoritos = useSelector(state => state.favorites)
+    const items = useSelector(state => state.cart)
+
+    const favorites = JSON.parse(localStorage.getItem("favProducts"));
 
     function handleFavourite(e) {
-        let item = {
-            id: id,
-            name: name,
-            price: price,
-            image: image,
-            rating: rating,
+
+        let foundItem = favoritos.find(item => item.id === id)
+
+        if (foundItem) {
+            dispatch(deleteItemFromFavs(id))
+            swal({
+                title: `${name} deleted from favorites!`
+            })
+            setRender(`${rating}`)
         }
-        if (e.target.checked) {
+        else {
+            let item = {
+                id: id,
+                name: name,
+                price: price,
+                image: image,
+                rating: rating,
+            }
             dispatch(addToFav(item))
             swal({
-                title: `${name} added to your favorites!`,
-                // background: 'black' 
+                title: `${name} added to your favorites!`
             })
-            setRender(render, 'hola')
-        } else {
-            dispatch(deleteItemFromFavs(item.id))
-            swal({
-                title: `${name} remove from your favorites!`,
-            })
-            setRender(render, 'hola')
+            setRender(`${name}`)
         }
+
+
+        // let item = {
+        //     id: id,
+        //     name: name,
+        //     price: price,
+        //     image: image,
+        //     rating: rating,
+        // }
+        // if (e.target.checked) {
+        //     dispatch(addToFav(item))
+        //     swal({
+        //         title: `${name} added to your favorites!`,
+        //         // background: 'black' 
+        //     })
+        //     setRender(render, 'hola')
+        // } else {
+        //     dispatch(deleteItemFromFavs(item.id))
+        //     swal({
+        //         title: `${name} remove from your favorites!`,
+        //     })
+        //     setRender(render, 'hola')
+        // }
     }
 
-    let favorites = JSON.parse(localStorage.getItem("favProducts"));
+    function addGameToCart() {
+
+        const cartItems = JSON.parse(localStorage.getItem("products"));
+        let foundItem = cartItems.find(item => item.id === id)
+
+        if (foundItem) {
+            dispatch(deleteItemFromCart(id))
+            swal({
+                title: `${name} deleted from cart!`
+            })
+        }
+        else {
+
+            let item = {
+                id: id,
+                name: name,
+                price: price,
+                image: image,
+                rating: rating,
+            }
+            dispatch(addToCart(item))
+            swal({
+                title: `${name} added to cart!`
+            })
+        }
+    }
 
     const icons = {
         star: {
@@ -61,7 +115,8 @@ export default function Card({ card }) {
 
     useEffect(() => {
         localStorage.setItem("favProducts", JSON.stringify(favoritos));
-    }, [favoritos]);
+        localStorage.setItem("products", JSON.stringify(items));
+    }, [favoritos, items]);
 
     return (
         <div>
@@ -71,7 +126,7 @@ export default function Card({ card }) {
                     </CardHover>
                 </Link>
                 {
-                    favorites?.includes(card.id) ?
+                    favorites?.find(item => item.id === id) ?
                         <div className="card-favourite">
                             <span> {name} </span>
                             <input id={`hearth-${id}`} type="checkbox" value={name} onClick={(e) => handleFavourite(e)} checked={true} className="favourite-checkbox" />
@@ -84,6 +139,7 @@ export default function Card({ card }) {
                             <label className="favourite-label" htmlFor={`hearth-${id}`}>❤</label>
                         </div>
                 }
+                <button id="buttons_detail_buy" onClick={() => addGameToCart()}>🛒</button>
             </div>
             <div className="card-data">
                 <span className="h">{price} US$</span>
