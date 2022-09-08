@@ -39,7 +39,6 @@ function handleSubmit(ev) {
   axios.post('/sendNewsletter', {mails:mails, emailHtml:input} ).then(resp => resp.data)
   .then(resp => {
     setLoading(false)
-    console.log(resp)
   })
   .catch(err => {
     console.log(err)
@@ -49,7 +48,6 @@ function handleSubmit(ev) {
 
 function handleChange(e) {
   setInput(e.target.value)
-  console.log(input)
 }
 
 

@@ -42,7 +42,6 @@ function App() {
   let pageGlobal = useSelector(state => state.pageGlobal)
 
   const [userLogged, setUserLogged] = useState(false)
-  console.log(`Variable de entorno es ${REACT_APP_API}`)
 
   const [currentPage, setCurrentPage] = useState(pageGlobal ? pageGlobal : 1)
 
@@ -95,7 +94,6 @@ function App() {
   }, [])
 
   const user = JSON.parse(localStorage.getItem("user"));
-  console.log(`USUARIO: ${(user?.user)}`)
 
 
 

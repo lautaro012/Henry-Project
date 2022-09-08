@@ -2,7 +2,6 @@ const { transporter } = require("../config/mailer");
 
 const sendNewsletter = async (req, res) => {
     let { mails, emailHtml } = req.body
-    console.log(req.body)
     try {
         await transporter.sendMail({
             from: '"Hi, watch this update 👀" <henry.games.store@gmail.com>',

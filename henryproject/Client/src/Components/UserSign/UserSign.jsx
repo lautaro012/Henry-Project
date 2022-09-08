@@ -45,7 +45,6 @@ export default function UserSign({toggleModal, isOpen, setUserLogged, changeModa
           .then(resp => resp.data)
           .then(resp => {
               setUserLogged(true)
-              console.log('logueado con', input)
               localStorage.setItem('user', JSON.stringify(resp))
               window.location.reload()
               setInput({
@@ -57,7 +56,6 @@ export default function UserSign({toggleModal, isOpen, setUserLogged, changeModa
           })
           .catch(error => {
             swal({title:error.response.data.msg ? error.response.data.msg : error.response.data})
-            console.log('el error fue', error.response)
             setLoading(false)
           })
         setRender(render, 'hola')

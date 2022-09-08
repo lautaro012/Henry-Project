@@ -56,24 +56,26 @@ export default function ProfileNav({ setUserLogged, userLogged }) {
 
   return (
     <div>
-      <div className="div-image-navbar">
-        <img width={45} src={userdetails.image} alt='IMAGEEN'></img>
-      </div>
+      {
+        userdetails.image ?
+        <div className="div-image-navbar">
+          <img width={45} src={userdetails.image} alt='IMAGEEN'></img>
+        </div>
+        :
+        <span> Loading... </span>
+      }
       <div id="nav_bar_user">
         <button onClick={() => navigate('/profile')}>{userdetails.userName}</button>
+        {
+          userdetails && userdetails.banned ?
+            <h1>⛔</h1>
+            :
+            <h1>🟢</h1>
+        }
       </div>
       <div id="nav_bar_user">
         <button onClick={(e) => logOutClick(e)}>Logout</button>
       </div>
-      <div id="nav_bar_user">
-        {
-          userdetails && userdetails.banned ?
-            <p>⛔Banned⛔</p>
-            :
-            null
-        }
-      </div>
     </div>
-
   )
 }
