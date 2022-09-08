@@ -36,6 +36,7 @@ export const GET_NO_BANNED_ALL_USERS = 'GET_NO_BANNED_ALL_USERS'
 export const EMPTY_VIDEOGAMES = "EMPTY_VIDEOGAMES"
 export const GET_MAILS= "GET_MAILS"
 export const GET_ALL_MAILS_NEWS="GET_ALL_MAILS_NEWS"
+export const PUTVIDEOGAME="PUTVIDEOGAME"
 
 
 require('dotenv').config();
@@ -466,4 +467,10 @@ export const getAllNoBannedUsers = function () {
             })
         }
     
+}
+export function putVideogame(id,payload){
+    return  function(){
+        axios.put(`videogames/update/${id}`,payload)
+        // dispatch({type:PUTVIDEOGAME, payload: id})
+    }
 }

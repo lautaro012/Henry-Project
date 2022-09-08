@@ -35,6 +35,7 @@ import {
 
     GET_MAILS,
     GET_ALL_MAILS_NEWS,
+    PUTVIDEOGAME
 
 } from "../Actions/Index"
 
@@ -358,6 +359,11 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 videogames: []
             }
+        // case PUTVIDEOGAME:
+        //     return{
+        //         ...state,
+        //         putvideogames:action.payload
+        //     }
 
         default: return state
     }
