@@ -1,34 +1,31 @@
-//import SearchBar from '../SearchBar/SearchBar'
 import './Games.css'
 import Cards from '../Cards/Cards.jsx'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllGames, clear, getGenres, getPlatforms, order, vaciarGame, getTags, savePageGlobal } from '../../redux/Actions/Index'
+import { getAllGames, getGenres, getPlatforms, order, getTags, savePageGlobal } from '../../redux/Actions/Index'
 import { useState } from 'react';
 import Paginado from '../Paginado/Paginado';
 import Filter from '../Filter/Filter';
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
 import icon from '../../Style/Imagenes/Icon.PNG'
 
-export default function Games() {
+export default function Games({currentPage, setCurrentPage}) {
 
     let dispatch = useDispatch()
+    
     let allvideogames = useSelector(state => state.Allvideogames)
     let videogames = useSelector(state => state.videogames)
     let tags = useSelector(state => state.tags)
     let genres = useSelector(state => state.genres)
     let platforms = useSelector(state => state.platforms)
     let favorites = useSelector(state => state.favorites)
-    let pageGlobal = useSelector(state => state.pageGlobal)
+
     const [render, setRender] = useState('')
-    
-    const [currentPage, setCurrentPage] = useState(pageGlobal ? pageGlobal : 1)
-    
+   
     useEffect(() => {
         dispatch(getGenres())
         dispatch(getPlatforms())
         dispatch(getTags())
-        //dispatch(getAllGames())
         if (allvideogames.length === 0) {
             dispatch(getAllGames())
         }

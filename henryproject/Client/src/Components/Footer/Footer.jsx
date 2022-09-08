@@ -1,19 +1,21 @@
-import { Link } from "react-router-dom";
 import React from "react";
-import { useSelector } from 'react-redux';
-import linkedin from "../../Style/Imagenes/linkedin.png"
 import instagram from "../../Style/Imagenes/instagram.png"
 import github from '../../Style/Imagenes/github.png'
 import facebook from '../../Style/Imagenes/facebook.png'
 import pinterest from '../../Style/Imagenes/pinterest.png'
 import Suscribe from '../Suscribe/Suscribe'
-
+import { useNavigate } from "react-router-dom";
 
 import '../Footer/Footer.css'
 
 export default function Footer({userLogged}) {
 
-    let Allvideogames = useSelector(state => state.Allvideogames)
+    const navigate = useNavigate();
+
+    function handleAbout(){
+        navigate("/about")
+        window.scrollTo({ behavior: "smooth", top: "0px" })
+    }
 
     return (
         < footer className="footer" >
@@ -57,10 +59,10 @@ export default function Footer({userLogged}) {
                     </span>
                     <span>
                         <h3>Press And Media</h3>
-                        <a target="_blank" rel="noreferrer"  href="https://www.facebook.com/"><img src={facebook} height="35" width="35"></img></a>
-                        <a target="_blank" rel="noreferrer"  href="https://www.instagram.com/"><img src={instagram} height="35" width="35"></img></a>
-                        <a target="_blank" rel="noreferrer"  href="https://www.github.com/"><img src={github} height="35" width="35"></img></a>
-                        <a target="_blank" rel="noreferrer"  href="https://www.pinterest.com/"><img src={pinterest} height="35" width="35"></img></a>
+                        <a target="_blank" rel="noreferrer"  href="https://www.facebook.com/"><img src={facebook} height="35" width="35" alt="facebook"></img></a>
+                        <a target="_blank" rel="noreferrer"  href="https://www.instagram.com/"><img src={instagram} height="35" width="35" alt="instagram"></img></a>
+                        <a target="_blank" rel="noreferrer"  href="https://www.github.com/"><img src={github} height="35" width="35" alt="github"></img></a>
+                        <a target="_blank" rel="noreferrer"  href="https://www.pinterest.com/"><img src={pinterest} height="35" width="35" alt="pinterest"></img></a>
                     </span>
                     
                         
@@ -69,9 +71,7 @@ export default function Footer({userLogged}) {
                 <span className="whatIsGameS">
                     <h3>Wanna know more about us . . . ?</h3>
                     <div id="about_button">
-                                <Link to='/about'>
-                                    <button id="about">OUR TEAM</button>
-                                </Link>
+                                    <button onClick={(event)=>handleAbout(event)} id="about">OUR TEAM</button>
                     </div>
                 </span>
                 <span>

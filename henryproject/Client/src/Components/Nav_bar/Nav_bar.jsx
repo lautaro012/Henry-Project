@@ -18,7 +18,7 @@ import { useDispatch } from 'react-redux';
 import Useregister from "../UserRegister/UserRegister";
 
 
-export default function Nav_bar({ userLogged, setUserLogged }) {
+export default function Nav_bar({ userLogged, setUserLogged, setCurrentPage }) {
 
     const itemsCart = useSelector(state => state.cart)
     const itemsFavorites = useSelector(state => state.favorites)
@@ -42,20 +42,20 @@ export default function Nav_bar({ userLogged, setUserLogged }) {
         // navigate("../home/games", { replace: true });
         // dispatch(clearVideogames())
         dispatch(getAllGames(name))
+        setCurrentPage(1)
     }
 
     function handleNavigate(url){
         setIsOpen(false)
         navigate(url)
+        window.scrollTo({ behavior: "smooth", top: "0px" })
     }
 
     return (
         <nav className="Nav_bar">
 
             <div id="icon">
-                <Link to='/'>
-                    <img src={Icon} alt="Icon" />
-                </Link>
+                 <button onClick={() => handleNavigate("/")}><img src={Icon} alt="Icon" /></button>
             </div>
 
             <div>

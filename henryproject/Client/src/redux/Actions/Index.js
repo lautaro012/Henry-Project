@@ -480,7 +480,7 @@ export function savePageGlobal(numero) {
     }
 }
 
-export function putVideogame(id,payload){
+export function modificarGame(id,payload){
     return  function(){
         axios.put(`videogames/update/${id}`,payload)
         // dispatch({type:PUTVIDEOGAME, payload: id})

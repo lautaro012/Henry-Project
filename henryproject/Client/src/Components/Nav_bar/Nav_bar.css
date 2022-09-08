@@ -1,5 +1,5 @@
 .Nav_bar img {
-    width: 50px;
+    width: 60px;
     border-radius: 100%;
 }
 
@@ -73,6 +73,10 @@
     background: none;
     color: ghostwhite;
     width: 100px;
+}
+
+.Nav_bar button:hover {
+    cursor: pointer;
 }
 
 .Nav_bar :link {
