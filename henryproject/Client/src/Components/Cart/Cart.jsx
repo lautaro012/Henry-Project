@@ -75,9 +75,9 @@ export default function Cart({userLogged}) {
                                         </CardHover>
                                     </Link>
                                     <div>
-                                        <h3>Price</h3>
-                                        <p>${item.price}</p>
-                                        <h3>Rating : </h3>
+                                        <h1>Price</h1>
+                                        <h2>${item.price}</h2>
+                                        <h1>Rating</h1>
                                         <PrettyRating value={item.rating} icons={icons.star} colors={colors.star} />
                                     </div>
                                     <button onClick={() => { if (window.confirm(`Are you sure delete ${item.name} from your cart ?`))deleteItem(item.id)}}>🗑</button>

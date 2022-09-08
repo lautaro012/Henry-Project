@@ -29,7 +29,12 @@ export function Profile({ setUserLogged }) {
     }, [dispatch])
 
     let userdetails = useSelector(state => state.user)
+
     const [render, setRender] = useState("perfil")
+    function handleRender(componente){
+        setRender(componente)
+        window.scrollTo({ behavior: "smooth", top: "0px" })
+    }
 
     return (
         <div className='Profile'>
@@ -40,11 +45,11 @@ export function Profile({ setUserLogged }) {
                         <h1>Welcome {userdetails.userName}</h1>
                         <CardHover image={userdetails.image} name={userdetails.userName}></CardHover>
                     </div>
-                    <button id='profile_buttons' onClick={() => setRender("perfil")}>My profile</button>
-                    <button id='profile_buttons' onClick={() => setRender("juegos")}>My games</button>
-                    <button id='profile_buttons' onClick={() => setRender("orders")}>My orders</button>
-                    <button id='profile_buttons' onClick={() => setRender("favoritos")}>Favorites</button>
-                    <button id='profile_buttons' onClick={() => setRender("cart")}>Cart</button>
+                    <button id='profile_buttons' onClick={() => handleRender("perfil")}>My profile</button>
+                    <button id='profile_buttons' onClick={() => handleRender("juegos")}>My games</button>
+                    <button id='profile_buttons' onClick={() => handleRender("orders")}>My orders</button>
+                    <button id='profile_buttons' onClick={() => handleRender("favoritos")}>Favorites</button>
+                    <button id='profile_buttons' onClick={() => handleRender("cart")}>Cart</button>
                 </aside>
             </div>
 

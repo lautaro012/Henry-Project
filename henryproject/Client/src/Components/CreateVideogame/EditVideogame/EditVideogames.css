@@ -883,18 +883,17 @@
     height: 150px;
 }
 /* STORE */
-.container-store{
+.pstores{
+    margin-left: 10px;
+}
+.container-stores{
     width: auto;
     height: auto;
-    
     padding: 0px;
     margin: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
 }
-.container-store p{
+.container-stores p{
+    text-align: center;
     border: 1px solid white;
     border-radius: 20px;
     width: auto;

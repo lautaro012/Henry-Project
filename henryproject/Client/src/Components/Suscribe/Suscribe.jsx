@@ -25,7 +25,6 @@ export default function Suscribe ({userLogged}) {
         e.preventDefault()
         setLoading(true)
         let emails = await axios.get('/newsletter').then(res => res.data).then(res => res)
-        console.log('los emails son', emails)
         if(emails.map(el => el.mail).includes(input.mail)){
             setLoading(false)
             return swal({title:'Already Suscribed ! '})
@@ -38,13 +37,11 @@ export default function Suscribe ({userLogged}) {
             axios.post('/newsletter', input)
             .then(resp => resp.data)
             .then(resp => {
-                console.log('newsletter', resp)
                 swal({title:'Thanks for suscribing ! '})
                 setLoading(false)
              })
              .catch(error => {
                 setLoading(false)
-                console.log('suscripcion fallida', error) 
             })
     }
 

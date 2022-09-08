@@ -56,6 +56,7 @@ export default function GameDetails() {
             name: game.name,
             price: game.price,
             image: game.image,
+            rating: game.rating,
         }
         dispatch(addToCart(item))
         swal({
@@ -68,6 +69,7 @@ export default function GameDetails() {
             name: game.name,
             price: game.price,
             image: game.image,
+            rating: game.rating,
         }
         dispatch(addToFav(item))
         swal({
@@ -99,9 +101,7 @@ export default function GameDetails() {
 
     let userLogged = JSON.parse(localStorage.getItem("user"));
 
-    console.log("GAME", game)
-    console.log("REVIEWS", reviews)
-    console.log("USER", userLogged.user)
+
 
     const [input, setInput] = useState(
         userLogged.user ?

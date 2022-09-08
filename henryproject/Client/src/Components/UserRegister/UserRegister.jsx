@@ -40,7 +40,6 @@ export default function Useregister ({registersetIsOpen, registerisOpen}) {
 
    async function handleImageChange(e){
         if(e.target.files && e.target.files[0]) {
-            console.log(e.target.files[0])
             setLoading(true)
             const data = new FormData()
             data.append("file", e.target.files[0])
@@ -80,7 +79,6 @@ export default function Useregister ({registersetIsOpen, registerisOpen}) {
         e.preventDefault()
         setShowError(true)
         dispatch(postNewUser(newUser))
-        console.log('el nuevo usario es',newUser)
         
          swal({title:`${newUser.userName} you have been succesfully been registred`})
         setNewUser({

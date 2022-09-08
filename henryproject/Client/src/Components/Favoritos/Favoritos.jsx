@@ -63,9 +63,9 @@ export default function Favs() {
                                         </CardHover>
                                     </Link>
                                     <div>
-                                        <h3>Price</h3>
-                                        <p>${item.price}</p>
-                                        <h3>Rating : </h3>
+                                        <h1>Price</h1>
+                                        <h2>${item.price}</h2>
+                                        <h1>Rating</h1>
                                         <PrettyRating value={item.rating} icons={icons.star} colors={colors.star} />
                                     </div>
                                     <div id="cart_fav_buttons">

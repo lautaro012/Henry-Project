@@ -18,7 +18,6 @@ const getDisableGames=async()=>{
             disabled:true
         }
     })
-    console.log(data.length);
     return data;
 }
 

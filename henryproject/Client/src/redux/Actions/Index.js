@@ -219,9 +219,7 @@ export function postNewUser(user) {
     return async function () {
         try {
             await axios.post(`/newUser`, user)
-            console.log(user)
         } catch (err) {
-            console.log(err)
         }
     }
 }
@@ -410,7 +408,6 @@ export function getReviews(gameId){
 }
 
 export function getOrders(user_id){
-    console.log("ACTION ORDER", user_id)
     return async function(dispatch){
         let response = await axios.get(`/orders/${user_id}`)
         return dispatch({
@@ -480,7 +477,7 @@ export function savePageGlobal(numero) {
     }
 }
 
-export function putVideogame(id,payload){
+export function modificarGame(id,payload){
     return  function(){
         axios.put(`videogames/update/${id}`,payload)
         // dispatch({type:PUTVIDEOGAME, payload: id})
