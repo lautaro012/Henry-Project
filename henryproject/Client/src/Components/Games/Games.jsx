@@ -8,11 +8,12 @@ import { useState } from 'react';
 import Paginado from '../Paginado/Paginado';
 import Filter from '../Filter/Filter';
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
+import icon from '../../Style/Imagenes/Icon.PNG'
 
 export default function Games() {
 
     let dispatch = useDispatch()
-     let allvideogames = useSelector(state => state.Allvideogames)
+    let allvideogames = useSelector(state => state.Allvideogames)
     let videogames = useSelector(state => state.videogames)
     let tags = useSelector(state => state.tags)
     let genres = useSelector(state => state.genres)
@@ -24,13 +25,14 @@ export default function Games() {
         dispatch(getGenres())
         dispatch(getPlatforms())
         dispatch(getTags())
-        if (videogames.length === 0) {
+        //dispatch(getAllGames())
+        if (allvideogames.length === 0) {
             dispatch(getAllGames())
         }
         // return function cleaning() {
         //     dispatch(clear())
         // }
-    }, [dispatch, videogames.length])
+    }, [dispatch, allvideogames.length])
 
 
     //paginado
@@ -41,6 +43,7 @@ export default function Games() {
     const indexOfLastVideogame = currentPage * videogamesPerPage
     const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage
     const currentVideogame = videogames.slice(indexOfFirstVideogame, indexOfLastVideogame)
+
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
@@ -58,7 +61,7 @@ export default function Games() {
     return (
         <div className='Search-Filters'>
             {
-                 allvideogames.length > 0  ? 
+                allvideogames.length > 0 ?
                     <div className='filters-games'>
                         <div className="show-filters">
 
@@ -73,7 +76,7 @@ export default function Games() {
 
                         </div>
                         <div className='Sorts-Games'>
-                          <div className='PAGINADO'>
+                            <div className='PAGINADO'>
                                 <Paginado
                                     VideogamesPerPage={videogamesPerPage}
                                     allVideogames={videogames.length}
@@ -83,17 +86,24 @@ export default function Games() {
                             </div>
                             <div className='Games-Cards-Div'>
                                 {
-                                    currentVideogame.length > 0 ?
+                                    typeof currentVideogame === "object" ?
 
-                                        currentVideogame?.map(card => {
-                                            return (<Cards
-                                                favorites={favorites}
-                                                card={card}
-                                                key={card.id}
-                                            />)
-                                        })
+                                        currentVideogame.length > 0 ?
+
+                                            currentVideogame?.map(card => {
+                                                return (<Cards
+                                                    favorites={favorites}
+                                                    card={card}
+                                                    key={card.id}
+                                                />)
+                                            })
+                                            :
+                                            <LoadingScreen></LoadingScreen>
                                         :
-                                        <LoadingScreen></LoadingScreen>
+                                        <div id='contenedor_no_games'>
+                                            <h1 id='NO_GAMES'> NO GAMES MATCH YOUR REQUISITES </h1>
+                                            <img src={icon} alt="icono_game_store" id='icono_game_store'></img>
+                                        </div>
                                 }
                             </div>
                         </div>

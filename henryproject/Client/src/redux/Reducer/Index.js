@@ -105,12 +105,13 @@ export default function rootReducer(state = initialState, action) {
             }
 
         case GET_ALL_GAMES_BY_NAME:
-            return {
-                ...state,
-                videogames: action.payload,
-            }
 
+                return {
+                    ...state,
+                    videogames: action.payload,
+                }
 
+        
         case ACTUALIZAR_CART:
             return {
                 ...state,
@@ -304,7 +305,9 @@ export default function rootReducer(state = initialState, action) {
             const games1 = platformby === 'all' ? Allvideogames : Allvideogames.filter(game => game.platforms.map(el => el.name).find(platforms => platforms === platformby))
             const games2 = genreby === 'all' ? Allvideogames : Allvideogames.filter(game => game.genres.map(el => el.name).find(genre => genre === genreby))
             const arr1 = games1.filter(element => games2.includes(element));
-            const total = arr1.filter(element => state.tagsFilter.includes(element));
+            let total = arr1.filter(element => state.tagsFilter.includes(element));
+            total = total.length === 0 ? "No hay juegos" : total
+
             return {
                 ...state,
                 videogames: total,

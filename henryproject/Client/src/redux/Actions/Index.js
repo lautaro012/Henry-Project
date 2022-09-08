@@ -55,9 +55,9 @@ export function getAllGames(name) {
                     payload: response.data
                 })
             } catch (error) {
-                swal({title:'no games whit that name :('})
                 dispatch({
-                    type: CLEAR,                  
+                    type: GET_ALL_GAMES_BY_NAME,
+                    payload: "NO HAY JUEGOS PA"
                 })
             }
         }
