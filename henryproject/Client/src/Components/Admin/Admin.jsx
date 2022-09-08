@@ -14,6 +14,7 @@ import disabled from '../../Style/Imagenes/disabled.png'
 import offer from '../../Style/Imagenes/offer.png'
 import SendNews from '../SendNews/SendNews'
 import LoadingScreen from '../LoadingScreen/LoadingScreen'
+//import swal from 'sweetalert';
 
 
 export default function Admin() {
@@ -176,7 +177,7 @@ export default function Admin() {
                                         
                                         <span className='adminUsersDivConfig'>
                                             <span className='adminUsersDivCard'>
-                                            <img src={e.image} width='60' className='adminImgUserCard'></img>
+                                            <img src={e.image} width='60' className='adminImgUserCard' alt='admin_image'></img>
                                             <span className='adminUserLastFlex'>
                                                 <span className='adminSpanUserCard'>{e.userName}</span>
                                                 <h3>USER ID:</h3> 
@@ -186,8 +187,8 @@ export default function Admin() {
                                                 <h3>CREATED AT:</h3>
                                                 <p>"{e.createdAt}"</p>
                                                   
-                                                    <button onClick={(a) => handleBanClick(a)} value={e.mail} > Disable User</button>
-                                                    <button onClick={(a) => handleAdmin(a)} value={e.mail}> Set User As Admin</button>
+                                                    <button onClick={(a) => { if (window.confirm(`Are you sure to disable ${e.name} ?`))handleBanClick(a)}} value={e.mail} > Disable User</button>
+                                                    <button onClick={(a) => { if (window.confirm(`Are you sure to set ${e.name} as admin ?`))handleAdmin(a)}} value={e.mail}> Set User As Admin</button>
                                             </span>
                                             
                                             </span>
@@ -212,7 +213,7 @@ export default function Admin() {
                                         return (
                                         <span key={e.id_name} className='adminUsersDivConfig'>
                                             <span className='adminUsersDivCard'>
-                                            <img src={e.image} width='60' className='adminImgUserCard'></img>
+                                            <img src={e.image} width='60' className='adminImgUserCard' alt='user_image'></img>
                                             <span className='adminUserLastFlex'>
                                                 <span className='adminSpanUserCard'>{e.userName}</span>
                                                 <h3>USER ID:</h3> 
@@ -222,7 +223,7 @@ export default function Admin() {
                                                 <h3>CREATED AT:</h3>
                                                 <p>"{e.createdAt}"</p>
                                                 
-                                                <button onClick={(a) => handleNoBanClick(a)} value={e.mail} > Enable User</button>
+                                                <button onClick={(a) => { if (window.confirm(`Are you sure to enable ${e.name} ?`)) handleNoBanClick(a)}} value={e.mail} >Enable User</button>
 
 
                                             </span>

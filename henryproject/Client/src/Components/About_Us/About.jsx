@@ -25,9 +25,9 @@ export default function About() {
                             <span><img width={200} className='imageProfileAbout' height={200} id="imgl" src={lautaro} alt="lautaro"></img></span>
                         </a>
                         <p>
-                       <a target="_blank" rel="noreferrer" href='https://ar.linkedin.com/in/lautaro-robles-57a5ba242?trk=people-guest_people_search-card'><img src={linkedin} height="35" width="35" ></img></a> 
-                        <img src={instagram} height="35" width="35"></img>
-                        <img src={github} height="35" width="35"></img>
+                       <a target="_blank" rel="noreferrer" href='https://ar.linkedin.com/in/lautaro-robles-57a5ba242?trk=people-guest_people_search-card'><img src={linkedin} height="35" width="35"></img></a> 
+                       <a target="_blank" rel="noreferrer" href='https://www.instagram.com/lauta.robles'><img src={instagram} height="35" width="35"></img></a> 
+                       <a target="_blank" rel="noreferrer" href='https://github.com/lautaro012/'><img src={github} height="35" width="35"></img></a>
                         </p>
                     </div>
                 </div>
