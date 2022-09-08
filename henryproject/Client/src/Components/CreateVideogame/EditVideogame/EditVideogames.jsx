@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
+import ReactPlayer from "react-player";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getGameById, getGenres, getPlatforms, getTags, putVideogame } from "../../../redux/Actions/Index";
@@ -603,6 +604,24 @@ function onClickEditar(){
         }
         
 }
+ // Para el detalle
+ function stars(number) {
+    if (number >= 1 && number < 2) {
+        return "⭐"
+    }
+    else if (number >= 2 && number < 3) {
+        return "⭐⭐"
+    }
+    else if (number >= 3 && number < 4) {
+        return "⭐⭐⭐"
+    }
+    else if (number >= 4 && number < 5) {
+        return "⭐⭐⭐⭐"
+    }
+    else if (number == 5) {
+        return "⭐⭐⭐⭐⭐"
+    }
+}
 
 // console.log(value);
     return (
@@ -1188,7 +1207,226 @@ function onClickEditar(){
                         <button onClick={()=>onClickEditar()}>EDITAR</button>
                 </div>
                 <div className="divcontainer02">
-
+                    {(
+                            <div className="container-visual">
+                                {
+                                    (value.name=="")?(value.name==""&&(
+                                        (<h2 className="containers-name">{detailsVideogames.name}</h2>)
+                                    )):(<h2 className="containers-name">{value.name}</h2>)
+                                }
+                                {
+                                            (value.price=="")?(value.price=="" && (
+                                                (<p className="containers-price">Price: $/.{detailsVideogames.price}</p>)
+                                            )):(<p className="containers-price">Price: $/.{value.price}</p>)
+                                        }
+                                        {
+                                            (value.description=="")?(value.description=="" && (
+                                                (<p className="containers-description">{detailsVideogames.description}</p>)
+                                            )):(<p className="containers-description">{value.description}</p>)
+                                        }
+                                        {
+                                            (value.rating=="")?(value.rating=="" && (
+                                                (<p className="containers-rating">{stars(detailsVideogames.rating)} {detailsVideogames.rating}</p>)
+                                            )):(<p className="containers-rating">{stars(value.rating)} {value.rating}</p>)
+                                        }
+                                        {
+                                            (value.video.length==0)?(value.video.length==0 && <>
+                                                < ReactPlayer
+                                                    className="containers-video"
+                                                    url={detailsVideogames.video}
+                                                    width="100%"
+                                                    height="250px"
+                                                    controls
+                                                    playing
+                                                    loop
+                                                    muted
+                                                /></>):(
+                                                <>
+                                                < ReactPlayer
+                                                    className="containers-video"
+                                                    url={value.video}
+                                                    width="100%"
+                                                    height="250px"
+                                                    controls
+                                                    playing
+                                                    loop
+                                                    muted
+                                                /></>
+                                            )          
+                                        }
+                                        {
+                                            (value.image=="")?(value.image=="" && <div className="containers-img">
+                                            <img src={detailsVideogames.image} alt="NOT FOUND" />
+                                            </div>):(
+                                                <div className="containers-img">
+                                                <img src={value.image} alt="NOT FOUND" />
+                                                </div>
+                                            ) 
+                                        }
+                                        {
+                                            (value.screenshots.length==0)?(value.screenshots.length==0 && <div className="container-screenshot">
+                                            <div className="subcontain1">
+                                                {detailsVideogames.screenshots?.map(ev=>{
+                                                    return(
+                                                        <div key={ev} className="screenshot-img">
+                                                            <img src={ev} alt="NOT FOUND" />
+                                                        </div>
+                                                    );
+                                                })}
+                                            </div>
+                                            </div>):(
+                                                <div className="container-screenshot">
+                                                <div className="subcontain1">
+                                                    {value.screenshots?.map(ev=>{
+                                                        return(
+                                                            <div key={ev} className="screenshot-img">
+                                                                <img src={ev} alt="NOT FOUND" />
+                                                            </div>
+                                                        );
+                                                    })}
+                                                </div>
+                                                </div>
+                                            )
+                                        }
+                                        {
+                                            (value.store.length==0)? (value.store.length==0 && <>
+                                                <p>STORES: </p>
+                                                <div className="container-store">
+                                                    <p>{detailsVideogames.store?.join(", ")}</p>
+                                                </div>
+                                            </>):(
+                                                <>
+                                                <p>STORES: </p>
+                                                <div className="container-store">
+                                                    <p>{value.store?.join(", ")}</p>
+                                                </div>
+                                            </>
+                                            )
+                                        }
+                                        {
+                                            (value.developers.length==0)?(value.developers.length==0 && <>
+                                                <p>DEVELOPERS: </p>
+                                                <div className="container-developers">
+                                                <p>{detailsVideogames.developers?.join(", ")}</p>
+                                                </div>
+                                                </>):(
+                                                <>
+                                                <p>DEVELOPERS: </p>
+                                                <div className="container-developers">
+                                                <p>{value.developers?.join(", ")}</p>
+                                                </div>
+                                                </>
+                                            )
+                                        }
+                                        {
+                                            (value.publishers.length==0)?(value.publishers.length==0 && <>
+                                                <p>PUBLISHERS: </p>
+                                                <div className="container-publishers">
+                                                <p>{detailsVideogames.publishers?.join(", ")}</p>
+                                                </div>
+                                                </>):(
+                                                <>
+                                                <p>PUBLISHERS: </p>
+                                                <div className="container-publishers">
+                                                <p>{value.publishers?.join(", ")}</p>
+                                                </div>
+                                                </>
+                                            )
+                                        }
+                                        {
+                                            (value.website=="")?(value.website=="" && <>
+                                            <p>WEBSITE: </p>
+                                            <p>{detailsVideogames.website}</p>
+                                        </>):(
+                                                <>
+                                                <p>WEBSITE: </p>
+                                                <p>{value.website}</p>
+                                            </>
+                                            )
+                                        }
+                                        {
+                                            (value.releaseDate=="")?(value.releaseDate=="" && <>
+                                            <p>RELEASEDATE: </p>
+                                            <p>{detailsVideogames.realeaseDate}</p>
+                                            </>):(
+                                                <>
+                                                <p>RELEASEDATE: </p>
+                                                <p>{value.releaseDate}</p>
+                                                </>
+                                            )
+                                        }
+                                        {
+                                            (value.metacritic=="")?(value.metacritic=="" && 
+                                            <>
+                                                <p>METACRITIC: </p>
+                                                <p>{detailsVideogames.metacritic}</p>
+                                                </>
+                                            ):(
+                                                <>
+                                                <p>METACRITIC: </p>
+                                                <p>{value.metacritic}</p>
+                                                </>
+                                            )
+                                        }
+                                        {
+                                            (value.esrb_rating=="")?(value.esrb_rating=="" && <>
+                                            <p>ESRB_RATNG:</p>
+                                            <p>{detailsVideogames.esrb_rating}</p>
+                                            </>):(
+                                                <>
+                                                <p>ESRB_RATNG:</p>
+                                                <p>{value.esrb_rating}</p>
+                                                </>
+                                            )
+                                        }
+                                        {
+                                            (value.platforms.length==0)? (value.platforms.length==0 && <>
+                                                <p>PLATFORMS: </p>
+                                                <div className="container-platforms">
+                                                <p>{detailsVideogames.platforms?.join(", ")}</p>
+                                                </div>
+                                                </>):(
+                                                <>
+                                                <p>PLATFORMS: </p>
+                                                <div className="container-platforms">
+                                                <p>{value.platforms.flat()?.join(", ")}</p>
+                                                </div>
+                                                </>
+                                            )
+                                        }
+                                        {
+                                            (value.tags.length==0)? (value.tags.length==0 && <>
+                                                <p>TAGS: </p>
+                                                <div className="container-tags">
+                                                <p>{detailsVideogames.tags?.join(", ")}</p>
+                                                </div>
+                                                </>):(
+                                                <>
+                                                <p>TAGS: </p>
+                                                <div className="container-tags">
+                                                <p>{value.tags?.join(", ")}</p>
+                                                </div>
+                                                </>
+                                            )
+                                        }
+                                        {
+                                            (value.genres.length==0)? (value.genres.length==0 && <>
+                                                <p>GENRES: </p>
+                                                <div className="container-genres">
+                                                <p>{detailsVideogames.genres?.join(", ")}</p>
+                                                </div>
+                                                </>):(
+                                                <>
+                                                <p>GENRES: </p>
+                                                <div className="container-genres">
+                                                <p>{value.genres?.join(", ")}</p>
+                                                </div>
+                                                </>
+                                            )
+                                        }    
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         </div>
