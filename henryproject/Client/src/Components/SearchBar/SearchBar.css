@@ -78,8 +78,10 @@
 .INPUT-SEARCH:focus {
   height: 35px;
   width: 250px;
+  padding-left: 20px;
+
   background-color: var(--color-primary);
-  border-radius: 45px;
+  border-radius: 50px;
 }
 
 .cont-searchbar:focus form input{
