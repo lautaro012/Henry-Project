@@ -36,7 +36,7 @@ export default function GameDetails() {
     const [imgPop, setImgPop] = useState(false)
 
     const [img, setImg] = useState("")
-
+    
     useEffect(() => {
         dispatch(getGameById(id))
         dispatch(getReviews(id))
@@ -98,6 +98,7 @@ export default function GameDetails() {
     }
 
     let userLogged = JSON.parse(localStorage.getItem("user"));
+
     console.log("GAME", game)
     console.log("REVIEWS", reviews)
     console.log("USER", userLogged.user)
@@ -118,12 +119,17 @@ export default function GameDetails() {
         })
     }
 
+    //const [render, setRender ] = useState("")
+
     function handleSubmit(event) {
         event.preventDefault()
         dispatch(postReview(id, input))
-        swal({title:"Commentary sent!"})
         setInput({})
         window.location.reload()
+        swal({title:"Commentary sent!"})
+        //navigate(`/home`);
+        // window.scrollTo({ behavior: "smooth", top: "0px" });
+        // render === "" ? setRender("render") : setRender("")
     }
 
     function handleRadio(event) {

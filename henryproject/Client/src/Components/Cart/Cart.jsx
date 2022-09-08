@@ -2,10 +2,13 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { deleteItemFromCart } from "../../redux/Actions/Index.js";
 import Icon from '../../Style/Imagenes/Icon.PNG'
 import CardHover from "../NewCard/CardHover.jsx";
 import PrettyRating from "pretty-rating-react";
+import swal from 'sweetalert';
+
 import {
     faStar,
     faStarHalfAlt,
@@ -17,9 +20,10 @@ import {
 import '../Cart/Cart.css'
 // import { FormularioPago } from "../FormularioPago/FormularioPago.jsx";
 
-export default function Cart() {
+export default function Cart({userLogged}) {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate();
     const items = useSelector(state => state.cart)
 
     const icons = {
@@ -47,6 +51,16 @@ export default function Cart() {
         localStorage.setItem("precioTotal", JSON.stringify(precios));
     }, [items, precios]);
 
+    function handleBuy(event){
+        event.preventDefault()
+        if (userLogged){
+            navigate("/cart/formularioPago")
+        }
+        else{
+            swal({title:'You must be logged to buy games'})
+        }
+    }
+
     return (
         <div className="conteinerCart">
             <h1>Welcome to your cart !</h1>
@@ -55,14 +69,8 @@ export default function Cart() {
                     <div id="conteinerCart2">{
                         items && items?.map(item => {
                             return (
-                                // <div key={item.id} id="item">
-                                //     <img src={item.image} alt={item.id}></img>
-                                //     <h1>{item.name}</h1>
-                                //     <h3>$ {item.price}</h3>
-                                //     <button onClick={() => deleteItem(item.id)}>Delete</button>
-                                // </div>
                                 <div key={item.id} id='cart-item-list'>
-                                    <Link to={`/home/items/${item.id}`} className='Link'>
+                                    <Link to={`/home/games/${item.id}`} className='Link'>
                                         <CardHover image={item.image} name={item.name}>
                                         </CardHover>
                                     </Link>
@@ -72,7 +80,7 @@ export default function Cart() {
                                         <h3>Rating : </h3>
                                         <PrettyRating value={item.rating} icons={icons.star} colors={colors.star} />
                                     </div>
-                                    <button onClick={() => deleteItem(item.id)}>🗑</button>
+                                    <button onClick={() => { if (window.confirm(`Are you sure delete ${item.name} from your cart ?`))deleteItem(item.id)}}>🗑</button>
                                 </div>
                             )
                         })
@@ -80,7 +88,7 @@ export default function Cart() {
                         <div id="caja">
                             <button onClick={() => { if (window.confirm("Are you sure to empty your cart ?"))deleteItem("All")}}>Empty cart</button>
                             <h2>Suma total : ${precios}</h2>
-                            <Link to={"/cart/formularioPago"}><button>Buy now !</button></Link>
+                            <Link to={"/cart/formularioPago"}><button onClick={(event)=>handleBuy(event)}>Buy now !</button></Link>
                         </div>
                     </div>
 

@@ -91,7 +91,8 @@ export default function UserSign({toggleModal, isOpen, setUserLogged, changeModa
         </div>
         
         {/* <button onClick={(e) => handleClick(e)} className='login-with-google-btn' >Ingresar con cuenta de Google</button> */}
-        Are you new ?  <button onClick={changeModal} className='register-button'>{<u>Register free now</u>} !</button>
+        <h3>Are you new ?</h3>  
+        <button onClick={changeModal} className='register-button'><h3><u>Register free now</u>!</h3></button>
 
       </Modal>
 

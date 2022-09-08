@@ -32,9 +32,10 @@ import {
     GET_USERS_BANNED,
     GET_NO_BANNED_ALL_USERS,
     EMPTY_VIDEOGAMES,
-
+    SAVE_PAGE_GLOBAL,
     GET_MAILS,
     GET_ALL_MAILS_NEWS,
+    PUTVIDEOGAME
 
 } from "../Actions/Index"
 
@@ -49,7 +50,7 @@ const initialState = {
     genreby: 'all',
     platformby: 'all',
     cart: [],
-    favorites: [],
+    favorites: [], 
     tagsFilter: [],
     tags: [],
     Tagsinfilter: [],
@@ -64,9 +65,8 @@ const initialState = {
     allUsersBanned: [],
     allUsersNoBanned: [],
     mails: [],
-    mailsNews: []
-
-
+    mailsNews: [],
+    pageGlobal: null,
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -93,7 +93,11 @@ export default function rootReducer(state = initialState, action) {
                 allUsersNoBanned: action.payload
             }
         }
-    
+        case SAVE_PAGE_GLOBAL: 
+        return {
+            ...state,
+            pageGlobal: action.payload
+        }
         case GET_ALL_GAMES:
             return {
                 ...state,
@@ -104,12 +108,13 @@ export default function rootReducer(state = initialState, action) {
             }
 
         case GET_ALL_GAMES_BY_NAME:
-            return {
-                ...state,
-                videogames: action.payload,
-            }
 
+                return {
+                    ...state,
+                    videogames: action.payload,
+                }
 
+        
         case ACTUALIZAR_CART:
             return {
                 ...state,
@@ -271,9 +276,6 @@ export default function rootReducer(state = initialState, action) {
                 getAlldisableGame: action.payload
             }
 
-
-
-
         case SHOW_VIDEOGAME:
             var getAllgameshide = state.getAlldisableGame;
             // console.log(state.getAlldisableGame);
@@ -303,7 +305,9 @@ export default function rootReducer(state = initialState, action) {
             const games1 = platformby === 'all' ? Allvideogames : Allvideogames.filter(game => game.platforms.map(el => el.name).find(platforms => platforms === platformby))
             const games2 = genreby === 'all' ? Allvideogames : Allvideogames.filter(game => game.genres.map(el => el.name).find(genre => genre === genreby))
             const arr1 = games1.filter(element => games2.includes(element));
-            const total = arr1.filter(element => state.tagsFilter.includes(element));
+            let total = arr1.filter(element => state.tagsFilter.includes(element));
+            total = total.length === 0 ? "No hay juegos" : total
+
             return {
                 ...state,
                 videogames: total,
@@ -358,6 +362,11 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 videogames: []
             }
+        // case PUTVIDEOGAME:
+        //     return{
+        //         ...state,
+        //         putvideogames:action.payload
+        //     }
 
         default: return state
     }
