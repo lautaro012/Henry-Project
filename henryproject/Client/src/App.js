@@ -1,8 +1,8 @@
 import './App.css';
-import { useDispatch } from 'react-redux';
-import { actualizarCart, actualizarFav } from './redux/Actions/Index';
-import  { Routes, Route } from 'react-router-dom';
-import {BrowserRouter as Router} from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { actualizarCart, actualizarFav, savePageGlobal } from './redux/Actions/Index';
+import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom'
 // import { useDispatch } from 'react-redux';
 import LandingPage from './Components/Landing_Page/LandingPage.jsx'
 import About from './Components/About_Us/About.jsx'
@@ -26,9 +26,9 @@ import { useEffect, useState } from 'react';
 import { FormularioPago } from './Components/FormularioPago/FormularioPago';
 
 
-import {Elements} from "@stripe/react-stripe-js";
-import {loadStripe} from "@stripe/stripe-js"
-const stripePromise=loadStripe("pk_test_51Lde2sJXnqrwcfODw8cWGGVzyavpCNgaUXMhWTAbkGIJ3txhY9PVGuUzy9QPzQ5riddbQZdRADa3QTHxqhrSeSZq00dWuMhBM2")
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js"
+const stripePromise = loadStripe("pk_test_51Lde2sJXnqrwcfODw8cWGGVzyavpCNgaUXMhWTAbkGIJ3txhY9PVGuUzy9QPzQ5riddbQZdRADa3QTHxqhrSeSZq00dWuMhBM2")
 
 require('dotenv').config();
 const {
@@ -39,10 +39,11 @@ const {
 function App() {
   let dispatch = useDispatch()
 
-  
+  let pageGlobal = useSelector(state => state.pageGlobal)
+
   const [userLogged, setUserLogged] = useState(false)
   console.log(`Variable de entorno es ${REACT_APP_API}`)
-  
+
 
   // useEffect(() => {
 
@@ -51,22 +52,22 @@ function App() {
   //        method: "GET",
   //       //  credentials: "include",
   //        headers: {
-    //          Accept: "application/json",
-    //          "Content-Type": "application/json",
+  //          Accept: "application/json",
+  //          "Content-Type": "application/json",
   //            "Access-Control-Allow-Credentials": true
   //        },
   //      }).then((response) => {
-    
+
   //        if(response.status === 200) {
   //           console.log('entra a response')
   //          return response.json()};
 
   //        throw new Error('authentication has been failed')
   //      }).then(resObject => {
-    //        setUserLogged(true)
-    //        localStorage.setItem('user', JSON.stringify(resObject))
-    //        setUser(resObject.user)
-    //      }).catch(err => {
+  //        setUserLogged(true)
+  //        localStorage.setItem('user', JSON.stringify(resObject))
+  //        setUser(resObject.user)
+  //      }).catch(err => {
   //        console.log(err)
   //      })
   //    }
@@ -80,13 +81,13 @@ function App() {
     const favoritesLS = JSON.parse(localStorage.getItem("favProducts"));
     const videogamesLS = JSON.parse(localStorage.getItem("products"));
 
-    if(!user) {
+    if (!user) {
       localStorage.setItem("user", JSON.stringify([]));
     }
-    if(!favoritesLS) {
+    if (!favoritesLS) {
       localStorage.setItem("favProducts", JSON.stringify([]));
     }
-    if(!videogamesLS) {
+    if (!videogamesLS) {
       localStorage.setItem("products", JSON.stringify([]));
     }
 
@@ -94,12 +95,13 @@ function App() {
 
   const user = JSON.parse(localStorage.getItem("user"));
   console.log(`USUARIO: ${(user?.user)}`)
-  
-  
+
+
 
   useEffect(() => {
-    if(JSON.parse(localStorage.getItem("user")).user) {
-      setUserLogged(true)}
+    if (JSON.parse(localStorage.getItem("user")).user) {
+      setUserLogged(true)
+    }
 
     if (localStorage.length === 0) {
       localStorage.setItem("products", JSON.stringify([]));
@@ -136,26 +138,26 @@ function App() {
 
 
 
-        <Route path='/admin' element={<Admin/>} />
+        <Route path='/admin' element={<Admin />} />
 
         <Route path='/admin/editgame/:id' element={<EditVideogame></EditVideogame>} />
 
-        <Route path='/admin/createvideogames' element={<CreateVideogame/>} />
+        <Route path='/admin/createvideogames' element={<CreateVideogame />} />
 
         {
           user?.user?.admin ?
-          <Route path='/profile' element={ userLogged ? <Admin setUserLogged={setUserLogged}/> : <UserSign setUserLogged={setUserLogged} isOpen={true}/>} />
-          :
-          <Route path='/profile' element={ userLogged ? <Profile setUserLogged={setUserLogged}/> : <UserSign setUserLogged={setUserLogged} isOpen={true}/>} />
+            <Route path='/profile' element={userLogged ? <Admin setUserLogged={setUserLogged} /> : <UserSign setUserLogged={setUserLogged} isOpen={true} />} />
+            :
+            <Route path='/profile' element={userLogged ? <Profile setUserLogged={setUserLogged} /> : <UserSign setUserLogged={setUserLogged} isOpen={true} />} />
         }
         {/* <Route path='/profile' element={ userLogged ? <Profile setUserLogged={setUserLogged}/> : <UserSign setUserLogged={setUserLogged} isOpen={true}/>} /> */}
-        <Route path='/Loading' element={<LoadingScreen/>} />
-        <Route path='/cart' element={<Cart/>} />
-        <Route path='/test' element={<CreateVideogame/>} />
-        <Route path='/cart/formularioPago' element={userLogged ? <Elements stripe={stripePromise}><FormularioPago></FormularioPago></Elements> : <UserSign setUserLogged={setUserLogged} isOpen={true}/>}/>
-      
+        <Route path='/Loading' element={<LoadingScreen />} />
+        <Route path='/cart' element={<Cart userLogged={userLogged} />} />
+        <Route path='/test' element={<CreateVideogame />} />
+        <Route path='/cart/formularioPago' element={userLogged ? <Elements stripe={stripePromise}><FormularioPago></FormularioPago></Elements> : <UserSign setUserLogged={setUserLogged} isOpen={true} />} />
+
       </Routes>
-      <Footer userLogged={userLogged}/>
+      <Footer userLogged={userLogged} />
     </Router>
   );
 }
