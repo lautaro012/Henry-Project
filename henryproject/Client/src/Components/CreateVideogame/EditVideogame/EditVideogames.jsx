@@ -936,7 +936,7 @@ function onClickCancelar(){
                             </div>
                         </div>
                         {/* Platforms */}
-                        <div className="create-platform">
+                        {/* <div className="create-platform">
                             <label type="text">Platforms: </label>
                             {
                                 (muestra.platforms)?(<>
@@ -963,7 +963,8 @@ function onClickCancelar(){
                                     })
                                 }
                                 </div> 
-                                </>):(<>
+                                </>)
+                                :(<>
 
                                     <select onChange={(ev)=>handleChangeRespuesta(ev)} value={platform.name} name="platforms">
                                         <option value="All">Select Plataform: </option>
@@ -992,7 +993,7 @@ function onClickCancelar(){
                             }
                         </div>
                         {/* Tags */}
-                        <div className="create-tag">
+                        {/* <div className="create-tag">
                             <label>Tags: </label>
                             {
                                 (muestra.tags)?(<>
@@ -1046,9 +1047,9 @@ function onClickCancelar(){
                             {
                                 (mensaje.tags)?(<p>To modify you must click on the button edit ...</p>):null
                             }
-                        </div>
+                        </div> */}
                         {/* genres */}
-                        <div className="create-genre">
+                        {/* <div className="create-genre">
                             <label>Genres: </label>
                             {
                                 (muestra.genres)?(<>
@@ -1102,7 +1103,8 @@ function onClickCancelar(){
                             {
                                 (mensaje.genres)?(<p>To modify you must click on the button edit ...</p>):null
                             }
-                        </div>
+
+                        </div> */}
 
                         {/* BUTTON */}
                         <button onClick={()=>onClickEditar()}>EDIT VIDEOGAME</button>

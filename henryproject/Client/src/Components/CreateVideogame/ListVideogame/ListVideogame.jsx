@@ -43,12 +43,14 @@ export default function ListVideogame({ showGame, handleHide, handleOnChange, di
       
       (!show.disabled) &&( videogames?.map(item => {
                 return (
-                    <div className="card-videogame-admin">
-                        <CardHover
-                        name={item.name}
-                        image={item.image}
-                        price={item.price}
-                        />
+                    <div key={item.id} className="card-videogame-admin">
+                        <Link to={`/home/games/${item.id}`}>
+                            <CardHover
+                            name={item.name}
+                            image={item.image}
+                            price={item.price}
+                            />
+                        </Link>
                         <div>
                         <Link to={`/admin/editgame/${item.id}`}>
                             <button id="button-86" className="listVideoGamesButtonStyle" type="button" >Edit </button>
@@ -63,11 +65,13 @@ export default function ListVideogame({ showGame, handleHide, handleOnChange, di
             )?(!show.disabled) &&( videogames?.map(item => {
                 return (
                     <div className="card-videogame-admin">
-                        <CardHover
-                        name={item.name}
-                        image={item.image}
-                        price={item.price}
-                        />
+                         <Link to={`/home/games/${item.id}`}>
+                            <CardHover
+                            name={item.name}
+                            image={item.image}
+                            price={item.price}
+                            />
+                        </Link>
                         <div className="buttons">
                         <Link to={`/admin/editgame/${item.id}`}>
                             <button id="button-86" type="button" className="listVideoGamesButtonStyle" >Edit </button>
@@ -84,11 +88,13 @@ export default function ListVideogame({ showGame, handleHide, handleOnChange, di
             ):(show.disabled) &&( disableVideogames?.map(item => {
                 return (
                     <div className="card-videogame-admin">
-                        <CardHover
-                        name={item.name}
-                        image={item.image}
-                        price={item.price}
-                        />
+                         <Link to={`/home/games/${item.id}`}>
+                            <CardHover
+                            name={item.name}
+                            image={item.image}
+                            price={item.price}
+                            />
+                        </Link>
                         <div className="buttons">
                         <Link to={`/admin/editgame/${item.id}`}>
                             <button id="button-86"  type="button" className="listVideoGamesButtonStyle" >Edit </button>
