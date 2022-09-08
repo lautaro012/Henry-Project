@@ -515,7 +515,44 @@ const todoelvideogamesName={
     tags:detailsVideogames.tags,
     genres:detailsVideogames.genres
 }
-
+const todoelvideogamesPrice={
+    name:detailsVideogames.name,
+    price:`${value.price}`,
+    description:detailsVideogames.description,
+    rating:`${detailsVideogames.rating}`,
+    video:detailsVideogames.video,
+    image:detailsVideogames.image,
+    screenshots:detailsVideogames.screenshots,
+    store:detailsVideogames.store,
+    developers:detailsVideogames.developers,
+    publishers:detailsVideogames.publishers,
+    website:detailsVideogames.website,
+    releaseDate:detailsVideogames.realeaseDate,
+    metacritic:detailsVideogames.metacritic,
+    esrb_rating:detailsVideogames.esrb_rating,
+    platforms:detailsVideogames.platforms,
+    tags:detailsVideogames.tags,
+    genres:detailsVideogames.genres
+}
+const todoelvideogamesDescription={
+    name:detailsVideogames.name,
+    price:`${detailsVideogames.price}`,
+    description:value.description,
+    rating:`${detailsVideogames.rating}`,
+    video:detailsVideogames.video,
+    image:detailsVideogames.image,
+    screenshots:detailsVideogames.screenshots,
+    store:detailsVideogames.store,
+    developers:detailsVideogames.developers,
+    publishers:detailsVideogames.publishers,
+    website:detailsVideogames.website,
+    releaseDate:detailsVideogames.realeaseDate,
+    metacritic:detailsVideogames.metacritic,
+    esrb_rating:detailsVideogames.esrb_rating,
+    platforms:detailsVideogames.platforms,
+    tags:detailsVideogames.tags,
+    genres:detailsVideogames.genres
+}
 
 function onClickEditar(){
     // var data1=[]
@@ -534,31 +571,31 @@ function onClickEditar(){
             // ...
         }else if(value.name=="" && value.price=="" && value.description=="" && value.rating!="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
             console.log(todoelvideogames)
-        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length!=0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
             console.log(todoelvideogames)
-        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image !="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
             console.log(todoelvideogames)
-        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length!=0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
             console.log(todoelvideogames)
-        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length!=0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
             console.log(todoelvideogames)
-        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length!=0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
             console.log(todoelvideogames)
-        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length!=0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
             console.log(todoelvideogames)
-        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website!="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
             console.log(todoelvideogames)
-        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate!="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
             console.log(todoelvideogames)
-        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic!="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
             console.log(todoelvideogames)
-        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating!="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
             console.log(todoelvideogames)
-        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length!=0 && value.tags.length==0 && value.genres.length==0){
             console.log(todoelvideogames)
-        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length!=0 && value.genres.length==0){
             console.log(todoelvideogames)
-        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length==0){
+        }else if(value.name=="" && value.price=="" && value.description=="" && value.rating=="" && value.video.length==0 && value.image =="" && value.screenshots.length==0 && value.store.length==0 && value.developers.length==0 && value.publishers.length==0 && value.website=="" && value.releaseDate=="" && value.metacritic=="" &&value.esrb_rating=="" && value.platforms.length==0 && value.tags.length==0 && value.genres.length!=0){
             console.log(todoelvideogames)
         }else{
             // Si todo cambia
