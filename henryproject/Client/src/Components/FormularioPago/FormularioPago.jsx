@@ -54,7 +54,8 @@ export const FormularioPago = () => {
     e.preventDefault();
     const { error, paymentMethod } = await stripe.createPaymentMethod({ //Tieme objetos que debe de completar
       type: "card",  //type de pago: metodo de tarjeta
-      card: elements.getElement(CardNumberElement) //Selecciona el input element de la tarjeta
+      card: elements.getElement(CardNumberElement)//Selecciona el input element de la tarjeta
+      // date: elements.getElement(CardExpiryElement)
     });
     setLoading(true)
     console.log(paymentMethod);
@@ -82,6 +83,9 @@ export const FormularioPago = () => {
         swal({title:error})
       }
       setLoading(false)
+    } else{
+      swal( 'Error','You must complete the required fields','error')
+      setLoading(false)
     }
   }
 
@@ -103,7 +107,7 @@ export const FormularioPago = () => {
               <CardHover image={game.image} price={game.price} name={game.name}></CardHover>
 
             )
-          }) : <div>no tiene elementos seleccionados</div>}
+          }) : <div>No items selected</div>}
         </div>
         </div>
         <hr />
@@ -125,10 +129,11 @@ export const FormularioPago = () => {
                   </div>
                 </div>
               </div>
+              
               <div className="subcontainerPagar">
                 <div className="button-pagar">                    
                     <button onClick={(e) => handleSubmit(e)} className="button-19" disabled={loading ? true : false}>
-                      {loading ? <p>Cargando</p> : <p>   { `$ ${precioTotal}.00`}</p>}  <p> 'Checkout'   </p>
+                      {loading ? <p>loading</p> : <p>   { `$ ${precioTotal}.00`}</p>}  <p> 'Checkout'   </p>
                     </button>
                 </div>
               </div>
