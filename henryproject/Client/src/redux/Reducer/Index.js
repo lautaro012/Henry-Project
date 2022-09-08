@@ -112,6 +112,7 @@ export default function rootReducer(state = initialState, action) {
                 return {
                     ...state,
                     videogames: action.payload,
+                    hidevideogames: action.payload
                 }
 
         

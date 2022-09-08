@@ -27,6 +27,7 @@
     margin: 5px;
     padding: 7px;
 }
+
 .listAdminButton:hover {
     border: white solid 0.1px;
     cursor: pointer;
