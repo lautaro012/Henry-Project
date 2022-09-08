@@ -6,6 +6,7 @@ import { getAllMailsNews } from '../../redux/Actions/Index'
 import { useState } from 'react'
 import axios from 'axios'
 
+
 const SendNews = () => {
  const dispatch= useDispatch()
  const mailsNews= useSelector(state=>state.mailsNews)
@@ -28,6 +29,7 @@ function onChangeEmail(ev){
   if(!mails?.includes(ev.target.value) && ev.target.value !== "All") {
     setMails([...mails, ev.target.value])
   }
+
 }
 
 
@@ -49,6 +51,7 @@ function handleChange(e) {
   setInput(e.target.value)
   console.log(input)
 }
+
 
   return (
     <div className='firstDivFormSendNews'>
@@ -84,5 +87,8 @@ function handleChange(e) {
     </div>
 
   )
-}
+
+      }
+
+
 export default SendNews

@@ -36,7 +36,6 @@
     min-height: 100%;
 }
 
-
 .SELECT-ORDER{
     background-color: #242424;
     color: white;
@@ -45,8 +44,25 @@
     text-align: center;
     margin-bottom: 10px;
 }
+
 .SELECT-ORDER:hover {
     cursor: pointer;
   background-color: #2f2e2e;
 }
 
+#icono_game_store {
+    margin: auto;
+    width: 80%;
+    border-radius: 50%;
+}
+
+#NO_GAMES {
+    color: ghostwhite;
+    font-weight: 200;
+}
+
+#contenedor_no_games{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
