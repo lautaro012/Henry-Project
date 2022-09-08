@@ -14,18 +14,22 @@ export default function ListVideogame({ showGame, handleHide, handleOnChange, di
   //   e.preventDefault()
   //   dispatch(changeName())
   // }
+
+
   return(
     <div>
     <div className='searchbar-admin'>
-        <input
-            id="search"
-            className="searchInputAdmin"
-            type="text"
-            value={name}
-            onChange={(e) => handleOnChange(e)}
-            placeholder="Buscar videojuego..."
-        />
-        <button id="button-86" className='listAdminButton' type="submit" onClick={(e) => handleSubmit(e)}> Search </button>
+        <form onSubmit={(e) => handleSubmit(e)}>
+            <input
+                id="search"
+                className="searchInputAdmin"
+                type="text"
+                value={name}
+                onChange={(e) => handleOnChange(e)}
+                placeholder="Buscar videojuego..."
+            />
+              <button id="button-86" className='listAdminButton' type="submit"> Search </button>
+        </form>
         {
         (!show.disabled) && (<button id="button-86" className='listAdminButton' onClick={()=>handleSubmitOcultados()}>Disabled Games</button>)
         }

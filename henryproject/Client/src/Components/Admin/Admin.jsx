@@ -2,7 +2,7 @@ import CreateVideogame from '../CreateVideogame/CreateVideogames'
 import './Admin.css'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
-import { getAllGames, hideVideoGame,  showVideoGame, getAllDisableVideogame, getAllUsers, banUser, getAllBannedUsers, noBanUser, getAllNoBannedUsers, updateAdmin } from '../../redux/Actions/Index'
+import { getAllGames, hideVideoGame,  showVideoGame, getAllDisableVideogame, getAllUsers, banUser, getAllBannedUsers, noBanUser, getAllNoBannedUsers, updateAdmin, clear } from '../../redux/Actions/Index'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import ListVideogame from '../CreateVideogame/ListVideogame/ListVideogame'
@@ -25,7 +25,6 @@ export default function Admin() {
     const disableVideogames=useSelector(state=>state.getAlldisableGame)
     const allUsers = useSelector(state => state.allUsersNoBanned)
     const allBannedUsers = useSelector(state => state.allUsersBanned)
-    console.log(allUsers)
     const [show,setShow]=useState({
         disabled:false
     });
@@ -34,7 +33,6 @@ export default function Admin() {
     const user = JSON.parse(localStorage.getItem("user"));
 
     const[render , setRender] = useState('edit')
-    const[renderTwo, setRenderTwo] = useState('')
 
     useEffect(() => {
         dispatch(getAllGames());
@@ -42,16 +40,21 @@ export default function Admin() {
         dispatch(getAllUsers())
         dispatch(getAllBannedUsers())
         dispatch(getAllNoBannedUsers())
+        return function () {
+            dispatch(clear())
+        }
     }, [dispatch, render])
 
     function handleSubmit(e) {
         e.preventDefault()
+
         dispatch(getAllGames(name))
+        setName('')
+
     };
     function handleOnChange(e) {
         e.preventDefault()
         setName(e.target.value)
-        dispatch(getAllGames(name))
     }
     //const videogamesAdmin= videogames.slice(0,8)
     //useEffect(()=>{

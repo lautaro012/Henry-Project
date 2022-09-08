@@ -307,7 +307,7 @@ export default function GameDetails() {
                         <div id="conteinerSide_detalles2">
                             <aside id="conteinerSide_detalles">
                                 <h1>{game.name}</h1>
-                                <a href={game.website} target="_blank" rel="noreferrer"><h3>{game.website}</h3></a>
+                                <a href={game.website} target="_blank" rel="noreferrer"><h3>Official Website</h3></a>
                                 <img className="imagenJuego" src={game.image} alt="imagenJuego"></img>
                                 <p>{game.realeaseDate}</p>
                                 <div>
