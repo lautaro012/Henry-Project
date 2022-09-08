@@ -45,7 +45,7 @@ let history=useNavigate();
         developers:[],
         publishers:[],
         website:"",
-        releaseDate:"",
+        realeaseDate:"",
         metacritic:"",
         esrb_rating:"",
         platforms:[],
@@ -110,7 +110,7 @@ let history=useNavigate();
         developers: /^[a-zA-ZñÑ0-9 ]{1,40}$/,
         publishers: /^[a-zA-ZñÑ0-9 ]{1,40}$/,
         metacritic: /^[0-9]{1,5}$/,
-        esrb_rating:    /^[a-zA-ZñÑ0-9 ]{1,40}$/
+        esrb_rating:    /^[a-zA-ZñÑ ]{1,40}$/
     }
 
     // VALIDATION
@@ -146,20 +146,37 @@ let history=useNavigate();
 
                         }
                     }
-                    
-                default:
-                    if(state.video.length<=0){
-                        if(!input[keys]) errores[keys] = `The ${keys} is required`
+                    case "metacritic": 
+                    if(keys=="metacritic"){
+                        
+                        
+                            if(!input[keys].match(expresiones.metacritic)){
+                                errores[keys] = `The ${keys} must be a number between 0 and 100`;
+
+                        }
                     }
-                    if(state.screenshots.length<=0){
-                        if(!input[keys]) errores[keys] = `The ${keys} is required`
+                        case "esrb_rating": 
+                    if(keys=="esrb_rating"){
+                        
+                        
+                            if(!input[keys].match(expresiones.esrb_rating)){
+                                errores[keys] = `The ${keys} must not be a number`;
+
+                        }
                     }
-                    if(state.developers.length<=0){
-                        if(!input[keys]) errores[keys] = `The ${keys} is required`
-                    }
-                    if(state.publishers.length<=0){
-                        if(!input[keys]) errores[keys] = `The ${keys} is required`
-                    }
+                //  default:
+                // //     if(state.video.length<=0){
+                // //         if(!input[keys]) errores[keys] = `The ${keys} is required`
+                // //     }
+                // //     if(state.screenshots.length<=0){
+                // //         if(!input[keys]) errores[keys] = `The ${keys} is required`
+                // //     }
+                //      if(state.developers.length<=0){
+                //          if(!input[keys]) errores[keys] = `The ${keys} is required`
+                //     }
+                // //     if(state.publishers.length<=0){
+                // //         if(!input[keys]) errores[keys] = `The ${keys} is required`
+                // //     }
             }
         }
             return errores
@@ -332,8 +349,8 @@ let history=useNavigate();
 
     // onclickSubmit
     function onClickSubmit(){
-        if(state.name!="" && state.price!="" && state.description!="" && state.rating != "" && state.video.length!=0 && state.image!="" && state.screenshots!=0 && state.store!=0 && state.developers!=0 && state.publishers!=0 && state.website != "" && state.releaseDate!="" && state.metacritic!="" && state.esrb_rating != "" && state.platforms.length!=0 && state.tags.length!=0 && state.genres.length!=0 && Object.keys(error).length==0){
-            console.log(state.releaseDate);    
+        if(state.name!="" && state.price!="" && state.description!="" && state.rating != "" && state.video.length!=0 && state.image!="" && state.screenshots!=0 && state.store!=0 && state.developers!=0 && state.publishers!=0 && state.website != "" && state.realeaseDate!="" && state.metacritic!="" && state.esrb_rating != "" && state.platforms.length!=0 && state.tags.length!=0 && state.genres.length!=0 && Object.keys(error).length==0){
+            console.log(state.realeaseDate);    
             setButtons(false)
                 dispatch(postVideoGame(state));
                 swal({title:"It has been created successfully"});    
@@ -349,7 +366,7 @@ let history=useNavigate();
                     developers:[],
                     publishers:[],
                     website:"",
-                    releaseDate:"",
+                    realeaseDate:"",
                     metacritic:"",
                     esrb_rating:"",
                     platforms:[],
@@ -552,13 +569,13 @@ let history=useNavigate();
                             {showError ? <span>{error.website}</span> || <span>{validate.website}</span> : <span>{error.website}</span>|| <span>{validate.website}</span>}
                             </div>
                         </div>
-                        {/* RELEASEDATE */}
-                        <div className="create-releasedate">
-                        <label type="text">ReleaseDate : </label>
-                            <input type="text" onChange={(ev)=>handleChange(ev)} required name="releaseDate" placeholder="release... " onBlur={(ev)=>{handleChange(ev)}} onKeyUp={(ev)=>handleChange(ev)} value={state.releaseDate}/>
+                        {/* realeaseDate */}
+                        <div className="create-realeaseDate">
+                        <label type="text">realeaseDate : </label>
+                            <input type="text" onChange={(ev)=>handleChange(ev)} required name="realeaseDate" placeholder="release... " onBlur={(ev)=>{handleChange(ev)}} onKeyUp={(ev)=>handleChange(ev)} value={state.realeaseDate}/>
                             {/* <input type="file" name="adjunto" accept=".mp4,.jpg,.png" multiple /> */}
                             <div>    
-                            {showError ? <span>{error.releaseDate}</span> || <span>{validate.releaseDate}</span> : <span>{error.releaseDate}</span>|| <span>{validate.releaseDate}</span>}
+                            {showError ? <span>{error.realeaseDate}</span> || <span>{validate.realeaseDate}</span> : <span>{error.realeaseDate}</span>|| <span>{validate.realeaseDate}</span>}
                             </div>
                         </div>
                         
@@ -770,10 +787,10 @@ let history=useNavigate();
                                             )
                                         }
                                         {
-                                            (state.releaseDate=="")?(state.releaseDate=="" && null):(
+                                            (state.realeaseDate=="")?(state.realeaseDate=="" && null):(
                                                 <>
-                                                <p>RELEASEDATE: </p>
-                                                <p>{state.releaseDate}</p>
+                                                <p>realeaseDate: </p>
+                                                <p>{state.realeaseDate}</p>
                                                 </>
                                             )
                                         }
