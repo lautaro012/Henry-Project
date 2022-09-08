@@ -75,6 +75,23 @@
   border: none;
   border-radius: 50px;
 }
+.INPUT-SEARCH:focus {
+  height: 35px;
+  width: 250px;
+  padding-left: 20px;
+
+  background-color: var(--color-primary);
+  border-radius: 50px;
+}
+
+.cont-searchbar:focus form input{
+  background-color: var(--color-primary);
+  padding-left: 20px;
+  height: 35px;
+  width: 250px;
+  border: none;
+  border-radius: 50px;
+}
 
 @media screen and (max-width: 390px){
   .cont-searchbar form button{

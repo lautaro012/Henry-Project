@@ -27,6 +27,7 @@
     margin: 5px;
     padding: 7px;
 }
+
 .listAdminButton:hover {
     border: white solid 0.1px;
     cursor: pointer;
@@ -34,6 +35,14 @@
 .searchInputAdmin{
     padding: 5px;
     text-align: center;
+}
+.wrapper {
+    width: 93%;
+    height: 68%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
 }
 
 .admin-games{
@@ -49,7 +58,7 @@
     display: none;
   }
 
-.buttons{
+  .buttons{
     display: flex;
     flex-direction: row;
     justify-content: center;
