@@ -5,36 +5,6 @@ import './SendNews.css'
 import { getAllMailsNews } from '../../redux/Actions/Index'
 import { useState } from 'react'
 
-//import { getMails } from '../../redux/Actions/Index'
-//import { sendNewsletter } from '../../../../api/src/handlers/newsletterhandler'
-
-const SendNews = () => {
- const dispatch= useDispatch()
-  const mailsNews= useSelector(state=>state.mailsNews)
-  const[mails,setMails]= useState([])
- console.log(mails)
-
-useEffect(() => {
-   dispatch(getAllMailsNews());
-}, [dispatch])
-
-// useEffect(() => {
-//   let mailing = document.getElementById('divToAppendMails')
-//   let sending = mails.join([', '])
-//   mailing.innerHTML=`${sending}`
-// }, [mails])
-
-function onChangeEmail(ev){
-  ev.preventDefault()
-}
-
-
-// import './SendNews.css'
-// import { getAllMailsNews } from '../../redux/Actions/Index'
-// import { useState } from 'react'
-
-
-
 
 
 const SendNews = () => {
@@ -59,7 +29,7 @@ function onChangeEmail(ev){
     setMails([...mails, ev.target.value])
   }
    
- 
+}
 
 
 function handleSubmit(ev) {
@@ -67,9 +37,6 @@ function handleSubmit(ev) {
   
 }
 
-
-
- 
   return (
      
     <div className='firstDivFormSendNews'>
@@ -102,14 +69,6 @@ function handleSubmit(ev) {
     
   
   )
-      
+      }
 
-
-
-
-
-
-}
-}
-}
 export default SendNews
