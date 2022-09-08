@@ -12,7 +12,7 @@
 .card-favourite{
   color: ghostwhite;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     padding-left: 30px;
 }
 .card-favourite span{
@@ -127,4 +127,11 @@
   padding: 10px 24px;
   margin: 0;
   cursor: pointer;
+}
+
+#button_cart_card {
+ font-size: x-large;
+ background: none;
+ border: none;
+ cursor: pointer;
 }
