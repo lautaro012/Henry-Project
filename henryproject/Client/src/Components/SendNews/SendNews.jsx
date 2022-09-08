@@ -12,7 +12,6 @@ const SendNews = () => {
  const [mails, setMails] = useState([])
  const [input, setInput] = useState('')
  const [loading, setLoading] = useState(false)
- console.log('aaaaaaaaaaaaaaaaaaa',mailsNews)
 
 useEffect(() => {
    dispatch(getAllMailsNews());
