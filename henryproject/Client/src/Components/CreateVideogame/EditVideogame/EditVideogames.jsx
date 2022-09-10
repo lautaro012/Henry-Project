@@ -338,12 +338,11 @@ function onClickRating(){
     setState({...state,name:detailsVideogames.name,price:detailsVideogames.price,description:detailsVideogames.description,rating:detailsVideogames.rating});
 }
 // FUNCION ONCLICK => VIDEO
-// console.log(detailsVideogames.video);
+
 function onClickVideo(){
     setMuestra({...muestra,video:false});
     setMensaje({...mensaje,video:false});
     setValue({...value,video:detailsVideogames.video});
-    // console.log(value.video);
     
 }
 
@@ -512,12 +511,11 @@ function onClickCancelar(){
     else if (number >= 4 && number < 5) {
         return "⭐⭐⭐⭐"
     }
-    else if (number == 5) {
+    else if (number === 5) {
         return "⭐⭐⭐⭐⭐"
     }
 }
 
-// console.log(value);
     return (
         <div className='container-createVideogames'>
             <div className="subContainer-createVideogames">
