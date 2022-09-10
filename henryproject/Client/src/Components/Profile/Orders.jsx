@@ -7,7 +7,6 @@ import './Profile.css'
 
 export default function Orders({ data }) {
 
-    console.log("DATA DE JUEGOS", data)
 
     let { id_name } = data
 
@@ -15,7 +14,6 @@ export default function Orders({ data }) {
     //const navigate = useNavigate();
     const orders = useSelector(state => state.orders)
 
-    console.log("ORDENES PA", orders)
 
     useEffect(() => {
         dispatch(getOrders(id_name))

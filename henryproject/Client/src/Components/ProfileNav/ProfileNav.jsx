@@ -56,9 +56,14 @@ export default function ProfileNav({ setUserLogged, userLogged }) {
 
   return (
     <div>
-      <div className="div-image-navbar">
-        <img width={45} src={userdetails.image} alt='IMAGEEN'></img>
-      </div>
+      {
+        userdetails.image ?
+        <div className="div-image-navbar">
+          <img width={45} src={userdetails.image} alt='IMAGEEN'></img>
+        </div>
+        :
+        <span> Loading... </span>
+      }
       <div id="nav_bar_user">
         <button onClick={() => navigate('/profile')}>{userdetails.userName}</button>
         {

@@ -185,7 +185,6 @@ let history=useNavigate();
 
     function handleChangeImage(e) {
         if(e.target.files && e.target.files[0]) {
-            console.log(e.target.files[0])
             const data = new FormData()
             data.append("file", e.target.files[0])
             data.append("upload_preset", "gamesAPI")
@@ -350,7 +349,6 @@ let history=useNavigate();
     // onclickSubmit
     function onClickSubmit(){
         if(state.name!="" && state.price!="" && state.description!="" && state.rating != "" && state.video.length!=0 && state.image!="" && state.screenshots!=0 && state.store!=0 && state.developers!=0 && state.publishers!=0 && state.website != "" && state.realeaseDate!="" && state.metacritic!="" && state.esrb_rating != "" && state.platforms.length!=0 && state.tags.length!=0 && state.genres.length!=0 && Object.keys(error).length==0){
-            console.log(state.realeaseDate);    
             setButtons(false)
                 dispatch(postVideoGame(state));
                 swal({title:"It has been created successfully"});    

@@ -101,9 +101,7 @@ export default function GameDetails() {
 
     let userLogged = JSON.parse(localStorage.getItem("user"));
 
-    console.log("GAME", game)
-    console.log("REVIEWS", reviews)
-    console.log("USER", userLogged.user)
+
 
     const [input, setInput] = useState(
         userLogged.user ?

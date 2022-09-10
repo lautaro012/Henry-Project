@@ -301,7 +301,6 @@ function onClickAgregarPublisher(){
         }
         dispatch(postVideoGame(state));
         
-        console.log(state);
         
     }
 

@@ -22,7 +22,6 @@ export default function DatosJuegos({ data }) {
     //const navigate = useNavigate();
     const orders = useSelector(state => state.orders)
 
-    console.log("ORDENES PA", orders)
 
     useEffect(() => {
         dispatch(getOrders(id_name))
