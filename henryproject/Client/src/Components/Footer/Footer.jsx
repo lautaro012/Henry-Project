@@ -39,18 +39,6 @@ export default function Footer({userLogged}) {
                             <li>
                                 <a className="linkTo" href="https://www.linkedin.com/in/pierino-esteban-juncos-9a4804240/" target="_blank" rel="noreferrer" >Pierino Esteban Juncos</a>
                             </li>
-
-                            <li>
-                                <a className="linkTo" href="https://www.linkedin.com/in/serch07/" target="_blank" rel="noreferrer" >Sergio Garcia Moreno</a>
-                            </li>
-
-                            <li>
-                                <a className="linkTo" href="https://www.linkedin.com/in/frank-smith-bocangelino-rojas-351157168/" target="_blank" rel="noreferrer" >Frank Smith Bocangelino</a>
-                            </li>
-
-                            <li>
-                                <a className="linkTo" href="https://www.linkedin.com/in/juan-david-pabon-porras-4123b389/" target="_blank" rel="noreferrer" >Juan David Pabon</a>
-                            </li>
                         </ul>
                         <hr></hr>
                     </span>

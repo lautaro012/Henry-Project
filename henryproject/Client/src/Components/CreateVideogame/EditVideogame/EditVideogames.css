@@ -85,7 +85,7 @@ margin-top: 40px;
     height: auto;
     border:solid 1px black;
     border-radius: 20px;
-    /* background-color: darkred; */
+    background-color: rgb(85, 85, 85);
 }
 
 
@@ -799,6 +799,7 @@ margin-top: 40px;
     height: auto;
     border:solid 1px black;
     border-radius: 20px;
+    background-color: darkgray;
 }
 .container-preview{
     display: flex;

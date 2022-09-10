@@ -33,9 +33,6 @@ export const FormularioPago = () => {
 
    const arr = [items.map(e => e.name)]
 
-  // console.log(arr[0])
-
-
   let history = useNavigate();
   const handleRegresar = () => {
 
@@ -72,7 +69,6 @@ export const FormularioPago = () => {
           userIdName
 
         })
-        console.log(data);
         swal({title:`You have pay $ ${precioTotal} successfully`})
         
         dispatch(deleteItemFromCart('All'))
@@ -132,7 +128,7 @@ export const FormularioPago = () => {
               <div className="subcontainerPagar">
                 <div className="button-pagar">                    
                     <button onClick={(e) => handleSubmit(e)} className="button-19" disabled={loading ? true : false}>
-                      {loading ? <p>loading</p> : <p>   { `$ ${precioTotal}.00`}</p>}  <p> 'Checkout'   </p>
+                      {loading ? <p>Loading</p> : <p>   { `$ ${precioTotal}.00`}</p>}  <p> 'Checkout'   </p>
                     </button>
                 </div>
               </div>
