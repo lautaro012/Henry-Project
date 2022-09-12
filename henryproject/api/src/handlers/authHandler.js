@@ -26,6 +26,47 @@ const singUp = async (req, res) =>    {
         let admins = ['lautaro0121@gmail.com', 'Lautaro0121@gmail.com', "jejog50@gmail.com","juandavid614@hotmail.com", "bermudez.luciana9@gmail.com","f.s.b.rojas@gmail.com", "phyrofyre@gmail.com"]
         let password = bcrypt.hashSync(req.body.password, 8);
         const { name, lastName, userName, mail, address, image} = req.body
+        const htmlEmail = `<!DOCTYPE html>
+        <html>
+            <head>
+                <link rel="preconnect" href="https://fonts.googleapis.com">
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;900&family=Righteous&display=swap" rel="stylesheet">
+                <style>
+                    .img {
+                        max-width: 100px;
+                        border-radius: 25%;
+                    }
+    
+                    h1, h2, h3, p {
+                        text-align: center;
+                        font-family: 'Lato', sans-serif;
+                        font-family: 'Righteous', cursive;
+                    }
+                    .image {
+                        background-color: rgb(31, 31, 31);
+                        text-align: center;
+                    }
+    
+                </style>
+            </head>
+            <body>
+                <div>
+                    <div class="image">
+                        <a href="https://henry-project.vercel.app/home">
+                            <img class="img" src="https://i.im.ge/2022/09/07/OZP87y.Icon.png" alt="iconImg"/>
+                        </a>
+                    </div>
+                    <h1>User Information 📖</h1>
+                    <h3>Thanks For Register In Games Store 👻</h3>
+                    <h1>This is your information</h1>
+                    <hr></hr>
+                    <h3>Name: ${name}</h3>
+                    <h3>Username: ${userName}</h3>
+                    <h3>Address: ${address}</h3>
+                </div>
+            </body>
+        </html>`
         
         const validation = validateAttributes(name, lastName, userName, mail, address);
         if (validation === true) {
@@ -58,18 +99,7 @@ const singUp = async (req, res) =>    {
             from: '"Thanks For Register In Games Store 👻" <henry.games.store@gmail.com>', // sender address
             to: mail, // list of receivers
             subject: "Hello ✔", // Subject line
-            html: `
-            <div>
-                <h1>User Information 📓</h1>
-                <h2>Thanks For Register In Games Store 👻</h2>
-                <h2>This is your information:</h2>
-                <ul>
-                    <li>Name: ${name}</li>
-                    <li>Username: ${userName}</li>
-                    <li>Address: ${address}</li>
-                </ul>
-            </div>
-            `, // html body
+            html: htmlEmail, // html body
           });
 
         } else {

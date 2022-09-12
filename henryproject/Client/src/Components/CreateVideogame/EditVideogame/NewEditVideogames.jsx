@@ -146,7 +146,6 @@ function validateFields(input){
                 if(state.publishers.length<=0){
                     if(!input[keys]) errores[keys] = `${keys} is required`
                 }
-                // console.log(state.)
         }
     }
         return errores

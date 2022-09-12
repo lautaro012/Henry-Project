@@ -338,12 +338,11 @@ function onClickRating(){
     setState({...state,name:detailsVideogames.name,price:detailsVideogames.price,description:detailsVideogames.description,rating:detailsVideogames.rating});
 }
 // FUNCION ONCLICK => VIDEO
-// console.log(detailsVideogames.video);
+
 function onClickVideo(){
     setMuestra({...muestra,video:false});
     setMensaje({...mensaje,video:false});
     setValue({...value,video:detailsVideogames.video});
-    // console.log(value.video);
     
 }
 
@@ -512,12 +511,11 @@ function onClickCancelar(){
     else if (number >= 4 && number < 5) {
         return "⭐⭐⭐⭐"
     }
-    else if (number == 5) {
+    else if (number === 5) {
         return "⭐⭐⭐⭐⭐"
     }
 }
 
-// console.log(value);
     return (
         <div className='container-createVideogames'>
             <div className="subContainer-createVideogames">
@@ -529,7 +527,7 @@ function onClickCancelar(){
                             {
                                 (muestra.name)?(<>
                                     <input type="text" onChange={(ev)=>handleChangeInput(ev)} name="name" required value={detailsVideogames.name}/>
-                                    <input type="submit" onClick={()=>onClickName()} value="Edit Name"/>
+                                    <input type="submit" onClick={()=>onClickName()} className='inputStyleValue' value="Edit Name"/>
                                 </>):(
                                     <>
                                     <input type="text" onChange={(ev)=>handleChangeRespuesta(ev)} onBlur={(ev)=>handleChangeRespuesta(ev)} onKeyUp={(ev)=>handleChangeRespuesta(ev)} name="name" required placeholder={state.name} value={value.name}/>
@@ -549,7 +547,7 @@ function onClickCancelar(){
                             {
                                 (muestra.price)?(<>
                                     <input type="text" onChange={(ev)=>handleChangeInput(ev)} name="price" required value={detailsVideogames.price}/>
-                                    <input type="submit" onClick={()=>onClickPrice()} value="Edit Price"/>
+                                    <input type="submit" className='inputStyleValue' onClick={()=>onClickPrice()} value="Edit Price"/>
                                 </>):(
                                     <>
                                     <input type="text" onChange={(ev)=>handleChangeRespuesta(ev)} onBlur={(ev)=>handleChangeRespuesta(ev)} onKeyUp={(ev)=>handleChangeRespuesta(ev)} name="price" required placeholder={state.price} value={value.price}/>
@@ -569,7 +567,7 @@ function onClickCancelar(){
                             {
                                 (muestra.description)?(<>
                                     <textarea cols="50" rows="7" onChange={(ev)=>handleChangeInput(ev)} name="description" required value={detailsVideogames.description}></textarea>
-                                    <input type="submit" onClick={()=>onClickDescription()} value="Edit Description"/>
+                                    <input type="submit" className='inputStyleValue' onClick={()=>onClickDescription()} value="Edit Description"/>
                                 </>):(
                                     <>
                                     <textarea cols="50" rows="7" onChange={(ev)=>handleChangeRespuesta(ev)} onBlur={(ev)=>handleChangeRespuesta(ev)} onKeyUp={(ev)=>handleChangeRespuesta(ev)} name="description" required placeholder={state.description} value={value.description}></textarea>
@@ -591,7 +589,7 @@ function onClickCancelar(){
                             {
                                 (muestra.rating)?(<>
                                     <input type="text" onChange={(ev)=>handleChangeInput(ev)} name="rating" required value={detailsVideogames.rating}/>
-                                    <input type="submit" onClick={()=>onClickRating()} value="Edit Rating"/>
+                                    <input type="submit" className='inputStyleValue' onClick={()=>onClickRating()} value="Edit Rating"/>
                                 </>):(
                                     <>
                                     <input type="text" onChange={(ev)=>handleChangeRespuesta(ev)} onBlur={(ev)=>handleChangeRespuesta(ev)} onKeyUp={(ev)=>handleChangeRespuesta(ev)} name="rating" required placeholder={state.rating} value={value.rating}/>
@@ -612,8 +610,8 @@ function onClickCancelar(){
                             {
                                 (muestra.video)?(<>
                                 <input type="text" onChange={(ev)=>handleChangeInput(ev)} required name="video" placeholder="videa... " value={""}/>
-                                <input type="submit" value="+" onClick={()=>onClickAgregarMovie()}/>
-                                <input type="submit" onClick={()=>onClickVideo()} value="Edit Video"/>
+                                <input type="submit"  value="+" onClick={()=>onClickAgregarMovie()}/>
+                                <input type="submit" className='inputStyleValue' onClick={()=>onClickVideo()} value="Edit Video"/>
                                 {
                                     detailsVideogames.video?.map((video)=>{
                                     return(
@@ -653,7 +651,7 @@ function onClickCancelar(){
                             {
                                 (muestra.image)?(<>
                                     <input type="text" onChange={(ev)=>handleChangeInput(ev)} name="image" required value={detailsVideogames.image}/>
-                                    <input type="submit" onClick={()=>onClickImage()} value="Edit Image"/>
+                                    <input type="submit" className='inputStyleValue' onClick={()=>onClickImage()} value="Edit Image"/>
                                 </>):(
                                     <>
                                     <input type="text" onChange={(ev)=>handleChangeRespuesta(ev)} onBlur={(ev)=>handleChangeRespuesta(ev)} onKeyUp={(ev)=>handleChangeRespuesta(ev)} name="image" required placeholder={state.image} value={value.image}/>
@@ -674,8 +672,8 @@ function onClickCancelar(){
                             {
                                 (muestra.screenshots)?(<>
                                 <input type="text" onChange={(ev)=>handleChangeInput(ev)} required name="screenshot" placeholder="screenshot... " value={""}/>
-                                <input type="submit" value="+" onClick={()=>onClickAgregarScreenshot()}/>
-                                <input type="submit" onClick={()=>onClickScreenshot()} value="Edit Screenshot"/>
+                                <input type="submit"  value="+" onClick={()=>onClickAgregarScreenshot()}/>
+                                <input type="submit" className='inputStyleValue' onClick={()=>onClickScreenshot()} value="Edit Screenshot"/>
                                 {
                                     detailsVideogames.screenshots?.map((video)=>{
                                     return(
@@ -727,7 +725,7 @@ function onClickCancelar(){
                                 <option value="itch.io">itch.io</option>
                                 <option value="Epic Games">Epic Games</option>
                                 </select>
-                                <input type="submit" onClick={()=>onClickStore()} value="Edit Store"/>
+                                <input type="submit" className='inputStyleValue' onClick={()=>onClickStore()} value="Edit Store"/>
                                 <div>
                                 {
                                     detailsVideogames.store?.map((store)=>{
@@ -821,7 +819,7 @@ function onClickCancelar(){
                                 (muestra.publishers)?(<>
                                 <input type="text" onChange={(ev)=>handleChangeInput(ev)} required name="publishers" placeholder="publishers... " value={""}/>
                                 <input type="submit" value="+" onClick={()=>onClickAgregarPublisher()}/>
-                                <input type="submit" onClick={()=>onClickPublishers()} value="Edit Publishers"/>
+                                <input type="submit" className='inputStyleValue' onClick={()=>onClickPublishers()} value="Edit Publishers"/>
                                 {
                                     detailsVideogames.publishers?.map((video)=>{
                                     return(
@@ -861,7 +859,7 @@ function onClickCancelar(){
                             {
                                 (muestra.website)?(<>
                                     <input type="text" onChange={(ev)=>handleChangeInput(ev)} name="website" required value={detailsVideogames.website}/>
-                                    <input type="submit" onClick={()=>onClickWebSite()} value="Edit Website"/>
+                                    <input type="submit" className='inputStyleValue' onClick={()=>onClickWebSite()} value="Edit Website"/>
                                 </>):(
                                     <>
                                     <input type="text" onChange={(ev)=>handleChangeRespuesta(ev)} onBlur={(ev)=>handleChangeRespuesta(ev)} onKeyUp={(ev)=>handleChangeRespuesta(ev)} name="website" required placeholder={state.website} value={value.website}/>
@@ -881,7 +879,7 @@ function onClickCancelar(){
                         {
                                 (muestra.releaseDate)?(<>
                                     <input type="text" onChange={(ev)=>handleChangeInput(ev)} name="releaseDate" required value={detailsVideogames.realeaseDate}/>
-                                    <input type="submit" onClick={()=>onClickreleaseDate()} value="Edit releaseDate"/>
+                                    <input type="submit" onClick={()=>onClickreleaseDate()} className='inputStyleValue' value="Edit releaseDate"/>
                                 </>):(
                                     <>
                                     <input type="text" onChange={(ev)=>handleChangeRespuesta(ev)} onBlur={(ev)=>handleChangeRespuesta(ev)} onKeyUp={(ev)=>handleChangeRespuesta(ev)} name="releaseDate" required placeholder={state.releaseDate} value={value.releaseDate}/>
@@ -901,7 +899,7 @@ function onClickCancelar(){
                             {
                                 (muestra.metacritic)?(<>
                                     <input type="text" onChange={(ev)=>handleChangeInput(ev)} name="metacritic" required value={detailsVideogames.metacritic}/>
-                                    <input type="submit" onClick={()=>onClickmetacritic()} value="Edit metacritic"/>
+                                    <input type="submit" onClick={()=>onClickmetacritic()} className='inputStyleValue' value="Edit metacritic"/>
                                 </>):(
                                     <>
                                     <input type="text" onChange={(ev)=>handleChangeRespuesta(ev)} onBlur={(ev)=>handleChangeRespuesta(ev)} onKeyUp={(ev)=>handleChangeRespuesta(ev)} name="metacritic" required placeholder={state.metacritic} value={value.metacritic}/>
@@ -921,7 +919,7 @@ function onClickCancelar(){
                         {
                                 (muestra.esrb_rating)?(<>
                                     <input type="text" onChange={(ev)=>handleChangeInput(ev)} name="esrb_rating" required value={detailsVideogames.esrb_rating}/>
-                                    <input type="submit" onClick={()=>onClickesr_rating()} value="Edit esrb_rating"/>
+                                    <input type="submit" onClick={()=>onClickesr_rating()} className='inputStyleValue' value="Edit esrb_rating"/>
                                 </>):(
                                     <>
                                     <input type="text" onChange={(ev)=>handleChangeRespuesta(ev)} onBlur={(ev)=>handleChangeRespuesta(ev)} onKeyUp={(ev)=>handleChangeRespuesta(ev)} name="esrb_rating" required placeholder={state.esrb_rating} value={value.esrb_rating}/>
@@ -950,7 +948,7 @@ function onClickCancelar(){
                                         })
                                         }
                                     </select>
-                                    <input type="submit" onClick={()=>onClickPlatforms()} value="Edit Platform"/>
+                                    <input type="submit" onClick={()=>onClickPlatforms()} className='inputStyleValue' value="Edit Platform"/>
                                 <div>
                                 {
                                     detailsVideogames.platforms?.map((store)=>{
@@ -1007,7 +1005,7 @@ function onClickCancelar(){
                                         })
                                         }
                                     </select>
-                                    <input type="submit" onClick={()=>onClickTags()} value="Edit Tag"/>
+                                    <input type="submit" onClick={()=>onClickTags()} className='inputStyleValue' value="Edit Tag"/>
                                 <div>
                                 {
                                     detailsVideogames.tags?.map((store)=>{
@@ -1063,7 +1061,7 @@ function onClickCancelar(){
                                         })
                                         }
                                     </select>
-                                    <input type="submit" onClick={()=>onClickGenres()} value="Edit Genre"/>
+                                    <input type="submit" onClick={()=>onClickGenres()} className='inputStyleValue' value="Edit Genre"/>
                                 <div>
                                 {
                                     detailsVideogames.genres?.map((store)=>{
@@ -1107,8 +1105,11 @@ function onClickCancelar(){
                         </div> */}
 
                         {/* BUTTON */}
-                        <button onClick={()=>onClickEditar()}>EDIT VIDEOGAME</button>
-                        <button onClick={()=>onClickCancelar()}>CANCEL</button>
+                        <div id="lastInputEditButton">
+                            <button className="inputStyleValue" onClick={()=>onClickEditar()}>EDIT VIDEOGAME</button>
+                        <button className="inputStyleValue" onClick={()=>onClickCancelar()}>CANCEL</button>
+                        </div>
+                        
                 </div>
                 <div className="divcontainer02">
                     {(

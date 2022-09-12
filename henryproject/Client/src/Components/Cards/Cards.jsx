@@ -128,18 +128,17 @@ export default function Card({ card }) {
                 {
                     favorites?.find(item => item.id === id) ?
                         <div className="card-favourite">
-                            <span> {name} </span>
                             <input id={`hearth-${id}`} type="checkbox" value={name} onClick={(e) => handleFavourite(e)} checked={true} className="favourite-checkbox" />
                             <label className="favourite-label" htmlFor={`hearth-${id}`}>❤</label>
+                            <button id="button_cart_card" onClick={() => addGameToCart()}>🛒</button>
                         </div>
                         :
                         <div className="card-favourite">
-                            <span> {name} </span>
                             <input id={`hearth-${id}`} type="checkbox" value={name} onClick={(e) => handleFavourite(e)} className="favourite-checkbox" />
                             <label className="favourite-label" htmlFor={`hearth-${id}`}>❤</label>
+                            <button id="button_cart_card" onClick={() => addGameToCart()}>🛒</button>
                         </div>
                 }
-                <button id="buttons_detail_buy" onClick={() => addGameToCart()}>🛒</button>
             </div>
             <div className="card-data">
                 <span className="h">{price} US$</span>
