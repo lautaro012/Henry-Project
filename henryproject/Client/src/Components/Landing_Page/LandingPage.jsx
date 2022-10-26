@@ -55,12 +55,12 @@ export default function LandingPage() {
                                     //     <img src={game.image} alt={game.id}/>
                                     //     <Link to={'/home/games/' + game.id} key={game.id}><p className="legend">{game.name}</p></Link>
                                     // </div>
-                                        <Link to={`/home/games/${game.id}`}>
-                                            <CardHover2
-                                                name={game.name}
-                                                image={game.image}
-                                            />
-                                        </Link>
+                                    <Link to={`/home/games/${game.id}`}>
+                                        <CardHover2
+                                            name={game.name}
+                                            image={game.image}
+                                        />
+                                    </Link>
                                 )
                             })
                         }

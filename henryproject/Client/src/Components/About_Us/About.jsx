@@ -8,7 +8,7 @@ import lucianab from "../../Style/Imagenes/lucianab.jpeg"
 import sergiog from "../../Style/Imagenes/sergiog.jpeg"
 import pierino from "../../Style/Imagenes/pierino.jpeg"
 import frank from "../../Style/Imagenes/frank.jpeg"
-import linkedin from "../../Style/Imagenes/linkedin.png"
+import linkedin from "../../Style/Imagenes/linkedin.jpg"
 import instagram from "../../Style/Imagenes/instagram.png"
 import github from '../../Style/Imagenes/github.png'
 
