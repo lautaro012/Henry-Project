@@ -6,6 +6,32 @@
     
 }
 
+.inputStyleValue{
+    background-color: rgba(255, 255, 255, 0.692);
+    margin: 2px;
+    padding: 4px;
+    border: solid white 0.5px;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.inputStyleValue:hover{
+    background-color: black;
+    border: solid white 0.5px;
+    color: white;
+    cursor: pointer;
+}
+
+#lastInputEditButton{
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+align-content: center;
+margin-top: 40px;
+
+}
+
 .subContainer-createVideogames{
     display: flex;
     flex-wrap: nowrap;
@@ -59,7 +85,7 @@
     height: auto;
     border:solid 1px black;
     border-radius: 20px;
-    /* background-color: darkred; */
+    background-color: rgb(85, 85, 85);
 }
 
 
@@ -773,6 +799,7 @@
     height: auto;
     border:solid 1px black;
     border-radius: 20px;
+    background-color: darkgray;
 }
 .container-preview{
     display: flex;
